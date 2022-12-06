@@ -36,7 +36,39 @@ Indrajeet Patil
 # "Software engineering ought to produce sustainability." 
 \- Mark Seemann (*Code That Fits in Your Head*)
 
+# Prevent link rot
 
+# HTML5 check
+
+# Functioning examples
+
+Make sure *all* examples work.
+
+# Up-to-date README
+
+All code runs successfully.
+
+# Use dependencies conditionally
+
+Pass "noSuggests" check, also for pkgdown.
+
+# Check example coverage
+
+# Spell check
+
+# Turn warnings into errors
+
+# Precommit
+
+# Benchmarking
+
+Touchstone framework
+
+# Check against devel versions of dependencies
+
+# Check on multiple R versions and platforms
+
+# Fail on NOTE
 
 # For more
 
