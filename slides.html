@@ -452,16 +452,99 @@
 <section>
 <section id="documentation" class="title-slide slide level1 center">
 <h1>Documentation</h1>
-
+<p>Preventive care to keep the documentation up-to-date.</p>
 </section>
 <section id="working-examples" class="slide level2">
 <h2>Working examples</h2>
 <p>Make sure <em>all</em> examples work.</p>
 </section>
-<section id="prevent-link-rot" class="slide level2 smaller">
-<h2>Prevent link rot</h2>
+<section id="link-rot" class="slide level2 smaller">
+<h2>Link rot</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<p><i class="fa-solid fa-link-slash fa-2xl" aria-label="link-slash"></i></p>
+</div><div class="column" style="width:90%;">
 <p>If the package documentation includes hyperlinks to external resources, make sure that they are still valid and not dangling.</p>
-<p>Link rot can happen because web pages move to different addresses or become permanently unavailable.</p>
+<p><a href="https://en.wikipedia.org/wiki/Link_rot" target="_blank">Link rot</a> happens because web pages move to new addresses or become permanently unavailable.</p>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/confused.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Such dangling references can be frustrating for the users trying to access the resources that the dead links were previously pointing to.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><i class="fa-solid fa-triangle-exclamation fa-2xl" aria-label="triangle-exclamation"></i></p>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p>How to prevent link rot from accumulating?</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="detecting-link-rot" class="slide level2 smaller">
+<h2>Detecting link rot</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
+</div><div class="column" style="width:90%;">
+<p>You can use <a href="https://r-lib.github.io/urlchecker/"><code>{urlchecker}</code></a> to detect dead web references and their locations in the documentation.</p>
+<p>Fixing these links is then straightforward.</p>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<!--  -->
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You can write a GHA workflow to automate URL checking (<a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml" target="_blank">example workflow</a> in <code>{statsExpressions}</code>).</p>
+<p>This will ensure that bad URLs will be discovered for every new commit.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong><em>Nota Bene</em></strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>If <code>{urlchecker}</code> finds dead URLs in <code>.html</code>/<code>.md</code> files, you will need to update <code>.Rmd</code>/<code>.qmd</code> files and then regenerate the docs. Otherwise, you will keep wondering why <code>urlchecker::url_update()</code> isn’t fixing the links.</p></li>
+<li><p>You can set up a <a href="https://en.wikipedia.org/wiki/Cron" target="_blank">cron job</a> and run the GHA workflow (e.g.) once a week to check for link rot. This will unearth link rot even if the repo is not under active development.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="html5-check" class="slide level2">
 <h2>HTML5 check</h2>
@@ -530,6 +613,11 @@
 <p>If you are interested in reading more of my slide decks on related topics, visit <a href="https://sites.google.com/site/indrajeetspatilmorality/presentations" target="_blank">this</a> page.</p>
 </section>
 
+<section id="acknowledgements" class="title-slide slide level1 smaller center">
+<h1>Acknowledgements</h1>
+<p>A number of icons used in these slides have been taken from <a href="www.flaticon.com">Flaticon</a>. Huge thanks to them for making such fantastic resource freely available to the users.</p>
+</section>
+
 <section id="find-me-at" class="title-slide slide level1 center">
 <h1>Find me at…</h1>
 <p><i class="fa-brands fa-twitter" aria-label="twitter"></i> <a href="http://twitter.com/patilindrajeets" target="_blank">Twitter</a></p>
@@ -580,6 +668,7 @@
    lifecycle     1.0.3   2022-10-07 [1] CRAN (R 4.2.1)
    magrittr      2.0.3   2022-03-30 [1] CRAN (R 4.2.0)
  P methods     * 4.2.2   2022-10-31 [1] local
+   png           0.1-8   2022-11-29 [1] CRAN (R 4.2.2)
    rlang         1.0.6   2022-09-24 [1] CRAN (R 4.2.1)
    rmarkdown     2.19    2022-12-15 [1] CRAN (R 4.2.2)
    rstudioapi    0.14    2022-08-22 [1] CRAN (R 4.2.1)
