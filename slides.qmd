@@ -40,15 +40,27 @@ Indrajeet Patil
 
 Specifying the intended audience early-on to check relevance of the content for you.
 
-## Before we begin
+# Before we begin
+
+Don't miss the forest for the trees and dismiss this as irrelevant.
+
+## 
 
 :::{.callout-important}
 
-## Don't miss the forest for the trees
+## Choose your own toolkit
 
-In this presentation, I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. But, if you use neither, don't feel that this is not relevant for you.
+I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. Even if you use neither, don't feel that this is not relevant for you.
 
-At the end of each section, I will include broader takeaways that are independent of the exact tech stack used for development. You can implement them with whatever tools you prefer.
+At the end of each section, I will include a checklist with broader takeaways that are independent of the tech stack used for development. You can implement the necessary checks with the tools you prefer.
+
+:::
+
+:::{.callout-note}
+
+## More than CRAN
+
+Following advice mentioned in these slides will make your packages more robust to CRAN archival, but that's *incidental*. You should follow these practices even if you never plan to submit your package to CRAN.
 
 :::
 
@@ -60,7 +72,9 @@ Make sure *all* examples work.
 
 ## Prevent link rot {.smaller}
 
+If the package documentation includes hyperlinks to external resources, make sure that they are still valid and not dangling.
 
+Link rot can happen because web pages move to different addresses or become permanently unavailable.
 
 ## HTML5 check
 
@@ -71,6 +85,8 @@ Make sure *all* examples work.
 ## Up-to-date README
 
 All code runs successfully.
+
+## Checklist
 
 # Dependency management
 

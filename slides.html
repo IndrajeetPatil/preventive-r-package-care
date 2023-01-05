@@ -409,24 +409,42 @@
 <p>- Mark Seemann (<em>Code That Fits in Your Head</em>)</p>
 </section>
 
-<section>
 <section id="who-is-this-presentation-for" class="title-slide slide level1 center">
 <h1>Who is this presentation for?</h1>
 <p>Specifying the intended audience early-on to check relevance of the content for you.</p>
 </section>
-<section id="before-we-begin" class="slide level2">
-<h2>Before we begin</h2>
+
+<section>
+<section id="before-we-begin" class="title-slide slide level1 center">
+<h1>Before we begin</h1>
+<p>Don’t miss the forest for the trees and dismiss this as irrelevant.</p>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
 <div class="callout callout-important callout-captioned callout-style-default">
 <div class="callout-body">
 <div class="callout-caption">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Don’t miss the forest for the trees</strong></p>
+<p><strong>Choose your own toolkit</strong></p>
 </div>
 <div class="callout-content">
-<p>In this presentation, I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. But, if you use neither, don’t feel that this is not relevant for you.</p>
-<p>At the end of each section, I will include broader takeaways that are independent of the exact tech stack used for development. You can implement them with whatever tools you prefer.</p>
+<p>I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. Even if you use neither, don’t feel that this is not relevant for you.</p>
+<p>At the end of each section, I will include a checklist with broader takeaways that are independent of the tech stack used for development. You can implement the necessary checks with the tools you prefer.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>More than CRAN</strong></p>
+</div>
+<div class="callout-content">
+<p>Following advice mentioned in these slides will make your packages more robust to CRAN archival, but that’s <em>incidental</em>. You should follow these practices even if you never plan to submit your package to CRAN.</p>
 </div>
 </div>
 </div>
@@ -442,6 +460,8 @@
 </section>
 <section id="prevent-link-rot" class="slide level2 smaller">
 <h2>Prevent link rot</h2>
+<p>If the package documentation includes hyperlinks to external resources, make sure that they are still valid and not dangling.</p>
+<p>Link rot can happen because web pages move to different addresses or become permanently unavailable.</p>
 </section>
 <section id="html5-check" class="slide level2">
 <h2>HTML5 check</h2>
@@ -455,6 +475,9 @@
 <section id="up-to-date-readme" class="slide level2">
 <h2>Up-to-date README</h2>
 <p>All code runs successfully.</p>
+</section>
+<section id="checklist" class="slide level2">
+<h2>Checklist</h2>
 </section></section>
 <section>
 <section id="dependency-management" class="title-slide slide level1 center">
