@@ -36,25 +36,49 @@ Indrajeet Patil
 # "Software engineering ought to produce sustainability." 
 \- Mark Seemann (*Code That Fits in Your Head*)
 
-# Prevent link rot
+# Who is this presentation for?
 
-# HTML5 check
+Specifying the intended audience early-on to check relevance of the content for you.
 
-# Functioning examples
+## Before we begin
+
+:::{.callout-important}
+
+## Don't miss the forest for the trees
+
+In this presentation, I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. But, if you use neither, don't feel that this is not relevant for you.
+
+At the end of each section, I will include broader takeaways that are independent of the exact tech stack used for development. You can implement them with whatever tools you prefer.
+
+:::
+
+# Documentation
+
+## Working examples
 
 Make sure *all* examples work.
 
-# Up-to-date README
+## Prevent link rot {.smaller}
+
+
+
+## HTML5 check
+
+## Spell check
+
+## Check example coverage
+
+## Up-to-date README
 
 All code runs successfully.
 
-# Use dependencies conditionally
+# Dependency management
 
-Pass "noSuggests" check, also for pkgdown.
+## "noSuggests" check
 
-# Check example coverage
+## "noSuggests" pkgdown
 
-# Spell check
+# Unit testing
 
 # Turn warnings into errors
 

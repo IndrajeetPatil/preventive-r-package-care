@@ -9,7 +9,7 @@
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.34">
+  <meta name="generator" content="quarto-1.3.78">
 
   <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
   <title>slides</title>
@@ -409,38 +409,66 @@
 <p>- Mark Seemann (<em>Code That Fits in Your Head</em>)</p>
 </section>
 
-<section id="prevent-link-rot" class="title-slide slide level1 center">
-<h1>Prevent link rot</h1>
+<section>
+<section id="who-is-this-presentation-for" class="title-slide slide level1 center">
+<h1>Who is this presentation for?</h1>
+<p>Specifying the intended audience early-on to check relevance of the content for you.</p>
+</section>
+<section id="before-we-begin" class="slide level2">
+<h2>Before we begin</h2>
+<div class="callout callout-important callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Don’t miss the forest for the trees</strong></p>
+</div>
+<div class="callout-content">
+<p>In this presentation, I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. But, if you use neither, don’t feel that this is not relevant for you.</p>
+<p>At the end of each section, I will include broader takeaways that are independent of the exact tech stack used for development. You can implement them with whatever tools you prefer.</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="documentation" class="title-slide slide level1 center">
+<h1>Documentation</h1>
 
 </section>
-
-<section id="html5-check" class="title-slide slide level1 center">
-<h1>HTML5 check</h1>
-
-</section>
-
-<section id="functioning-examples" class="title-slide slide level1 center">
-<h1>Functioning examples</h1>
+<section id="working-examples" class="slide level2">
+<h2>Working examples</h2>
 <p>Make sure <em>all</em> examples work.</p>
 </section>
-
-<section id="up-to-date-readme" class="title-slide slide level1 center">
-<h1>Up-to-date README</h1>
+<section id="prevent-link-rot" class="slide level2 smaller">
+<h2>Prevent link rot</h2>
+</section>
+<section id="html5-check" class="slide level2">
+<h2>HTML5 check</h2>
+</section>
+<section id="spell-check" class="slide level2">
+<h2>Spell check</h2>
+</section>
+<section id="check-example-coverage" class="slide level2">
+<h2>Check example coverage</h2>
+</section>
+<section id="up-to-date-readme" class="slide level2">
+<h2>Up-to-date README</h2>
 <p>All code runs successfully.</p>
-</section>
-
-<section id="use-dependencies-conditionally" class="title-slide slide level1 center">
-<h1>Use dependencies conditionally</h1>
-<p>Pass “noSuggests” check, also for pkgdown.</p>
-</section>
-
-<section id="check-example-coverage" class="title-slide slide level1 center">
-<h1>Check example coverage</h1>
+</section></section>
+<section>
+<section id="dependency-management" class="title-slide slide level1 center">
+<h1>Dependency management</h1>
 
 </section>
-
-<section id="spell-check" class="title-slide slide level1 center">
-<h1>Spell check</h1>
+<section id="nosuggests-check" class="slide level2">
+<h2>“noSuggests” check</h2>
+</section>
+<section id="nosuggests-pkgdown" class="slide level2">
+<h2>“noSuggests” pkgdown</h2>
+</section></section>
+<section id="unit-testing" class="title-slide slide level1 center">
+<h1>Unit testing</h1>
 
 </section>
 
@@ -507,30 +535,30 @@
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
- tz       Europe/Berlin
- date     2022-12-06
- pandoc   2.19.2 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
+ tz       Europe/Stockholm
+ date     2023-01-05
+ pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
  ! package     * version date (UTC) lib source
    base        * 4.2.2   2022-10-31 [?] local
-   cli           3.4.1   2022-09-23 [1] CRAN (R 4.2.0)
+   cli           3.5.0   2022-12-20 [1] CRAN (R 4.2.2)
  P compiler      4.2.2   2022-10-31 [1] local
  P datasets    * 4.2.2   2022-10-31 [1] local
-   digest        0.6.30  2022-10-18 [1] CRAN (R 4.2.1)
-   evaluate      0.18    2022-11-07 [1] CRAN (R 4.2.2)
+   digest        0.6.31  2022-12-11 [1] CRAN (R 4.2.2)
+   evaluate      0.19    2022-12-13 [1] CRAN (R 4.2.2)
    fastmap       1.1.0   2021-01-25 [1] CRAN (R 4.2.0)
    glue          1.6.2   2022-02-24 [1] CRAN (R 4.2.0)
  P graphics    * 4.2.2   2022-10-31 [1] local
  P grDevices   * 4.2.2   2022-10-31 [1] local
-   htmltools     0.5.3   2022-07-18 [1] CRAN (R 4.2.1)
+   htmltools     0.5.4   2022-12-07 [1] CRAN (R 4.2.2)
    jsonlite      1.8.4   2022-12-06 [1] CRAN (R 4.2.2)
    knitr         1.41    2022-11-18 [1] CRAN (R 4.2.2)
    lifecycle     1.0.3   2022-10-07 [1] CRAN (R 4.2.1)
    magrittr      2.0.3   2022-03-30 [1] CRAN (R 4.2.0)
  P methods     * 4.2.2   2022-10-31 [1] local
    rlang         1.0.6   2022-09-24 [1] CRAN (R 4.2.1)
-   rmarkdown     2.18    2022-11-09 [1] CRAN (R 4.2.2)
+   rmarkdown     2.19    2022-12-15 [1] CRAN (R 4.2.2)
    rstudioapi    0.14    2022-08-22 [1] CRAN (R 4.2.1)
    sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.2.0)
  P stats       * 4.2.2   2022-10-31 [1] local
@@ -539,7 +567,7 @@
  P tools         4.2.2   2022-10-31 [1] local
  P utils       * 4.2.2   2022-10-31 [1] local
    vctrs         0.5.1   2022-11-16 [1] CRAN (R 4.2.2)
-   xfun          0.35    2022-11-16 [1] CRAN (R 4.2.2)
+   xfun          0.36    2022-12-21 [1] CRAN (R 4.2.0)
    yaml          2.3.6   2022-10-18 [1] CRAN (R 4.2.1)
 
  [1] /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library
