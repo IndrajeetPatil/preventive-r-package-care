@@ -1,10 +1,11 @@
 ---
 format:
-  revealjs: 
+  revealjs:
+    css: style.css 
     theme: simple
     slide-number: true
     preview-links: auto
-    footer: "Source code for the slides can be found [here](https://github.com/IndrajeetPatil/preventive-r-package-care/){target='_blank'}."
+    footer: "Source code for these slides can be found [on GitHub](https://github.com/IndrajeetPatil/preventive-r-package-care/){target='_blank'}."
 execute:
   echo: true
 keywords: ["software-engineering", "r-packages", "best-practices", "CRAN"]
@@ -146,7 +147,7 @@ This means that `\dontrun{}` and `\donttest{}` examples might not be working, an
 
 ::: {style="color: red;"}
 
-How to catch examples that don't run successfully?
+**How to catch examples that don't run successfully?**
 
 :::
 
@@ -156,7 +157,69 @@ How to catch examples that don't run successfully?
 
 ## Checking all examples {.smaller}
 
-Examples not only document, but also provide test code used for diagnostic checking of R code.
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+{{< fa solid toolbox size=2xl >}}
+
+:::
+
+::: {.column width='90%'}
+
+Examples not only document, but also provide test code used for diagnostic checking of R code. You can use [`{devtools}`](https://r-lib.github.io/devtools/) to run all examples and then fix the broken ones.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+devtools::run_examples(run_dontrun = TRUE, run_donttest = TRUE)
+```
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+You can write a GHA workflow to run all examples (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml){target='_blank'}). 
+
+This will ensure that failing examples will be caught for every new commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## *Nota Bene*
+
+- The examples that are designed to fail should use
+
+    * `if (FALSE) { ... }` (if example is included only for illustrative purposes)
+    * `try({ ... })` (if the intent is to show the error)
+
+- You can set up a [cron job](https://en.wikipedia.org/wiki/Cron){target='_blank'} and run the GHA workflow (e.g.) once a week to check for broken examples if the repo is not under active development.
+
+:::
 
 # Ensure validity of *all* URLs.
 
@@ -226,7 +289,7 @@ Such dangling references can be frustrating for the users trying to access the r
 
 ::: {style="color: red;"}
 
-How to prevent link rot from accumulating?
+**How to prevent link rot from accumulating?**
 
 :::
 
@@ -250,9 +313,13 @@ How to prevent link rot from accumulating?
 
 ::: {.column width='90%'}
 
-You can use [`{urlchecker}`](https://r-lib.github.io/urlchecker/) to detect dead web references and their locations in the documentation.
+You can use [`{urlchecker}`](https://r-lib.github.io/urlchecker/) to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.
 
-Fixing these links is then straightforward.
+```{r, eval=FALSE}
+#| code-line-numbers: false
+urlchecker::url_check()
+```
+
 
 :::
 
@@ -274,7 +341,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-You can write a GHA workflow to automate URL checking ([example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml){target='_blank'} in `{statsExpressions}`). 
+You can write a GHA workflow to automate URL checking (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml){target='_blank'}). 
 
 This will ensure that bad URLs will be discovered for every new commit.
 

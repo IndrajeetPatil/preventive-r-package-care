@@ -97,6 +97,7 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="style.css">
   <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -535,7 +536,7 @@
 <p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
 </div><div class="column" style="width:90%;">
 <div style="color: red;">
-<p>How to catch examples that don’t run successfully?</p>
+<p><strong>How to catch examples that don’t run successfully?</strong></p>
 </div>
 </div>
 </div>
@@ -543,7 +544,55 @@
 </section>
 <section id="checking-all-examples" class="slide level2 smaller">
 <h2>Checking all examples</h2>
-<p>Examples not only document, but also provide test code used for diagnostic checking of R code.</p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
+</div><div class="column" style="width:90%;">
+<p>Examples not only document, but also provide test code used for diagnostic checking of R code. You can use <a href="https://r-lib.github.io/devtools/"><code>{devtools}</code></a> to run all examples and then fix the broken ones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">run_examples</span>(<span class="at">run_dontrun =</span> <span class="cn">TRUE</span>, <span class="at">run_donttest =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You can write a GHA workflow to run all examples (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml" target="_blank">example workflow</a>).</p>
+<p>This will ensure that failing examples will be caught for every new commit.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong><em>Nota Bene</em></strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>The examples that are designed to fail should use</p>
+<ul>
+<li><code>if (FALSE) { ... }</code> (if example is included only for illustrative purposes)</li>
+<li><code>try({ ... })</code> (if the intent is to show the error)</li>
+</ul></li>
+<li><p>You can set up a <a href="https://en.wikipedia.org/wiki/Cron" target="_blank">cron job</a> and run the GHA workflow (e.g.) once a week to check for broken examples if the repo is not under active development.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="ensure-validity-of-all-urls." class="title-slide slide level1 center">
@@ -585,7 +634,7 @@
 <p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
 </div><div class="column" style="width:90%;">
 <div style="color: red;">
-<p>How to prevent link rot from accumulating?</p>
+<p><strong>How to prevent link rot from accumulating?</strong></p>
 </div>
 </div>
 </div>
@@ -599,8 +648,10 @@
 <p><br></p>
 <p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
 </div><div class="column" style="width:90%;">
-<p>You can use <a href="https://r-lib.github.io/urlchecker/"><code>{urlchecker}</code></a> to detect dead web references and their locations in the documentation.</p>
-<p>Fixing these links is then straightforward.</p>
+<p>You can use <a href="https://r-lib.github.io/urlchecker/"><code>{urlchecker}</code></a> to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>urlchecker<span class="sc">::</span><span class="fu">url_check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 <div class="fragment">
@@ -613,7 +664,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>You can write a GHA workflow to automate URL checking (<a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml" target="_blank">example workflow</a> in <code>{statsExpressions}</code>).</p>
+<p>You can write a GHA workflow to automate URL checking (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml" target="_blank">example workflow</a>).</p>
 <p>This will ensure that bad URLs will be discovered for every new commit.</p>
 </div>
 </div>
@@ -732,7 +783,7 @@
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
@@ -787,7 +838,7 @@
 </div>
 </div>
 <div class="footer footer-default">
-<p>Source code for the slides can be found <a href="https://github.com/IndrajeetPatil/preventive-r-package-care/" target="_blank">here</a>.</p>
+<p>Source code for these slides can be found <a href="https://github.com/IndrajeetPatil/preventive-r-package-care/" target="_blank">on GitHub</a>.</p>
 </div>
 </section></section>
     </div>
