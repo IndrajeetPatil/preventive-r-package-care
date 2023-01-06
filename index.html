@@ -5,11 +5,12 @@
 <script src="slides_files/libs/quarto-html/popper.min.js"></script>
 <script src="slides_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.34">
+  <meta name="generator" content="quarto-1.3.90">
 
   <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
   <title>slides</title>
@@ -96,6 +97,7 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="style.css">
   <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -409,38 +411,364 @@
 <p>- Mark Seemann (<em>Code That Fits in Your Head</em>)</p>
 </section>
 
-<section id="prevent-link-rot" class="title-slide slide level1 center">
-<h1>Prevent link rot</h1>
-
+<section id="target-audience" class="title-slide slide level1 center">
+<h1>Target audience</h1>
+<p>Specifying the intended audience early-on to check relevance of the content for you.</p>
 </section>
 
-<section id="html5-check" class="title-slide slide level1 center">
-<h1>HTML5 check</h1>
-
+<section>
+<section id="before-we-begin" class="title-slide slide level1 center">
+<h1>Before we begin</h1>
+<p>Don’t miss the forest for the trees.</p>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="callout callout-important callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>It’s not about the tech</strong></p>
+</div>
+<div class="callout-content">
+<p>I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. Even if you use neither, don’t feel that this is not relevant for you.</p>
+<p>At the end of each section, I will include a checklist with broader takeaways that are independent of the tech stack used for development. You can implement the necessary checks with the tools you prefer.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>It’s not just about CRAN</strong></p>
+</div>
+<div class="callout-content">
+<p>Following the recommended practices will make packages more robust to the possibility of CRAN archival, but that benefit is <em>incidental</em>.</p>
+<p>You can follow these practices even if you never plan to submit to CRAN, since it’s more about better user experience and maintainability.</p>
+</div>
+</div>
+</div>
+</section></section>
+<section id="documentation" class="title-slide slide level1 center">
+<h1>Documentation</h1>
+<p>Preventive care to keep the documentation up-to-date.</p>
 </section>
 
-<section id="functioning-examples" class="title-slide slide level1 center">
-<h1>Functioning examples</h1>
-<p>Make sure <em>all</em> examples work.</p>
-</section>
-
-<section id="up-to-date-readme" class="title-slide slide level1 center">
-<h1>Up-to-date README</h1>
-<p>All code runs successfully.</p>
-</section>
-
-<section id="use-dependencies-conditionally" class="title-slide slide level1 center">
-<h1>Use dependencies conditionally</h1>
-<p>Pass “noSuggests” check, also for pkgdown.</p>
-</section>
-
-<section id="check-example-coverage" class="title-slide slide level1 center">
-<h1>Check example coverage</h1>
+<section>
+<section id="make-sure-all-examples-run-successfully." class="title-slide slide level1 center">
+<h1>Make sure <em>all</em> examples run successfully.</h1>
 
 </section>
+<section id="non-working-examples" class="slide level2 smaller">
+<h2>Non-working examples</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/example.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Types of examples</strong></p>
+</div>
+<div class="callout-content">
+<p>Exported (and key internal) functions should contain examples (<code>\examples{}</code> Rd tag) that showcase how functions are to be used. But you may skip running some examples (e.g.&nbsp;because they are time-consuming). In particular, R allows following tags to conditionally evaluate examples:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Tag</th>
+<th style="text-align: center;">Run by <code>example()</code>?</th>
+<th style="text-align: center;">Run by <code>R CMD check</code>?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>\dontrun{}</code></td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>\donttest{}</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>\dontshow{}</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/confused.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>This means that <code>\dontrun{}</code> and <code>\donttest{}</code> examples might not be working, and yet may never be caught by <code>R CMD check</code>. But users will still see these examples, and wonder why they aren’t working for them.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to catch examples that don’t run successfully?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="checking-all-examples" class="slide level2 smaller">
+<h2>Checking all examples</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
+</div><div class="column" style="width:90%;">
+<p>Examples document, <em>and</em> provide test code used for diagnostic checking. You can use <a href="https://r-lib.github.io/devtools/"><code>{devtools}</code></a> to run examples and then fix the broken ones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">run_examples</span>(<span class="at">run_dontrun =</span> <span class="cn">TRUE</span>, <span class="at">run_donttest =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You can write a GHA workflow to run all examples (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml" target="_blank">example workflow</a>).</p>
+<p>This will ensure that failing examples will be caught for every new commit.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong><em>Nota Bene</em></strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Examples that are meant to fail should use any of the following patterns:</p>
+<ul>
+<li><code>if (FALSE) { ... }</code> (if example is included only for illustrative purposes)</li>
+<li><code>try({ ... })</code> (if the intent is to show the error)</li>
+</ul></li>
+<li><p>If the repo is not under active development, you can run workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="ensure-validity-of-all-urls." class="title-slide slide level1 center">
+<h1>Ensure validity of <em>all</em> URLs.</h1>
 
-<section id="spell-check" class="title-slide slide level1 center">
-<h1>Spell check</h1>
+</section>
+<section id="what-is-link-rot" class="slide level2 smaller">
+<h2>What is link rot?</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<p><i class="fa-solid fa-link-slash fa-2xl" aria-label="link-slash"></i></p>
+</div><div class="column" style="width:90%;">
+<p>If the package documentation includes hyperlinks to external resources, make sure that they are still valid and not dangling.</p>
+<p><a href="https://en.wikipedia.org/wiki/Link_rot" target="_blank">Link rot</a> happens because web pages move to new addresses or become permanently unavailable.</p>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/confused.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Such dangling references can be frustrating for the users trying to access the resources that the dead links were previously pointing to.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to prevent link rot from accumulating?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="detecting-link-rot" class="slide level2 smaller">
+<h2>Detecting link rot</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
+</div><div class="column" style="width:90%;">
+<p>You can use <a href="https://r-lib.github.io/urlchecker/"><code>{urlchecker}</code></a> to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>urlchecker<span class="sc">::</span><span class="fu">url_check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You can write a GHA workflow to automate URL checking (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml" target="_blank">example workflow</a>). This will ensure that bad URLs will be discovered for every new commit.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong><em>Nota Bene</em></strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>If <code>{urlchecker}</code> finds dead URLs in <code>.html</code>/<code>.md</code> files, you will need to update <code>.Rmd</code>/<code>.qmd</code> files and then regenerate the docs. Otherwise, you will keep wondering why <code>urlchecker::url_update()</code> isn’t fixing the links.</p></li>
+<li><p>If the repo is not under active development, you can run workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+<li><p>There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="ensure-all-html-in-the-documentation-is-valid." class="title-slide slide level1 center">
+<h1>Ensure <em>all</em> HTML in the documentation is valid.</h1>
+
+</section>
+<section id="html5-check" class="slide level2">
+<h2>HTML5 check</h2>
+</section>
+<section id="spell-check" class="slide level2">
+<h2>Spell check</h2>
+</section>
+<section id="check-example-coverage" class="slide level2">
+<h2>Check example coverage</h2>
+</section></section>
+<section>
+<section id="make-sure-all-readme-code-still-works." class="title-slide slide level1 center">
+<h1>Make sure all README code still works.</h1>
+
+</section>
+<section id="readme-documentation" class="slide level2 smaller">
+<h2>README documentation</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/readme.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p><code>README.md</code> provides a quick overview of the package API and can feature examples of key functions.</p>
+<p>Although breaking API changes might be infrequent, when they do occur, the code in README may become outdated.</p>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/confused.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p><code>README.md</code> is probably the first and probably the most-visited document in a project and any broken code therein is bound to confuse many users.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to insure against broken code in README?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="checklist-for-documentation" class="slide level2">
+<h2>Checklist for documentation</h2>
+</section></section>
+<section>
+<section id="dependency-management" class="title-slide slide level1 center">
+<h1>Dependency management</h1>
+
+</section>
+<section id="nosuggests-check" class="slide level2">
+<h2>“noSuggests” check</h2>
+</section>
+<section id="nosuggests-pkgdown" class="slide level2">
+<h2>“noSuggests” pkgdown</h2>
+</section></section>
+<section id="unit-testing" class="title-slide slide level1 center">
+<h1>Unit testing</h1>
 
 </section>
 
@@ -479,6 +807,12 @@
 <p>If you are interested in reading more of my slide decks on related topics, visit <a href="https://sites.google.com/site/indrajeetspatilmorality/presentations" target="_blank">this</a> page.</p>
 </section>
 
+<section id="acknowledgements" class="title-slide slide level1 smaller center">
+<h1>Acknowledgements</h1>
+<p>All images used in these slides have been taken from <a href="www.flaticon.com" target="_blank">Flaticon</a> by <a href="https://www.freepikcompany.com/" target="_blank">freepikcompany</a>. Huge thanks to them for making such fantastic resource freely available to the community.</p>
+<p>Although the current repository is published under <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank">CC0 1.0 Universal (CC0 1.0)</a>, this license <strong>does not</strong> cover images in the <code>/media</code> folder. If you use them, you need to follow the <a href="https://support.flaticon.com/s/article/Attribution-How-when-and-where-FI?language=en_US" target="_blank">attribution policy</a> stated by Flaticon.</p>
+</section>
+
 <section id="find-me-at" class="title-slide slide level1 center">
 <h1>Find me at…</h1>
 <p><i class="fa-brands fa-twitter" aria-label="twitter"></i> <a href="http://twitter.com/patilindrajeets" target="_blank">Twitter</a></p>
@@ -496,7 +830,7 @@
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
@@ -507,30 +841,31 @@
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
- tz       Europe/Berlin
- date     2022-12-06
- pandoc   2.19.2 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
+ tz       Europe/Stockholm
+ date     2023-01-06
+ pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
  ! package     * version date (UTC) lib source
    base        * 4.2.2   2022-10-31 [?] local
-   cli           3.4.1   2022-09-23 [1] CRAN (R 4.2.0)
+   cli           3.5.0   2022-12-20 [1] CRAN (R 4.2.2)
  P compiler      4.2.2   2022-10-31 [1] local
  P datasets    * 4.2.2   2022-10-31 [1] local
-   digest        0.6.30  2022-10-18 [1] CRAN (R 4.2.1)
-   evaluate      0.18    2022-11-07 [1] CRAN (R 4.2.2)
+   digest        0.6.31  2022-12-11 [1] CRAN (R 4.2.2)
+   evaluate      0.19    2022-12-13 [1] CRAN (R 4.2.2)
    fastmap       1.1.0   2021-01-25 [1] CRAN (R 4.2.0)
    glue          1.6.2   2022-02-24 [1] CRAN (R 4.2.0)
  P graphics    * 4.2.2   2022-10-31 [1] local
  P grDevices   * 4.2.2   2022-10-31 [1] local
-   htmltools     0.5.3   2022-07-18 [1] CRAN (R 4.2.1)
+   htmltools     0.5.4   2022-12-07 [1] CRAN (R 4.2.2)
    jsonlite      1.8.4   2022-12-06 [1] CRAN (R 4.2.2)
    knitr         1.41    2022-11-18 [1] CRAN (R 4.2.2)
    lifecycle     1.0.3   2022-10-07 [1] CRAN (R 4.2.1)
    magrittr      2.0.3   2022-03-30 [1] CRAN (R 4.2.0)
  P methods     * 4.2.2   2022-10-31 [1] local
+   png           0.1-8   2022-11-29 [1] CRAN (R 4.2.2)
    rlang         1.0.6   2022-09-24 [1] CRAN (R 4.2.1)
-   rmarkdown     2.18    2022-11-09 [1] CRAN (R 4.2.2)
+   rmarkdown     2.19    2022-12-15 [1] CRAN (R 4.2.2)
    rstudioapi    0.14    2022-08-22 [1] CRAN (R 4.2.1)
    sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.2.0)
  P stats       * 4.2.2   2022-10-31 [1] local
@@ -539,7 +874,7 @@
  P tools         4.2.2   2022-10-31 [1] local
  P utils       * 4.2.2   2022-10-31 [1] local
    vctrs         0.5.1   2022-11-16 [1] CRAN (R 4.2.2)
-   xfun          0.35    2022-11-16 [1] CRAN (R 4.2.2)
+   xfun          0.36    2022-12-21 [1] CRAN (R 4.2.0)
    yaml          2.3.6   2022-10-18 [1] CRAN (R 4.2.1)
 
  [1] /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library
@@ -550,7 +885,7 @@
 </div>
 </div>
 <div class="footer footer-default">
-<p>Source code for the slides can be found <a href="https://github.com/IndrajeetPatil/preventive-r-package-care/" target="_blank">here</a>.</p>
+<p>Source code for these slides can be found <a href="https://github.com/IndrajeetPatil/preventive-r-package-care/" target="_blank">on GitHub</a>.</p>
 </div>
 </section></section>
     </div>
@@ -876,7 +1211,7 @@
           },
           interactive: true,
           interactiveBorder: 10,
-          theme: 'quarto-reveal',
+          theme: 'light-border',
           placement: 'bottom-start'
         };
           config['offset'] = [0,0];

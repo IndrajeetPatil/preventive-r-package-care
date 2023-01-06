@@ -375,9 +375,79 @@ You can write a GHA workflow to automate URL checking (see [example workflow](ht
 
 # Make sure all README code still works.
 
-## Up-to-date README
+## README documentation {.smaller}
 
-All code runs successfully.
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/readme.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+`README.md` provides a quick overview of the package API and can feature examples of key functions. 
+
+Although breaking API changes might be infrequent, when they do occur, the code in README may become outdated.
+
+:::
+
+::::
+
+<br>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/confused.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+`README.md` is probably the first and probably the most-visited document in a project and any broken code therein is bound to confuse many users.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+{{< fa regular circle-question size=2xl >}}
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to insure against broken code in README?**
+
+:::
+
+:::
+
+::::
 
 ## Checklist for documentation
 
@@ -409,7 +479,9 @@ If you are interested in reading more of my slide decks on related topics, visit
 
 # Acknowledgements {.smaller}
 
-A number of icons used in these slides have been taken from [Flaticon](www.flaticon.com). Huge thanks to them for making such fantastic resource freely available to the users.
+All images used in these slides have been taken from [Flaticon](www.flaticon.com){target="_blank"} by [freepikcompany](https://www.freepikcompany.com/){target="_blank"}. Huge thanks to them for making such fantastic resource freely available to the community.
+
+Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/){target="_blank"}, this license **does not** cover  images in the `/media` folder. If you use them, you need to follow the [attribution policy](https://support.flaticon.com/s/article/Attribution-How-when-and-where-FI?language=en_US){target="_blank"} stated by Flaticon.
 
 # Find me at...
 
