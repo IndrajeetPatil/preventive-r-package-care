@@ -409,15 +409,15 @@
 <p>- Mark Seemann (<em>Code That Fits in Your Head</em>)</p>
 </section>
 
-<section id="who-is-this-presentation-for" class="title-slide slide level1 center">
-<h1>Who is this presentation for?</h1>
+<section id="target-audience" class="title-slide slide level1 center">
+<h1>Target audience</h1>
 <p>Specifying the intended audience early-on to check relevance of the content for you.</p>
 </section>
 
 <section>
 <section id="before-we-begin" class="title-slide slide level1 center">
 <h1>Before we begin</h1>
-<p>Don’t miss the forest for the trees and dismiss this as irrelevant.</p>
+<p>Don’t miss the forest for the trees.</p>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
@@ -427,7 +427,7 @@
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Choose your own toolkit</strong></p>
+<p><strong>It’s not about the tech</strong></p>
 </div>
 <div class="callout-content">
 <p>I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. Even if you use neither, don’t feel that this is not relevant for you.</p>
@@ -441,25 +441,71 @@
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>More than CRAN</strong></p>
+<p><strong>It’s not just about CRAN</strong></p>
 </div>
 <div class="callout-content">
-<p>Following advice mentioned in these slides will make your packages more robust to CRAN archival, but that’s <em>incidental</em>. You should follow these practices even if you never plan to submit your package to CRAN.</p>
+<p>Following the recommended practices will make packages more robust to the possibility of CRAN archival, but that benefit is <em>incidental</em>.</p>
+<p>You can follow these practices even if you never plan to submit to CRAN, since it’s more about better user experience and maintainability.</p>
 </div>
 </div>
 </div>
 </section></section>
-<section>
 <section id="documentation" class="title-slide slide level1 center">
 <h1>Documentation</h1>
 <p>Preventive care to keep the documentation up-to-date.</p>
 </section>
-<section id="working-examples" class="slide level2">
-<h2>Working examples</h2>
-<p>Make sure <em>all</em> examples work.</p>
+
+<section>
+<section id="make-sure-all-examples-run-successfully." class="title-slide slide level1 center">
+<h1>Make sure <em>all</em> examples run successfully.</h1>
+
 </section>
-<section id="link-rot" class="slide level2 smaller">
-<h2>Link rot</h2>
+<section id="types-of-examples" class="slide level2 smaller">
+<h2>Types of examples</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/example.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>All exported (and key internal) functions should contain examples (<code>\examples{}</code> Rd tag) that showcase how functions are to be used. All examples are run by <code>examples()</code> and <code>R CMD check</code>.</p>
+<p>But you might choose to not execute examples in certain contexts. In particular, R allows following ways to conditionally evaluate examples:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Tag</th>
+<th style="text-align: left;">Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>\dontrun{}</code></td>
+<td style="text-align: left;">only shown but not run</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>\donttest{}</code></td>
+<td style="text-align: left;">shown but not run by <code>R CMD check</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>\dontshow{}</code></td>
+<td style="text-align: left;">run but not shown</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section></section>
+<section>
+<section id="ensure-validity-of-all-urls." class="title-slide slide level1 center">
+<h1>Ensure validity of <em>all</em> URLs.</h1>
+
+</section>
+<section id="what-is-link-rot" class="slide level2 smaller">
+<h2>What is link rot?</h2>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
@@ -540,11 +586,17 @@
 <ul>
 <li><p>If <code>{urlchecker}</code> finds dead URLs in <code>.html</code>/<code>.md</code> files, you will need to update <code>.Rmd</code>/<code>.qmd</code> files and then regenerate the docs. Otherwise, you will keep wondering why <code>urlchecker::url_update()</code> isn’t fixing the links.</p></li>
 <li><p>You can set up a <a href="https://en.wikipedia.org/wiki/Cron" target="_blank">cron job</a> and run the GHA workflow (e.g.) once a week to check for link rot. This will unearth link rot even if the repo is not under active development.</p></li>
+<li><p>There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.</p></li>
 </ul>
 </div>
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="ensure-all-html-in-the-documentation-is-valid." class="title-slide slide level1 center">
+<h1>Ensure <em>all</em> HTML in the documentation is valid.</h1>
+
 </section>
 <section id="html5-check" class="slide level2">
 <h2>HTML5 check</h2>
@@ -647,7 +699,7 @@
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       Europe/Stockholm
- date     2023-01-05
+ date     2023-01-06
  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────

@@ -36,19 +36,19 @@ Indrajeet Patil
 # "Software engineering ought to produce sustainability." 
 \- Mark Seemann (*Code That Fits in Your Head*)
 
-# Who is this presentation for?
+# Target audience
 
 Specifying the intended audience early-on to check relevance of the content for you.
 
 # Before we begin
 
-Don't miss the forest for the trees and dismiss this as irrelevant.
+Don't miss the forest for the trees.
 
 ## 
 
 :::{.callout-important}
 
-## Choose your own toolkit
+## It's not about the tech
 
 I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. Even if you use neither, don't feel that this is not relevant for you.
 
@@ -58,9 +58,11 @@ At the end of each section, I will include a checklist with broader takeaways th
 
 :::{.callout-note}
 
-## More than CRAN
+## It's not just about CRAN
 
-Following advice mentioned in these slides will make your packages more robust to CRAN archival, but that's *incidental*. You should follow these practices even if you never plan to submit your package to CRAN.
+Following the recommended practices will make packages more robust to the possibility of CRAN archival, but that benefit is *incidental*. 
+
+You can follow these practices even if you never plan to submit to CRAN, since it's more about better user experience and maintainability.
 
 :::
 
@@ -68,11 +70,43 @@ Following advice mentioned in these slides will make your packages more robust t
 
 Preventive care to keep the documentation up-to-date.
 
-## Working examples
+# Make sure *all* examples run successfully.
 
-Make sure *all* examples work.
+## Types of examples {.smaller}
 
-## Link rot {.smaller}
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/example.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+All exported (and key internal) functions should contain examples (`\examples{}` Rd tag) that showcase how functions are to be used. All examples are run by `examples()` and `R CMD check`.
+
+But you might choose to not execute examples in certain contexts. In particular, R allows following ways to conditionally evaluate examples:
+
+|      Tag      | Behaviour                          |
+| :-----------: | :--------------------------------- |
+| `\dontrun{}`  | only shown but not run             |
+| `\donttest{}` | shown but not run by `R CMD check` |
+| `\dontshow{}` | run but not shown                  |
+
+:::
+
+::::
+
+# Ensure validity of *all* URLs.
+
+## What is link rot? {.smaller}
 
 <!-- column layout -->
 
@@ -206,7 +240,11 @@ This will ensure that bad URLs will be discovered for every new commit.
 
 - You can set up a [cron job](https://en.wikipedia.org/wiki/Cron){target='_blank'} and run the GHA workflow (e.g.) once a week to check for link rot. This will unearth link rot even if the repo is not under active development.
 
+- There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.
+
 :::
+
+# Ensure *all* HTML in the documentation is valid.
 
 ## HTML5 check
 
