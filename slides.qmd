@@ -53,7 +53,7 @@ Don't miss the forest for the trees.
 
 I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. Even if you use neither, don't feel that this is not relevant for you.
 
-At the end of each section, I will include a checklist with broader takeaways that are independent of the tech stack used for development. You can implement the necessary checks with the tools you prefer.
+At the end of each section, I will include a checklist with broader takeaways independent of the development tech stack. You can implement the necessary checks with the tools you prefer.
 
 :::
 
@@ -202,7 +202,7 @@ knitr::include_graphics("media/robot.png")
 
 You can write a GHA workflow to run all examples (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml){target='_blank'}). 
 
-This will ensure that failing examples will be caught for every new commit.
+This will ensure that failing examples will be caught on each commit.
 
 :::
 
@@ -212,14 +212,14 @@ This will ensure that failing examples will be caught for every new commit.
 
 :::{.callout-tip}
 
-## *Nota Bene*
+## Additional tips 
 
 - Examples that are meant to fail should use any of the following patterns:
 
     * `if (FALSE) { ... }` (if example is included only for illustrative purposes)
     * `try({ ... })` (if the intent is to show the error)
 
-- If the repo is not under active development, you can run workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+- If the repo is not under active development, you can run a workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 :::
 
@@ -345,7 +345,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-You can write a GHA workflow to automate URL checking (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml){target='_blank'}). This will ensure that bad URLs will be discovered for every new commit.
+You can write a GHA workflow to automate URL checking (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml){target='_blank'}). This will ensure that bad URLs will be discovered on each commit.
 
 :::
 
@@ -355,11 +355,11 @@ You can write a GHA workflow to automate URL checking (see [example workflow](ht
 
 :::{.callout-tip}
 
-## *Nota Bene*
+## Additional tips 
 
 - If `{urlchecker}` finds dead URLs in `.html`/`.md` files, you will need to update `.Rmd`/`.qmd` files and then regenerate the docs. Otherwise, you will keep wondering why `urlchecker::url_update()` isn't fixing the links.
 
-- If the repo is not under active development, you can run workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+- If the repo is not under active development, you can run a workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 - There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.
 
@@ -373,7 +373,7 @@ You can write a GHA workflow to automate URL checking (see [example workflow](ht
 
 ## Check example coverage
 
-# Make sure all README code still works.
+# Make sure all README code is working.
 
 ## README documentation {.smaller}
 
@@ -417,7 +417,7 @@ knitr::include_graphics("media/confused.png")
 
 ::: {.column width='90%'}
 
-`README.md` is probably the first and probably the most-visited document in a project and any broken code therein is bound to confuse many users.
+`README.md` is probably the first and the most-visited document in a project and any broken code therein is bound to confuse many users.
 
 :::
 
@@ -449,6 +449,69 @@ knitr::include_graphics("media/confused.png")
 
 ::::
 
+## Detecting broken README code {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+{{< fa solid toolbox size=2xl >}}
+
+:::
+
+::: {.column width='90%'}
+
+You can use [`{rmarkdown}`](https://rmarkdown.rstudio.com/github_document_format.html) to dynamically generate `README.md` from `README.Rmd`. If there is broken code in README, it will fail to render.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+rmarkdown::render("README.md", output_format = rmarkdown::github_document())
+```
+
+:::
+
+::::
+
+<br>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+You can write a GHA workflow to automate rendering `README.Rmd` (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml){target='_blank'}). This will ensure that broken code in README will be discovered on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- If you are starting a new project, create README using [`usethis::use_readme_rmd()`](https://usethis.r-lib.org/reference/use_readme_rmd.html).
+
+- If the repo is not under active development, you can run a workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+
+:::
+
 ## Checklist for documentation
 
 # Dependency management
@@ -472,6 +535,14 @@ Touchstone framework
 # Check on multiple R versions and platforms
 
 # Fail on NOTE
+
+# Eco-friendly workflows
+
+Do you *really* need to run all these workflows on each commit?!
+
+# Conclusion
+
+
 
 # For more
 
@@ -497,7 +568,7 @@ Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)]
 
 # Thank You 
 
-And Happy Caring for Your Packages! 😊
+And Happy Package Care! 👼
 
 ## Session information {.smaller}
 
