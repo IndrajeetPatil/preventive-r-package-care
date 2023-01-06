@@ -171,7 +171,7 @@ This means that `\dontrun{}` and `\donttest{}` examples might not be working, an
 
 ::: {.column width='90%'}
 
-Examples not only document, but also provide test code used for diagnostic checking of R code. You can use [`{devtools}`](https://r-lib.github.io/devtools/) to run all examples and then fix the broken ones.
+Examples document, *and* provide test code used for diagnostic checking. You can use [`{devtools}`](https://r-lib.github.io/devtools/) to run examples and then fix the broken ones.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -181,6 +181,8 @@ devtools::run_examples(run_dontrun = TRUE, run_donttest = TRUE)
 :::
 
 ::::
+
+<br>
 
 . . .
 
@@ -212,12 +214,12 @@ This will ensure that failing examples will be caught for every new commit.
 
 ## *Nota Bene*
 
-- The examples that are designed to fail should use
+- Examples that are meant to fail should use any of the following patterns:
 
     * `if (FALSE) { ... }` (if example is included only for illustrative purposes)
     * `try({ ... })` (if the intent is to show the error)
 
-- You can set up a [cron job](https://en.wikipedia.org/wiki/Cron){target='_blank'} and run the GHA workflow (e.g.) once a week to check for broken examples if the repo is not under active development.
+- If the repo is not under active development, you can run workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 :::
 
@@ -325,6 +327,8 @@ urlchecker::url_check()
 
 ::::
 
+<br>
+
 . . .
 
 <!-- column layout -->
@@ -341,9 +345,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-You can write a GHA workflow to automate URL checking (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml){target='_blank'}). 
-
-This will ensure that bad URLs will be discovered for every new commit.
+You can write a GHA workflow to automate URL checking (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml){target='_blank'}). This will ensure that bad URLs will be discovered for every new commit.
 
 :::
 
@@ -357,7 +359,7 @@ This will ensure that bad URLs will be discovered for every new commit.
 
 - If `{urlchecker}` finds dead URLs in `.html`/`.md` files, you will need to update `.Rmd`/`.qmd` files and then regenerate the docs. Otherwise, you will keep wondering why `urlchecker::url_update()` isn't fixing the links.
 
-- You can set up a [cron job](https://en.wikipedia.org/wiki/Cron){target='_blank'} and run the GHA workflow (e.g.) once a week to check for link rot. This will unearth link rot even if the repo is not under active development.
+- If the repo is not under active development, you can run workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 - There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.
 
@@ -371,11 +373,13 @@ This will ensure that bad URLs will be discovered for every new commit.
 
 ## Check example coverage
 
+# Make sure all README code still works.
+
 ## Up-to-date README
 
 All code runs successfully.
 
-## Checklist
+## Checklist for documentation
 
 # Dependency management
 

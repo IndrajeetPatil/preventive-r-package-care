@@ -550,12 +550,13 @@
 <p><br></p>
 <p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
 </div><div class="column" style="width:90%;">
-<p>Examples not only document, but also provide test code used for diagnostic checking of R code. You can use <a href="https://r-lib.github.io/devtools/"><code>{devtools}</code></a> to run all examples and then fix the broken ones.</p>
+<p>Examples document, <em>and</em> provide test code used for diagnostic checking. You can use <a href="https://r-lib.github.io/devtools/"><code>{devtools}</code></a> to run examples and then fix the broken ones.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">run_examples</span>(<span class="at">run_dontrun =</span> <span class="cn">TRUE</span>, <span class="at">run_donttest =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
+<p><br></p>
 <div class="fragment">
 <!-- column layout -->
 <div class="columns">
@@ -582,12 +583,12 @@
 </div>
 <div class="callout-content">
 <ul>
-<li><p>The examples that are designed to fail should use</p>
+<li><p>Examples that are meant to fail should use any of the following patterns:</p>
 <ul>
 <li><code>if (FALSE) { ... }</code> (if example is included only for illustrative purposes)</li>
 <li><code>try({ ... })</code> (if the intent is to show the error)</li>
 </ul></li>
-<li><p>You can set up a <a href="https://en.wikipedia.org/wiki/Cron" target="_blank">cron job</a> and run the GHA workflow (e.g.) once a week to check for broken examples if the repo is not under active development.</p></li>
+<li><p>If the repo is not under active development, you can run workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 </ul>
 </div>
 </div>
@@ -654,6 +655,7 @@
 </div>
 </div>
 </div>
+<p><br></p>
 <div class="fragment">
 <!-- column layout -->
 <div class="columns">
@@ -664,8 +666,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>You can write a GHA workflow to automate URL checking (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml" target="_blank">example workflow</a>).</p>
-<p>This will ensure that bad URLs will be discovered for every new commit.</p>
+<p>You can write a GHA workflow to automate URL checking (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml" target="_blank">example workflow</a>). This will ensure that bad URLs will be discovered for every new commit.</p>
 </div>
 </div>
 </div>
@@ -681,7 +682,7 @@
 <div class="callout-content">
 <ul>
 <li><p>If <code>{urlchecker}</code> finds dead URLs in <code>.html</code>/<code>.md</code> files, you will need to update <code>.Rmd</code>/<code>.qmd</code> files and then regenerate the docs. Otherwise, you will keep wondering why <code>urlchecker::url_update()</code> isn’t fixing the links.</p></li>
-<li><p>You can set up a <a href="https://en.wikipedia.org/wiki/Cron" target="_blank">cron job</a> and run the GHA workflow (e.g.) once a week to check for link rot. This will unearth link rot even if the repo is not under active development.</p></li>
+<li><p>If the repo is not under active development, you can run workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 <li><p>There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.</p></li>
 </ul>
 </div>
@@ -702,13 +703,18 @@
 </section>
 <section id="check-example-coverage" class="slide level2">
 <h2>Check example coverage</h2>
+</section></section>
+<section>
+<section id="make-sure-all-readme-code-still-works." class="title-slide slide level1 center">
+<h1>Make sure all README code still works.</h1>
+
 </section>
 <section id="up-to-date-readme" class="slide level2">
 <h2>Up-to-date README</h2>
 <p>All code runs successfully.</p>
 </section>
-<section id="checklist" class="slide level2">
-<h2>Checklist</h2>
+<section id="checklist-for-documentation" class="slide level2">
+<h2>Checklist for documentation</h2>
 </section></section>
 <section>
 <section id="dependency-management" class="title-slide slide level1 center">
