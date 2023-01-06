@@ -60,7 +60,7 @@ At the end of each section, I will include a checklist with broader takeaways th
 
 ## It's not just about CRAN
 
-Following the recommended practices will make packages more robust to the possibility of CRAN archival, but that benefit is *incidental*. 
+Following the recommended practices will make packages more robust to the possibility of CRAN archival, but that benefit is *incidental*.
 
 You can follow these practices even if you never plan to submit to CRAN, since it's more about better user experience and maintainability.
 
@@ -72,7 +72,7 @@ Preventive care to keep the documentation up-to-date.
 
 # Make sure *all* examples run successfully.
 
-## Types of examples {.smaller}
+## Non-working examples {.smaller}
 
 <!-- column layout -->
 
@@ -90,19 +90,73 @@ knitr::include_graphics("media/example.png")
 
 ::: {.column width='90%'}
 
-All exported (and key internal) functions should contain examples (`\examples{}` Rd tag) that showcase how functions are to be used. All examples are run by `examples()` and `R CMD check`.
+:::{.callout-note}
 
-But you might choose to not execute examples in certain contexts. In particular, R allows following ways to conditionally evaluate examples:
+## Types of examples
 
-|      Tag      | Behaviour                          |
-| :-----------: | :--------------------------------- |
-| `\dontrun{}`  | only shown but not run             |
-| `\donttest{}` | shown but not run by `R CMD check` |
-| `\dontshow{}` | run but not shown                  |
+Exported (and key internal) functions should contain examples (`\examples{}` Rd tag) that showcase how functions are to be used. But you may skip running some examples (e.g. because they are time-consuming). In particular, R allows following tags to conditionally evaluate examples:
+
+|      Tag      | Run by `example()`? | Run by `R CMD check`? |
+| :-----------: | :-----------------: | :-------------------: |
+| `\dontrun{}`  |         ❌          |          ❌           |
+| `\donttest{}` |         ✅          |          ❌           |
+| `\dontshow{}` |         ✅          |          ✅           |
+
+:::
 
 :::
 
 ::::
+
+. . . 
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/confused.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+This means that `\dontrun{}` and `\donttest{}` examples might not be working, and yet may never be caught by `R CMD check`. But users will still see these examples, and wonder why they aren't working for them.
+
+:::
+
+::::
+
+. . . 
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+{{< fa regular circle-question size=2xl >}}
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+How to catch examples that don't run successfully?
+
+:::
+
+:::
+
+::::
+
+## Checking all examples {.smaller}
+
+Examples not only document, but also provide test code used for diagnostic checking of R code.
 
 # Ensure validity of *all* URLs.
 
@@ -164,7 +218,7 @@ Such dangling references can be frustrating for the users trying to access the r
 
 ::: {.column width='10%'}
 
-{{< fa solid triangle-exclamation size=2xl >}}
+{{< fa regular circle-question size=2xl >}}
 
 :::
 
@@ -211,8 +265,6 @@ Fixing these links is then straightforward.
 :::: {.columns}
 
 ::: {.column width='10%'}
-
-<!-- {{< fa solid robot size=2xl >}} -->
 
 ```{r, echo=FALSE}
 knitr::include_graphics("media/robot.png")
