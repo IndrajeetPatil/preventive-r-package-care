@@ -508,6 +508,8 @@ You can write a GHA workflow to automate rendering `README.Rmd` (see [example wo
 
 - If you are starting a new project, create README using [`usethis::use_readme_rmd()`](https://usethis.r-lib.org/reference/use_readme_rmd.html).
 
+- If you want to programmatically convert your existing `.md` to `.Rmd`, you are [currently](https://github.com/yihui/knitr/issues/1807) out of luck. You will need to do this manually.
+
 - If the repo is not under active development, you can run a workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 :::
