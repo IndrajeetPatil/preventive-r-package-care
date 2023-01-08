@@ -163,6 +163,78 @@ This section will break down this task into subtasks and discuss each in turn.
 
 ## An example is worth a thousand words {.smaller}
 
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/research.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Access to abundant examples in help pages and vignettes provides a natural starting point for users to explore and experiment with the available functionality. 
+
+Good examples are difficult to write, but any examples are better than none.
+
+:::
+
+::::
+
+<br>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/confused.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Without enough expository examples, users are left to fumble their way into discovering rest of the available functionality.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+{{< fa regular circle-question size=2xl >}}
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to ensure that there are *enough* number of examples?**
+
+:::
+
+:::
+
+::::
+
 ## Maintaining example code coverage {.smaller}
 
 <!-- column layout -->
