@@ -545,7 +545,7 @@
 </div>
 </div>
 </div><div class="column" style="width:91%;">
-<p>You can write a GHA workflow to automate this check (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml" target="_blank">example workflow</a>). This will ensure that the code coverage via examples never drops below the chosen threshold.</p>
+<p>You can write a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml" target="_blank">GHA workflow</a> to ensure that the code coverage via examples never drops below the chosen threshold.</p>
 </div>
 </div>
 </div>
@@ -569,8 +569,8 @@
 </div>
 </section></section>
 <section>
-<section id="make-sure-all-readme-code-is-working." class="title-slide slide level1 center">
-<h1>Make sure all README code is working.</h1>
+<section id="make-sure-all-readme-examples-are-working." class="title-slide slide level1 center">
+<h1>Make sure all README examples are working.</h1>
 
 </section>
 <section id="readme-documentation" class="slide level2 smaller">
@@ -599,7 +599,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p><code>README.md</code> is probably the first and the most-visited document in a project and any broken code therein is bound to confuse many users.</p>
+<p><code>README.md</code> is probably the first and the most-visited document in a project and any broken examples therein is bound to confuse many users.</p>
 </div>
 </div>
 </div>
@@ -617,8 +617,8 @@
 </div>
 </div>
 </section>
-<section id="detecting-broken-readme-code" class="slide level2 smaller">
-<h2>Detecting broken README code</h2>
+<section id="detecting-broken-readme-examples" class="slide level2 smaller">
+<h2>Detecting broken README examples</h2>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
@@ -642,7 +642,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>You can write a GHA workflow to automate rendering <code>README.Rmd</code> (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml" target="_blank">example workflow</a>). This will ensure that broken code in README will be discovered on each commit.</p>
+<p>You can write a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml" target="_blank">GHA workflow</a> to check that README can be successfully rendered on each commit.</p>
 </div>
 </div>
 </div>
@@ -658,8 +658,8 @@
 <div class="callout-content">
 <ul>
 <li><p>If you are starting a new project, create README using <a href="https://usethis.r-lib.org/reference/use_readme_rmd.html"><code>usethis::use_readme_rmd()</code></a>.</p></li>
-<li><p>If you want to programmatically convert your existing <code>.md</code> to <code>.Rmd</code>, you are <a href="https://github.com/yihui/knitr/issues/1807">currently</a> out of luck. You will need to do this manually.</p></li>
-<li><p>If the repo is not under active development, you can run a workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+<li><p>If you need to convert your existing <code>.md</code> to <code>.Rmd</code>, you are <a href="https://github.com/yihui/knitr/issues/1807">currently</a> out of luck. You will need to do this manually.</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 </ul>
 </div>
 </div>
@@ -776,8 +776,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>You can write a GHA workflow to run all examples (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml" target="_blank">example workflow</a>).</p>
-<p>This will ensure that failing examples will be caught on each commit.</p>
+<p>You can write a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml" target="_blank">GHA workflow</a> to make sure all examples in help pages are working on each commit.</p>
 </div>
 </div>
 </div>
@@ -792,12 +791,12 @@
 </div>
 <div class="callout-content">
 <ul>
-<li><p>Examples that are meant to fail should use any of the following patterns:</p>
+<li><p>Examples that are <em>meant</em> to fail should use any of the following patterns:</p>
 <ul>
 <li><code>if (FALSE) { ... }</code> (if example is included only for illustrative purposes)</li>
 <li><code>try({ ... })</code> (if the intent is to show the error)</li>
 </ul></li>
-<li><p>If the repo is not under active development, you can run a workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 </ul>
 </div>
 </div>
@@ -899,7 +898,7 @@
 <div class="callout-content">
 <ul>
 <li><p>If <code>{urlchecker}</code> finds dead URLs in <code>.html</code>/<code>.md</code> files, you will need to update <code>.Rmd</code>/<code>.qmd</code> files and then regenerate the docs. Otherwise, you will keep wondering why <code>urlchecker::url_update()</code> isn’t fixing the links.</p></li>
-<li><p>If the repo is not under active development, you can run a workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 <li><p>There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.</p></li>
 </ul>
 </div>

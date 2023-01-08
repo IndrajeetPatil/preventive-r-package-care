@@ -206,7 +206,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='91%'}
 
-You can write a GHA workflow to automate this check (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml){target='_blank'}). This will ensure that the code coverage via examples never drops below the chosen threshold.
+You can write a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml){target='_blank'} to ensure that the code coverage via examples never drops below the chosen threshold.
 
 :::
 
@@ -224,7 +224,7 @@ You can write a GHA workflow to automate this check (see [example workflow](http
 
 :::
 
-# Make sure all README code is working.
+# Make sure all README examples are working.
 
 ## README documentation {.smaller}
 
@@ -268,7 +268,7 @@ knitr::include_graphics("media/confused.png")
 
 ::: {.column width='90%'}
 
-`README.md` is probably the first and the most-visited document in a project and any broken code therein is bound to confuse many users.
+`README.md` is probably the first and the most-visited document in a project and any broken examples therein is bound to confuse many users.
 
 :::
 
@@ -300,7 +300,7 @@ knitr::include_graphics("media/confused.png")
 
 ::::
 
-## Detecting broken README code {.smaller}
+## Detecting broken README examples {.smaller}
 
 <!-- column layout -->
 
@@ -345,7 +345,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-You can write a GHA workflow to automate rendering `README.Rmd` (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml){target='_blank'}). This will ensure that broken code in README will be discovered on each commit.
+You can write a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml){target='_blank'} to check that README can be successfully rendered on each commit.
 
 :::
 
@@ -359,9 +359,9 @@ You can write a GHA workflow to automate rendering `README.Rmd` (see [example wo
 
 - If you are starting a new project, create README using [`usethis::use_readme_rmd()`](https://usethis.r-lib.org/reference/use_readme_rmd.html).
 
-- If you want to programmatically convert your existing `.md` to `.Rmd`, you are [currently](https://github.com/yihui/knitr/issues/1807) out of luck. You will need to do this manually.
+- If you need to convert your existing `.md` to `.Rmd`, you are [currently](https://github.com/yihui/knitr/issues/1807) out of luck. You will need to do this manually.
 
-- If the repo is not under active development, you can run a workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 :::
 
@@ -494,9 +494,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-You can write a GHA workflow to run all examples (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml){target='_blank'}). 
-
-This will ensure that failing examples will be caught on each commit.
+You can write a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml){target='_blank'} to make sure all examples in help pages are working on each commit.
 
 :::
 
@@ -508,12 +506,12 @@ This will ensure that failing examples will be caught on each commit.
 
 ## Additional tips 
 
-- Examples that are meant to fail should use any of the following patterns:
+- Examples that are *meant* to fail should use any of the following patterns:
 
     * `if (FALSE) { ... }` (if example is included only for illustrative purposes)
     * `try({ ... })` (if the intent is to show the error)
 
-- If the repo is not under active development, you can run a workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 :::
 
@@ -657,7 +655,7 @@ You can write a GHA workflow to automate URL checking (see [example workflow](ht
 
 - If `{urlchecker}` finds dead URLs in `.html`/`.md` files, you will need to update `.Rmd`/`.qmd` files and then regenerate the docs. Otherwise, you will keep wondering why `urlchecker::url_update()` isn't fixing the links.
 
-- If the repo is not under active development, you can run a workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 - There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.
 
