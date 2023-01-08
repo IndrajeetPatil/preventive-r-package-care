@@ -251,7 +251,7 @@ Without enough expository examples, users are left to fumble their way into disc
 
 ::: {.column width='91%'}
 
-You can use [`{covr}`](https://covr.r-lib.org/) to compute code coverage via examples in help pages and vignettes (i.e. proportion of the source code that is executed when running these examples), and to ensure that it is above a certain threshold.
+You can use [`{covr}`](https://covr.r-lib.org/) to compute example code coverage (i.e. proportion of the source code that is executed when running examples in help pages and vignettes), and to ensure that it is above a certain threshold.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -263,6 +263,8 @@ package_coverage(type = c("examples", "vignettes"), commentDonttest = FALSE, com
 ::::
 
 . . .
+
+<br>
 
 <!-- column layout -->
 
@@ -278,7 +280,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='91%'}
 
-You can write a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml){target='_blank'} to ensure that the code coverage via examples never drops below the chosen threshold.
+You can use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml){target='_blank'} to ensure that the code coverage via examples never drops below the chosen threshold.
 
 :::
 
@@ -290,9 +292,11 @@ You can write a [GHA workflow](https://github.com/IndrajeetPatil/statsExpression
 
 ## Additional tips 
 
-- The choice of threshold is subjective and depends on how easy it is to demonstrate package functionality. Don't fall for the trap of chasing 100% code coverage here. Your time is better spent elsewhere.
+- The choice of threshold is subjective and context-sensitive. Chasing after 100% code coverage is futile.
 
-- Sometimes you don't include a few vignettes in the package (because they are too large or time-consuming) by placing them in a subdirectory of `vignettes/` (e.g. `vignettes/web_only`) or by adding them to `.Rbuildignore`. These vignettes will not be included in the code coverage report. You can adjust your coverage threshold accordingly.
+- Vignettes not included in the package (by placing them in a `vignettes/` subdirectory or by adding them to `.Rbuildignore`) will not contribute towards the code coverage. You can adjust your coverage threshold accordingly.
+
+- You can choose a threshold on a package-basis or on a file-basis (`covr::file_coverage()`).
 
 :::
 
@@ -417,7 +421,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-You can write a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml){target='_blank'} to check that README can be successfully rendered on each commit.
+You can use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml){target='_blank'} to check that README can be successfully rendered on each commit.
 
 :::
 
@@ -566,7 +570,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-You can write a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml){target='_blank'} to make sure all examples in help pages are working on each commit.
+You can use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml){target='_blank'} to make sure all examples in help pages are working on each commit.
 
 :::
 
