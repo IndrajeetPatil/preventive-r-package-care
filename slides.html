@@ -518,8 +518,55 @@
 <h1>Make sure there are enough examples in the documentation.</h1>
 
 </section>
-<section id="check-example-coverage" class="slide level2">
-<h2>Check example coverage</h2>
+<section id="an-example-is-worth-a-thousand-words" class="slide level2 smaller">
+<h2>An example is worth a thousand words</h2>
+</section>
+<section id="maintaining-example-code-coverage" class="slide level2 smaller">
+<h2>Maintaining example code coverage</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:9%;">
+<p><br></p>
+<p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
+</div><div class="column" style="width:91%;">
+<p>You can use <a href="https://covr.r-lib.org/"><code>{covr}</code></a> to compute code coverage via examples in help pages and vignettes, and to ensure that it is above a certain threshold.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">package_coverage</span>(<span class="at">type =</span> <span class="fu">c</span>(<span class="st">"examples"</span>, <span class="st">"vignettes"</span>), <span class="at">commentDonttest =</span> <span class="cn">FALSE</span>, <span class="at">commentDontrun =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:9%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:91%;">
+<p>You can write a GHA workflow to automate this check (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml" target="_blank">example workflow</a>). This will ensure that the code coverage via examples never drops below the chosen threshold.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>The choice of threshold is subjective and depends on how easy it is to demonstrate package functionality. Don’t fall for the trap of chasing 100% code coverage here. Your time is better spent elsewhere.</p></li>
+<li><p>Sometimes you don’t include a few vignettes in the package (because they are too large or time-consuming) by placing them in a subdirectory of <code>vignettes/</code> (e.g.&nbsp;<code>vignettes/web_only</code>) or by adding them to <code>.Rbuildignore</code>. These vignettes will not be included in the code coverage report. You can adjust your coverage threshold accordingly.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="make-sure-all-readme-code-is-working." class="title-slide slide level1 center">
@@ -538,7 +585,7 @@
 </div>
 </div><div class="column" style="width:90%;">
 <p><code>README.md</code> provides a quick overview of the package API and can feature examples of key functions.</p>
-<p>Although breaking API changes might be infrequent, when they do occur, the code in README may become outdated.</p>
+<p>Although breaking changes might be infrequent, when they do occur, the code in README may become defunct.</p>
 </div>
 </div>
 <p><br></p>
@@ -580,7 +627,7 @@
 </div><div class="column" style="width:90%;">
 <p>You can use <a href="https://rmarkdown.rstudio.com/github_document_format.html"><code>{rmarkdown}</code></a> to dynamically generate <code>README.md</code> from <code>README.Rmd</code>. If there is broken code in README, it will fail to render.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">"README.md"</span>, <span class="at">output_format =</span> rmarkdown<span class="sc">::</span><span class="fu">github_document</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">"README.md"</span>, <span class="at">output_format =</span> rmarkdown<span class="sc">::</span><span class="fu">github_document</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -714,7 +761,7 @@
 </div><div class="column" style="width:90%;">
 <p>Examples document, <em>and</em> provide test code used for diagnostic checking. You can use <a href="https://r-lib.github.io/devtools/"><code>{devtools}</code></a> to run examples and then fix the broken ones.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">run_examples</span>(<span class="at">run_dontrun =</span> <span class="cn">TRUE</span>, <span class="at">run_donttest =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">run_examples</span>(<span class="at">run_dontrun =</span> <span class="cn">TRUE</span>, <span class="at">run_donttest =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -821,7 +868,7 @@
 </div><div class="column" style="width:90%;">
 <p>You can use <a href="https://r-lib.github.io/urlchecker/"><code>{urlchecker}</code></a> to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>urlchecker<span class="sc">::</span><span class="fu">url_check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>urlchecker<span class="sc">::</span><span class="fu">url_check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -950,7 +997,7 @@
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value

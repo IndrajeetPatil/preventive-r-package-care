@@ -161,7 +161,68 @@ This section will break down this task into subtasks and discuss each in turn.
 
 # Make sure there are enough examples in the documentation.
 
-## Check example coverage
+## An example is worth a thousand words {.smaller}
+
+## Maintaining example code coverage {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='9%'}
+
+<br>
+
+{{< fa solid toolbox size=2xl >}}
+
+:::
+
+::: {.column width='91%'}
+
+You can use [`{covr}`](https://covr.r-lib.org/) to compute code coverage via examples in help pages and vignettes, and to ensure that it is above a certain threshold.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+package_coverage(type = c("examples", "vignettes"), commentDonttest = FALSE, commentDontrun = FALSE)
+```
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='9%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='91%'}
+
+You can write a GHA workflow to automate this check (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml){target='_blank'}). This will ensure that the code coverage via examples never drops below the chosen threshold.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- The choice of threshold is subjective and depends on how easy it is to demonstrate package functionality. Don't fall for the trap of chasing 100% code coverage here. Your time is better spent elsewhere.
+
+- Sometimes you don't include a few vignettes in the package (because they are too large or time-consuming) by placing them in a subdirectory of `vignettes/` (e.g. `vignettes/web_only`) or by adding them to `.Rbuildignore`. These vignettes will not be included in the code coverage report. You can adjust your coverage threshold accordingly.
+
+:::
 
 # Make sure all README code is working.
 
@@ -183,7 +244,7 @@ knitr::include_graphics("media/readme.png")
 
 `README.md` provides a quick overview of the package API and can feature examples of key functions. 
 
-Although breaking API changes might be infrequent, when they do occur, the code in README may become outdated.
+Although breaking changes might be infrequent, when they do occur, the code in README may become defunct.
 
 :::
 
