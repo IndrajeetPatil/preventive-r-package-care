@@ -447,19 +447,76 @@
 </div>
 <div class="callout-content">
 <p>Following the recommended practices will make packages more robust to the possibility of CRAN archival, but that benefit is <em>incidental</em>.</p>
-<p>You can follow these practices even if you never plan to submit to CRAN, since it’s more about better user experience and maintainability.</p>
+<p>You can follow these practices even if you never plan to submit to CRAN, since the ultimate goal is better user experience and maintainability.</p>
 </div>
 </div>
 </div>
 </section></section>
+<section>
 <section id="documentation" class="title-slide slide level1 center">
 <h1>Documentation</h1>
-<p>Preventive care to keep the documentation up-to-date.</p>
+<p>Preventive care to ensure that the documentation is up-to-date.</p>
 </section>
+<section id="sources-of-documentation" class="slide level2 smaller">
+<h2>Sources of documentation</h2>
+<p>Package documentation is typically scattered across the following documents.</p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div style="text-align: center;">
+<p><strong>README.md</strong></p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/readme.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
 
+</div><div class="column" style="width:30%;">
+<div style="text-align: center;">
+<p><strong>Help pages</strong></p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/example.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div style="text-align: center;">
+<p><strong>Vignettes</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/application.png" width="256"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>To guarantee good user experience, you need to make sure that all code is working as expected.</p>
+</div>
+</div>
+</section></section>
 <section>
-<section id="make-sure-all-examples-run-successfully." class="title-slide slide level1 center">
-<h1>Make sure <em>all</em> examples run successfully.</h1>
+<section id="make-sure-there-are-enough-examples-in-the-documentation." class="title-slide slide level1 center">
+<h1>Make sure there are enough examples in the documentation.</h1>
+
+</section>
+<section id="check-example-coverage" class="slide level2">
+<h2>Check example coverage</h2>
+</section></section>
+<section>
+<section id="make-sure-all-examples-in-help-pages-are-working." class="title-slide slide level1 center">
+<h1>Make sure <em>all</em> examples in help pages are working.</h1>
 
 </section>
 <section id="non-working-examples" class="slide level2 smaller">
@@ -483,7 +540,7 @@
 <p><strong>Types of examples</strong></p>
 </div>
 <div class="callout-content">
-<p>Exported (and key internal) functions should contain examples (<code>\examples{}</code> Rd tag) that showcase how functions are to be used. But you may skip running some examples (e.g.&nbsp;because they are time-consuming). In particular, R allows following tags to conditionally evaluate examples:</p>
+<p>Help pages for exported (and key internal) functions should contain examples (<code>\examples{}</code> Rd tag) that showcase how functions are to be used. But you may choose to skip running some examples (e.g.&nbsp;because they are time-consuming). In particular, R allows following tags to conditionally evaluate examples:</p>
 <table>
 <thead>
 <tr class="header">
@@ -700,9 +757,6 @@
 </section>
 <section id="spell-check" class="slide level2">
 <h2>Spell check</h2>
-</section>
-<section id="check-example-coverage" class="slide level2">
-<h2>Check example coverage</h2>
 </section></section>
 <section>
 <section id="make-sure-all-readme-code-is-working." class="title-slide slide level1 center">
@@ -900,8 +954,8 @@
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
- tz       Europe/Stockholm
- date     2023-01-06
+ tz       Europe/Berlin
+ date     2023-01-08
  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────

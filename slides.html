@@ -429,7 +429,7 @@
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>It’s not about the tech</strong></p>
+<p><strong>It’s not about the tools</strong></p>
 </div>
 <div class="callout-content">
 <p>I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. Even if you use neither, don’t feel that this is not relevant for you.</p>
@@ -447,19 +447,181 @@
 </div>
 <div class="callout-content">
 <p>Following the recommended practices will make packages more robust to the possibility of CRAN archival, but that benefit is <em>incidental</em>.</p>
-<p>You can follow these practices even if you never plan to submit to CRAN, since it’s more about better user experience and maintainability.</p>
+<p>You can follow these practices even if you never plan to submit to CRAN, since the ultimate goal is better user experience and maintainability.</p>
 </div>
 </div>
 </div>
 </section></section>
+<section>
 <section id="documentation" class="title-slide slide level1 center">
 <h1>Documentation</h1>
-<p>Preventive care to keep the documentation up-to-date.</p>
+<p>Preventive care to make sure the docs are up-to-date.</p>
 </section>
+<section id="sources-of-documentation" class="slide level2 smaller">
+<h2>Sources of documentation</h2>
+<p>Package documentation is typically scattered across the following documents.</p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:30%;">
+<div style="text-align: center;">
+<p><strong>README.md</strong></p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/readme.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
 
+</div><div class="column" style="width:30%;">
+<div style="text-align: center;">
+<p><strong>Help pages</strong></p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/example.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div style="text-align: center;">
+<p><strong>Vignettes</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/application.png" width="256"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; ">
+<p><strong>To guarantee good user experience, you need to make sure that all examples in these documents are working as expected.</strong></p>
+</div>
+<p>This section will break down this task into subtasks and discuss each in turn.</p>
+</div>
+</div>
+</div>
+</section></section>
 <section>
-<section id="make-sure-all-examples-run-successfully." class="title-slide slide level1 center">
-<h1>Make sure <em>all</em> examples run successfully.</h1>
+<section id="make-sure-there-are-enough-examples-in-the-documentation." class="title-slide slide level1 center">
+<h1>Make sure there are enough examples in the documentation.</h1>
+
+</section>
+<section id="check-example-coverage" class="slide level2">
+<h2>Check example coverage</h2>
+</section></section>
+<section>
+<section id="make-sure-all-readme-code-is-working." class="title-slide slide level1 center">
+<h1>Make sure all README code is working.</h1>
+
+</section>
+<section id="readme-documentation" class="slide level2 smaller">
+<h2>README documentation</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/readme.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p><code>README.md</code> provides a quick overview of the package API and can feature examples of key functions.</p>
+<p>Although breaking API changes might be infrequent, when they do occur, the code in README may become outdated.</p>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/confused.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p><code>README.md</code> is probably the first and the most-visited document in a project and any broken code therein is bound to confuse many users.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to insure against broken code in README?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="detecting-broken-readme-code" class="slide level2 smaller">
+<h2>Detecting broken README code</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
+</div><div class="column" style="width:90%;">
+<p>You can use <a href="https://rmarkdown.rstudio.com/github_document_format.html"><code>{rmarkdown}</code></a> to dynamically generate <code>README.md</code> from <code>README.Rmd</code>. If there is broken code in README, it will fail to render.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">"README.md"</span>, <span class="at">output_format =</span> rmarkdown<span class="sc">::</span><span class="fu">github_document</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You can write a GHA workflow to automate rendering <code>README.Rmd</code> (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml" target="_blank">example workflow</a>). This will ensure that broken code in README will be discovered on each commit.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>If you are starting a new project, create README using <a href="https://usethis.r-lib.org/reference/use_readme_rmd.html"><code>usethis::use_readme_rmd()</code></a>.</p></li>
+<li><p>If you want to programmatically convert your existing <code>.md</code> to <code>.Rmd</code>, you are <a href="https://github.com/yihui/knitr/issues/1807">currently</a> out of luck. You will need to do this manually.</p></li>
+<li><p>If the repo is not under active development, you can run a workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="make-sure-all-examples-in-help-pages-are-working." class="title-slide slide level1 center">
+<h1>Make sure <em>all</em> examples in help pages are working.</h1>
 
 </section>
 <section id="non-working-examples" class="slide level2 smaller">
@@ -483,7 +645,7 @@
 <p><strong>Types of examples</strong></p>
 </div>
 <div class="callout-content">
-<p>Exported (and key internal) functions should contain examples (<code>\examples{}</code> Rd tag) that showcase how functions are to be used. But you may skip running some examples (e.g.&nbsp;because they are time-consuming). In particular, R allows following tags to conditionally evaluate examples:</p>
+<p>Help pages for exported (and key internal) functions should contain examples (<code>\examples{}</code> Rd tag) that showcase how functions are to be used. But you may choose to skip running some examples (e.g.&nbsp;because they are time-consuming). In particular, R allows following tags to conditionally evaluate examples:</p>
 <table>
 <thead>
 <tr class="header">
@@ -552,7 +714,7 @@
 </div><div class="column" style="width:90%;">
 <p>Examples document, <em>and</em> provide test code used for diagnostic checking. You can use <a href="https://r-lib.github.io/devtools/"><code>{devtools}</code></a> to run examples and then fix the broken ones.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">run_examples</span>(<span class="at">run_dontrun =</span> <span class="cn">TRUE</span>, <span class="at">run_donttest =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">run_examples</span>(<span class="at">run_dontrun =</span> <span class="cn">TRUE</span>, <span class="at">run_donttest =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -596,8 +758,16 @@
 </div>
 </section></section>
 <section>
-<section id="ensure-validity-of-all-urls." class="title-slide slide level1 center">
-<h1>Ensure validity of <em>all</em> URLs.</h1>
+<section id="ensure-all-html-in-the-help-pages-is-valid." class="title-slide slide level1 center">
+<h1>Ensure <em>all</em> HTML in the help pages is valid.</h1>
+
+</section>
+<section id="html5-check" class="slide level2">
+<h2>HTML5 check</h2>
+</section></section>
+<section>
+<section id="ensure-all-urls-are-valid." class="title-slide slide level1 center">
+<h1>Ensure <em>all</em> URLs are valid.</h1>
 
 </section>
 <section id="what-is-link-rot" class="slide level2 smaller">
@@ -651,7 +821,7 @@
 </div><div class="column" style="width:90%;">
 <p>You can use <a href="https://r-lib.github.io/urlchecker/"><code>{urlchecker}</code></a> to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>urlchecker<span class="sc">::</span><span class="fu">url_check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>urlchecker<span class="sc">::</span><span class="fu">url_check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -689,118 +859,9 @@
 </div>
 </div>
 </div>
-</section></section>
-<section>
-<section id="ensure-all-html-in-the-documentation-is-valid." class="title-slide slide level1 center">
-<h1>Ensure <em>all</em> HTML in the documentation is valid.</h1>
-
-</section>
-<section id="html5-check" class="slide level2">
-<h2>HTML5 check</h2>
 </section>
 <section id="spell-check" class="slide level2">
 <h2>Spell check</h2>
-</section>
-<section id="check-example-coverage" class="slide level2">
-<h2>Check example coverage</h2>
-</section></section>
-<section>
-<section id="make-sure-all-readme-code-is-working." class="title-slide slide level1 center">
-<h1>Make sure all README code is working.</h1>
-
-</section>
-<section id="readme-documentation" class="slide level2 smaller">
-<h2>README documentation</h2>
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/readme.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<p><code>README.md</code> provides a quick overview of the package API and can feature examples of key functions.</p>
-<p>Although breaking API changes might be infrequent, when they do occur, the code in README may become outdated.</p>
-</div>
-</div>
-<p><br></p>
-<div class="fragment">
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/confused.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<p><code>README.md</code> is probably the first and the most-visited document in a project and any broken code therein is bound to confuse many users.</p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p><br></p>
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
-</div><div class="column" style="width:90%;">
-<div style="color: red;">
-<p><strong>How to insure against broken code in README?</strong></p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="detecting-broken-readme-code" class="slide level2 smaller">
-<h2>Detecting broken README code</h2>
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<p><br></p>
-<p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
-</div><div class="column" style="width:90%;">
-<p>You can use <a href="https://rmarkdown.rstudio.com/github_document_format.html"><code>{rmarkdown}</code></a> to dynamically generate <code>README.md</code> from <code>README.Rmd</code>. If there is broken code in README, it will fail to render.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">"README.md"</span>, <span class="at">output_format =</span> rmarkdown<span class="sc">::</span><span class="fu">github_document</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-<p><br></p>
-<div class="fragment">
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/robot.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<p>You can write a GHA workflow to automate rendering <code>README.Rmd</code> (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml" target="_blank">example workflow</a>). This will ensure that broken code in README will be discovered on each commit.</p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="callout callout-tip callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Additional tips</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li><p>If you are starting a new project, create README using <a href="https://usethis.r-lib.org/reference/use_readme_rmd.html"><code>usethis::use_readme_rmd()</code></a>.</p></li>
-<li><p>If you want to programmatically convert your existing <code>.md</code> to <code>.Rmd</code>, you are <a href="https://github.com/yihui/knitr/issues/1807">currently</a> out of luck. You will need to do this manually.</p></li>
-<li><p>If the repo is not under active development, you can run a workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
-</ul>
-</div>
-</div>
-</div>
-</div>
 </section>
 <section id="checklist-for-documentation" class="slide level2">
 <h2>Checklist for documentation</h2>
@@ -900,8 +961,8 @@
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
- tz       Europe/Stockholm
- date     2023-01-06
+ tz       Europe/Berlin
+ date     2023-01-08
  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
