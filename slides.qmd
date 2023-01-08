@@ -770,7 +770,7 @@ Do you *really* need to run all these workflows on each commit?!
 
 # For more
 
-If you are interested in reading more of my slide decks on related topics, visit [this](https://sites.google.com/site/indrajeetspatilmorality/presentations){target="_blank"} page.
+If you are interested in good programming and software development practices, check out my other [slide decks](https://sites.google.com/site/indrajeetspatilmorality/presentations){target="_blank"}.
 
 # Acknowledgements {.smaller}
 
