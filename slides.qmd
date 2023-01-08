@@ -251,7 +251,7 @@ Without enough expository examples, users are left to fumble their way into disc
 
 ::: {.column width='91%'}
 
-You can use [`{covr}`](https://covr.r-lib.org/) to compute code coverage via examples in help pages and vignettes, and to ensure that it is above a certain threshold.
+You can use [`{covr}`](https://covr.r-lib.org/) to compute code coverage via examples in help pages and vignettes (i.e. proportion of the source code that is executed when running these examples), and to ensure that it is above a certain threshold.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
