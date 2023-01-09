@@ -850,7 +850,7 @@ If weak dependencies are no longer available (due to archival on CRAN, e.g.), th
 
 offline
 
-## "There is a problem with warnings. No one reads them. People have to read error messages because no food pellet falls into the tray after they push the button. With a warning the machine merely beeps at them but they still get their food pellet. Never mind that it might be poison." 
+## "There is a problem with warnings. No one reads them." 
 \- Patrick Burns (*R Inferno*)
 
 ## {.smaller}
