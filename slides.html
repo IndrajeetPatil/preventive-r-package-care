@@ -955,20 +955,112 @@
 <section id="checklist-for-documentation" class="slide level2">
 <h2>Checklist for documentation</h2>
 </section></section>
-<section>
 <section id="dependency-management" class="title-slide slide level1 center">
 <h1>Dependency management</h1>
+<p>Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.</p>
+</section>
 
+<section>
+<section id="make-sure-soft-dependencies-are-used-conditionally." class="title-slide slide level1 center">
+<h1>Make sure soft dependencies are used conditionally.</h1>
+
+</section>
+<section id="dependencies" class="slide level2 smaller">
+<h2>Dependencies</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/trust.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Hard versus soft dependencies</strong></p>
+</div>
+<div class="callout-content">
+<p>Dependencies are inevitable, but some more so than others.</p>
+<table>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 23%">
+<col style="width: 64%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Dependency</th>
+<th style="text-align: center;">In <code>DESCRIPTION</code></th>
+<th style="text-align: center;">Connection</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Hard</td>
+<td style="text-align: center;"><code>Depends</code>/<code>Imports</code></td>
+<td style="text-align: center;">Impossible for package to work without these.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Soft</td>
+<td style="text-align: center;"><code>Suggests</code></td>
+<td style="text-align: center;">Nice to have but your package will work nonetheless.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/headache.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>If weak dependencies are no longer available (due to archival on CRAN, e.g.), this can lead to failures in your package. Given that these are optional dependencies, such failures should be avoided by using weak dependencies conditionally.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to make sure weak dependencies are being conditionally used?</strong></p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="nosuggests-check" class="slide level2">
 <h2>“noSuggests” check</h2>
+</section></section>
+<section>
+<section id="again-make-sure-soft-dependencies-are-used-conditionally." class="title-slide slide level1 center">
+<h1>Again, make sure soft dependencies are used conditionally.</h1>
+
 </section>
 <section id="nosuggests-pkgdown" class="slide level2">
 <h2>“noSuggests” pkgdown</h2>
 </section></section>
 <section id="unit-testing" class="title-slide slide level1 center">
 <h1>Unit testing</h1>
-
+<p>offline</p>
 </section>
 
 <section id="turn-warnings-into-errors" class="title-slide slide level1 center">
@@ -1051,7 +1143,7 @@
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       Europe/Berlin
- date     2023-01-08
+ date     2023-01-09
  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────

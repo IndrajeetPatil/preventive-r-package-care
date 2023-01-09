@@ -737,18 +737,115 @@ You can write a GHA workflow to automate URL checking (see [example workflow](ht
 
 :::
 
-
 ## Spell check
 
 ## Checklist for documentation
 
 # Dependency management
 
+Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.
+
+# Make sure soft dependencies are used conditionally.
+
+## Dependencies {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/trust.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{.callout-note}
+
+## Hard versus soft dependencies
+
+Dependencies are inevitable, but some more so than others.
+
+| Dependency |  In `DESCRIPTION`   |                      Connection                      |
+| :--------: | :-----------------: | :--------------------------------------------------: |
+|    Hard    | `Depends`/`Imports` |    Impossible for package to work without these.     |
+|    Soft    |     `Suggests`      | Nice to have but your package will work nonetheless. |
+
+:::
+
+
+
+:::
+
+::::
+
+<br>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+If weak dependencies are no longer available (due to archival on CRAN, e.g.), this can lead to failures in your package. Given that these are optional dependencies, such failures should be avoided by using weak dependencies conditionally.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+{{< fa regular circle-question size=2xl >}}
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to make sure weak dependencies are being conditionally used?**
+
+:::
+
+:::
+
+::::
+
+
 ## "noSuggests" check
+
+# Again, make sure soft dependencies are used conditionally.
 
 ## "noSuggests" pkgdown
 
+
+
 # Unit testing
+
+offline
 
 # Turn warnings into errors
 
