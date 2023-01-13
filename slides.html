@@ -579,7 +579,7 @@
 <p><br></p>
 <p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
 </div><div class="column" style="width:91%;">
-<p>You can use <a href="https://covr.r-lib.org/"><code>{covr}</code></a> to compute example code coverage (i.e.&nbsp;proportion of the source code that is executed when running examples in help pages and vignettes), and to ensure that it is above a certain threshold.</p>
+<p>Use <a href="https://covr.r-lib.org/" target="_blank"><code>{covr}</code></a> to compute example code coverage (i.e.&nbsp;proportion of the source code that is executed when running examples in help pages and vignettes), and to ensure that it is above a certain threshold.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">package_coverage</span>(<span class="at">type =</span> <span class="fu">c</span>(<span class="st">"examples"</span>, <span class="st">"vignettes"</span>), <span class="at">commentDonttest =</span> <span class="cn">FALSE</span>, <span class="at">commentDontrun =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -596,7 +596,7 @@
 </div>
 </div>
 </div><div class="column" style="width:91%;">
-<p>You can use a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml" target="_blank">GHA workflow</a> to ensure that the code coverage via examples never drops below the chosen threshold.</p>
+<p>Use a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml" target="_blank">GHA workflow</a> to ensure that the code coverage via examples never drops below the chosen threshold.</p>
 </div>
 </div>
 </div>
@@ -677,7 +677,7 @@
 <p><br></p>
 <p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
 </div><div class="column" style="width:90%;">
-<p>You can use <a href="https://rmarkdown.rstudio.com/github_document_format.html"><code>{rmarkdown}</code></a> to dynamically generate <code>README.md</code> from <code>README.Rmd</code>. If there is broken code in README, it will fail to render.</p>
+<p>Use <a href="https://rmarkdown.rstudio.com/github_document_format.html"><code>{rmarkdown}</code></a> to dynamically generate <code>README.md</code> from <code>README.Rmd</code>. If there is broken code in README, it will fail to render.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">"README.md"</span>, <span class="at">output_format =</span> rmarkdown<span class="sc">::</span><span class="fu">github_document</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -694,7 +694,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>You can use a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml" target="_blank">GHA workflow</a> to check that README can be successfully rendered on each commit.</p>
+<p>Use a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml" target="_blank">GHA workflow</a> to check that README can be successfully rendered on each commit.</p>
 </div>
 </div>
 </div>
@@ -711,7 +711,7 @@
 <ul>
 <li><p>If you are starting a new project, create README using <a href="https://usethis.r-lib.org/reference/use_readme_rmd.html"><code>usethis::use_readme_rmd()</code></a>.</p></li>
 <li><p>If you need to convert your existing <code>.md</code> to <code>.Rmd</code>, you are <a href="https://github.com/yihui/knitr/issues/1807">currently</a> out of luck. You will need to do this manually.</p></li>
-<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule" target="_blank">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 </ul>
 </div>
 </div>
@@ -811,7 +811,7 @@
 <p><br></p>
 <p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
 </div><div class="column" style="width:90%;">
-<p>Examples document, <em>and</em> provide test code used for diagnostic checking. You can use <a href="https://r-lib.github.io/devtools/"><code>{devtools}</code></a> to run examples and then fix the broken ones.</p>
+<p>Use <a href="https://r-lib.github.io/devtools/" target="_blank"><code>{devtools}</code></a> to run all examples. You can then fix the broken ones.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">run_examples</span>(<span class="at">run_dontrun =</span> <span class="cn">TRUE</span>, <span class="at">run_donttest =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -828,7 +828,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>You can use a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml" target="_blank">GHA workflow</a> to make sure all examples in help pages are working on each commit.</p>
+<p>Use a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml" target="_blank">GHA workflow</a> to make sure all examples in help pages are working on each commit.</p>
 </div>
 </div>
 </div>
@@ -848,7 +848,7 @@
 <li><code>if (FALSE) { ... }</code> (if example is included only for illustrative purposes)</li>
 <li><code>try({ ... })</code> (if the intent is to show the error)</li>
 </ul></li>
-<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger" target="_blank">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 </ul>
 </div>
 </div>
@@ -940,7 +940,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>You can use a <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/pkgdown.yaml" target="_blank">GHA workflow</a> to make sure examples in <em>all</em> vignettes are working on each commit.</p>
+<p>Use a <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/pkgdown.yaml" target="_blank">GHA workflow</a> to make sure examples in <em>all</em> vignettes are working on each commit.</p>
 </div>
 </div>
 </div>
@@ -956,7 +956,7 @@
 <div class="callout-content">
 <ul>
 <li><p>Code chunks that are <em>meant</em> to fail should use <code>error=TRUE</code> option.</p></li>
-<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule" target="_blank">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 </ul>
 </div>
 </div>
@@ -1006,7 +1006,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can’t find meaning of the misspelled word. Additionally, misspelling technical words (e.g.&nbsp;writing <em>innode</em> instead of <a href="https://en.wikipedia.org/wiki/Inode"><em>inode</em></a>) can lead users down wrong paths and waste their time.</p>
+<p>Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can’t find meaning of the misspelled word. Additionally, misspelling technical words (e.g.&nbsp;writing <em>innode</em> instead of <a href="https://en.wikipedia.org/wiki/Inode" target="_blank"><em>inode</em></a>) can lead users down wrong path and waste their time.</p>
 </div>
 </div>
 </div>
@@ -1024,6 +1024,20 @@
 </div>
 </div>
 </section>
+<section id="a-list-of-allowed-words" class="slide level2 smaller">
+<h2>A list of allowed words</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>Since there exist multiple English spelling standards, you can specify preferred standard in <code>DESCRIPTION</code>.</p>
+</div><div class="column" style="width:30%;">
+<p>For British spellings</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>Language: en-GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<p>Additionally, some technical words will not be recognized by dictionaries, but you don’t want these to be considered spelling mistakes either. You can create a list of allowed misspelled words in <code>WORDLIST</code> file</p>
+</div>
+</section>
 <section id="detecting-spelling-mistakes" class="slide level2 smaller">
 <h2>Detecting spelling mistakes</h2>
 <!-- column layout -->
@@ -1032,9 +1046,9 @@
 <p><br></p>
 <p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
 </div><div class="column" style="width:90%;">
-<p>You can use <a href="https://docs.ropensci.org/spelling/"><code>{spelling}</code></a> to detect misspelled words and their location in the documentation.</p>
+<p>Use <a href="https://docs.ropensci.org/spelling/" target="_blank"><code>{spelling}</code></a> to detect misspelled words and their location in the docs.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>spelling<span class="sc">::</span><span class="fu">spell_check_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>spelling<span class="sc">::</span><span class="fu">spell_check_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1063,10 +1077,6 @@
 <p><strong>Additional tips</strong></p>
 </div>
 <div class="callout-content">
-<ul>
-<li>Make sure to select your preferred spelling standard in <code>DESCRIPTION</code> file.</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>Language: en-US</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p>Instead of a GHA workflow, you can also include spell check tests in the package itself. For more, see <code>usethis::use_spell_check()</code>.</p></li>
 <li><p>If you install <a href="https://www.grammarly.com/desktop">Grammarly desktop</a>, it will flag spelling mistakes and will even suggest a clearer way to phrase your sentences in RStudio IDE. For VS Code, check out <a href="https://marketplace.visualstudio.com/items?itemName=znck.grammarly">Grammarly extension</a>.</p></li>

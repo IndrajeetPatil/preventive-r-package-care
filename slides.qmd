@@ -259,7 +259,7 @@ Without enough expository examples, users are left to fumble their way into disc
 
 ::: {.column width='91%'}
 
-You can use [`{covr}`](https://covr.r-lib.org/) to compute example code coverage (i.e. proportion of the source code that is executed when running examples in help pages and vignettes), and to ensure that it is above a certain threshold.
+Use [`{covr}`](https://covr.r-lib.org/){target='_blank'} to compute example code coverage (i.e. proportion of the source code that is executed when running examples in help pages and vignettes), and to ensure that it is above a certain threshold.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -288,7 +288,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='91%'}
 
-You can use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml){target='_blank'} to ensure that the code coverage via examples never drops below the chosen threshold.
+Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml){target='_blank'} to ensure that the code coverage via examples never drops below the chosen threshold.
 
 :::
 
@@ -400,7 +400,7 @@ knitr::include_graphics("media/confused.png")
 
 ::: {.column width='90%'}
 
-You can use [`{rmarkdown}`](https://rmarkdown.rstudio.com/github_document_format.html) to dynamically generate `README.md` from `README.Rmd`. If there is broken code in README, it will fail to render.
+Use [`{rmarkdown}`](https://rmarkdown.rstudio.com/github_document_format.html) to dynamically generate `README.md` from `README.Rmd`. If there is broken code in README, it will fail to render.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -429,7 +429,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-You can use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml){target='_blank'} to check that README can be successfully rendered on each commit.
+Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml){target='_blank'} to check that README can be successfully rendered on each commit.
 
 :::
 
@@ -445,7 +445,7 @@ You can use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/
 
 - If you need to convert your existing `.md` to `.Rmd`, you are [currently](https://github.com/yihui/knitr/issues/1807) out of luck. You will need to do this manually.
 
-- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule){target='_blank'} (e.g. once a week).
 
 :::
 
@@ -549,7 +549,7 @@ This means that `\dontrun{}` and `\donttest{}` examples might not be working, an
 
 ::: {.column width='90%'}
 
-Examples document, *and* provide test code used for diagnostic checking. You can use [`{devtools}`](https://r-lib.github.io/devtools/) to run examples and then fix the broken ones.
+Use [`{devtools}`](https://r-lib.github.io/devtools/){target='_blank'} to run all examples. You can then fix the broken ones.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -578,7 +578,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-You can use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml){target='_blank'} to make sure all examples in help pages are working on each commit.
+Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml){target='_blank'} to make sure all examples in help pages are working on each commit.
 
 :::
 
@@ -595,7 +595,7 @@ You can use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/
     * `if (FALSE) { ... }` (if example is included only for illustrative purposes)
     * `try({ ... })` (if the intent is to show the error)
 
-- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger){target='_blank'}  (e.g. once a week).
 
 :::
 
@@ -724,7 +724,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-You can use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pkgdown.yaml){target='_blank'} to make sure examples in *all* vignettes are working on each commit.
+Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pkgdown.yaml){target='_blank'} to make sure examples in *all* vignettes are working on each commit.
 
 :::
 
@@ -738,7 +738,7 @@ You can use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/exa
 
 - Code chunks that are *meant* to fail should use `error=TRUE` option.
 
-- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule){target='_blank'} (e.g. once a week).
 
 :::
 
@@ -790,7 +790,7 @@ knitr::include_graphics("media/confused.png")
 
 ::: {.column width='90%'}
 
-Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can't find meaning of the misspelled word. Additionally, misspelling technical words (e.g. writing *innode* instead of [*inode*](https://en.wikipedia.org/wiki/Inode)) can lead users down wrong paths and waste their time. 
+Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can't find meaning of the misspelled word. Additionally, misspelling technical words (e.g. writing *innode* instead of [*inode*](https://en.wikipedia.org/wiki/Inode){target='_blank'}) can lead users down wrong path and waste their time. 
 
 :::
 
@@ -822,6 +822,33 @@ Spelling mistakes obvious to native speakers may not be so for non-native speake
 
 ::::
 
+## A list of allowed words {.smaller}
+
+:::: {.columns}
+
+::: {.column width='70%'}
+
+Since there exist multiple English spelling standards, you can specify preferred standard in  `DESCRIPTION`.
+
+:::
+
+::: {.column width='30%'}
+
+For British spellings
+
+```dcf
+Language: en-GB
+```
+
+:::
+
+::::
+
+. . . 
+
+Additionally, some technical words will not be recognized by dictionaries, but you don't want these to be considered spelling mistakes either. You can create a list of allowed misspelled words in `WORDLIST` file
+
+
 ## Detecting spelling mistakes {.smaller}
 
 <!-- column layout -->
@@ -838,7 +865,7 @@ Spelling mistakes obvious to native speakers may not be so for non-native speake
 
 ::: {.column width='90%'}
 
-You can use [`{spelling}`](https://docs.ropensci.org/spelling/) to detect misspelled words and their location in the documentation.
+Use [`{spelling}`](https://docs.ropensci.org/spelling/){target='_blank'} to detect misspelled words and their location in the docs.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -878,12 +905,6 @@ You can write a GHA workflow to automate URL checking (see [example workflow](ht
 :::{.callout-tip}
 
 ## Additional tips 
-
-- Make sure to select your preferred spelling standard in `DESCRIPTION` file.
-
-```dcf
-Language: en-US
-```
 
 - Instead of a GHA workflow, you can also include spell check tests in the package itself. For more, see `usethis::use_spell_check()`.
 
