@@ -806,10 +806,6 @@ Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pk
 
 :::
 
-# Ensure *all* HTML in the help pages is valid.
-
-## HTML5 check
-
 # Ensure *all* URLs are valid.
 
 ## What is link rot? {.smaller}
@@ -951,7 +947,6 @@ You can write a GHA workflow to automate URL checking (see [example workflow](ht
 - There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.
 
 :::
-
 
 # Make sure there are no spelling mistakes.
 
@@ -1162,6 +1157,10 @@ You can write a GHA workflow to automate URL checking (see [example workflow](ht
 - If you install [Grammarly desktop](https://www.grammarly.com/desktop), it will flag spelling mistakes and will even suggest a clearer way to phrase your sentences. For VS Code, check out [Grammarly extension](https://marketplace.visualstudio.com/items?itemName=znck.grammarly).
 
 :::
+
+# Ensure *all* HTML in the help pages is valid.
+
+## HTML5 check
 
 ## Checklist for documentation
 

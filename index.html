@@ -10,7 +10,7 @@
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.97">
+  <meta name="generator" content="quarto-1.3.105">
 
   <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
   <title>slides</title>
@@ -454,7 +454,46 @@
 </section>
 <section id="iconography" class="slide level2 smaller">
 <h2>Iconography</h2>
-<p>In the following slides, the following icons are used.</p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/confused.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<p>Bad user experience</p>
+</div><div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/headache.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<p>Maintenance nightmare</p>
+</div>
+</div>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<p>Tool</p>
+</div><div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<p>Automation</p>
+</div>
+</div>
 </section></section>
 <section id="documentation" class="title-slide slide level1 center">
 <h1>Documentation</h1>
@@ -576,8 +615,11 @@
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:9%;">
-<p><br></p>
-<p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
 </div><div class="column" style="width:91%;">
 <p>Use <a href="https://covr.r-lib.org/" target="_blank"><code>{covr}</code></a> to compute example code coverage (i.e.&nbsp;proportion of the source code that is executed when running examples in help pages and vignettes), and to ensure that it is above a certain threshold.</p>
 <div class="cell">
@@ -611,7 +653,7 @@
 </div>
 <div class="callout-content">
 <ul>
-<li><p>The choice of threshold is subjective and context-sensitive. Chasing after 100% code coverage is futile.</p></li>
+<li><p>The choice of threshold is subjective and context-sensitive. Chasing after 100% example code coverage is futile.</p></li>
 <li><p>Vignettes not included in the package (by placing them in a <code>vignettes/</code> subdirectory or by adding them to <code>.Rbuildignore</code>) will not contribute towards the code coverage. You can adjust your coverage threshold accordingly.</p></li>
 <li><p>You can choose a threshold on a package-basis or on a file-basis (<code>covr::file_coverage()</code>).</p></li>
 </ul>
@@ -674,8 +716,11 @@
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
-<p><br></p>
-<p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://rmarkdown.rstudio.com/github_document_format.html"><code>{rmarkdown}</code></a> to dynamically generate <code>README.md</code> from <code>README.Rmd</code>. If there is broken code in README, it will fail to render.</p>
 <div class="cell">
@@ -808,8 +853,11 @@
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
-<p><br></p>
-<p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://r-lib.github.io/devtools/" target="_blank"><code>{devtools}</code></a> to run all examples. You can then fix the broken ones.</p>
 <div class="cell">
@@ -817,7 +865,6 @@
 </div>
 </div>
 </div>
-<p><br></p>
 <div class="fragment">
 <!-- column layout -->
 <div class="columns">
@@ -920,8 +967,11 @@
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
-<p><br></p>
-<p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
 </div><div class="column" style="width:90%;">
 <p>Although excluded vignettes may not be checked by <code>R CMD check</code>, they are still built by <a href="https://r-lib.github.io/pkgdown/"><code>{pkgdown}</code></a> to generate a static website. This would detect any broken examples.</p>
 <div class="cell">
@@ -964,18 +1014,103 @@
 </div>
 </section></section>
 <section>
-<section id="ensure-all-html-in-the-help-pages-is-valid." class="title-slide slide level1 center">
-<h1>Ensure <em>all</em> HTML in the help pages is valid.</h1>
-
-</section>
-<section id="html5-check" class="slide level2">
-<h2>HTML5 check</h2>
-</section></section>
 <section id="ensure-all-urls-are-valid." class="title-slide slide level1 center">
 <h1>Ensure <em>all</em> URLs are valid.</h1>
 
 </section>
-
+<section id="what-is-link-rot" class="slide level2 smaller">
+<h2>What is link rot?</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<p><i class="fa-solid fa-link-slash fa-2xl" aria-label="link-slash"></i></p>
+</div><div class="column" style="width:90%;">
+<p>If the package documentation includes hyperlinks to external resources, make sure that they are still valid and not dangling.</p>
+<p><a href="https://en.wikipedia.org/wiki/Link_rot" target="_blank">Link rot</a> happens because web pages move to new addresses or become permanently unavailable.</p>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/confused.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Such dangling references can be frustrating for the users trying to access the resources that the dead links were previously pointing to.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to prevent link rot from accumulating?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="detecting-link-rot" class="slide level2 smaller">
+<h2>Detecting link rot</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You can use <a href="https://r-lib.github.io/urlchecker/" target="_blank"><code>{urlchecker}</code></a> to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>urlchecker<span class="sc">::</span><span class="fu">url_check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You can write a GHA workflow to automate URL checking (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml" target="_blank">example workflow</a>). This will ensure that bad URLs will be discovered on each commit.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>If <code>{urlchecker}</code> finds dead URLs in <code>.html</code>/<code>.md</code> files, you will need to update <code>.Rmd</code>/<code>.qmd</code> files and then regenerate the docs. Otherwise, you will keep wondering why <code>urlchecker::url_update()</code> isn’t fixing the links.</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+<li><p>There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
 <section>
 <section id="make-sure-there-are-no-spelling-mistakes." class="title-slide slide level1 center">
 <h1>Make sure there are no spelling mistakes.</h1>
@@ -1032,7 +1167,7 @@
 <p>There exist multiple English spelling standards (e.g.&nbsp;in British English: <em>anaemia</em>, but in American English: <em>anemia</em>). You can specify your preferred standard in <code>DESCRIPTION</code>.</p>
 </div><div class="column" style="width:30%;">
 <p>E.g. for British English</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>Language: en-GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>Language: en-GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -1069,16 +1204,18 @@ YAML</code></pre>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
-<p><br></p>
-<p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://docs.ropensci.org/spelling/" target="_blank"><code>{spelling}</code></a> to detect misspelled words and their location in the docs.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>spelling<span class="sc">::</span><span class="fu">spell_check_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>spelling<span class="sc">::</span><span class="fu">spell_check_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-<p><br></p>
 <div class="fragment">
 <!-- column layout -->
 <div class="columns">
@@ -1111,6 +1248,14 @@ YAML</code></pre>
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="ensure-all-html-in-the-help-pages-is-valid." class="title-slide slide level1 center">
+<h1>Ensure <em>all</em> HTML in the help pages is valid.</h1>
+
+</section>
+<section id="html5-check" class="slide level2">
+<h2>HTML5 check</h2>
 </section>
 <section id="checklist-for-documentation" class="slide level2">
 <h2>Checklist for documentation</h2>
@@ -1189,7 +1334,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>If weak dependencies are no longer available (due to archival on CRAN, e.g.), this can lead to failures in your package. Given that these are optional dependencies, such failures should be avoided by using weak dependencies conditionally.</p>
+<p>If weak dependencies are no longer available (due to archival, e.g.), this can lead to failures in your package. Given that these are optional dependencies, such failures should be avoided by using weak dependencies conditionally.</p>
 </div>
 </div>
 </div>
@@ -1218,13 +1363,14 @@ YAML</code></pre>
 <section id="nosuggests-pkgdown" class="slide level2">
 <h2>“noSuggests” pkgdown</h2>
 </section></section>
-<section>
 <section id="unit-testing" class="title-slide slide level1 center">
 <h1>Unit testing</h1>
 <p>offline</p>
 </section>
-<section id="there-is-a-problem-with-warnings.-no-one-reads-them." class="slide level2">
-<h2>“There is a problem with warnings. No one reads them.”</h2>
+
+<section>
+<section id="there-is-a-problem-with-warnings.-no-one-reads-them." class="title-slide slide level1 center">
+<h1>“There is a problem with warnings. No one reads them.”</h1>
 <p>- Patrick Burns (<em>R Inferno</em>)</p>
 </section>
 <section id="section-1" class="slide level2 smaller">
@@ -1294,7 +1440,7 @@ YAML</code></pre>
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
