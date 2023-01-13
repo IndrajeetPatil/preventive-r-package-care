@@ -21,16 +21,6 @@ Indrajeet Patil
 
 :::
 
-
-<!-- ::: {style="margin-top: 10em; font-size:0.75em"} -->
-
-<!-- - [Link to slides](https://indrajeetpatil.github.io/preventive-r-package-care/) -->
-<!-- - [Github repo](https://github.com/IndrajeetPatil/preventive-r-package-care/) -->
-
-<!-- ::: -->
-
-<!-- ![](media/plant.png){.absolute width="900" height="500" left="70" top="155"} -->
-
 <!-- Need to install extension from https://github.com/quarto-ext/fontawesome -->
 <!-- Run `quarto install extension quarto-ext/fontawesome` in terminal -->
 
@@ -67,13 +57,13 @@ You can follow these practices even if you never plan to submit to CRAN, since t
 
 :::
 
-## Iconography {.smaller}
+## Iconography
 
 <!-- column layout -->
 
 :::: {.columns}
 
-::: {.column width='10%'}
+::: {.column width='20%'}
 
 ```{r, echo=FALSE}
 knitr::include_graphics("media/confused.png")
@@ -81,13 +71,14 @@ knitr::include_graphics("media/confused.png")
 
 :::
 
-::: {.column width='40%'}
+::: {.column width='30%'}
 
+<br>
 Bad user experience
 
 :::
 
-::: {.column width='10%'}
+::: {.column width='20%'}
 
 ```{r, echo=FALSE}
 knitr::include_graphics("media/headache.png")
@@ -95,20 +86,22 @@ knitr::include_graphics("media/headache.png")
 
 :::
 
-::: {.column width='40%'}
+::: {.column width='20%'}
 
+<br>
 Maintenance nightmare
 
 :::
 
 ::::
 
+<br>
 
 <!-- column layout -->
 
 :::: {.columns}
 
-::: {.column width='10%'}
+::: {.column width='20%'}
 
 ```{r, echo=FALSE}
 knitr::include_graphics("media/toolbox.png")
@@ -116,13 +109,14 @@ knitr::include_graphics("media/toolbox.png")
 
 :::
 
-::: {.column width='40%'}
+::: {.column width='30%'}
 
+<br>
 Tool
 
 :::
 
-::: {.column width='10%'}
+::: {.column width='20%'}
 
 ```{r, echo=FALSE}
 knitr::include_graphics("media/robot.png")
@@ -130,8 +124,9 @@ knitr::include_graphics("media/robot.png")
 
 :::
 
-::: {.column width='40%'}
+::: {.column width='30%'}
 
+<br>
 Automation
 
 :::
