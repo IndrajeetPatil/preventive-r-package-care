@@ -447,46 +447,47 @@
 </div>
 </div>
 </section>
-<section id="iconography" class="slide level2 smaller">
+<section id="iconography" class="slide level2">
 <h2>Iconography</h2>
 <!-- column layout -->
 <div class="columns">
-<div class="column" style="width:10%;">
+<div class="column" style="width:20%;">
 <div class="cell">
 <div class="cell-output-display">
 <p><img data-src="media/confused.png" width="256"></p>
 </div>
 </div>
-</div><div class="column" style="width:40%;">
-<p>Bad user experience</p>
-</div><div class="column" style="width:10%;">
+</div><div class="column" style="width:30%;">
+<p><br> Bad user experience</p>
+</div><div class="column" style="width:20%;">
 <div class="cell">
 <div class="cell-output-display">
 <p><img data-src="media/headache.png" width="256"></p>
 </div>
 </div>
-</div><div class="column" style="width:40%;">
-<p>Maintenance nightmare</p>
+</div><div class="column" style="width:20%;">
+<p><br> Maintenance nightmare</p>
 </div>
 </div>
+<p><br></p>
 <!-- column layout -->
 <div class="columns">
-<div class="column" style="width:10%;">
+<div class="column" style="width:20%;">
 <div class="cell">
 <div class="cell-output-display">
 <p><img data-src="media/toolbox.png" width="256"></p>
 </div>
 </div>
-</div><div class="column" style="width:40%;">
-<p>Tool</p>
-</div><div class="column" style="width:10%;">
+</div><div class="column" style="width:30%;">
+<p><br> Tool</p>
+</div><div class="column" style="width:20%;">
 <div class="cell">
 <div class="cell-output-display">
 <p><img data-src="media/robot.png" width="256"></p>
 </div>
 </div>
-</div><div class="column" style="width:40%;">
-<p>Automation</p>
+</div><div class="column" style="width:30%;">
+<p><br> Automation</p>
 </div>
 </div>
 </section></section>
@@ -1009,8 +1010,8 @@
 </div>
 </section></section>
 <section>
-<section id="ensure-all-urls-are-valid." class="title-slide slide level1 center">
-<h1>Ensure <em>all</em> URLs are valid.</h1>
+<section id="make-sure-all-urls-are-valid." class="title-slide slide level1 center">
+<h1>Make sure <em>all</em> URLs are valid.</h1>
 
 </section>
 <section id="what-is-link-rot" class="slide level2 smaller">
@@ -1122,21 +1123,22 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Spelling mistakes are a part of life, especially if you are not a native English speaker. Left unchecked, they can accumulate to a serious degree.</p>
+<p>Spelling mistakes are inevitable and, left unchecked, they can accumulate in proportion to the amount of documentation.</p>
 </div>
 </div>
-<p><br></p>
 <div class="fragment">
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
+<p><br></p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img data-src="media/confused.png" width="256"></p>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can’t find meaning of the misspelled word. Additionally, misspelling technical words (e.g.&nbsp;writing <em>innode</em> instead of <a href="https://en.wikipedia.org/wiki/Inode" target="_blank"><em>inode</em></a>) can lead users down wrong path and waste their time.</p>
+<p>Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can’t find meaning of the misspelled word.</p>
+<p>Additionally, misspelling technical words (e.g.&nbsp;writing <em>innode</em> instead of <a href="https://en.wikipedia.org/wiki/Inode" target="_blank"><em>inode</em></a>) can lead users down wrong path and waste their time.</p>
 </div>
 </div>
 </div>
@@ -1245,15 +1247,71 @@ YAML</code></pre>
 </div>
 </section></section>
 <section>
-<section id="ensure-all-html-in-the-help-pages-is-valid." class="title-slide slide level1 center">
-<h1>Ensure <em>all</em> HTML in the help pages is valid.</h1>
+<section id="make-sure-all-html-in-the-help-pages-is-valid." class="title-slide slide level1 center">
+<h1>Make sure <em>all</em> HTML in the help pages is valid.</h1>
 
 </section>
 <section id="html5-check" class="slide level2">
 <h2>HTML5 check</h2>
 </section>
-<section id="checklist-for-documentation" class="slide level2">
+<section id="checklist-for-documentation" class="slide level2 smaller">
 <h2>Checklist for documentation</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; ">
+<p><strong>To guarantee good user experience, you need to make sure that the documentation is up-to-date.</strong></p>
+</div>
+</div>
+</div>
+<table>
+<colgroup>
+<col style="width: 80%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+<th style="text-align: center;">Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure there are enough examples in the documentation.</td>
+<td style="text-align: center;"><code>{covr}</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure all README examples are working.</td>
+<td style="text-align: center;"><code>{rmarkdown}</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all examples in help pages are working.</td>
+<td style="text-align: center;"><code>{devtools}</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure examples in all vignettes are working.</td>
+<td style="text-align: center;"><code>{pkgdown}</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all URLs are valid.</td>
+<td style="text-align: center;"><code>{urlchecker}</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure there are no spelling mistakes.</td>
+<td style="text-align: center;"><code>{spelling}</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all HTML in the help pages is valid.</td>
+<td style="text-align: center;">HTML Tidy</td>
+</tr>
+</tbody>
+</table>
 </section></section>
 <section id="dependency-management" class="title-slide slide level1 center">
 <h1>Dependency management</h1>

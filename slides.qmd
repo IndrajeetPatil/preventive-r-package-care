@@ -801,7 +801,7 @@ Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pk
 
 :::
 
-# Ensure *all* URLs are valid.
+# Make sure *all* URLs are valid.
 
 ## What is link rot? {.smaller}
 
@@ -1155,11 +1155,45 @@ You can write a GHA workflow to automate URL checking (see [example workflow](ht
 
 :::
 
-# Ensure *all* HTML in the help pages is valid.
+# Make sure *all* HTML in the help pages is valid.
 
 ## HTML5 check
 
-## Checklist for documentation
+## Checklist for documentation {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; "}
+
+**To guarantee good user experience, you need to make sure that the documentation is up-to-date.**
+
+:::
+
+:::
+
+::::
+
+| Item                                                      |      Tool      |
+| :-------------------------------------------------------- | :------------: |
+| Make sure there are enough examples in the documentation. |    `{covr}`    |
+| Make sure all README examples are working.                | `{rmarkdown}`  |
+| Make sure all examples in help pages are working.         |  `{devtools}`  |
+| Make sure examples in all vignettes are working.          |  `{pkgdown}`   |
+| Make sure all URLs are valid.                             | `{urlchecker}` |
+| Make sure there are no spelling mistakes.                 |  `{spelling}`  |
+| Make sure all HTML in the help pages is valid.            |   HTML Tidy    |
 
 # Dependency management
 

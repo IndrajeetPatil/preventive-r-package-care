@@ -1010,8 +1010,8 @@
 </div>
 </section></section>
 <section>
-<section id="ensure-all-urls-are-valid." class="title-slide slide level1 center">
-<h1>Ensure <em>all</em> URLs are valid.</h1>
+<section id="make-sure-all-urls-are-valid." class="title-slide slide level1 center">
+<h1>Make sure <em>all</em> URLs are valid.</h1>
 
 </section>
 <section id="what-is-link-rot" class="slide level2 smaller">
@@ -1247,15 +1247,71 @@ YAML</code></pre>
 </div>
 </section></section>
 <section>
-<section id="ensure-all-html-in-the-help-pages-is-valid." class="title-slide slide level1 center">
-<h1>Ensure <em>all</em> HTML in the help pages is valid.</h1>
+<section id="make-sure-all-html-in-the-help-pages-is-valid." class="title-slide slide level1 center">
+<h1>Make sure <em>all</em> HTML in the help pages is valid.</h1>
 
 </section>
 <section id="html5-check" class="slide level2">
 <h2>HTML5 check</h2>
 </section>
-<section id="checklist-for-documentation" class="slide level2">
+<section id="checklist-for-documentation" class="slide level2 smaller">
 <h2>Checklist for documentation</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; ">
+<p><strong>To guarantee good user experience, you need to make sure that the documentation is up-to-date.</strong></p>
+</div>
+</div>
+</div>
+<table>
+<colgroup>
+<col style="width: 80%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+<th style="text-align: center;">Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure there are enough examples in the documentation.</td>
+<td style="text-align: center;"><code>{covr}</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure all README examples are working.</td>
+<td style="text-align: center;"><code>{rmarkdown}</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all examples in help pages are working.</td>
+<td style="text-align: center;"><code>{devtools}</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure examples in all vignettes are working.</td>
+<td style="text-align: center;"><code>{pkgdown}</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all URLs are valid.</td>
+<td style="text-align: center;"><code>{urlchecker}</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure there are no spelling mistakes.</td>
+<td style="text-align: center;"><code>{spelling}</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all HTML in the help pages is valid.</td>
+<td style="text-align: center;">HTML Tidy</td>
+</tr>
+</tbody>
+</table>
 </section></section>
 <section id="dependency-management" class="title-slide slide level1 center">
 <h1>Dependency management</h1>
