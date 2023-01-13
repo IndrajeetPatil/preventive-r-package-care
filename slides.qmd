@@ -961,13 +961,11 @@ knitr::include_graphics("media/spell-check.png")
 
 ::: {.column width='90%'}
 
-Spelling mistakes are a part of life, especially if you are not a native English speaker. Left unchecked, they can accumulate to a serious degree.
+Spelling mistakes are inevitable and, left unchecked, they can accumulate in proportion to the amount of documentation.
 
 :::
 
 ::::
-
-<br>
 
 . . .
 
@@ -977,6 +975,8 @@ Spelling mistakes are a part of life, especially if you are not a native English
 
 ::: {.column width='10%'}
 
+<br>
+
 ```{r, echo=FALSE}
 knitr::include_graphics("media/confused.png")
 ```
@@ -985,7 +985,9 @@ knitr::include_graphics("media/confused.png")
 
 ::: {.column width='90%'}
 
-Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can't find meaning of the misspelled word. Additionally, misspelling technical words (e.g. writing *innode* instead of [*inode*](https://en.wikipedia.org/wiki/Inode){target='_blank'}) can lead users down wrong path and waste their time. 
+Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can't find meaning of the misspelled word. 
+
+Additionally, misspelling technical words (e.g. writing *innode* instead of [*inode*](https://en.wikipedia.org/wiki/Inode){target='_blank'}) can lead users down wrong path and waste their time. 
 
 :::
 
