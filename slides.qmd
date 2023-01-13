@@ -69,8 +69,74 @@ You can follow these practices even if you never plan to submit to CRAN, since t
 
 ## Iconography {.smaller}
 
-In the following slides, the following icons are used.
+<!-- column layout -->
 
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/confused.png")
+```
+
+:::
+
+::: {.column width='40%'}
+
+Bad user experience
+
+:::
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='40%'}
+
+Maintenance nightmare
+
+:::
+
+::::
+
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='40%'}
+
+Tool
+
+:::
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='40%'}
+
+Automation
+
+:::
+
+::::
 
 # Documentation
 
@@ -251,9 +317,9 @@ Without enough expository examples, users are left to fumble their way into disc
 
 ::: {.column width='9%'}
 
-<br>
-
-{{< fa solid toolbox size=2xl >}}
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
 
 :::
 
@@ -300,7 +366,7 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/mai
 
 ## Additional tips 
 
-- The choice of threshold is subjective and context-sensitive. Chasing after 100% code coverage is futile.
+- The choice of threshold is subjective and context-sensitive. Chasing after 100% example code coverage is futile.
 
 - Vignettes not included in the package (by placing them in a `vignettes/` subdirectory or by adding them to `.Rbuildignore`) will not contribute towards the code coverage. You can adjust your coverage threshold accordingly.
 
@@ -392,9 +458,9 @@ knitr::include_graphics("media/confused.png")
 
 ::: {.column width='10%'}
 
-<br>
-
-{{< fa solid toolbox size=2xl >}}
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
 
 :::
 
@@ -541,9 +607,9 @@ This means that `\dontrun{}` and `\donttest{}` examples might not be working, an
 
 ::: {.column width='10%'}
 
-<br>
-
-{{< fa solid toolbox size=2xl >}}
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
 
 :::
 
@@ -559,8 +625,6 @@ devtools::run_examples(run_dontrun = TRUE, run_donttest = TRUE)
 :::
 
 ::::
-
-<br>
 
 . . .
 
@@ -687,9 +751,9 @@ This means that examples in excluded vignettes might not be working, and yet may
 
 ::: {.column width='10%'}
 
-<br>
-
-{{< fa solid toolbox size=2xl >}}
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
 
 :::
 
@@ -747,6 +811,147 @@ Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pk
 ## HTML5 check
 
 # Ensure *all* URLs are valid.
+
+## What is link rot? {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+{{< fa solid link-slash size=2xl >}}
+
+:::
+
+::: {.column width='90%'}
+
+If the package documentation includes hyperlinks to external resources, make sure that they are still valid and not dangling.
+
+[Link rot](https://en.wikipedia.org/wiki/Link_rot){target='_blank'} happens because web pages move to new addresses or become permanently unavailable.
+
+:::
+
+:::: 
+
+. . . 
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/confused.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Such dangling references can be frustrating for the users trying to access the resources that the dead links were previously pointing to.
+
+:::
+
+::::
+
+. . . 
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+{{< fa regular circle-question size=2xl >}}
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to prevent link rot from accumulating?**
+
+:::
+
+:::
+
+::::
+
+
+## Detecting link rot {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+You can use [`{urlchecker}`](https://r-lib.github.io/urlchecker/){target='_blank'} to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+urlchecker::url_check()
+```
+
+:::
+
+::::
+
+<br>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+You can write a GHA workflow to automate URL checking (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml){target='_blank'}). This will ensure that bad URLs will be discovered on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- If `{urlchecker}` finds dead URLs in `.html`/`.md` files, you will need to update `.Rmd`/`.qmd` files and then regenerate the docs. Otherwise, you will keep wondering why `urlchecker::url_update()` isn't fixing the links.
+
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+
+- There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.
+
+:::
+
 
 # Make sure there are no spelling mistakes.
 
@@ -905,9 +1110,9 @@ Now you are all set for detecting spelling mistakes!
 
 ::: {.column width='10%'}
 
-<br>
-
-{{< fa solid toolbox size=2xl >}}
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
 
 :::
 
@@ -923,8 +1128,6 @@ spelling::spell_check_package()
 :::
 
 ::::
-
-<br>
 
 . . .
 
@@ -998,8 +1201,6 @@ Dependencies are inevitable, but some more so than others.
 |    Soft    |     `Suggests`      | Nice to have but your package will work nonetheless. |
 
 :::
-
-
 
 :::
 
