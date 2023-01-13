@@ -594,6 +594,149 @@ You can use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/
 
 :::
 
+# Make sure examples in *all* vignettes are working.
+
+## Vignette examples {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/application.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{.callout-note}
+
+## Types of vignettes
+
+Vignettes included in package will fail if any of the examples are not working. But you may choose not to include all vignettes (by placing them in a `vignettes/` subdirectory or by adding them to `.Rbuildignore`). This can be because of their size (e.g. if you are including media) or because they are too time-consuming (e.g. if you are running statistical models).
+
+:::
+
+:::
+
+::::
+
+. . . 
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+This means that examples in excluded vignettes might not be working, and yet may never be caught by `R CMD check`. Although users might not be exposed to them on CRAN, as a maintainer, you'd still like to not have defunct examples in the documentation.
+
+:::
+
+::::
+
+. . . 
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+{{< fa regular circle-question size=2xl >}}
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to detect broken examples in excluded vignettes?**
+
+:::
+
+:::
+
+::::
+
+## Building all vignettes {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+{{< fa solid toolbox size=2xl >}}
+
+:::
+
+::: {.column width='90%'}
+
+Although excluded vignettes may not be checked by `R CMD check`, they are still built by [`{pkgdown}`](https://r-lib.github.io/pkgdown/) to generate a static website. This would detect any broken examples.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+pkgdown::build_site()
+```
+
+:::
+
+::::
+
+<br>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+You can use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pkgdown.yaml){target='_blank'} to make sure examples in *all* vignettes are working on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- Code chunks that are *meant* to fail should use `error=TRUE` option.
+
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+
+:::
+
 # Ensure *all* HTML in the help pages is valid.
 
 ## HTML5 check

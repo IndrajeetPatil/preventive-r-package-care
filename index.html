@@ -10,7 +10,7 @@
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.90">
+  <meta name="generator" content="quarto-1.3.97">
 
   <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
   <title>slides</title>
@@ -452,10 +452,15 @@
 </div>
 </div>
 </section></section>
-<section>
 <section id="documentation" class="title-slide slide level1 center">
 <h1>Documentation</h1>
 <p>Preventive care to make sure the docs are up-to-date.</p>
+</section>
+
+<section>
+<section id="incorrect-documentation-is-often-worse-than-no-documentation." class="title-slide slide level1 center">
+<h1>“Incorrect documentation is often worse than no documentation.”</h1>
+<p>- Bertrand Meyer</p>
 </section>
 <section id="sources-of-documentation" class="slide level2 smaller">
 <h2>Sources of documentation</h2>
@@ -847,6 +852,114 @@
 </div>
 </section></section>
 <section>
+<section id="make-sure-examples-in-all-vignettes-are-working." class="title-slide slide level1 center">
+<h1>Make sure examples in <em>all</em> vignettes are working.</h1>
+
+</section>
+<section id="vignette-examples" class="slide level2 smaller">
+<h2>Vignette examples</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/application.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Types of vignettes</strong></p>
+</div>
+<div class="callout-content">
+<p>Vignettes included in package will fail if any of the examples are not working. But you may choose not to include all vignettes (by placing them in a <code>vignettes/</code> subdirectory or by adding them to <code>.Rbuildignore</code>). This can be because of their size (e.g.&nbsp;if you are including media) or because they are too time-consuming (e.g.&nbsp;if you are running statistical models).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/headache.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>This means that examples in excluded vignettes might not be working, and yet may never be caught by <code>R CMD check</code>. Although users might not be exposed to them on CRAN, as a maintainer, you’d still like to not have defunct examples in the documentation.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to detect broken examples in excluded vignettes?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="building-all-vignettes" class="slide level2 smaller">
+<h2>Building all vignettes</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
+</div><div class="column" style="width:90%;">
+<p>Although excluded vignettes may not be checked by <code>R CMD check</code>, they are still built by <a href="https://r-lib.github.io/pkgdown/"><code>{pkgdown}</code></a> to generate a static website. This would detect any broken examples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pkgdown<span class="sc">::</span><span class="fu">build_site</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You can use a <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/pkgdown.yaml" target="_blank">GHA workflow</a> to make sure examples in <em>all</em> vignettes are working on each commit.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Code chunks that are <em>meant</em> to fail should use <code>error=TRUE</code> option.</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
 <section id="ensure-all-html-in-the-help-pages-is-valid." class="title-slide slide level1 center">
 <h1>Ensure <em>all</em> HTML in the help pages is valid.</h1>
 
@@ -910,7 +1023,7 @@
 </div><div class="column" style="width:90%;">
 <p>You can use <a href="https://r-lib.github.io/urlchecker/"><code>{urlchecker}</code></a> to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>urlchecker<span class="sc">::</span><span class="fu">url_check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>urlchecker<span class="sc">::</span><span class="fu">url_check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -955,27 +1068,122 @@
 <section id="checklist-for-documentation" class="slide level2">
 <h2>Checklist for documentation</h2>
 </section></section>
-<section>
 <section id="dependency-management" class="title-slide slide level1 center">
 <h1>Dependency management</h1>
+<p>Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.</p>
+</section>
 
+<section>
+<section id="make-sure-soft-dependencies-are-used-conditionally." class="title-slide slide level1 center">
+<h1>Make sure soft dependencies are used conditionally.</h1>
+
+</section>
+<section id="dependencies" class="slide level2 smaller">
+<h2>Dependencies</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/trust.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Hard versus soft dependencies</strong></p>
+</div>
+<div class="callout-content">
+<p>Dependencies are inevitable, but some more so than others.</p>
+<table>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 23%">
+<col style="width: 64%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Dependency</th>
+<th style="text-align: center;">In <code>DESCRIPTION</code></th>
+<th style="text-align: center;">Connection</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Hard</td>
+<td style="text-align: center;"><code>Depends</code>/<code>Imports</code></td>
+<td style="text-align: center;">Impossible for package to work without these.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Soft</td>
+<td style="text-align: center;"><code>Suggests</code></td>
+<td style="text-align: center;">Nice to have but your package will work nonetheless.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/headache.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>If weak dependencies are no longer available (due to archival on CRAN, e.g.), this can lead to failures in your package. Given that these are optional dependencies, such failures should be avoided by using weak dependencies conditionally.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to make sure weak dependencies are being conditionally used?</strong></p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="nosuggests-check" class="slide level2">
 <h2>“noSuggests” check</h2>
+</section></section>
+<section>
+<section id="again-make-sure-soft-dependencies-are-used-conditionally." class="title-slide slide level1 center">
+<h1>Again, make sure soft dependencies are used conditionally.</h1>
+
 </section>
 <section id="nosuggests-pkgdown" class="slide level2">
 <h2>“noSuggests” pkgdown</h2>
 </section></section>
+<section>
 <section id="unit-testing" class="title-slide slide level1 center">
 <h1>Unit testing</h1>
-
+<p>offline</p>
 </section>
-
-<section id="turn-warnings-into-errors" class="title-slide slide level1 center">
-<h1>Turn warnings into errors</h1>
-
+<section id="there-is-a-problem-with-warnings.-no-one-reads-them." class="slide level2">
+<h2>“There is a problem with warnings. No one reads them.”</h2>
+<p>- Patrick Burns (<em>R Inferno</em>)</p>
 </section>
-
+<section id="section-1" class="slide level2 smaller">
+<h2></h2>
+<p>Turn warnings into errors</p>
+</section></section>
 <section id="precommit" class="title-slide slide level1 center">
 <h1>Precommit</h1>
 
@@ -1039,7 +1247,7 @@
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
@@ -1051,13 +1259,13 @@
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       Europe/Berlin
- date     2023-01-08
+ date     2023-01-13
  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
  ! package     * version date (UTC) lib source
    base        * 4.2.2   2022-10-31 [?] local
-   cli           3.5.0   2022-12-20 [1] CRAN (R 4.2.2)
+   cli           3.6.0   2023-01-09 [1] CRAN (R 4.2.2)
  P compiler      4.2.2   2022-10-31 [1] local
  P datasets    * 4.2.2   2022-10-31 [1] local
    digest        0.6.31  2022-12-11 [1] CRAN (R 4.2.2)
@@ -1078,7 +1286,7 @@
    rstudioapi    0.14    2022-08-22 [1] CRAN (R 4.2.1)
    sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.2.0)
  P stats       * 4.2.2   2022-10-31 [1] local
-   stringi       1.7.8   2022-07-11 [1] CRAN (R 4.2.1)
+   stringi       1.7.12  2023-01-11 [1] CRAN (R 4.2.0)
    stringr       1.5.0   2022-12-02 [1] CRAN (R 4.2.2)
  P tools         4.2.2   2022-10-31 [1] local
  P utils       * 4.2.2   2022-10-31 [1] local
