@@ -1024,18 +1024,44 @@
 </div>
 </div>
 </section>
-<section id="a-list-of-allowed-words" class="slide level2 smaller">
-<h2>A list of allowed words</h2>
+<section id="creating-a-list-of-allowed-misspellings" class="slide level2 smaller">
+<h2>Creating a list of allowed misspellings</h2>
+<!-- column layout -->
 <div class="columns">
 <div class="column" style="width:70%;">
-<p>Since there exist multiple English spelling standards, you can specify preferred standard in <code>DESCRIPTION</code>.</p>
+<p>There exist multiple English spelling standards (e.g.&nbsp;in British English: <em>anaemia</em>, but in American English: <em>anemia</em>). You can specify your preferred standard in <code>DESCRIPTION</code>.</p>
 </div><div class="column" style="width:30%;">
-<p>For British spellings</p>
+<p>E.g. for British English</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>Language: en-GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
-<p>Additionally, some technical words will not be recognized by dictionaries, but you don’t want these to be considered spelling mistakes either. You can create a list of allowed misspelled words in <code>WORDLIST</code> file</p>
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>Additionally, some technical words will not be recognized by dictionaries, but you don’t want these to be considered spelling mistakes either. You can create a list of allowed misspelled words in <code>WORDLIST</code> file.</p>
+</div><div class="column" style="width:20%;">
+<p>File location</p>
+<pre><code>├── DESCRIPTION
+├── inst
+│   └── WORDLIST</code></pre>
+</div><div class="column" style="width:20%;">
+<p>Example file</p>
+<pre><code>addin
+api
+AppVeyor
+biocthis
+bootswatch
+...
+winbuilder
+YAML</code></pre>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<p>Now you are all set for detecting spelling mistakes!</p>
 </div>
 </section>
 <section id="detecting-spelling-mistakes" class="slide level2 smaller">
@@ -1048,7 +1074,7 @@
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://docs.ropensci.org/spelling/" target="_blank"><code>{spelling}</code></a> to detect misspelled words and their location in the docs.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>spelling<span class="sc">::</span><span class="fu">spell_check_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>spelling<span class="sc">::</span><span class="fu">spell_check_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1079,7 +1105,7 @@
 <div class="callout-content">
 <ul>
 <li><p>Instead of a GHA workflow, you can also include spell check tests in the package itself. For more, see <code>usethis::use_spell_check()</code>.</p></li>
-<li><p>If you install <a href="https://www.grammarly.com/desktop">Grammarly desktop</a>, it will flag spelling mistakes and will even suggest a clearer way to phrase your sentences in RStudio IDE. For VS Code, check out <a href="https://marketplace.visualstudio.com/items?itemName=znck.grammarly">Grammarly extension</a>.</p></li>
+<li><p>If you install <a href="https://www.grammarly.com/desktop">Grammarly desktop</a>, it will flag spelling mistakes and will even suggest a clearer way to phrase your sentences. For VS Code, check out <a href="https://marketplace.visualstudio.com/items?itemName=znck.grammarly">Grammarly extension</a>.</p></li>
 </ul>
 </div>
 </div>
@@ -1163,7 +1189,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>If weak dependencies are no longer available (due to archival on CRAN, e.g.), this can lead to failures in your package. Given that these are optional dependencies, such failures should be avoided by using weak dependencies conditionally.</p>
+<p>If weak dependencies are no longer available (due to archival, e.g.), this can lead to failures in your package. Given that these are optional dependencies, such failures should be avoided by using weak dependencies conditionally.</p>
 </div>
 </div>
 </div>
@@ -1192,13 +1218,14 @@
 <section id="nosuggests-pkgdown" class="slide level2">
 <h2>“noSuggests” pkgdown</h2>
 </section></section>
-<section>
 <section id="unit-testing" class="title-slide slide level1 center">
 <h1>Unit testing</h1>
 <p>offline</p>
 </section>
-<section id="there-is-a-problem-with-warnings.-no-one-reads-them." class="slide level2">
-<h2>“There is a problem with warnings. No one reads them.”</h2>
+
+<section>
+<section id="there-is-a-problem-with-warnings.-no-one-reads-them." class="title-slide slide level1 center">
+<h1>“There is a problem with warnings. No one reads them.”</h1>
 <p>- Patrick Burns (<em>R Inferno</em>)</p>
 </section>
 <section id="section-1" class="slide level2 smaller">
@@ -1268,7 +1295,7 @@
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value

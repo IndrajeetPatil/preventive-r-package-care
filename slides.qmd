@@ -822,19 +822,21 @@ Spelling mistakes obvious to native speakers may not be so for non-native speake
 
 ::::
 
-## A list of allowed words {.smaller}
+## Creating a list of allowed misspellings {.smaller}
+
+<!-- column layout -->
 
 :::: {.columns}
 
 ::: {.column width='70%'}
 
-Since there exist multiple English spelling standards, you can specify preferred standard in  `DESCRIPTION`.
+There exist multiple English spelling standards (e.g. in British English: *anaemia*, but in American English: *anemia*). You can specify your preferred standard in `DESCRIPTION`.
 
 :::
 
 ::: {.column width='30%'}
 
-For British spellings
+E.g. for British English
 
 ```dcf
 Language: en-GB
@@ -846,8 +848,54 @@ Language: en-GB
 
 . . . 
 
-Additionally, some technical words will not be recognized by dictionaries, but you don't want these to be considered spelling mistakes either. You can create a list of allowed misspelled words in `WORDLIST` file
+<br>
 
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='60%'}
+
+Additionally, some technical words will not be recognized by dictionaries, but you don't want these to be considered spelling mistakes either. You can create a list of allowed misspelled words in `WORDLIST` file.
+
+:::
+
+::: {.column width='20%'}
+
+File location
+
+```
+├── DESCRIPTION
+├── inst
+│   └── WORDLIST
+```
+
+:::
+
+::: {.column width='20%'}
+
+Example file
+
+```
+addin
+api
+AppVeyor
+biocthis
+bootswatch
+...
+winbuilder
+YAML
+```
+
+:::
+
+::::
+
+. . . 
+
+<br>
+
+Now you are all set for detecting spelling mistakes!
 
 ## Detecting spelling mistakes {.smaller}
 
@@ -908,7 +956,7 @@ You can write a GHA workflow to automate URL checking (see [example workflow](ht
 
 - Instead of a GHA workflow, you can also include spell check tests in the package itself. For more, see `usethis::use_spell_check()`.
 
-- If you install [Grammarly desktop](https://www.grammarly.com/desktop), it will flag spelling mistakes and will even suggest a clearer way to phrase your sentences in RStudio IDE. For VS Code, check out [Grammarly extension](https://marketplace.visualstudio.com/items?itemName=znck.grammarly).
+- If you install [Grammarly desktop](https://www.grammarly.com/desktop), it will flag spelling mistakes and will even suggest a clearer way to phrase your sentences. For VS Code, check out [Grammarly extension](https://marketplace.visualstudio.com/items?itemName=znck.grammarly).
 
 :::
 
@@ -975,7 +1023,7 @@ knitr::include_graphics("media/headache.png")
 
 ::: {.column width='90%'}
 
-If weak dependencies are no longer available (due to archival on CRAN, e.g.), this can lead to failures in your package. Given that these are optional dependencies, such failures should be avoided by using weak dependencies conditionally.
+If weak dependencies are no longer available (due to archival, e.g.), this can lead to failures in your package. Given that these are optional dependencies, such failures should be avoided by using weak dependencies conditionally.
 
 :::
 
@@ -1020,7 +1068,7 @@ If weak dependencies are no longer available (due to archival on CRAN, e.g.), th
 
 offline
 
-## "There is a problem with warnings. No one reads them." 
+# "There is a problem with warnings. No one reads them." 
 \- Patrick Burns (*R Inferno*)
 
 ## {.smaller}
