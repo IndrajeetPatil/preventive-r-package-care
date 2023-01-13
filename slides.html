@@ -451,6 +451,10 @@
 </div>
 </div>
 </div>
+</section>
+<section id="iconography" class="slide level2 smaller">
+<h2>Iconography</h2>
+<p>In the following slides, the following icons are used.</p>
 </section></section>
 <section id="documentation" class="title-slide slide level1 center">
 <h1>Documentation</h1>
@@ -967,21 +971,28 @@
 <section id="html5-check" class="slide level2">
 <h2>HTML5 check</h2>
 </section></section>
-<section>
 <section id="ensure-all-urls-are-valid." class="title-slide slide level1 center">
 <h1>Ensure <em>all</em> URLs are valid.</h1>
 
 </section>
-<section id="what-is-link-rot" class="slide level2 smaller">
-<h2>What is link rot?</h2>
+
+<section>
+<section id="make-sure-there-are-no-spelling-mistakes." class="title-slide slide level1 center">
+<h1>Make sure there are no spelling mistakes.</h1>
+
+</section>
+<section id="spelling-mistakes" class="slide level2 smaller">
+<h2>Spelling mistakes</h2>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
-<p><br></p>
-<p><i class="fa-solid fa-link-slash fa-2xl" aria-label="link-slash"></i></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/spell-check.png" width="256"></p>
+</div>
+</div>
 </div><div class="column" style="width:90%;">
-<p>If the package documentation includes hyperlinks to external resources, make sure that they are still valid and not dangling.</p>
-<p><a href="https://en.wikipedia.org/wiki/Link_rot" target="_blank">Link rot</a> happens because web pages move to new addresses or become permanently unavailable.</p>
+<p>Spelling mistakes are a part of life, especially if you are not a native English speaker. Left unchecked, they can accumulate to a serious degree.</p>
 </div>
 </div>
 <p><br></p>
@@ -995,7 +1006,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Such dangling references can be frustrating for the users trying to access the resources that the dead links were previously pointing to.</p>
+<p>Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can’t find meaning of the misspelled word. Additionally, misspelling technical words (e.g.&nbsp;writing <em>innode</em> instead of <a href="https://en.wikipedia.org/wiki/Inode"><em>inode</em></a>) can lead users down wrong paths and waste their time.</p>
 </div>
 </div>
 </div>
@@ -1007,23 +1018,23 @@
 <p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
 </div><div class="column" style="width:90%;">
 <div style="color: red;">
-<p><strong>How to prevent link rot from accumulating?</strong></p>
+<p><strong>How to prevent spelling mistakes from accumulating in the documentation?</strong></p>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="detecting-link-rot" class="slide level2 smaller">
-<h2>Detecting link rot</h2>
+<section id="detecting-spelling-mistakes" class="slide level2 smaller">
+<h2>Detecting spelling mistakes</h2>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
 <p><br></p>
 <p><i class="fa-solid fa-toolbox fa-2xl" aria-label="toolbox"></i></p>
 </div><div class="column" style="width:90%;">
-<p>You can use <a href="https://r-lib.github.io/urlchecker/"><code>{urlchecker}</code></a> to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.</p>
+<p>You can use <a href="https://docs.ropensci.org/spelling/"><code>{spelling}</code></a> to detect misspelled words and their location in the documentation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>urlchecker<span class="sc">::</span><span class="fu">url_check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>spelling<span class="sc">::</span><span class="fu">spell_check_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1038,7 +1049,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>You can write a GHA workflow to automate URL checking (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml" target="_blank">example workflow</a>). This will ensure that bad URLs will be discovered on each commit.</p>
+<p>You can write a GHA workflow to automate URL checking (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml" target="_blank">example workflow</a>). This will ensure that spelling mistakes will be discovered on each commit.</p>
 </div>
 </div>
 </div>
@@ -1053,17 +1064,17 @@
 </div>
 <div class="callout-content">
 <ul>
-<li><p>If <code>{urlchecker}</code> finds dead URLs in <code>.html</code>/<code>.md</code> files, you will need to update <code>.Rmd</code>/<code>.qmd</code> files and then regenerate the docs. Otherwise, you will keep wondering why <code>urlchecker::url_update()</code> isn’t fixing the links.</p></li>
-<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
-<li><p>There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.</p></li>
+<li>Make sure to select your preferred spelling standard in <code>DESCRIPTION</code> file.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>Language: en-US</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>Instead of a GHA workflow, you can also include spell check tests in the package itself. For more, see <code>usethis::use_spell_check()</code>.</p></li>
+<li><p>If you install <a href="https://www.grammarly.com/desktop">Grammarly desktop</a>, it will flag spelling mistakes and will even suggest a clearer way to phrase your sentences in RStudio IDE. For VS Code, check out <a href="https://marketplace.visualstudio.com/items?itemName=znck.grammarly">Grammarly extension</a>.</p></li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-</section>
-<section id="spell-check" class="slide level2">
-<h2>Spell check</h2>
 </section>
 <section id="checklist-for-documentation" class="slide level2">
 <h2>Checklist for documentation</h2>
@@ -1247,7 +1258,7 @@
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value

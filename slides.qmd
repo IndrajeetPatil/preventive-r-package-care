@@ -67,6 +67,11 @@ You can follow these practices even if you never plan to submit to CRAN, since t
 
 :::
 
+## Iconography {.smaller}
+
+In the following slides, the following icons are used.
+
+
 # Documentation
 
 Preventive care to make sure the docs are up-to-date.
@@ -743,7 +748,9 @@ You can use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/exa
 
 # Ensure *all* URLs are valid.
 
-## What is link rot? {.smaller}
+# Make sure there are no spelling mistakes.
+
+## Spelling mistakes {.smaller}
 
 <!-- column layout -->
 
@@ -751,17 +758,15 @@ You can use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/exa
 
 ::: {.column width='10%'}
 
-<br>
-
-{{< fa solid link-slash size=2xl >}}
+```{r, echo=FALSE}
+knitr::include_graphics("media/spell-check.png")
+```
 
 :::
 
 ::: {.column width='90%'}
 
-If the package documentation includes hyperlinks to external resources, make sure that they are still valid and not dangling.
-
-[Link rot](https://en.wikipedia.org/wiki/Link_rot){target='_blank'} happens because web pages move to new addresses or become permanently unavailable.
+Spelling mistakes are a part of life, especially if you are not a native English speaker. Left unchecked, they can accumulate to a serious degree.
 
 :::
 
@@ -785,7 +790,7 @@ knitr::include_graphics("media/confused.png")
 
 ::: {.column width='90%'}
 
-Such dangling references can be frustrating for the users trying to access the resources that the dead links were previously pointing to.
+Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can't find meaning of the misspelled word. Additionally, misspelling technical words (e.g. writing *innode* instead of [*inode*](https://en.wikipedia.org/wiki/Inode)) can lead users down wrong paths and waste their time. 
 
 :::
 
@@ -809,7 +814,7 @@ Such dangling references can be frustrating for the users trying to access the r
 
 ::: {style="color: red;"}
 
-**How to prevent link rot from accumulating?**
+**How to prevent spelling mistakes from accumulating in the documentation?**
 
 :::
 
@@ -817,7 +822,7 @@ Such dangling references can be frustrating for the users trying to access the r
 
 ::::
 
-## Detecting link rot {.smaller}
+## Detecting spelling mistakes {.smaller}
 
 <!-- column layout -->
 
@@ -833,13 +838,12 @@ Such dangling references can be frustrating for the users trying to access the r
 
 ::: {.column width='90%'}
 
-You can use [`{urlchecker}`](https://r-lib.github.io/urlchecker/) to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.
+You can use [`{spelling}`](https://docs.ropensci.org/spelling/) to detect misspelled words and their location in the documentation.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
-urlchecker::url_check()
+spelling::spell_check_package()
 ```
-
 
 :::
 
@@ -863,7 +867,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-You can write a GHA workflow to automate URL checking (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml){target='_blank'}). This will ensure that bad URLs will be discovered on each commit.
+You can write a GHA workflow to automate URL checking (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml){target='_blank'}). This will ensure that spelling mistakes will be discovered on each commit.
 
 :::
 
@@ -875,15 +879,17 @@ You can write a GHA workflow to automate URL checking (see [example workflow](ht
 
 ## Additional tips 
 
-- If `{urlchecker}` finds dead URLs in `.html`/`.md` files, you will need to update `.Rmd`/`.qmd` files and then regenerate the docs. Otherwise, you will keep wondering why `urlchecker::url_update()` isn't fixing the links.
+- Make sure to select your preferred spelling standard in `DESCRIPTION` file.
 
-- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+```dcf
+Language: en-US
+```
 
-- There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.
+- Instead of a GHA workflow, you can also include spell check tests in the package itself. For more, see `usethis::use_spell_check()`.
+
+- If you install [Grammarly desktop](https://www.grammarly.com/desktop), it will flag spelling mistakes and will even suggest a clearer way to phrase your sentences in RStudio IDE. For VS Code, check out [Grammarly extension](https://marketplace.visualstudio.com/items?itemName=znck.grammarly).
 
 :::
-
-## Spell check
 
 ## Checklist for documentation
 
