@@ -1391,7 +1391,7 @@ knitr::include_graphics("media/headache.png")
 
 ::: {.column width='90%'}
 
-Given that weak dependencies are optional, the package should be insured against their unavailability. CRAN ascertains this in the additional, ["noSuggests" check](https://www.stats.ox.ac.uk/pub/bdr/noSuggests/){target='_blank'}.
+Given that soft dependencies are optional, the package should be insured against their unavailability. CRAN ascertains this in the additional, ["noSuggests" check](https://www.stats.ox.ac.uk/pub/bdr/noSuggests/){target='_blank'}.
 
 :::
 
@@ -1421,11 +1421,123 @@ Given that weak dependencies are optional, the package should be insured against
 
 ::::
 
-## "noSuggests" check
+## Conditional usage of dependencies {.smaller}
 
-# Again, make sure soft dependencies are used conditionally.
+<!-- column layout -->
 
-## "noSuggests" pkgdown
+:::: {.columns}
+
+::: {.column width='70%'}
+
+Soft dependencies should be used conditionally across all contexts. 
+Let's say `{lme4}` is such a dependency.
+
+:::
+
+::: {.column width='30%'}
+
+In `DESCRIPTION`
+
+```dcf
+Suggests:
+    lme4
+```
+
+:::
+
+::::
+
+<br>
+
+<hr>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+**Examples** in help pages should be executed only if package is available.
+
+:::
+
+::: {.column width='50%'}
+
+```{.r}
+# In R/file-1.R
+#' @examplesIf requireNamespace("lme4")
+#' lme4::lmer(...)
+```
+
+:::
+
+::::
+
+<hr>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+**Vignettes** (or specific code chunks) should be executed only if package is available.
+
+:::
+
+::: {.column width='50%'}
+
+````{verbatim, eval=FALSE}
+<!-- In vignettes/doc-1.Rmd -->
+```{r eval = requireNamespace("lme4")}
+lme4::lmer(...)
+```
+
+````
+
+:::
+
+::::
+
+<hr>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+**Tests** should be run only if package is available.
+
+:::
+
+::: {.column width='50%'}
+
+```{.r}
+# In tests/testthat/test-file-1.R
+test_that("bla", {
+  testthat::skip_if_not_installed("lme4")
+  expect_equal(lme4::lmer(...), ...)
+})
+```
+
+:::
+
+::::
+
+<hr>
+
+## Checking conditional usage {.smaller}
+
+"noSuggests" check
+
+"noSuggests" pkgdown
 
 
 

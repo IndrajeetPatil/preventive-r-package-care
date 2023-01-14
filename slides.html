@@ -1478,7 +1478,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Given that weak dependencies are optional, the package should be insured against their unavailability. CRAN ascertains this in the additional, <a href="https://www.stats.ox.ac.uk/pub/bdr/noSuggests/" target="_blank">“noSuggests” check</a>.</p>
+<p>Given that soft dependencies are optional, the package should be insured against their unavailability. CRAN ascertains this in the additional, <a href="https://www.stats.ox.ac.uk/pub/bdr/noSuggests/" target="_blank">“noSuggests” check</a>.</p>
 </div>
 </div>
 </div>
@@ -1495,16 +1495,67 @@ YAML</code></pre>
 </div>
 </div>
 </section>
-<section id="nosuggests-check" class="slide level2">
-<h2>“noSuggests” check</h2>
-</section></section>
-<section>
-<section id="again-make-sure-soft-dependencies-are-used-conditionally." class="title-slide slide level1 center">
-<h1>Again, make sure soft dependencies are used conditionally.</h1>
-
+<section id="conditional-usage-of-dependencies" class="slide level2 smaller">
+<h2>Conditional usage of dependencies</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>Soft dependencies should be used conditionally across all contexts. Let’s say <code>{lme4}</code> is such a dependency.</p>
+</div><div class="column" style="width:30%;">
+<p>In <code>DESCRIPTION</code></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>Suggests:</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    lme4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p><br></p>
+<hr>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Examples</strong> in help pages should be executed only if package is available.</p>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># In R/file-1.R</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#' @examplesIf requireNamespace("lme4")</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="co">#' lme4::lmer(...)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Vignettes</strong> (or specific code chunks) should be executed only if package is available.</p>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1"></a>&lt;!-- In vignettes/doc-1.Rmd --&gt;</span>
+<span id="cb13-2"><a href="#cb13-2"></a>```{r eval = requireNamespace("lme4")}</span>
+<span id="cb13-3"><a href="#cb13-3"></a>lme4::lmer(...)</span>
+<span id="cb13-4"><a href="#cb13-4"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Tests</strong> should be run only if package is available.</p>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># In tests/testthat/test-file-1.R</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">test_that</span>(<span class="st">"bla"</span>, {</span>
+<span id="cb14-3"><a href="#cb14-3"></a>  testthat<span class="sc">::</span><span class="fu">skip_if_not_installed</span>(<span class="st">"lme4"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">expect_equal</span>(lme4<span class="sc">::</span><span class="fu">lmer</span>(...), ...)</span>
+<span id="cb14-5"><a href="#cb14-5"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+</div>
 </section>
-<section id="nosuggests-pkgdown" class="slide level2">
-<h2>“noSuggests” pkgdown</h2>
+<section id="checking-conditional-usage-of-soft-dependencies" class="slide level2 smaller">
+<h2>Checking conditional usage of soft dependencies</h2>
+<p>“noSuggests” check</p>
+<p>“noSuggests” pkgdown</p>
 </section></section>
 <section id="unit-testing" class="title-slide slide level1 center">
 <h1>Unit testing</h1>
@@ -1583,7 +1634,7 @@ YAML</code></pre>
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
