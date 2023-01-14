@@ -398,9 +398,10 @@
 <div style="text-align: center;">
 <p>Indrajeet Patil</p>
 </div>
+
 <!-- Need to install extension from https://github.com/quarto-ext/fontawesome -->
 <!-- Run `quarto install extension quarto-ext/fontawesome` in terminal -->
-</section>
+<img data-src="media/preventive-care.jpeg" width="226" class="r-stretch"></section>
 <section id="software-engineering-ought-to-produce-sustainability." class="title-slide slide level1 center">
 <h1>“Software engineering ought to produce sustainability.”</h1>
 <p>- Mark Seemann (<em>Code That Fits in Your Head</em>)</p>
@@ -1083,7 +1084,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>You can write a GHA workflow to automate URL checking (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml" target="_blank">example workflow</a>). This will ensure that bad URLs will be discovered on each commit.</p>
+<p>Use GHA workflow to automate URL checking (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml" target="_blank">example workflow</a>). This will ensure that bad URLs will be discovered on each commit.</p>
 </div>
 </div>
 </div>
@@ -1223,7 +1224,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>You can write a GHA workflow to automate URL checking (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml" target="_blank">example workflow</a>). This will ensure that spelling mistakes will be discovered on each commit.</p>
+<p>Use GHA workflow to automate URL checking (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml" target="_blank">example workflow</a>). This will ensure that spelling mistakes will be discovered on each commit.</p>
 </div>
 </div>
 </div>
@@ -1251,8 +1252,98 @@ YAML</code></pre>
 <h1>Make sure <em>all</em> HTML in the help pages is valid.</h1>
 
 </section>
-<section id="html5-check" class="slide level2">
+<section id="html5-check" class="slide level2 smaller">
 <h2>HTML5 check</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/html-5.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>HTML has few syntactic rules, and browsers may not even enforce the rules it does have. E.g., browsers will tolerate mismatched tags, missing end tags, misnested tags, etc. HTML5 standard aims to improve this situation, and, since R 4.2, package help pages use HTML5 standard.</p>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/headache.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Therefore, you will need to make sure that your package documentation neither generates invalid HTML nor contains raw invalid HTML.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to make sure help pages have valid HTML?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="detecting-invalid-html" class="slide level2 smaller">
+<h2>Detecting invalid HTML</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>CRAN uses <a href="https://www.html-tidy.org/documentation/">HTML tidy</a> to detect markup errors in HTML. But, if you use <a href="https://roxygen2.r-lib.org/" target="_blank"><code>{roxygen2}</code></a>, you won’t need to use HTML tidy, since <code>{roxygen2}</code> will ensure against producing any invalid HTML.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>roxygen2<span class="sc">::</span><span class="fu">roxygenise</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use GHA workflow to automate checking validity of HTML manual (see <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/html-5-check.yaml" target="_blank">example workflow</a>) on each commit.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>If your documentation contains math equations, you can choose between <a href="https://docs.ropensci.org/katex/reference/katex.html" target="_blank"><code>{katex}</code></a> and <a href="https://github.com/wviechtb/mathjaxr" target="_blank"><code>{mathjaxr}</code></a> to convert LaTeX math expressions to HTML for use in package manual pages.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="checklist-for-documentation" class="slide level2 smaller">
 <h2>Checklist for documentation</h2>
@@ -1308,7 +1399,7 @@ YAML</code></pre>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Make sure all HTML in the help pages is valid.</td>
-<td style="text-align: center;">HTML Tidy</td>
+<td style="text-align: center;"><code>{roxygen2}</code></td>
 </tr>
 </tbody>
 </table>
@@ -1493,7 +1584,7 @@ YAML</code></pre>
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
@@ -1505,7 +1596,7 @@ YAML</code></pre>
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       Europe/Berlin
- date     2023-01-13
+ date     2023-01-14
  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
@@ -1521,6 +1612,7 @@ YAML</code></pre>
  P graphics    * 4.2.2   2022-10-31 [1] local
  P grDevices   * 4.2.2   2022-10-31 [1] local
    htmltools     0.5.4   2022-12-07 [1] CRAN (R 4.2.2)
+   jpeg          0.1-10  2022-11-29 [1] CRAN (R 4.2.0)
    jsonlite      1.8.4   2022-12-06 [1] CRAN (R 4.2.2)
    knitr         1.41    2022-11-18 [1] CRAN (R 4.2.2)
    lifecycle     1.0.3   2022-10-07 [1] CRAN (R 4.2.1)
