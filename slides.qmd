@@ -923,7 +923,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-You can write a GHA workflow to automate URL checking (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml){target='_blank'}). This will ensure that bad URLs will be discovered on each commit.
+Use GHA workflow to automate URL checking (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml){target='_blank'}). This will ensure that bad URLs will be discovered on each commit.
 
 :::
 
@@ -1137,7 +1137,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-You can write a GHA workflow to automate URL checking (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml){target='_blank'}). This will ensure that spelling mistakes will be discovered on each commit.
+Use GHA workflow to automate URL checking (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml){target='_blank'}). This will ensure that spelling mistakes will be discovered on each commit.
 
 :::
 
@@ -1157,7 +1157,139 @@ You can write a GHA workflow to automate URL checking (see [example workflow](ht
 
 # Make sure *all* HTML in the help pages is valid.
 
-## HTML5 check
+## HTML5 check {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/html-5.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+HTML has few syntactic rules, and browsers may not even enforce the rules it does have. E.g., browsers will tolerate mismatched tags, missing end tags, misnested tags, etc. HTML5 standard aims to improve this situation, and, since R 4.2, package help pages use HTML5 standard.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Therefore, you will need to make sure that your package documentation neither generates invalid HTML nor contains raw invalid HTML.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+{{< fa regular circle-question size=2xl >}}
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to make sure help pages have valid HTML?**
+
+:::
+
+:::
+
+::::
+
+
+## Detecting invalid HTML {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+CRAN uses [HTML tidy](https://www.html-tidy.org/documentation/) to detect markup errors in HTML. But, if you use [`{roxygen2}`](https://roxygen2.r-lib.org/){target='_blank'}, you won't need to use HTML tidy, since `{roxygen2}` will ensure against producing any invalid HTML.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+roxygen2::roxygenise()
+```
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use GHA workflow to automate checking validity of HTML manual (see [example workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/html-5-check.yaml){target='_blank'}) on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- If your documentation contains math equations, you can choose between [`{katex}`](https://docs.ropensci.org/katex/reference/katex.html){target='_blank'} and [`{mathjaxr}`](https://github.com/wviechtb/mathjaxr){target='_blank'} to convert LaTeX math expressions to HTML for use in package manual pages.
+
+:::
 
 ## Checklist for documentation {.smaller}
 
@@ -1193,7 +1325,7 @@ knitr::include_graphics("media/target.png")
 | Make sure examples in all vignettes are working.          |  `{pkgdown}`   |
 | Make sure all URLs are valid.                             | `{urlchecker}` |
 | Make sure there are no spelling mistakes.                 |  `{spelling}`  |
-| Make sure all HTML in the help pages is valid.            |   HTML Tidy    |
+| Make sure all HTML in the help pages is valid.            |  `{roxygen2}`  |
 
 # Dependency management
 
