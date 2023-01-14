@@ -539,7 +539,7 @@ knitr::include_graphics("media/example.png")
 
 ## Types of examples
 
-Help pages for exported (and key internal) functions should contain examples (`\examples{}` Rd tag) that showcase how functions are to be used. But you may choose to skip running some examples (e.g. because they are time-consuming). In particular, R allows following tags to conditionally evaluate examples:
+Help pages for exported functions should contain examples (Rd tag: `\examples{}`) illustrating their usage. But you can skip executing some examples (e.g. because they are too time-consuming). In particular, R allows offers following tags:
 
 |      Tag      | Run by `example()`? | Run by `R CMD check`? |
 | :-----------: | :-----------------: | :-------------------: |
@@ -569,7 +569,7 @@ knitr::include_graphics("media/confused.png")
 
 ::: {.column width='90%'}
 
-This means that `\dontrun{}` and `\donttest{}` examples might not be working, and yet may never be caught by `R CMD check`. But users will still see these examples, and wonder why they aren't working for them.
+Thus, broken `\dontrun{}` and `\donttest{}` examples may not be flagged by `R CMD check` (but maybe by CRAN's additional ["donttest" check](https://www.stats.ox.ac.uk/pub/bdr/donttest/){target='_blank'}). Users will still see these examples, and wonder why they aren't working for them.
 
 :::
 
@@ -687,13 +687,15 @@ knitr::include_graphics("media/application.png")
 
 ## Types of vignettes
 
-Vignettes included in package will fail if any of the examples are not working. But you may choose not to include all vignettes (by placing them in a `vignettes/` subdirectory or by adding them to `.Rbuildignore`). This can be because of their size (e.g. if you are including media) or because they are too time-consuming (e.g. if you are running statistical models).
+Vignettes included in the package will fail if examples are broken. But you can choose to exclude some vignettes to reduce package size or to reduce check time. You can do so by placing them in a `vignettes/` subdirectory or by adding them to `.Rbuildignore`.
 
 :::
 
 :::
 
 ::::
+
+<br>
 
 . . . 
 
@@ -711,7 +713,7 @@ knitr::include_graphics("media/headache.png")
 
 ::: {.column width='90%'}
 
-This means that examples in excluded vignettes might not be working, and yet may never be caught by `R CMD check`. Although users might not be exposed to them on CRAN, as a maintainer, you'd still like to not have defunct examples in the documentation.
+Thus, broken examples in excluded vignettes won't be caught by `R CMD check`. Although users might not see them on CRAN, as a maintainer, you don't wish to retain defunct examples in the documentation.
 
 :::
 
@@ -824,7 +826,7 @@ Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pk
 
 ::: {.column width='90%'}
 
-If the package documentation includes hyperlinks to external resources, make sure that they are still valid and not dangling.
+Package documentation often includes a plenty of hyperlinks to external resources. But some of them may become invalid over time.
 
 [Link rot](https://en.wikipedia.org/wiki/Link_rot){target='_blank'} happens because web pages move to new addresses or become permanently unavailable.
 
@@ -966,7 +968,7 @@ knitr::include_graphics("media/spell-check.png")
 
 ::: {.column width='90%'}
 
-Spelling mistakes are inevitable and, left unchecked, they can accumulate in proportion to the amount of documentation.
+Spelling mistakes are inevitable and, if left unchecked, they can accumulate rapidly with the increase in the documentation.
 
 :::
 
@@ -990,9 +992,9 @@ knitr::include_graphics("media/confused.png")
 
 ::: {.column width='90%'}
 
-Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can't find meaning of the misspelled word. 
+Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can't find the meaning of the misspelt word. 
 
-Additionally, misspelling technical words (e.g. writing *innode* instead of [*inode*](https://en.wikipedia.org/wiki/Inode){target='_blank'}) can lead users down wrong path and waste their time. 
+Additionally, misspelling technical words (e.g. *innode* vs. [*inode*](https://en.wikipedia.org/wiki/Inode){target='_blank'}) can lead users down the wrong path and waste their time. 
 
 :::
 
@@ -1058,7 +1060,7 @@ Language: en-GB
 
 ::: {.column width='60%'}
 
-Additionally, some technical words will not be recognized by dictionaries, but you don't want these to be considered spelling mistakes either. You can create a list of allowed misspelled words in `WORDLIST` file.
+Additionally, some technical words will not be recognized by dictionaries, but you don't want these to be considered spelling mistakes either. You can create a list of allowed misspelt words in the `WORDLIST` file.
 
 :::
 
@@ -1178,7 +1180,7 @@ knitr::include_graphics("media/html-5.png")
 
 ::: {.column width='90%'}
 
-HTML has few syntactic rules, and browsers may not even enforce the rules it does have. E.g., browsers will tolerate mismatched tags, missing end tags, misnested tags, etc. HTML5 standard aims to improve this situation, and, since R 4.2, package help pages use HTML5 standard.
+HTML has few syntactic rules, and browsers may not even enforce the rules it does have. E.g., browsers will tolerate mismatched tags, missing end tags, misnested tags, etc. HTML5 standard aims to improve this situation, and package help pages use HTML5 standard since R 4.2.
 
 :::
 
@@ -1202,7 +1204,7 @@ knitr::include_graphics("media/headache.png")
 
 ::: {.column width='90%'}
 
-Therefore, you will need to make sure that your package documentation neither generates invalid HTML nor contains raw invalid HTML.
+You will thus need to make sure that your package documentation neither generates invalid HTML nor contains raw invalid HTML.
 
 :::
 
@@ -1251,7 +1253,7 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='90%'}
 
-CRAN uses [HTML tidy](https://www.html-tidy.org/documentation/) to detect markup errors in HTML. But, if you use [`{roxygen2}`](https://roxygen2.r-lib.org/){target='_blank'}, you won't need to use HTML tidy, since `{roxygen2}` will ensure against producing any invalid HTML.
+CRAN uses [HTML tidy](https://www.html-tidy.org/documentation/) to detect markup errors in HTML. But, if you use [`{roxygen2}`](https://roxygen2.r-lib.org/){target='_blank'}, it will ensure against producing any invalid HTML.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -1360,20 +1362,18 @@ knitr::include_graphics("media/trust.png")
 
 ## Hard versus soft dependencies
 
-Dependencies are inevitable, but some more so than others.
+Dependencies (code that your source code relies on) are an inevitable part of package development. But not all dependencies are created equal. Some have a broader scope because they are needed at runtime; i.e. your package won't work without them. Others have a narrow scope; e.g. because they are needed only for testing or for examples.
 
-| Dependency |  In `DESCRIPTION`   |                      Connection                      |
-| :--------: | :-----------------: | :--------------------------------------------------: |
-|    Hard    | `Depends`/`Imports` |    Impossible for package to work without these.     |
-|    Soft    |     `Suggests`      | Nice to have but your package will work nonetheless. |
+| Dependency |  In `DESCRIPTION`   |                        Scope                        |
+| :--------: | :-----------------: | :-------------------------------------------------: |
+|    Hard    | `Depends`/`Imports` |    Needed for your package to work as expected.     |
+|    Soft    |     `Suggests`      | Nice to have but your package will work regardless. |
 
 :::
 
 :::
 
 ::::
-
-<br>
 
 . . .
 
@@ -1391,15 +1391,13 @@ knitr::include_graphics("media/headache.png")
 
 ::: {.column width='90%'}
 
-If weak dependencies are no longer available (due to archival, e.g.), this can lead to failures in your package. Given that these are optional dependencies, such failures should be avoided by using weak dependencies conditionally.
+Given that weak dependencies are optional, the package should be insured against their unavailability. CRAN ascertains this in the additional, ["noSuggests" check](https://www.stats.ox.ac.uk/pub/bdr/noSuggests/){target='_blank'}.
 
 :::
 
 ::::
 
 . . .
-
-<br>
 
 <!-- column layout -->
 
@@ -1415,14 +1413,13 @@ If weak dependencies are no longer available (due to archival, e.g.), this can l
 
 ::: {style="color: red;"}
 
-**How to make sure weak dependencies are being conditionally used?**
+**How to make sure *all* weak dependencies are being conditionally used?**
 
 :::
 
 :::
 
 ::::
-
 
 ## "noSuggests" check
 

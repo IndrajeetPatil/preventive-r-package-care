@@ -786,7 +786,7 @@
 <p><strong>Types of examples</strong></p>
 </div>
 <div class="callout-content">
-<p>Help pages for exported (and key internal) functions should contain examples (<code>\examples{}</code> Rd tag) that showcase how functions are to be used. But you may choose to skip running some examples (e.g.&nbsp;because they are time-consuming). In particular, R allows following tags to conditionally evaluate examples:</p>
+<p>Help pages for exported functions should contain examples (Rd tag: <code>\examples{}</code>) illustrating their usage. But you can skip executing some examples (e.g.&nbsp;because they are too time-consuming). In particular, R allows offers following tags:</p>
 <table>
 <thead>
 <tr class="header">
@@ -828,7 +828,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>This means that <code>\dontrun{}</code> and <code>\donttest{}</code> examples might not be working, and yet may never be caught by <code>R CMD check</code>. But users will still see these examples, and wonder why they aren’t working for them.</p>
+<p>Thus, broken <code>\dontrun{}</code> and <code>\donttest{}</code> examples may not be flagged by <code>R CMD check</code> (but maybe by CRAN’s additional <a href="https://www.stats.ox.ac.uk/pub/bdr/donttest/" target="_blank">“donttest” check</a>). Users will still see these examples, and wonder why they aren’t working for them.</p>
 </div>
 </div>
 </div>
@@ -925,12 +925,13 @@
 <p><strong>Types of vignettes</strong></p>
 </div>
 <div class="callout-content">
-<p>Vignettes included in package will fail if any of the examples are not working. But you may choose not to include all vignettes (by placing them in a <code>vignettes/</code> subdirectory or by adding them to <code>.Rbuildignore</code>). This can be because of their size (e.g.&nbsp;if you are including media) or because they are too time-consuming (e.g.&nbsp;if you are running statistical models).</p>
+<p>Vignettes included in the package will fail if examples are broken. But you can choose to exclude some vignettes to reduce package size or to reduce check time. You can do so by placing them in a <code>vignettes/</code> subdirectory or by adding them to <code>.Rbuildignore</code>.</p>
 </div>
 </div>
 </div>
 </div>
 </div>
+<p><br></p>
 <div class="fragment">
 <!-- column layout -->
 <div class="columns">
@@ -941,7 +942,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>This means that examples in excluded vignettes might not be working, and yet may never be caught by <code>R CMD check</code>. Although users might not be exposed to them on CRAN, as a maintainer, you’d still like to not have defunct examples in the documentation.</p>
+<p>Thus, broken examples in excluded vignettes won’t be caught by <code>R CMD check</code>. Although users might not see them on CRAN, as a maintainer, you don’t wish to retain defunct examples in the documentation.</p>
 </div>
 </div>
 </div>
@@ -1023,7 +1024,7 @@
 <p><br></p>
 <p><i class="fa-solid fa-link-slash fa-2xl" aria-label="link-slash"></i></p>
 </div><div class="column" style="width:90%;">
-<p>If the package documentation includes hyperlinks to external resources, make sure that they are still valid and not dangling.</p>
+<p>Package documentation often includes a plenty of hyperlinks to external resources. But some of them may become invalid over time.</p>
 <p><a href="https://en.wikipedia.org/wiki/Link_rot" target="_blank">Link rot</a> happens because web pages move to new addresses or become permanently unavailable.</p>
 </div>
 </div>
@@ -1124,7 +1125,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Spelling mistakes are inevitable and, left unchecked, they can accumulate in proportion to the amount of documentation.</p>
+<p>Spelling mistakes are inevitable and, if left unchecked, they can accumulate rapidly with the increase in the documentation.</p>
 </div>
 </div>
 <div class="fragment">
@@ -1138,8 +1139,8 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can’t find meaning of the misspelled word.</p>
-<p>Additionally, misspelling technical words (e.g.&nbsp;writing <em>innode</em> instead of <a href="https://en.wikipedia.org/wiki/Inode" target="_blank"><em>inode</em></a>) can lead users down wrong path and waste their time.</p>
+<p>Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can’t find the meaning of the misspelt word.</p>
+<p>Additionally, misspelling technical words (e.g.&nbsp;<em>innode</em> vs.&nbsp;<a href="https://en.wikipedia.org/wiki/Inode" target="_blank"><em>inode</em></a>) can lead users down the wrong path and waste their time.</p>
 </div>
 </div>
 </div>
@@ -1173,7 +1174,7 @@
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:60%;">
-<p>Additionally, some technical words will not be recognized by dictionaries, but you don’t want these to be considered spelling mistakes either. You can create a list of allowed misspelled words in <code>WORDLIST</code> file.</p>
+<p>Additionally, some technical words will not be recognized by dictionaries, but you don’t want these to be considered spelling mistakes either. You can create a list of allowed misspelt words in the <code>WORDLIST</code> file.</p>
 </div><div class="column" style="width:20%;">
 <p>File location</p>
 <pre><code>├── DESCRIPTION
@@ -1263,7 +1264,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>HTML has few syntactic rules, and browsers may not even enforce the rules it does have. E.g., browsers will tolerate mismatched tags, missing end tags, misnested tags, etc. HTML5 standard aims to improve this situation, and, since R 4.2, package help pages use HTML5 standard.</p>
+<p>HTML has few syntactic rules, and browsers may not even enforce the rules it does have. E.g., browsers will tolerate mismatched tags, missing end tags, misnested tags, etc. HTML5 standard aims to improve this situation, and package help pages use HTML5 standard since R 4.2.</p>
 </div>
 </div>
 <div class="fragment">
@@ -1277,7 +1278,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Therefore, you will need to make sure that your package documentation neither generates invalid HTML nor contains raw invalid HTML.</p>
+<p>You will thus need to make sure that your package documentation neither generates invalid HTML nor contains raw invalid HTML.</p>
 </div>
 </div>
 </div>
@@ -1306,7 +1307,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>CRAN uses <a href="https://www.html-tidy.org/documentation/">HTML tidy</a> to detect markup errors in HTML. But, if you use <a href="https://roxygen2.r-lib.org/" target="_blank"><code>{roxygen2}</code></a>, you won’t need to use HTML tidy, since <code>{roxygen2}</code> will ensure against producing any invalid HTML.</p>
+<p>CRAN uses <a href="https://www.html-tidy.org/documentation/">HTML tidy</a> to detect markup errors in HTML. But, if you use <a href="https://roxygen2.r-lib.org/" target="_blank"><code>{roxygen2}</code></a>, it will ensure against producing any invalid HTML.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>roxygen2<span class="sc">::</span><span class="fu">roxygenise</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1435,30 +1436,30 @@ YAML</code></pre>
 <p><strong>Hard versus soft dependencies</strong></p>
 </div>
 <div class="callout-content">
-<p>Dependencies are inevitable, but some more so than others.</p>
+<p>Dependencies (code that your source code relies on) are an inevitable part of package development. But not all dependencies are created equal. Some have a broader scope because they are needed at runtime; i.e.&nbsp;your package won’t work without them. Others have a narrow scope; e.g.&nbsp;because they are needed only for testing or for examples.</p>
 <table>
 <colgroup>
 <col style="width: 12%">
 <col style="width: 23%">
-<col style="width: 64%">
+<col style="width: 63%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;">Dependency</th>
 <th style="text-align: center;">In <code>DESCRIPTION</code></th>
-<th style="text-align: center;">Connection</th>
+<th style="text-align: center;">Scope</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">Hard</td>
 <td style="text-align: center;"><code>Depends</code>/<code>Imports</code></td>
-<td style="text-align: center;">Impossible for package to work without these.</td>
+<td style="text-align: center;">Needed for your package to work as expected.</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Soft</td>
 <td style="text-align: center;"><code>Suggests</code></td>
-<td style="text-align: center;">Nice to have but your package will work nonetheless.</td>
+<td style="text-align: center;">Nice to have but your package will work regardless.</td>
 </tr>
 </tbody>
 </table>
@@ -1467,7 +1468,6 @@ YAML</code></pre>
 </div>
 </div>
 </div>
-<p><br></p>
 <div class="fragment">
 <!-- column layout -->
 <div class="columns">
@@ -1478,19 +1478,18 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>If weak dependencies are no longer available (due to archival, e.g.), this can lead to failures in your package. Given that these are optional dependencies, such failures should be avoided by using weak dependencies conditionally.</p>
+<p>Given that weak dependencies are optional, the package should be insured against their unavailability. CRAN ascertains this in the additional, <a href="https://www.stats.ox.ac.uk/pub/bdr/noSuggests/" target="_blank">“noSuggests” check</a>.</p>
 </div>
 </div>
 </div>
 <div class="fragment">
-<p><br></p>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
 <p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
 </div><div class="column" style="width:90%;">
 <div style="color: red;">
-<p><strong>How to make sure weak dependencies are being conditionally used?</strong></p>
+<p><strong>How to make sure <em>all</em> weak dependencies are being conditionally used?</strong></p>
 </div>
 </div>
 </div>
@@ -1596,7 +1595,7 @@ YAML</code></pre>
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       Europe/Berlin
- date     2023-01-14
+ date     2023-01-15
  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
