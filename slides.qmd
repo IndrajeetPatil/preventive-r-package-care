@@ -21,6 +21,11 @@ Indrajeet Patil
 
 :::
 
+```{r, echo=FALSE}
+knitr::include_graphics("media/preventive-care.jpeg")
+```
+
+
 <!-- Need to install extension from https://github.com/quarto-ext/fontawesome -->
 <!-- Run `quarto install extension quarto-ext/fontawesome` in terminal -->
 
