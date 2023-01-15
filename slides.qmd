@@ -62,13 +62,49 @@ You can follow these practices even if you never plan to submit to CRAN, since t
 
 :::
 
-## Iconography
+## Iconography {.smaller}
 
 <!-- column layout -->
 
 :::: {.columns}
 
-::: {.column width='20%'}
+::: {.column width='15%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='35%'}
+
+<br>
+Overarching goal
+
+:::
+
+::: {.column width='15%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='35%'}
+
+<br>
+Problem to solve
+
+:::
+
+::::
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='15%'}
 
 ```{r, echo=FALSE}
 knitr::include_graphics("media/confused.png")
@@ -76,14 +112,14 @@ knitr::include_graphics("media/confused.png")
 
 :::
 
-::: {.column width='30%'}
+::: {.column width='35%'}
 
 <br>
 Bad user experience
 
 :::
 
-::: {.column width='20%'}
+::: {.column width='15%'}
 
 ```{r, echo=FALSE}
 knitr::include_graphics("media/headache.png")
@@ -91,7 +127,7 @@ knitr::include_graphics("media/headache.png")
 
 :::
 
-::: {.column width='20%'}
+::: {.column width='35%'}
 
 <br>
 Maintenance nightmare
@@ -100,13 +136,11 @@ Maintenance nightmare
 
 ::::
 
-<br>
-
 <!-- column layout -->
 
 :::: {.columns}
 
-::: {.column width='20%'}
+::: {.column width='15%'}
 
 ```{r, echo=FALSE}
 knitr::include_graphics("media/toolbox.png")
@@ -114,14 +148,14 @@ knitr::include_graphics("media/toolbox.png")
 
 :::
 
-::: {.column width='30%'}
+::: {.column width='35%'}
 
 <br>
-Tool
+Tooling
 
 :::
 
-::: {.column width='20%'}
+::: {.column width='15%'}
 
 ```{r, echo=FALSE}
 knitr::include_graphics("media/robot.png")
@@ -129,7 +163,7 @@ knitr::include_graphics("media/robot.png")
 
 :::
 
-::: {.column width='30%'}
+::: {.column width='35%'}
 
 <br>
 Automation
@@ -223,7 +257,7 @@ knitr::include_graphics("media/target.png")
 
 :::{style="color: blue; "}
 
-**To guarantee a good user experience, you need to make sure that all examples in these documents are working as expected.**
+**For a good user experience, ensure that the docs are valid and up-to-date.**
 
 :::
 
@@ -293,7 +327,9 @@ Without enough expository examples, users are left to fumble their way into disc
 
 ::: {.column width='10%'}
 
-{{< fa regular circle-question size=2xl >}}
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
 
 :::
 
@@ -434,7 +470,9 @@ knitr::include_graphics("media/confused.png")
 
 ::: {.column width='10%'}
 
-{{< fa regular circle-question size=2xl >}}
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
 
 :::
 
@@ -583,7 +621,10 @@ Thus, broken `\dontrun{}` and `\donttest{}` examples may not be flagged by `R CM
 
 ::: {.column width='10%'}
 
-{{< fa regular circle-question size=2xl >}}
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
 
 :::
 
@@ -729,7 +770,10 @@ Thus, broken examples in excluded vignettes won't be caught by `R CMD check`. Al
 
 ::: {.column width='10%'}
 
-{{< fa regular circle-question size=2xl >}}
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
 
 :::
 
@@ -868,7 +912,10 @@ Such dangling references can be frustrating for the users trying to access the r
 
 ::: {.column width='10%'}
 
-{{< fa regular circle-question size=2xl >}}
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
 
 :::
 
@@ -1010,7 +1057,9 @@ Additionally, misspelling technical words (e.g. *innode* vs. [*inode*](https://e
 
 ::: {.column width='10%'}
 
-{{< fa regular circle-question size=2xl >}}
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
 
 :::
 
@@ -1220,7 +1269,9 @@ You will thus need to make sure that your package documentation neither generate
 
 ::: {.column width='10%'}
 
-{{< fa regular circle-question size=2xl >}}
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
 
 :::
 
@@ -1235,7 +1286,6 @@ You will thus need to make sure that your package documentation neither generate
 :::
 
 ::::
-
 
 ## Detecting invalid HTML {.smaller}
 
@@ -1316,7 +1366,7 @@ knitr::include_graphics("media/target.png")
 
 :::{style="color: blue; "}
 
-**To guarantee a good user experience, you need to make sure that the documentation is up-to-date.**
+**For a good user experience, ensure that the docs are valid and up-to-date.**
 
 :::
 
@@ -1338,7 +1388,8 @@ knitr::include_graphics("media/target.png")
 
 Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.
 
-# Make sure soft dependencies are used conditionally.
+# "Dependencies are invitations for other people to break your package."
+\- Joshua Ulrich
 
 ## Dependencies {.smaller}
 
@@ -1358,11 +1409,13 @@ knitr::include_graphics("media/trust.png")
 
 ::: {.column width='90%'}
 
-:::{.callout-note}
+Dependencies (code that your source code relies on) are an inevitable part of package development.
+
+:::{.callout-important}
 
 ## Hard versus soft dependencies
 
-Dependencies (code that your source code relies on) are an inevitable part of package development. But not all dependencies are created equal. Some have a broader scope because they are needed at runtime; i.e. your package won't work without them. Others have a narrow scope; e.g. because they are needed only for testing or for examples.
+Not all dependencies are created equal. Some have a broader scope because they are needed at runtime; i.e. your package won't work without them. Others have a narrow scope; e.g. because they are needed only for testing or for examples.
 
 | Dependency |  In `DESCRIPTION`   |                        Scope                        |
 | :--------: | :-----------------: | :-------------------------------------------------: |
@@ -1374,8 +1427,6 @@ Dependencies (code that your source code relies on) are an inevitable part of pa
 :::
 
 ::::
-
-<br>
 
 . . . 
 
@@ -1395,7 +1446,7 @@ knitr::include_graphics("media/target.png")
 
 :::{style="color: blue; "}
 
-**To guarantee a good user experience and to reduce maintenance workload, you need to make sure that builds pass both in the presence and absence of soft dependencies.**
+**To reduce maintenance workload, you need to make sure that checks pass both in the presence and absence of soft dependencies.**
 
 :::
 
@@ -1404,6 +1455,8 @@ This section will discuss how to achieve this.
 :::
 
 ::::
+
+# Make sure soft dependencies are used conditionally.
 
 ## Dependency hygiene {.smaller}
 
@@ -1461,7 +1514,9 @@ In a high-level, user-facing package, there can be a substantial number of soft 
 
 ::: {.column width='10%'}
 
-{{< fa regular circle-question size=2xl >}}
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
 
 :::
 
@@ -1587,22 +1642,113 @@ test_that("bla", {
 
 ## Checking conditional usage {.smaller}
 
-"noSuggests" check
+<!-- column layout -->
 
-"noSuggests" pkgdown
+:::: {.columns}
 
+::: {.column width='10%'}
 
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{.callout-important}
+
+## Trick: Run `R CMD check` twice!
+
+- when *all* soft dependencies are available
+- when *none* are available
+
+If the package passes `R CMD check` in the first but not the second context, you can be sure that some soft dependencies are not being used conditionally.
+
+:::
+ 
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use GHA workflows to install *all* dependencies (see [example workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/check-full.yaml){target='_blank'}) or *only* hard dependencies (see [example workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/check-no-suggests.yaml){target='_blank'}) and check if the package passes `R CMD check` on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+This trick won't work for excluded vignettes (from `vignettes/` subdirectory or `.Rbuildignore`-ed). You can run `{pkgdown}` in "noSuggests" mode (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml){target='_blank'}) to ensure that excluded vignettes are also using soft dependencies conditionally.
+
+:::
+
+## Checklist for dependency management {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; "}
+
+**To reduce maintenance workload, you need to make sure that checks pass both in the presence and absence of soft dependencies by using soft dependencies conditionally.**
+
+:::
+
+:::
+
+::::
+
+| Item                                                                              |
+| :-------------------------------------------------------------------------------- |
+| Make sure examples in help pages are run conditionally.                           |
+| Make sure vignettes (or code chunks therein) are executed conditionally.          |
+| Make sure tests are run conditionally.                                            |
+| Make sure excluded vignettes (or code chunks therein) are executed conditionally. |
+
+# Dealing with warnings
+
+Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.
+
+# "There is a problem with warnings. No one reads them." 
+\- Patrick Burns (*R Inferno*)
+
+## Types of conditions/exceptions {.smaller}
 
 # Unit testing
 
 offline
 
-# "There is a problem with warnings. No one reads them." 
-\- Patrick Burns (*R Inferno*)
-
-## {.smaller}
-
-Turn warnings into errors
 
 # Precommit
 
