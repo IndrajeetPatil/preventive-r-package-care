@@ -551,7 +551,7 @@
 </div>
 </div><div class="column" style="width:90%;">
 <div style="color: blue; ">
-<p><strong>To guarantee good user experience, you need to make sure that all examples in these documents are working as expected.</strong></p>
+<p><strong>To guarantee a good user experience, you need to make sure that all examples in these documents are working as expected.</strong></p>
 </div>
 <p>This section will break down this task into subtasks and discuss each in turn.</p>
 </div>
@@ -1358,7 +1358,7 @@ YAML</code></pre>
 </div>
 </div><div class="column" style="width:90%;">
 <div style="color: blue; ">
-<p><strong>To guarantee good user experience, you need to make sure that the documentation is up-to-date.</strong></p>
+<p><strong>To guarantee a good user experience, you need to make sure that the documentation is up-to-date.</strong></p>
 </div>
 </div>
 </div>
@@ -1468,6 +1468,40 @@ YAML</code></pre>
 </div>
 </div>
 </div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; ">
+<p><strong>To guarantee a good user experience and to reduce maintenance workload, you need to make sure that builds pass both in the presence and absence of soft dependencies.</strong></p>
+</div>
+<p>This section will discuss how to achieve this.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="dependency-hygiene" class="slide level2 smaller">
+<h2>Dependency hygiene</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/damaged-package.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Dependencies bring risk. If a critical dependency becomes unavailable (e.g.&nbsp;because its author decides to archive it), bad luck. You <strong>must</strong> either refactor to remove dependency or look for an alternative. Otherwise, your package is no longer going to work.</p>
+<p>But this shouldn’t be the case for soft dependencies since they are not critical for your package to work.</p>
+</div>
+</div>
 <div class="fragment">
 <!-- column layout -->
 <div class="columns">
@@ -1478,25 +1512,26 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Given that soft dependencies are optional, the package should be insured against their unavailability. CRAN ascertains this in the additional, <a href="https://www.stats.ox.ac.uk/pub/bdr/noSuggests/" target="_blank">“noSuggests” check</a>.</p>
+<p>In a high-level, user-facing package, there can be a substantial number of soft dependencies, and the package risks breakage for <em>any</em> unavailable soft dependency. CRAN runs the additional, <a href="https://www.stats.ox.ac.uk/pub/bdr/noSuggests/" target="_blank">“noSuggests” check</a> to look for such breakages. Thus, soft dependencies should be used conditionally.</p>
 </div>
 </div>
 </div>
 <div class="fragment">
+<p><br></p>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
 <p><i class="fa-regular fa-circle-question fa-2xl" aria-label="circle-question"></i></p>
 </div><div class="column" style="width:90%;">
 <div style="color: red;">
-<p><strong>How to make sure <em>all</em> weak dependencies are being conditionally used?</strong></p>
+<p><strong>How to make sure <em>all</em> soft dependencies are being conditionally used?</strong></p>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="conditional-usage-of-dependencies" class="slide level2 smaller">
-<h2>Conditional usage of dependencies</h2>
+<section id="conditional-dependency-usage" class="slide level2 smaller">
+<h2>Conditional dependency usage</h2>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:70%;">
@@ -1528,10 +1563,8 @@ YAML</code></pre>
 <div class="column" style="width:50%;">
 <p><strong>Vignettes</strong> (or specific code chunks) should be executed only if package is available.</p>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1"></a>&lt;!-- In vignettes/doc-1.Rmd --&gt;</span>
-<span id="cb13-2"><a href="#cb13-2"></a>```{r eval = requireNamespace("lme4")}</span>
-<span id="cb13-3"><a href="#cb13-3"></a>lme4::lmer(...)</span>
-<span id="cb13-4"><a href="#cb13-4"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- TODO: add back verbatim chunk -->
+<p>placeholder text</p>
 </div>
 </div>
 <hr>
@@ -1542,18 +1575,18 @@ YAML</code></pre>
 <div class="column" style="width:50%;">
 <p><strong>Tests</strong> should be run only if package is available.</p>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># In tests/testthat/test-file-1.R</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">test_that</span>(<span class="st">"bla"</span>, {</span>
-<span id="cb14-3"><a href="#cb14-3"></a>  testthat<span class="sc">::</span><span class="fu">skip_if_not_installed</span>(<span class="st">"lme4"</span>)</span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">expect_equal</span>(lme4<span class="sc">::</span><span class="fu">lmer</span>(...), ...)</span>
-<span id="cb14-5"><a href="#cb14-5"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># In tests/testthat/test-file-1.R</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">test_that</span>(<span class="st">"bla"</span>, {</span>
+<span id="cb13-3"><a href="#cb13-3"></a>  testthat<span class="sc">::</span><span class="fu">skip_if_not_installed</span>(<span class="st">"lme4"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">expect_equal</span>(lme4<span class="sc">::</span><span class="fu">lmer</span>(...), ...)</span>
+<span id="cb13-5"><a href="#cb13-5"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <hr>
 </div>
 </section>
-<section id="checking-conditional-usage-of-soft-dependencies" class="slide level2 smaller">
-<h2>Checking conditional usage of soft dependencies</h2>
+<section id="checking-conditional-usage" class="slide level2 smaller">
+<h2>Checking conditional usage</h2>
 <p>“noSuggests” check</p>
 <p>“noSuggests” pkgdown</p>
 </section></section>
@@ -1634,7 +1667,7 @@ YAML</code></pre>
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value

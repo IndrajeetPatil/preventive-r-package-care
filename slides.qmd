@@ -223,7 +223,7 @@ knitr::include_graphics("media/target.png")
 
 :::{style="color: blue; "}
 
-**To guarantee good user experience, you need to make sure that all examples in these documents are working as expected.**
+**To guarantee a good user experience, you need to make sure that all examples in these documents are working as expected.**
 
 :::
 
@@ -1316,7 +1316,7 @@ knitr::include_graphics("media/target.png")
 
 :::{style="color: blue; "}
 
-**To guarantee good user experience, you need to make sure that the documentation is up-to-date.**
+**To guarantee a good user experience, you need to make sure that the documentation is up-to-date.**
 
 :::
 
@@ -1375,6 +1375,60 @@ Dependencies (code that your source code relies on) are an inevitable part of pa
 
 ::::
 
+<br>
+
+. . . 
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; "}
+
+**To guarantee a good user experience and to reduce maintenance workload, you need to make sure that builds pass both in the presence and absence of soft dependencies.**
+
+:::
+
+This section will discuss how to achieve this.
+
+:::
+
+::::
+
+## Dependency hygiene {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/damaged-package.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Dependencies bring risk. If a critical dependency becomes unavailable (e.g. because its author decides to archive it), bad luck. You **must** either refactor to remove dependency or look for an alternative. Otherwise, your package is no longer going to work. 
+
+But this shouldn't be the case for soft dependencies since they are not critical for your package to work.
+
+:::
+
+::::
+
 . . .
 
 <!-- column layout -->
@@ -1391,13 +1445,15 @@ knitr::include_graphics("media/headache.png")
 
 ::: {.column width='90%'}
 
-Given that soft dependencies are optional, the package should be insured against their unavailability. CRAN ascertains this in the additional, ["noSuggests" check](https://www.stats.ox.ac.uk/pub/bdr/noSuggests/){target='_blank'}.
+In a high-level, user-facing package, there can be a substantial number of soft dependencies, and the package risks breakage for *any* unavailable soft dependency. CRAN runs the additional, ["noSuggests" check](https://www.stats.ox.ac.uk/pub/bdr/noSuggests/){target='_blank'} to look for such breakages. Thus, soft dependencies should be used conditionally.
 
 :::
 
 ::::
 
 . . .
+
+<br>
 
 <!-- column layout -->
 
@@ -1413,7 +1469,7 @@ Given that soft dependencies are optional, the package should be insured against
 
 ::: {style="color: red;"}
 
-**How to make sure *all* weak dependencies are being conditionally used?**
+**How to make sure *all* soft dependencies are being conditionally used?**
 
 :::
 
@@ -1421,7 +1477,7 @@ Given that soft dependencies are optional, the package should be insured against
 
 ::::
 
-## Conditional usage of dependencies {.smaller}
+## Conditional dependency usage {.smaller}
 
 <!-- column layout -->
 
@@ -1491,13 +1547,9 @@ Suggests:
 
 ::: {.column width='50%'}
 
-````{verbatim, eval=FALSE}
-<!-- In vignettes/doc-1.Rmd -->
-```{r eval = requireNamespace("lme4")}
-lme4::lmer(...)
-```
+<!-- TODO: add back verbatim chunk -->
 
-````
+placeholder text
 
 :::
 
