@@ -1725,8 +1725,7 @@ knitr::include_graphics("media/target.png")
 
 :::{style="color: blue; text-align: center;"}
 
-**To reduce maintenance workload, you need to make sure that checks pass both in the presence and absence of soft dependencies by using soft dependencies conditionally.**
-
+**To reduce maintenance workload, make sure that checks pass both in the presence and absence of soft dependencies.**
 :::
 
 :::
