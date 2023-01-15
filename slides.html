@@ -516,10 +516,30 @@
 <p>Preventive care to make sure the docs are up-to-date.</p>
 </section>
 
-<section>
 <section id="incorrect-documentation-is-often-worse-than-no-documentation." class="title-slide slide level1 center">
 <h1>“Incorrect documentation is often worse than no documentation.”</h1>
 <p>- Bertrand Meyer</p>
+</section>
+
+<section>
+<section id="section-1" class="title-slide slide level1 center">
+<h1></h1>
+<!-- column layout -->
+<div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>For a good user experience, make sure that the docs are plentiful, valid, and up-to-date.</strong></p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="sources-of-documentation" class="slide level2 smaller">
 <h2>Sources of documentation</h2>
@@ -556,23 +576,6 @@
 <p><img data-src="media/application.png" width="256"></p>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/target.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<div style="color: blue; ">
-<p><strong>For a good user experience, ensure that the docs are valid and up-to-date.</strong></p>
-</div>
-<p>This section will break down this task into subtasks and discuss each in turn.</p>
 </div>
 </div>
 </div>
@@ -1404,8 +1407,8 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<div style="color: blue; ">
-<p><strong>For a good user experience, ensure that the docs are valid and up-to-date.</strong></p>
+<div style="color: blue; text-align: center;">
+<p><strong>For a good user experience, make sure that the docs are plentiful, valid, and up-to-date.</strong></p>
 </div>
 </div>
 </div>
@@ -1457,17 +1460,36 @@ YAML</code></pre>
 <p>Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.</p>
 </section>
 
-<section>
 <section id="dependencies-are-invitations-for-other-people-to-break-your-package." class="title-slide slide level1 center">
 <h1>“Dependencies are invitations for other people to break your package.”</h1>
 <p>- Joshua Ulrich</p>
 </section>
-<section id="dependencies" class="slide level2 smaller">
-<h2>Dependencies</h2>
+
+<section>
+<section id="section-2" class="title-slide slide level1 center">
+<h1></h1>
+<!-- column layout -->
+<div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance workload, make sure that checks pass both in the presence and absence of soft dependencies.</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="types-of-dependencies" class="slide level2 smaller">
+<h2>Types of Dependencies</h2>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
-<p><br></p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img data-src="media/trust.png" width="256"></p>
@@ -1475,16 +1497,19 @@ YAML</code></pre>
 </div>
 </div><div class="column" style="width:90%;">
 <p>Dependencies (code that your source code relies on) are an inevitable part of package development.</p>
+</div>
+</div>
+<div class="fragment">
 <div class="callout callout-important callout-captioned callout-style-default">
 <div class="callout-body">
 <div class="callout-caption">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Hard versus soft dependencies</strong></p>
+<p><strong>Not all dependencies are created equal!</strong></p>
 </div>
 <div class="callout-content">
-<p>Not all dependencies are created equal. Some have a broader scope because they are needed at runtime; i.e.&nbsp;your package won’t work without them. Others have a narrow scope; e.g.&nbsp;because they are needed only for testing or for examples.</p>
+<p>Hard dependencies have a broader scope because they are needed at runtime; i.e.&nbsp;your package won’t work without them, while soft dependencies have a narrow scope; e.g.&nbsp;because they are needed only for testing or for examples.</p>
 <table>
 <colgroup>
 <col style="width: 12%">
@@ -1512,24 +1537,6 @@ YAML</code></pre>
 </tbody>
 </table>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/target.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<div style="color: blue; ">
-<p><strong>To reduce maintenance workload, you need to make sure that checks pass both in the presence and absence of soft dependencies.</strong></p>
-</div>
-<p>This section will discuss how to achieve this.</p>
 </div>
 </div>
 </div>
@@ -1712,7 +1719,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<div style="color: blue; ">
+<div style="color: blue; text-align: center;">
 <p><strong>To reduce maintenance workload, you need to make sure that checks pass both in the presence and absence of soft dependencies by using soft dependencies conditionally.</strong></p>
 </div>
 </div>

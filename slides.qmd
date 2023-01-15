@@ -179,6 +179,36 @@ Preventive care to make sure the docs are up-to-date.
 # "Incorrect documentation is often worse than no documentation."
 \- Bertrand Meyer
 
+#
+
+<!-- column layout -->
+
+:::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**For a good user experience, make sure that the docs are plentiful, valid, and up-to-date.**
+
+:::
+
+:::
+
+::::
+
+:::::
+
 ## Sources of documentation {.smaller}
 
 Package documentation is typically scattered across the following documents.
@@ -234,34 +264,6 @@ knitr::include_graphics("media/application.png")
 ```
 
 :::
-
-:::
-
-::::
-
-. . . 
-
-<!-- column layout -->
-
-:::: {.columns}
-
-::: {.column width='10%'}
-
-```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
-```
-
-:::
-
-::: {.column width='90%'}
-
-:::{style="color: blue; "}
-
-**For a good user experience, ensure that the docs are valid and up-to-date.**
-
-:::
-
-This section will break down this task into subtasks and discuss each in turn.
 
 :::
 
@@ -1364,9 +1366,9 @@ knitr::include_graphics("media/target.png")
 
 ::: {.column width='90%'}
 
-:::{style="color: blue; "}
+:::{style="color: blue; text-align: center;"}
 
-**For a good user experience, ensure that the docs are valid and up-to-date.**
+**For a good user experience, make sure that the docs are plentiful, valid, and up-to-date.**
 
 :::
 
@@ -1391,46 +1393,11 @@ Preventive care to make sure that all suggested (aka weak or soft) dependencies 
 # "Dependencies are invitations for other people to break your package."
 \- Joshua Ulrich
 
-## Dependencies {.smaller}
+#
 
 <!-- column layout -->
 
-:::: {.columns}
-
-::: {.column width='10%'}
-
-<br>
-
-```{r, echo=FALSE}
-knitr::include_graphics("media/trust.png")
-```
-
-:::
-
-::: {.column width='90%'}
-
-Dependencies (code that your source code relies on) are an inevitable part of package development.
-
-:::{.callout-important}
-
-## Hard versus soft dependencies
-
-Not all dependencies are created equal. Some have a broader scope because they are needed at runtime; i.e. your package won't work without them. Others have a narrow scope; e.g. because they are needed only for testing or for examples.
-
-| Dependency |  In `DESCRIPTION`   |                        Scope                        |
-| :--------: | :-----------------: | :-------------------------------------------------: |
-|    Hard    | `Depends`/`Imports` |    Needed for your package to work as expected.     |
-|    Soft    |     `Suggests`      | Nice to have but your package will work regardless. |
-
-:::
-
-:::
-
-::::
-
-. . . 
-
-<!-- column layout -->
+:::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
 
 :::: {.columns}
 
@@ -1444,17 +1411,54 @@ knitr::include_graphics("media/target.png")
 
 ::: {.column width='90%'}
 
-:::{style="color: blue; "}
+:::{style="color: blue; text-align: center;"}
 
-**To reduce maintenance workload, you need to make sure that checks pass both in the presence and absence of soft dependencies.**
+**To reduce maintenance workload, make sure that checks pass both in the presence and absence of soft dependencies.**
 
 :::
-
-This section will discuss how to achieve this.
 
 :::
 
 ::::
+
+:::::
+
+## Types of Dependencies {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/trust.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Dependencies (code that your source code relies on) are an inevitable part of package development.
+
+:::
+
+::::
+
+. . . 
+
+:::{.callout-important}
+
+## Not all dependencies are created equal! 
+
+Hard dependencies have a broader scope because they are needed at runtime; i.e. your package won't work without them, while soft dependencies have a narrow scope; e.g. because they are needed only for testing or for examples.
+
+| Dependency |  In `DESCRIPTION`   |                        Scope                        |
+| :--------: | :-----------------: | :-------------------------------------------------: |
+|    Hard    | `Depends`/`Imports` |    Needed for your package to work as expected.     |
+|    Soft    |     `Suggests`      | Nice to have but your package will work regardless. |
+
+:::
 
 # Make sure soft dependencies are used conditionally.
 
@@ -1719,7 +1723,7 @@ knitr::include_graphics("media/target.png")
 
 ::: {.column width='90%'}
 
-:::{style="color: blue; "}
+:::{style="color: blue; text-align: center;"}
 
 **To reduce maintenance workload, you need to make sure that checks pass both in the presence and absence of soft dependencies by using soft dependencies conditionally.**
 
