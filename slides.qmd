@@ -1748,6 +1748,86 @@ Preventive care to make sure that all suggested (aka weak or soft) dependencies 
 
 ## Types of conditions/exceptions {.smaller}
 
+
+# Portability
+
+Preventive care to make sure your package works across diverse contexts.
+
+# "Each new user of a new system uncovers a new class of bugs."
+\- Brian Kernighan
+
+## The unbearable diversity of contexts {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/difference.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+You (the developer) may be working on the package in a certain setting; i.e. with version of R and OS, in a certain locale, etc. Even if all tests pass and all examples run successfully for you locally, you can't assume that your users will use the package in similar settings.
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/confused.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+If you restrict your checks only to run on these specific settings, you may not anticipate the problems your users may experience in other settings (e.g., the graphics device that works on `windows` may not work on `macOS`, code that works with `R 4.1` may not work with `R 3.6`, etc.). Of course, the assumption here is that your package claims to support these settings.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to make sure that your package is working as expected across various settings?**
+
+:::
+
+:::
+
+::::
+
 # Unit testing
 
 offline
@@ -1761,7 +1841,6 @@ Touchstone framework
 
 # Check against devel versions of dependencies
 
-# Check on multiple R versions and platforms
 
 # Fail on NOTE
 

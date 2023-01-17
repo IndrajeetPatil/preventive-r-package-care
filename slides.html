@@ -1762,6 +1762,62 @@ YAML</code></pre>
 <section id="types-of-conditionsexceptions" class="slide level2 smaller">
 <h2>Types of conditions/exceptions</h2>
 </section></section>
+<section id="portability" class="title-slide slide level1 center">
+<h1>Portability</h1>
+<p>Preventive care to make sure your package works across diverse contexts.</p>
+</section>
+
+<section>
+<section id="each-new-user-of-a-new-system-uncovers-a-new-class-of-bugs." class="title-slide slide level1 center">
+<h1>“Each new user of a new system uncovers a new class of bugs.”</h1>
+<p>- Brian Kernighan</p>
+</section>
+<section id="the-unbearable-diversity-of-contexts" class="slide level2 smaller">
+<h2>The unbearable diversity of contexts</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/difference.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You (the developer) may be working on the package in a certain setting; i.e.&nbsp;with version of R and OS, in a certain locale, etc. Even if all tests pass and all examples run successfully for you locally, you can’t assume that your users will use the package in similar settings.</p>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/confused.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>If you restrict your checks only to run on these specific settings, you may not anticipate the problems your users may experience in other settings (e.g., the graphics device that works on <code>windows</code> may not work on <code>macOS</code>, code that works with <code>R 4.1</code> may not work with <code>R 3.6</code>, etc.). Of course, the assumption here is that your package claims to support these settings.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to make sure that your package is working as expected across various settings?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
 <section id="unit-testing" class="title-slide slide level1 center">
 <h1>Unit testing</h1>
 <p>offline</p>
@@ -1779,11 +1835,6 @@ YAML</code></pre>
 
 <section id="check-against-devel-versions-of-dependencies" class="title-slide slide level1 center">
 <h1>Check against devel versions of dependencies</h1>
-
-</section>
-
-<section id="check-on-multiple-r-versions-and-platforms" class="title-slide slide level1 center">
-<h1>Check on multiple R versions and platforms</h1>
 
 </section>
 
@@ -1835,14 +1886,14 @@ YAML</code></pre>
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.2.2 (2022-10-31)
- os       macOS Ventura 13.0.1
+ os       macOS Ventura 13.1
  system   aarch64, darwin20
  ui       X11
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       Europe/Berlin
- date     2023-01-15
+ date     2023-01-17
  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
