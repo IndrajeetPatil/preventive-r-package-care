@@ -1726,6 +1726,7 @@ knitr::include_graphics("media/target.png")
 :::{style="color: blue; text-align: center;"}
 
 **To reduce maintenance workload, make sure that checks pass both in the presence and absence of soft dependencies.**
+
 :::
 
 :::
@@ -1741,7 +1742,7 @@ knitr::include_graphics("media/target.png")
 
 # Dealing with warnings
 
-Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.
+Preventive care to make sure that you don't miss out on important warnings.
 
 # "There is a problem with warnings. No one reads them." 
 \- Patrick Burns (*R Inferno*)
@@ -1751,7 +1752,7 @@ Preventive care to make sure that all suggested (aka weak or soft) dependencies 
 
 # Portability
 
-Preventive care to make sure your package works across diverse contexts.
+Preventive care to make sure that package works across a variety of settings.
 
 # "Each new user of a new system uncovers a new class of bugs."
 \- Brian Kernighan
@@ -1772,7 +1773,7 @@ knitr::include_graphics("media/difference.png")
 
 ::: {.column width='90%'}
 
-You (the developer) may be working on the package in a certain setting; i.e. with version of R and OS, in a certain locale, etc. Even if all tests pass and all examples run successfully for you locally, you can't assume that your users will use the package in similar settings.
+You (the developer) may be working on the package in a certain setting: with a certain version of R, on a particular OS, in a certain locale, etc. Even if all tests pass and all examples run successfully for you locally, you can't assume that your users will use the package in similar settings. 
 
 :::
 
@@ -1794,15 +1795,19 @@ knitr::include_graphics("media/confused.png")
 
 ::: {.column width='90%'}
 
-If you restrict your checks only to run on these specific settings, you may not anticipate the problems your users may experience in other settings (e.g., the graphics device that works on `windows` may not work on `macOS`, code that works with `R 4.1` may not work with `R 3.6`, etc.). Of course, the assumption here is that your package claims to support these settings.
+If you restrict your checks only to run on these specific settings, you may not anticipate the problems your users may experience in other settings (e.g., the graphics device that works on `windows` may not work on `macOS`, code that works with `R 4.1` may not work with `R 3.6`, etc.). 
+
+:::{style="font-size: 20px;"}
+
+The assumption here is that your package claims to support these settings. If your package docs clearly state that the package will work only on (e.g.) Windows, you don't need to worry about other OS.
+
+:::
 
 :::
 
 ::::
 
 . . .
-
-<br>
 
 <!-- column layout -->
 
@@ -1827,6 +1832,76 @@ knitr::include_graphics("media/problem-solved.png")
 :::
 
 ::::
+
+## Checking across multiple settings {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [`{rcmdcheck}`](https://r-lib.github.io/rcmdcheck/){target='_blank'} to run `R CMD check` from R.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+rcmdcheck::rcmdcheck()
+```
+
+:::{style="font-size: 20px;"}
+
+All the options you can set to further customize this check is beyond the scope of the current presentation.
+
+:::
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use GHA workflow to automate running `R CMD check` for multiple R versions and/or platforms (see [example workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/R-CMD-check.yaml){target='_blank'}) on each commit to discover potential portability issues.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- If needed, you can run checks on additional platforms using [`{rhub}`](https://r-hub.github.io/rhub/articles/rhub.html).
+
+- Fully crossed checks (all major platforms $\times$ all supported R versions) are rarely necessary and definitely an overkill.
+
+- Ideally, the package should be tested until the oldest R version it purports to support. E.g. if `DESCRIPTION` says `R >= 3.4`, then you should check until `R 3.4` to make sure that the package indeed works for this R version. If you check only until `R 3.5`, it is instead better to bump version in `DESCRIPTION`.
+
+:::
+
 
 # Unit testing
 

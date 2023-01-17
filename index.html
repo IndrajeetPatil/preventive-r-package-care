@@ -1751,7 +1751,7 @@ YAML</code></pre>
 </section></section>
 <section id="dealing-with-warnings" class="title-slide slide level1 center">
 <h1>Dealing with warnings</h1>
-<p>Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.</p>
+<p>Preventive care to make sure that you don’t miss out on important warnings.</p>
 </section>
 
 <section>
@@ -1761,6 +1761,118 @@ YAML</code></pre>
 </section>
 <section id="types-of-conditionsexceptions" class="slide level2 smaller">
 <h2>Types of conditions/exceptions</h2>
+</section></section>
+<section id="portability" class="title-slide slide level1 center">
+<h1>Portability</h1>
+<p>Preventive care to make sure that package works across a variety of settings.</p>
+</section>
+
+<section>
+<section id="each-new-user-of-a-new-system-uncovers-a-new-class-of-bugs." class="title-slide slide level1 center">
+<h1>“Each new user of a new system uncovers a new class of bugs.”</h1>
+<p>- Brian Kernighan</p>
+</section>
+<section id="the-unbearable-diversity-of-contexts" class="slide level2 smaller">
+<h2>The unbearable diversity of contexts</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/difference.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You (the developer) may be working on the package in a certain setting: with a certain version of R, on a particular OS, in a certain locale, etc. Even if all tests pass and all examples run successfully for you locally, you can’t assume that your users will use the package in similar settings.</p>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/confused.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>If you restrict your checks only to run on these specific settings, you may not anticipate the problems your users may experience in other settings (e.g., the graphics device that works on <code>windows</code> may not work on <code>macOS</code>, code that works with <code>R 4.1</code> may not work with <code>R 3.6</code>, etc.).</p>
+<div style="font-size: 20px;">
+<p>The assumption here is that your package claims to support these settings. If your package docs clearly state that the package will work only on (e.g.) Windows, you don’t need to worry about other OS.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to make sure that your package is working as expected across various settings?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="checking-across-multiple-settings" class="slide level2 smaller">
+<h2>Checking across multiple settings</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://r-lib.github.io/rcmdcheck/" target="_blank"><code>{rcmdcheck}</code></a> to run <code>R CMD check</code> from R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rcmdcheck<span class="sc">::</span><span class="fu">rcmdcheck</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div style="font-size: 20px;">
+<p>All the options you can set to further customize this check is beyond the scope of the current presentation.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use GHA workflow to automate running <code>R CMD check</code> for multiple R versions and/or platforms (see <a href="https://github.com/r-lib/lintr/blob/main/.github/workflows/R-CMD-check.yaml" target="_blank">example workflow</a>) on each commit to discover potential portability issues.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>If needed, you can run checks on additional platforms using <a href="https://r-hub.github.io/rhub/articles/rhub.html"><code>{rhub}</code></a>.</p></li>
+<li><p>Fully crossed checks (all major platforms <span class="math inline">\(\times\)</span> all supported R versions) are rarely necessary and definitely an overkill.</p></li>
+<li><p>Ideally, the package should be tested until the oldest R version it purports to support. E.g. if <code>DESCRIPTION</code> says <code>R &gt;= 3.4</code>, then you should check until <code>R 3.4</code> to make sure that the package indeed works for this R version. If you check only until <code>R 3.5</code>, it is instead better to bump version in <code>DESCRIPTION</code>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </section></section>
 <section id="unit-testing" class="title-slide slide level1 center">
 <h1>Unit testing</h1>
@@ -1779,11 +1891,6 @@ YAML</code></pre>
 
 <section id="check-against-devel-versions-of-dependencies" class="title-slide slide level1 center">
 <h1>Check against devel versions of dependencies</h1>
-
-</section>
-
-<section id="check-on-multiple-r-versions-and-platforms" class="title-slide slide level1 center">
-<h1>Check on multiple R versions and platforms</h1>
 
 </section>
 
@@ -1830,19 +1937,19 @@ YAML</code></pre>
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.2.2 (2022-10-31)
- os       macOS Ventura 13.0.1
+ os       macOS Ventura 13.1
  system   aarch64, darwin20
  ui       X11
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       Europe/Berlin
- date     2023-01-15
+ date     2023-01-17
  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
