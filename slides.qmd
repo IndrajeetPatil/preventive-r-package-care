@@ -40,25 +40,33 @@ Specifying the intended audience early-on to check relevance of the content for 
 
 Don't miss the forest for the trees.
 
-## 
+## {.smaller}
 
 :::{.callout-important}
 
 ## It's not about the tools
 
-I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. Even if you use neither, don't feel that this is not relevant for you.
-
-At the end of each section, I will include a checklist with broader takeaways independent of the development tech stack. You can implement the necessary checks with the tools you prefer.
+I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. Even if you use neither, the broader takeaways should still be relevant. And, of course, you can implement the necessary checks with the tools you prefer.
 
 :::
 
+<br>
+
 :::{.callout-note}
 
-## It's not just about CRAN
+## It's not *just* about CRAN
 
-Following the recommended practices will make packages more robust to the possibility of CRAN archival, but that benefit is *incidental*.
+Following the recommended practices will make packages more robust to CRAN checks, but that benefit is *incidental*. You can follow these practices even if you never plan to submit to CRAN. The goal here is ensuring better user experience and maintainability.
 
-You can follow these practices even if you never plan to submit to CRAN, since the ultimate goal is better user experience and maintainability.
+:::
+
+<br>
+
+:::{.callout-tip}
+
+## It's not even about R
+
+You can actually utilize the practices outlined here to software development in any other programming language.
 
 :::
 
