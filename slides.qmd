@@ -159,7 +159,7 @@ knitr::include_graphics("media/toolbox.png")
 ::: {.column width='35%'}
 
 <br>
-Tooling
+Tool
 
 :::
 
@@ -1755,8 +1755,49 @@ Preventive care to make sure that you don't miss out on important warnings.
 # "There is a problem with warnings. No one reads them." 
 \- Patrick Burns (*R Inferno*)
 
-## Types of conditions/exceptions {.smaller}
+## Sending signals {.smaller}
 
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/warning.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{.callout-note}
+
+## Types of conditions/exceptions
+
+A function can use [conditions](https://adv-r.hadley.nz/conditions.html) to signal that something unexpected has happened with varying severity.
+
+| Condition | Severity |                         Meaning                          |
+| :-------: | :------: | :------------------------------------------------------: |
+|  `error`  |   high   |   execution must stop because there is way to continue   |
+| `warning` |  medium  |     execution encountered some problem but recovered     |
+| `message` |   low    | execution was successful and here are some extra details |
+
+:::
+
+:::
+
+::::
+
+Out of these, warnings are the most nebulous! 
+
+- Errors bring functions to a halt and users *must* attend to them. 
+- Messages are innocuous and *can* be safely ignored. 
+- But warnings are the canaries in the coal mine, harbingers of problems that are going to haunt you at some point and *need* to be dealt with, pronto.
+
+## A needle in the haystack {.smaller}
 
 # Portability
 

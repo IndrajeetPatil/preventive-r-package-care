@@ -512,7 +512,7 @@
 </div>
 </div>
 </div><div class="column" style="width:35%;">
-<p><br> Tooling</p>
+<p><br> Tool</p>
 </div><div class="column" style="width:15%;">
 <div class="cell">
 <div class="cell-output-display">
@@ -1772,8 +1772,73 @@ YAML</code></pre>
 <h1>“There is a problem with warnings. No one reads them.”</h1>
 <p>- Patrick Burns (<em>R Inferno</em>)</p>
 </section>
-<section id="types-of-conditionsexceptions" class="slide level2 smaller">
-<h2>Types of conditions/exceptions</h2>
+<section id="sending-signals" class="slide level2 smaller">
+<h2>Sending signals</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/warning.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Types of conditions/exceptions</strong></p>
+</div>
+<div class="callout-content">
+<p>A function can use <a href="https://adv-r.hadley.nz/conditions.html">conditions</a> to signal that something unexpected has happened with varying severity.</p>
+<table>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 10%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Condition</th>
+<th style="text-align: center;">Severity</th>
+<th style="text-align: center;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>error</code></td>
+<td style="text-align: center;">high</td>
+<td style="text-align: center;">execution must stop because there is way to continue</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>warning</code></td>
+<td style="text-align: center;">medium</td>
+<td style="text-align: center;">execution encountered some problem but recovered</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>message</code></td>
+<td style="text-align: center;">low</td>
+<td style="text-align: center;">execution was successful and here are some extra details</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Out of these, warnings are the most nebulous!</p>
+<ul>
+<li>Errors bring functions to a halt and users <em>must</em> attend to them.</li>
+<li>Messages are innocuous and <em>can</em> be safely ignored.</li>
+<li>But warnings are the canaries in the coal mine, harbingers of problems that are going to haunt you at some point and <em>need</em> to be dealt with, pronto.</li>
+</ul>
+</section>
+<section id="dont-search-for-a-needle-in-the-haystack" class="slide level2 smaller">
+<h2>Don’t search for a needle in the haystack</h2>
 </section></section>
 <section id="portability" class="title-slide slide level1 center">
 <h1>Portability</h1>
