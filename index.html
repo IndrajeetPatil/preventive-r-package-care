@@ -1426,44 +1426,32 @@ YAML</code></pre>
 </div>
 </div>
 <table>
-<colgroup>
-<col style="width: 80%">
-<col style="width: 19%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Item</th>
-<th style="text-align: center;">Tool</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Make sure there are enough examples in the documentation.</td>
-<td style="text-align: center;"><code>{covr}</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Make sure all README examples are working.</td>
-<td style="text-align: center;"><code>{rmarkdown}</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Make sure all examples in help pages are working.</td>
-<td style="text-align: center;"><code>{devtools}</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Make sure examples in all vignettes are working.</td>
-<td style="text-align: center;"><code>{pkgdown}</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Make sure all URLs are valid.</td>
-<td style="text-align: center;"><code>{urlchecker}</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Make sure there are no spelling mistakes.</td>
-<td style="text-align: center;"><code>{spelling}</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Make sure all HTML in the help pages is valid.</td>
-<td style="text-align: center;"><code>{roxygen2}</code></td>
 </tr>
 </tbody>
 </table>
@@ -1836,16 +1824,97 @@ YAML</code></pre>
 <li>Messages are innocuous and <em>can</em> be safely ignored.</li>
 <li>But warnings are the canaries in the coal mine, harbingers of problems that are going to haunt you at some point and <em>need</em> to be dealt with, pronto.</li>
 </ul>
+</section>
+<section id="a-needle-in-the-haystack" class="slide level2 smaller">
+<h2>A needle in the haystack</h2>
+</section></section>
+<section>
+<section id="section-3" class="title-slide slide level1 center">
+<h1></h1>
+<!-- column layout -->
+<div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that warnings are easily detected for further scrutiny and forthright dealt with.</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="checklist-for-warnings" class="slide level2 smaller">
+<h2>Checklist for warnings</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that warnings are easily detected for further scrutiny and forthright dealt with.</strong></p>
+</div>
+</div>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure examples in README produce no warnings.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure examples in help pages produce no warnings.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure examples in all vignettes produce no warnings.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure tests produce no extraneous warnings.</td>
+</tr>
+</tbody>
+</table>
 </section></section>
 <section id="portability" class="title-slide slide level1 center">
 <h1>Portability</h1>
 <p>Preventive care to make sure that package works across a variety of settings.</p>
 </section>
 
-<section>
 <section id="each-new-user-of-a-new-system-uncovers-a-new-class-of-bugs." class="title-slide slide level1 center">
 <h1>“Each new user of a new system uncovers a new class of bugs.”</h1>
 <p>- Brian Kernighan</p>
+</section>
+
+<section>
+<section id="section-4" class="title-slide slide level1 center">
+<h1></h1>
+<!-- column layout -->
+<div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>For a good user experience, make sure that package would work as expected across diverse settings.</strong></p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="the-unbearable-diversity-of-contexts" class="slide level2 smaller">
 <h2>The unbearable diversity of contexts</h2>
@@ -1948,7 +2017,45 @@ YAML</code></pre>
 </div>
 </div>
 </div>
-</section></section>
+</section>
+<section id="checklist-for-portability" class="slide level2 smaller">
+<h2>Checklist for portability</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>For a good user experience, make sure that package would work as expected across diverse settings.</strong></p>
+</div>
+</div>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure package passes checks on commonly used OS.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure package passes checks on all supported R versions.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">…</td>
+</tr>
+</tbody>
+</table>
+
+<aside><div>
+<p>The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). So you can extend the list as you see fit for your workflow!</p>
+</div></aside></section></section>
 <section id="unit-testing" class="title-slide slide level1 center">
 <h1>Unit testing</h1>
 <p>offline</p>
