@@ -1743,7 +1743,13 @@ knitr::include_graphics("media/damaged-package.png")
 
 ::: {.column width='90%'}
 
-It is important to anticipate changes in hard dependencies that may break your packages. Although most developers will be kind enough to let you know of upcoming breaking changes, such communication can't be assumed. Additionally, if your package is not on CRAN, there is no way for the maintainer to detect possible breakage and inform you. Ditto if you are skipping tests on CRAN.
+It is important to anticipate changes in dependencies that may break your packages. Although some maintainers (of your dependencies) will be kind enough to let you know of upcoming breaking changes, such communication can't be assumed or might not even be possible. 
+
+:::{style="font-size: 20px;"}
+
+If your package is not on CRAN, there is no way for the maintainers to detect breakages in reverse dependencies and inform maintainers. Similarly, if a reverse dependency is skipping tests on CRAN, possible breakages can go undetected. 
+
+:::
 
 :::
 
@@ -1765,7 +1771,7 @@ knitr::include_graphics("media/confused.png")
 
 ::: {.column width='90%'}
 
-This means that the only way you may figure out that something is broken is *after* the package is released, and most likely via frustrated users.
+Thus, you may figure out that something is broken *after* a dependency is updated, the package stops working for the users, and they inform you. This is especially true if your package is not under active development, and so CI/CD won't detect that your package is broken.
 
 :::
 
@@ -1824,6 +1830,8 @@ knitr::include_graphics("media/target.png")
 :::
 
 ::::
+
+<br>
 
 | Item                                                                              |
 | :-------------------------------------------------------------------------------- |
@@ -1939,6 +1947,8 @@ knitr::include_graphics("media/target.png")
 :::
 
 ::::
+
+<br>
 
 | Item                                                     |
 | :------------------------------------------------------- |
@@ -2155,11 +2165,13 @@ knitr::include_graphics("media/target.png")
 
 ::::
 
-| Item                                                     |
-| :------------------------------------------------------- |
-| Make sure package passes checks on commonly used OS.        |
-| Make sure package passes checks on all supported R versions.   |
-| ... |
+<br>
+
+| Item                                                         |
+| :----------------------------------------------------------- |
+| Make sure package passes checks on commonly used OS.         |
+| Make sure package passes checks on all supported R versions. |
+| ...                                                          |
 
 ::: aside
 
@@ -2178,10 +2190,7 @@ offline
 
 Touchstone framework
 
-
-
-
-# Fail on NOTE
+# Fail on a NOTE
 
 # Eco-friendly workflows
 

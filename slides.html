@@ -1726,7 +1726,10 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>It is important to anticipate changes in hard dependencies that may break your packages. Although most developers will be kind enough to let you know of upcoming breaking changes, such communication can’t be assumed. Additionally, if your package is not on CRAN, there is no way for the maintainer to detect possible breakage and inform you. Ditto if you are skipping tests on CRAN.</p>
+<p>It is important to anticipate changes in dependencies that may break your packages. Although some maintainers (of your dependencies) will be kind enough to let you know of upcoming breaking changes, such communication can’t be assumed or might not even be possible.</p>
+<div style="font-size: 20px;">
+<p>If your package is not on CRAN, there is no way for the maintainers to detect breakages in reverse dependencies and inform maintainers. Similarly, if a reverse dependency is skipping tests on CRAN, possible breakages can go undetected.</p>
+</div>
 </div>
 </div>
 <div class="fragment">
@@ -1739,7 +1742,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>This means that the only way you may figure out that something is broken is <em>after</em> the package is released, and most likely via frustrated users.</p>
+<p>Thus, you may figure out that something is broken <em>after</em> a dependency is updated, the package stops working for the users, and they inform you. This is especially true if your package is not under active development, and so CI/CD won’t detect that your package is broken.</p>
 </div>
 </div>
 </div>
@@ -1777,6 +1780,7 @@ YAML</code></pre>
 </div>
 </div>
 </div>
+<p><br></p>
 <table>
 <colgroup>
 <col style="width: 100%">
@@ -1919,6 +1923,7 @@ YAML</code></pre>
 </div>
 </div>
 </div>
+<p><br></p>
 <table>
 <thead>
 <tr class="header">
@@ -2089,6 +2094,7 @@ YAML</code></pre>
 </div>
 </div>
 </div>
+<p><br></p>
 <table>
 <thead>
 <tr class="header">
@@ -2126,8 +2132,8 @@ YAML</code></pre>
 <p>Touchstone framework</p>
 </section>
 
-<section id="fail-on-note" class="title-slide slide level1 center">
-<h1>Fail on NOTE</h1>
+<section id="fail-on-a-note" class="title-slide slide level1 center">
+<h1>Fail on a NOTE</h1>
 
 </section>
 
