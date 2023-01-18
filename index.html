@@ -1926,7 +1926,7 @@ YAML</code></pre>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="co">#&gt; `threshold` for winsorization must be a scalar between 0 and 0.5.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<p><strong>Extraneous warnings</strong></p>
+<p><strong>Extrinsic warnings</strong></p>
 <p>Warnings coming from packages you are using, either in examples or tests. E.g. if your package relies on <code>{ggplot2}</code>, you might get a warning like this.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>)</span>
@@ -1950,24 +1950,87 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>With a significant amount of functionality and dependencies, there can be plenty of warnings that the package could be dealing with at any given moment.</p>
+<p>With a significant amount of package functionality and dependencies, there can be plenty of warnings that at any given moment.</p>
 <p>To avoid missing out on important warnings, there should ideally be <strong>zero of either type of warning</strong> in your package documentation and tests. This makes it easy to notice and deal with new warnings as they appear.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="suppressing-warnings" class="slide level2 smaller">
-<h2>Suppressing warnings</h2>
-<p>Depending on the source of these warnings, there are different options available.</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Dealing with intrinsic warnings</strong></p>
+<section id="suppressing-intrinsic-warnings" class="slide level2 smaller">
+<h2>Suppressing intrinsic warnings</h2>
+<p>There is almost never a need to explicitly highlight warnings intrinsic to your package.</p>
+<div class="fragment">
+<div style="background-color: #E1D7C6; padding: 20px; border-radius: 25px;">
 <ul>
-<li><p>Warnings are generated in contexts where <em>your</em> package functions were used unexpectedly by the users. But such contexts shouldn’t be deliberately included in the documentation. Users should always see <a href="https://en.wikipedia.org/wiki/Happy_path">happy path</a> examples in help pages, README, or vignettes.</p></li>
-<li><p>In testing such functions, you should use expectations (e.g.&nbsp;<code>testthat::expect_warning()</code>) to check that expected warnings are triggered. You shouldn’t print the warnings, which can completely overwhelm the test log.</p></li>
+<li><p>Warnings are generated in contexts where functions in <em>your</em> package were used unexpectedly by the users. But such contexts shouldn’t be deliberately highlighted in the documentation. Users should always see <a href="https://en.wikipedia.org/wiki/Happy_path" target="_blank">happy path</a> examples in help pages, README, or vignettes.</p></li>
+<li><p>While testing functions, you should use expectations (e.g.&nbsp;<code>testthat::expect_warning()</code>) to check that expected warnings are triggered. You shouldn’t print the warnings, since they can completely overwhelm the test log, which makes it difficult to catch important warnings.</p></li>
+<li><p>If it’s a complex function that can encounter a large number of slippery situations, it makes sense to provide an argument to turn off a few warnings (e.g.&nbsp;<code>verbose = FALSE</code>). You can then use this argument to omit warnings in package documentation.</p></li>
 </ul>
-</div><div class="column" style="width:50%;">
-<p>Right column</p>
+</div>
+</div>
+</section>
+<section id="suppressing-extrinsic-warnings" class="slide level2 smaller">
+<h2>Suppressing extrinsic warnings</h2>
+<p>Warnings from dependencies can be critical and should be dealt with ASAP.</p>
+<div class="fragment">
+<div style="background-color: #E1D7C6; padding: 20px; border-radius: 25px;">
+<ul>
+<li><p>If dependencies are generating warnings because your package functions are using imported code in unexpected ways, you should rewrite them to remove warnings.</p></li>
+<li><p>If the warnings are about deprecated functions or arguments, you should switch to using the suggested alternatives. Don’t wait until they are removed.</p></li>
+<li><p>Some warnings are unavoidable and not as important. They can be suppressed using <code>suppressWarnings()</code>. That said, avoid using it in examples in help pages, lest users think that this is part of <em>your</em> package API.</p></li>
+<li><p>If the warnings are coming from somewhere upstream (e.g.&nbsp;<code>{ggplot2}</code> → <code>{ggside}</code> → your package), you have little control over them. You can ignore such warnings using <code>suppressWarnings()</code> and remove such calls once the warnings are fixed in upstream.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="detecting-warnings" class="slide level2 smaller">
+<h2>Detecting warnings</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>To detect warnings, you can convert warnings into errors using <code>options()</code> and then run all your checks.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">warn =</span> 2L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use GHA workflows to automate checking presence of warnings in <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml" target="_blank">help pages</a>, <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml" target="_blank">README</a>, <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-vignette-warnings.yaml" target="_blank">vignettes</a>, and <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-test-warnings.yaml" target="_blank">tests</a> on each commit.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>While you are at it, you might as well clean up messages. They might be harmless, but they do clog up logs and make it difficult to focus on warnings.</p></li>
+<li><p>If you set <code>warning=FALSE</code> in vignettes, note that this only suppresses warnings in the rendered output. When your users run this code interactively, they are still going to see the suppressed warnings.</p></li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -2005,7 +2068,7 @@ YAML</code></pre>
 <td style="text-align: left;">Make sure examples in all vignettes produce no warnings.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Make sure tests produce no extraneous warnings.</td>
+<td style="text-align: left;">Make sure tests produce no extrinsic warnings.</td>
 </tr>
 </tbody>
 </table>
@@ -2101,7 +2164,7 @@ YAML</code></pre>
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://r-lib.github.io/rcmdcheck/" target="_blank"><code>{rcmdcheck}</code></a> to run <code>R CMD check</code> from R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rcmdcheck<span class="sc">::</span><span class="fu">rcmdcheck</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>rcmdcheck<span class="sc">::</span><span class="fu">rcmdcheck</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div style="font-size: 20px;">
 <p>All the options you can set to further customize this check is beyond the scope of the current presentation.</p>
@@ -2243,7 +2306,7 @@ YAML</code></pre>
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value

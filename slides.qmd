@@ -1948,7 +1948,7 @@ winsorize(x, threshold = c(1, 2))
 
 ::: {.column width='50%'}
 
-**Extraneous warnings**
+**Extrinsic warnings**
 
 Warnings coming from packages you are using, either in examples or tests.
 E.g. if your package relies on `{ggplot2}`, you might get a warning like this.
@@ -1995,13 +1995,98 @@ To avoid missing out on important warnings, there should ideally be **zero of ei
 
 ## Suppressing intrinsic warnings {.smaller}
 
-::: {.incremental}
+There is almost never a need to explicitly highlight warnings intrinsic to your package.
+
+. . .
+
+::: {style="background-color: #E1D7C6; padding: 20px; border-radius: 25px;"}
 
 - Warnings are generated in contexts where functions in *your* package were used unexpectedly by the users. But such contexts shouldn't be deliberately highlighted in the documentation. Users should always see [happy path](https://en.wikipedia.org/wiki/Happy_path){target='_blank'} examples in help pages, README, or vignettes.
 
 - While testing functions, you should use expectations (e.g. `testthat::expect_warning()`) to check that expected warnings are triggered. You shouldn't print the warnings, since they can completely overwhelm the test log, which makes it difficult to catch important warnings.
 
 - If it's a complex function that can encounter a large number of slippery situations, it makes sense to provide an argument to turn off a few warnings (e.g. `verbose = FALSE`). You can then use this argument to omit warnings in package documentation.
+
+:::
+
+## Suppressing extrinsic warnings {.smaller}
+
+Warnings from dependencies can be critical and should be dealt with ASAP.
+
+. . .
+
+::: {style="background-color: #E1D7C6; padding: 20px; border-radius: 25px;"}
+
+- If dependencies are generating warnings because your package functions are using imported code in unexpected ways, you should rewrite them to remove warnings.
+
+- If the warnings are about deprecated functions or arguments, you should switch to using the suggested alternatives. Don't wait until they are removed.
+
+- Some warnings are unavoidable and not as important. They can be suppressed using `suppressWarnings()`. That said, avoid using it in examples in help pages, lest users think that this is part of *your* package API.
+
+- If the warnings are coming from somewhere upstream (e.g. `{ggplot2}` → `{ggside}` → your package), you have little control over them. You can ignore such warnings using `suppressWarnings()` and remove such calls once the warnings are fixed in upstream.
+
+:::
+
+## Detecting warnings {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+To detect warnings, you can convert warnings into errors using `options()` and then run all your checks.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+options(warn = 2L)
+```
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use GHA workflows to automate checking presence of warnings in [help pages](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml){target='_blank'}, [README](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml){target='_blank'}, [vignettes](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-vignette-warnings.yaml){target='_blank'}, and [tests](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-test-warnings.yaml){target='_blank'} on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- While you are at it, you might as well clean up messages. They might be harmless, but they do clog up logs and make it difficult to focus on warnings.
+
+- If you set `warning=FALSE` in vignettes, note that this only suppresses warnings in the rendered output. When your users run this code interactively, they are still going to see the suppressed warnings. 
 
 :::
 
@@ -2038,7 +2123,7 @@ knitr::include_graphics("media/target.png")
 | Make sure examples in README produce no warnings.        |
 | Make sure examples in help pages produce no warnings.    |
 | Make sure examples in all vignettes produce no warnings. |
-| Make sure tests produce no extraneous warnings.          |
+| Make sure tests produce no extrinsic warnings.           |
 
 # Portability
 
