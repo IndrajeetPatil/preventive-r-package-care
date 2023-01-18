@@ -1814,10 +1814,30 @@ YAML</code></pre>
 <p>Preventive care to make sure that you don’t miss out on important warnings.</p>
 </section>
 
-<section>
 <section id="there-is-a-problem-with-warnings.-no-one-reads-them." class="title-slide slide level1 center">
 <h1>“There is a problem with warnings. No one reads them.”</h1>
-<p>- Patrick Burns (<em>R Inferno</em>)</p>
+<p>- Patrick Burns</p>
+</section>
+
+<section>
+<section id="section-3" class="title-slide slide level1 center">
+<h1></h1>
+<!-- column layout -->
+<div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that warnings are easily detected for further scrutiny and forthright dealt with.</strong></p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="sending-signals" class="slide level2 smaller">
 <h2>Sending signals</h2>
@@ -1881,30 +1901,69 @@ YAML</code></pre>
 <ul>
 <li>Errors bring functions to a halt and users <em>must</em> attend to them.</li>
 <li>Messages are innocuous and <em>can</em> be safely ignored.</li>
-<li>But warnings are the canaries in the coal mine, harbingers of problems that are going to haunt you at some point and <em>need</em> to be dealt with, pronto.</li>
+<li>But warnings are harbingers of problems that you will need to fix at some point and <em>need</em> to be dealt with, pronto. And yet you can choose to ignore them.</li>
 </ul>
 </section>
 <section id="a-needle-in-the-haystack" class="slide level2 smaller">
 <h2>A needle in the haystack</h2>
-</section></section>
-<section>
-<section id="section-3" class="title-slide slide level1 center">
-<h1></h1>
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Types of warnings</strong></p>
+</div>
+<div class="callout-content">
+<p>There are two kinds of warnings that you, as a developer, will need to deal with:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Intrinsic warnings</strong></p>
+<p>Warnings that functions in your package produce to inform users. E.g. if your package has a function to winsorize data with a certain threshold, this could be a possible warning.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">winsorize</span>(x, <span class="at">threshold =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="co">#&gt; Warning message:</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="co">#&gt; `threshold` for winsorization must be a scalar between 0 and 0.5.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Extraneous warnings</strong></p>
+<p>Warnings coming from packages you are using, either in examples or tests. E.g. if your package relies on <code>{ggplot2}</code>, you might get a warning like this.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="co">#&gt; Warning message:</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="co">#&gt; Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
 <!-- column layout -->
-<div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
 <div class="columns">
 <div class="column" style="width:10%;">
+<p><br></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img data-src="media/target.png" width="256"></p>
+<p><img data-src="media/cleaning.png" width="256"></p>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<div style="color: blue; text-align: center;">
-<p><strong>To reduce maintenance headaches, make sure that warnings are easily detected for further scrutiny and forthright dealt with.</strong></p>
+<p>With a significant amount of package functionality and dependencies, there can be plenty of warnings that at any given moment.</p>
+<p>To avoid missing out on important warnings, there should ideally be <strong>zero of either type of warning</strong> in your package documentation and tests. This makes it easy to notice and deal with new warnings as they appear.</p>
 </div>
 </div>
 </div>
+</section>
+<section id="suppressing-intrinsic-warnings" class="slide level2 smaller">
+<h2>Suppressing intrinsic warnings</h2>
+<div>
+<ul>
+<li class="fragment"><p>Warnings are generated in contexts where functions in <em>your</em> package were used unexpectedly by the users. But such contexts shouldn’t be deliberately highlighted in the documentation. Users should always see <a href="https://en.wikipedia.org/wiki/Happy_path" target="_blank">happy path</a> examples in help pages, README, or vignettes.</p></li>
+<li class="fragment"><p>While testing functions, you should use expectations (e.g.&nbsp;<code>testthat::expect_warning()</code>) to check that expected warnings are triggered. You shouldn’t print the warnings, since they can completely overwhelm the test log, which makes it difficult to catch important warnings.</p></li>
+<li class="fragment"><p>If it’s a complex function that can encounter a large number of slippery situations, it makes sense to provide an argument to turn off a few warnings (e.g.&nbsp;<code>verbose = FALSE</code>). You can then use this argument to omit warnings in package documentation.</p></li>
+</ul>
 </div>
 </section>
 <section id="checklist-for-exception-handling" class="slide level2 smaller">
@@ -2037,7 +2096,7 @@ YAML</code></pre>
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://r-lib.github.io/rcmdcheck/" target="_blank"><code>{rcmdcheck}</code></a> to run <code>R CMD check</code> from R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rcmdcheck<span class="sc">::</span><span class="fu">rcmdcheck</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rcmdcheck<span class="sc">::</span><span class="fu">rcmdcheck</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div style="font-size: 20px;">
 <p>All the options you can set to further customize this check is beyond the scope of the current presentation.</p>
@@ -2179,7 +2238,7 @@ YAML</code></pre>
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
@@ -2201,7 +2260,7 @@ YAML</code></pre>
  P compiler      4.2.2   2022-10-31 [1] local
  P datasets    * 4.2.2   2022-10-31 [1] local
    digest        0.6.31  2022-12-11 [1] CRAN (R 4.2.2)
-   evaluate      0.19    2022-12-13 [1] CRAN (R 4.2.2)
+   evaluate      0.20    2023-01-17 [1] CRAN (R 4.2.0)
    fastmap       1.1.0   2021-01-25 [1] CRAN (R 4.2.0)
    glue          1.6.2   2022-02-24 [1] CRAN (R 4.2.0)
  P graphics    * 4.2.2   2022-10-31 [1] local

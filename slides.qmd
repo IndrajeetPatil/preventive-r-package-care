@@ -1846,7 +1846,37 @@ knitr::include_graphics("media/target.png")
 Preventive care to make sure that you don't miss out on important warnings.
 
 # "There is a problem with warnings. No one reads them." 
-\- Patrick Burns (*R Inferno*)
+\- Patrick Burns
+
+#
+
+<!-- column layout -->
+
+:::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that warnings are easily detected for further scrutiny and forthright dealt with.**
+
+:::
+
+:::
+
+::::
+
+:::::
 
 ## Sending signals {.smaller}
 
@@ -1888,39 +1918,92 @@ Out of these, warnings are the most nebulous!
 
 - Errors bring functions to a halt and users *must* attend to them. 
 - Messages are innocuous and *can* be safely ignored. 
-- But warnings are the canaries in the coal mine, harbingers of problems that are going to haunt you at some point and *need* to be dealt with, pronto.
+- But warnings are harbingers of problems that you will need to fix at some point and *need* to be dealt with, pronto. And yet you can choose to ignore them.
 
 ## A needle in the haystack {.smaller}
 
-#
+:::{.callout-note}
+
+## Types of warnings
+
+There are two kinds of warnings that you, as a developer, will need to deal with:
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+**Intrinsic warnings**
+
+Warnings that functions in your package produce to inform users.
+E.g. if your package has a function to winsorize data with a certain threshold, this could be a possible warning.
+
+```{r}
+#| eval: false
+winsorize(x, threshold = c(1, 2))
+#> Warning message:
+#> `threshold` for winsorization must be a scalar between 0 and 0.5.
+```
+
+:::
+
+::: {.column width='50%'}
+
+**Extraneous warnings**
+
+Warnings coming from packages you are using, either in examples or tests.
+E.g. if your package relies on `{ggplot2}`, you might get a warning like this.
+
+```{r}
+#| eval: false
+ggplot(mtcars, aes(wt, mpg)) + geom_line(size = 1)
+#> Warning message:
+#> Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+#> ℹ Please use `linewidth` instead.
+```
+
+:::
+
+::::
+
+:::
+
+. . . 
 
 <!-- column layout -->
-
-:::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
 
 :::: {.columns}
 
 ::: {.column width='10%'}
 
+<br>
+
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/cleaning.png")
 ```
 
 :::
 
 ::: {.column width='90%'}
 
-:::{style="color: blue; text-align: center;"}
+With a significant amount of package functionality and dependencies, there can be plenty of warnings that at any given moment.
 
-**To reduce maintenance headaches, make sure that warnings are easily detected for further scrutiny and forthright dealt with.**
-
-:::
+To avoid missing out on important warnings, there should ideally be **zero of either type of warning** in your package documentation and tests. This makes it easy to notice and deal with new warnings as they appear.
 
 :::
 
 ::::
 
-:::::
+## Suppressing intrinsic warnings {.smaller}
+
+::: {.incremental}
+
+- Warnings are generated in contexts where functions in *your* package were used unexpectedly by the users. But such contexts shouldn't be deliberately highlighted in the documentation. Users should always see [happy path](https://en.wikipedia.org/wiki/Happy_path){target='_blank'} examples in help pages, README, or vignettes.
+
+- While testing functions, you should use expectations (e.g. `testthat::expect_warning()`) to check that expected warnings are triggered. You shouldn't print the warnings, since they can completely overwhelm the test log, which makes it difficult to catch important warnings.
+
+- If it's a complex function that can encounter a large number of slippery situations, it makes sense to provide an argument to turn off a few warnings (e.g. `verbose = FALSE`). You can then use this argument to omit warnings in package documentation.
+
+:::
 
 ## Checklist for exception handling {.smaller}
 
