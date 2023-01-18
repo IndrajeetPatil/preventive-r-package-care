@@ -500,7 +500,7 @@
 </div>
 </div>
 </div><div class="column" style="width:35%;">
-<p><br> Maintenance nightmare</p>
+<p><br> Maintenance headaches</p>
 </div>
 </div>
 <!-- column layout -->
@@ -871,7 +871,10 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Thus, broken <code>\dontrun{}</code> and <code>\donttest{}</code> examples may not be flagged by <code>R CMD check</code> (but maybe by CRAN’s additional <a href="https://www.stats.ox.ac.uk/pub/bdr/donttest/" target="_blank">“donttest” check</a>). Users will still see these examples, and wonder why they aren’t working for them.</p>
+<p>Thus, broken <code>\dontrun{}</code> and <code>\donttest{}</code> examples may not be flagged by <code>R CMD check</code>. Users will still see these examples, and wonder why they aren’t working for them.</p>
+<div style="font-size: 20px;">
+<p>CRAN’s additional <a href="https://www.stats.ox.ac.uk/pub/bdr/donttest/" target="_blank">“donttest” check</a> does run <code>\donttest{}</code> examples.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1480,7 +1483,7 @@ YAML</code></pre>
 </div>
 </div><div class="column" style="width:90%;">
 <div style="color: blue; text-align: center;">
-<p><strong>To reduce maintenance workload, make sure that checks pass both in the presence and absence of soft dependencies.</strong></p>
+<p><strong>To reduce maintenance headaches, make sure that the package is robust to availability of soft dependencies and breaking changes in hard dependencies.</strong></p>
 </div>
 </div>
 </div>
@@ -1547,8 +1550,8 @@ YAML</code></pre>
 <h1>Make sure soft dependencies are used conditionally.</h1>
 
 </section>
-<section id="dependency-hygiene" class="slide level2 smaller">
-<h2>Dependency hygiene</h2>
+<section id="soft-dependency-hygiene" class="slide level2 smaller">
+<h2>Soft dependency hygiene</h2>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
@@ -1572,7 +1575,10 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>In a high-level, user-facing package, there can be a substantial number of soft dependencies, and the package risks breakage for <em>any</em> unavailable soft dependency. CRAN runs the additional, <a href="https://www.stats.ox.ac.uk/pub/bdr/noSuggests/" target="_blank">“noSuggests” check</a> to look for such breakages. Thus, soft dependencies should be used conditionally.</p>
+<p>In a high-level, user-facing package, there can be a substantial number of soft dependencies, and the package risks breakage for <em>any</em> unavailable soft dependency. Thus, soft dependencies should be used conditionally.</p>
+<div style="font-size: 20px;">
+<p>CRAN runs the additional <a href="https://www.stats.ox.ac.uk/pub/bdr/noSuggests/" target="_blank">“noSuggests” check</a> to look for possible breakages.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1709,6 +1715,52 @@ YAML</code></pre>
 </div>
 </div>
 </section>
+<section id="anticipating-breakages" class="slide level2 smaller">
+<h2>Anticipating breakages</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/damaged-package.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>It is important to anticipate changes in hard dependencies that may break your packages. Although most developers will be kind enough to let you know of upcoming breaking changes, such communication can’t be assumed. Additionally, if your package is not on CRAN, there is no way for the maintainer to detect possible breakage and inform you. Ditto if you are skipping tests on CRAN.</p>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/confused.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>This means that the only way you may figure out that something is broken is <em>after</em> the package is released, and most likely via frustrated users.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to make sure you are on top of upcoming breaking changes in hard dependencies?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="checklist-for-dependency-management" class="slide level2 smaller">
 <h2>Checklist for dependency management</h2>
 <!-- column layout -->
@@ -1721,7 +1773,7 @@ YAML</code></pre>
 </div>
 </div><div class="column" style="width:90%;">
 <div style="color: blue; text-align: center;">
-<p><strong>To reduce maintenance workload, make sure that checks pass both in the presence and absence of soft dependencies.</strong></p>
+<p><strong>To reduce maintenance headaches, make sure that the package is robust to availability of soft dependencies and breaking changes in hard dependencies.</strong></p>
 </div>
 </div>
 </div>
@@ -1747,11 +1799,14 @@ YAML</code></pre>
 <tr class="even">
 <td style="text-align: left;">Make sure excluded vignettes (or code chunks therein) are executed conditionally.</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">Anticipate possible breaking changes coming from dependencies and act on it.</td>
+</tr>
 </tbody>
 </table>
 </section></section>
-<section id="dealing-with-warnings" class="title-slide slide level1 center">
-<h1>Dealing with warnings</h1>
+<section id="exception-handling" class="title-slide slide level1 center">
+<h1>Exception handling</h1>
 <p>Preventive care to make sure that you don’t miss out on important warnings.</p>
 </section>
 
@@ -1848,8 +1903,8 @@ YAML</code></pre>
 </div>
 </div>
 </section>
-<section id="checklist-for-warnings" class="slide level2 smaller">
-<h2>Checklist for warnings</h2>
+<section id="checklist-for-exception-handling" class="slide level2 smaller">
+<h2>Checklist for exception handling</h2>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
@@ -2071,21 +2126,20 @@ YAML</code></pre>
 <p>Touchstone framework</p>
 </section>
 
-<section id="check-against-devel-versions-of-dependencies" class="title-slide slide level1 center">
-<h1>Check against devel versions of dependencies</h1>
-
-</section>
-
 <section id="fail-on-note" class="title-slide slide level1 center">
 <h1>Fail on NOTE</h1>
 
 </section>
 
+<section>
 <section id="eco-friendly-workflows" class="title-slide slide level1 center">
 <h1>Eco-friendly workflows</h1>
 <p>Do you <em>really</em> need to run all these workflows on each commit?!</p>
 </section>
-
+<section id="caveats" class="slide level2">
+<h2>Caveats</h2>
+<p>Sometimes two concerns can conflict: more examples versus package size</p>
+</section></section>
 <section id="conclusion" class="title-slide slide level1 center">
 <h1>Conclusion</h1>
 
@@ -2131,7 +2185,7 @@ YAML</code></pre>
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       Europe/Berlin
- date     2023-01-17
+ date     2023-01-18
  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
