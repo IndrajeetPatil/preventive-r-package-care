@@ -2427,13 +2427,23 @@ Touchstone framework
 
 Do you *really* need to run all these workflows on each commit?!
 
-## Caveats
+# Caveats
+
+No good practice is dogma and there can always exist reasons to ignore it.
+
+## 
 
 Sometimes two concerns can conflict: more examples versus package size
 
 # Conclusion
 
 # Further reading
+
+## {.smaller}
+
+- [Writing R Extensions](https://rstudio.github.io/r-manuals/r-exts/){target="_blank"}
+
+- Wickham, H., and Bryan, J. (2023). [*R Packages*](https://r-pkgs.org/){target="_blank"} (2nd edition). O'Reilly.
 
 # For more
 
