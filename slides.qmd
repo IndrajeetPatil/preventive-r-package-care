@@ -1805,6 +1805,69 @@ knitr::include_graphics("media/problem-solved.png")
 
 ::::
 
+## Detecting breakages early {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+In order to detect breakages earlier, you can run `R CMD check` by installing development versions of dependencies of your package. 
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use scheduled GHA workflow to automate checking breakages (see [example workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-devel.yaml){target='_blank'}) on each commit.
+
+:::{style="font-size: 20px;"}
+
+How frequently you should run this check (e.g., once a month, every six months, etc.) and which dependencies you should include (e.g., only hard, only soft, a few of each, etc.) depends on how actively both your own package and your dependencies are being developed. 
+
+:::
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## What should you do if you *do* detect a breakage?
+
+- If the root cause of breakage turns out to be a regression in the dependency, inform the maintainer so that they can revert the change.
+
+- If the breakage is legitimate, make a PR to your repo with a fix but merge only when either the maintainer informs you of an upcoming release or the package has a new release. **Don't** push the fix to `main`-branch because before release the breaking change might be reverted in the dependency itself.
+
+:::
+
+
 ## Checklist for dependency management {.smaller}
 
 <!-- column layout -->
@@ -2370,7 +2433,7 @@ Sometimes two concerns can conflict: more examples versus package size
 
 # Conclusion
 
-
+# Further reading
 
 # For more
 

@@ -10,7 +10,7 @@
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.105">
+  <meta name="generator" content="quarto-1.3.117">
 
   <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
   <title>slides</title>
@@ -1764,6 +1764,56 @@ YAML</code></pre>
 </div>
 </div>
 </section>
+<section id="detecting-breakages-early" class="slide level2 smaller">
+<h2>Detecting breakages early</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>In order to detect breakages earlier, you can run <code>R CMD check</code> by installing development versions of dependencies of your package.</p>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use scheduled GHA workflow to automate checking breakages (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-devel.yaml" target="_blank">example workflow</a>) on each commit.</p>
+<div style="font-size: 20px;">
+<p>How frequently you should run this check (e.g., once a month, every six months, etc.) and which dependencies you should include (e.g., only hard, only soft, a few of each, etc.) depends on how actively both your own package and your dependencies are being developed.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>What should you do if you <em>do</em> detect a breakage?</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>If the root cause of breakage turns out to be a regression in the dependency, inform the maintainer so that they can revert the change.</p></li>
+<li><p>If the breakage is legitimate, make a PR to your repo with a fix but merge only when either the maintainer informs you of an upcoming release or the package has a new release. <strong>Don’t</strong> push the fix to <code>main</code>-branch because before release the breaking change might be reverted in the dependency itself.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="checklist-for-dependency-management" class="slide level2 smaller">
 <h2>Checklist for dependency management</h2>
 <!-- column layout -->
@@ -2278,6 +2328,11 @@ YAML</code></pre>
 
 </section>
 
+<section id="further-reading" class="title-slide slide level1 center">
+<h1>Further reading</h1>
+
+</section>
+
 <section id="for-more" class="title-slide slide level1 center">
 <h1>For more</h1>
 <p>If you are interested in good programming and software development practices, check out my other <a href="https://sites.google.com/site/indrajeetspatilmorality/presentations" target="_blank">slide decks</a>.</p>
@@ -2318,8 +2373,8 @@ YAML</code></pre>
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       Europe/Berlin
- date     2023-01-18
- pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
+ date     2023-01-19
+ pandoc   3.0 @ /usr/local/bin/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
  ! package     * version date (UTC) lib source
