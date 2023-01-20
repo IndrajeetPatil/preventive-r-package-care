@@ -2155,15 +2155,91 @@ env:
 
 ## Additional tips 
 
-- Most lints related to code formatting can be removed using [`{styler}`](https://r-lib.github.io/styler/){target='_blank'}. Preferably code is formatted consistently on each commit using [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml){target='_blank'}.
+- Most lints related to code formatting can be removed using [`{styler}`](https://r-lib.github.io/styler/){target='_blank'}, which enforces [tidyverse style guide](https://style.tidyverse.org/){target='_blank'}. Preferably code is formatted consistently on each commit using [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml){target='_blank'}.
 
 - Code smells are subjective and you may disagree with some linters. Use a [configuration file](https://lintr.r-lib.org/dev/articles/lintr.html) to customize which linters you wish to include. Additionally, you can annotate parts of code that linters should ignore.
 
 :::
 
+## Detecting issues with non-R code {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+An R package contains a number of configuration files written in languages other than R (e.g., YAML, JSON, DCF, etc.), and you may also wish to make sure that none of them are malformed.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+To detect multi-language code issues, you can use [pre-commit](https://pre-commit.com/){target='_blank'}, which is a framework for managing and maintaining git hooks. This framework can be accessed in R using [`{precommit}`](https://lorenzwalthert.github.io/precommit/){target='_blank'}. 
+
+:::{style="font-size: 20px;"}
+
+The framework offers [hundreds of hooks](https://pre-commit.com/hooks.html){target='_blank'} to choose from and you can choose ones relevant to your config files (e.g. to lint and format JSON and YAML files).
+
+:::
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [GHA workflow](https://github.com/r-lib/styler/blob/main/.github/workflows/pre-commit.yaml){target='_blank'} to detect any problems with non-R code on each commit. You can specify the hooks relevant to you in a [pre-commit config file](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.pre-commit-config.yaml){target='_blank'}.
+
+:::
+
+::::
+
+
 <!-- ## Benchmarking -->
 
-<!-- ## Precommit -->
 
 ## Checklist for code quality {.smaller}
 

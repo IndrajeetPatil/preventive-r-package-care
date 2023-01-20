@@ -2060,14 +2060,61 @@ x = 1
 </div>
 <div class="callout-content">
 <ul>
-<li><p>Most lints related to code formatting can be removed using <a href="https://r-lib.github.io/styler/" target="_blank"><code>{styler}</code></a>. Preferably code is formatted consistently on each commit using <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml" target="_blank">GHA workflow</a>.</p></li>
+<li><p>Most lints related to code formatting can be removed using <a href="https://r-lib.github.io/styler/" target="_blank"><code>{styler}</code></a>, which enforces <a href="https://style.tidyverse.org/" target="_blank">tidyverse style guide</a>. Preferably code is formatted consistently on each commit using <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml" target="_blank">GHA workflow</a>.</p></li>
 <li><p>Code smells are subjective and you may disagree with some linters. Use a <a href="https://lintr.r-lib.org/dev/articles/lintr.html">configuration file</a> to customize which linters you wish to include. Additionally, you can annotate parts of code that linters should ignore.</p></li>
 </ul>
 </div>
 </div>
 </div>
+</div>
+</section>
+<section id="detecting-issues-with-non-r-code" class="slide level2 smaller">
+<h2>Detecting issues with non-R code</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/headache.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>An R package contains a number of configuration files written in languages other than R (e.g., YAML, JSON, DCF, etc.), and you may also wish to make sure that none of them are malformed.</p>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>To detect multi-language code issues, you can use <a href="https://pre-commit.com/" target="_blank">pre-commit</a>, which is a framework for managing and maintaining git hooks. This framework can be accessed in R using <a href="https://lorenzwalthert.github.io/precommit/" target="_blank"><code>{precommit}</code></a>.</p>
+<div style="font-size: 20px;">
+<p>The framework offers <a href="https://pre-commit.com/hooks.html" target="_blank">hundreds of hooks</a> to choose from and you can choose ones relevant to your config files (e.g.&nbsp;to lint and format JSON and YAML files).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://github.com/r-lib/styler/blob/main/.github/workflows/pre-commit.yaml" target="_blank">GHA workflow</a> to detect any problems with non-R code on each commit. You can specify the hooks relevant to you in a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.pre-commit-config.yaml" target="_blank">pre-commit config file</a>.</p>
+</div>
+</div>
 <!-- ## Benchmarking -->
-<!-- ## Precommit -->
 </div>
 </section>
 <section id="checklist-for-code-quality" class="slide level2 smaller">

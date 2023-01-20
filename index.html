@@ -1857,7 +1857,7 @@ YAML</code></pre>
 </div>
 <div class="callout-content">
 <ul>
-<li><p>If needed, you can run checks on additional platforms using <a href="https://r-hub.github.io/rhub/articles/rhub.html"><code>{rhub}</code></a>.</p></li>
+<li><p>If needed, you can run checks on additional platforms using <a href="https://r-hub.github.io/rhub/articles/rhub.html" target="_blank"><code>{rhub}</code></a>.</p></li>
 <li><p>Fully crossed checks (all major platforms <span class="math inline">\(\times\)</span> all supported R versions) are rarely necessary and definitely an overkill.</p></li>
 <li><p>Ideally, the package should be tested until the oldest R version it purports to support. E.g. if <code>DESCRIPTION</code> says <code>R &gt;= 3.4</code>, then you should check until <code>R 3.4</code> to make sure that the package indeed works for this R version. If you check only until <code>R 3.5</code>, it is instead better to bump version in <code>DESCRIPTION</code>.</p></li>
 </ul>
@@ -1902,15 +1902,257 @@ YAML</code></pre>
 </tbody>
 </table>
 
-<!-- # Code quality -->
-<!-- Preventive care  -->
-<!-- ## styler -->
-<!-- ## lint -->
-<!-- ## Benchmarking -->
-<!-- ## Precommit -->
 <aside><div>
 <p>The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). So you can extend the list as you see fit for your workflow!</p>
 </div></aside></section></section>
+<section>
+<section id="code-quality" class="title-slide slide level1 center">
+<h1>Code quality</h1>
+<p>Preventive care to detect code quality issues and performance regressions.</p>
+</section>
+<section id="dont-comment-bad-coderewrite-it." class="slide level2">
+<h2>“Don’t comment bad code—rewrite it.”</h2>
+<p>- Brian W. Kernighan</p>
+</section></section>
+<section>
+<section id="section-4" class="title-slide slide level1 center">
+<h1></h1>
+<!-- column layout -->
+<div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that the code is readable, maintainable, and follows agreed conventions.</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-quality-issues" class="slide level2 smaller">
+<h2>Code quality issues</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/tumble-dryer.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p><a href="https://en.wikipedia.org/wiki/Code_smell" target="_blank">Code smells</a> (aka lints) are patterns that are known to be problematic for readability, efficiency, consistency, style, etc. Catching such issues early on can help prevent bugs and other issues from creeping into code, which can save time and effort when it comes to debugging and testing.</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code with a lint</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lint</span>(<span class="at">text =</span> <span class="st">"x = 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;text&gt;:1:3: style: [assignment_linter] Use &lt;-, not =, for assignment.
+x = 1
+  ^</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:40%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code without a lint</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lint</span>(<span class="at">text =</span> <span class="st">"x &lt;- 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/headache.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>In larger projects or teams, where multiple contributors may be working on the same codebase, it can become difficult for an individual contributor to detect code quality or formatting issues that they or someone else may have introduced.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to make sure that there are no known code quality issues present?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="detecting-lints" class="slide level2 smaller">
+<h2>Detecting lints</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://r-lib.github.io/lintr/dev/" target="_blank"><code>{lintr}</code></a> to carry out static code analysis to detect code quality issues.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lintr<span class="sc">::</span><span class="fu">lint_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://github.com/r-lib/lintr/blob/main/.github/workflows/lint.yaml" target="_blank">GHA workflow</a> to detect all lints on each commit.</p>
+<div style="font-size: 20px;">
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>This workflow can be overwhelming at first as it can detect hundreds of issues. Therefore, <strong>don’t</strong> error if lints are found.</p>
+<p>You can use <a href="https://github.com/r-lib/lintr/blob/main/.github/workflows/lint-changed-files.yaml" target="_blank">another workflow</a> which fails only if lints are found <strong>only</strong> in files that changed in a PR. This is an easier and less disheartening way to clean lints.</p>
+</div><div class="column" style="width:40%;">
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># In `lint.yaml`</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="at">  </span><span class="fu">LINTR_ERROR_ON_LINT</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># In `lint-changed-files.yaml`</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="at">  </span><span class="fu">LINTR_ERROR_ON_LINT</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Most lints related to code formatting can be removed using <a href="https://r-lib.github.io/styler/" target="_blank"><code>{styler}</code></a>, which enforces <a href="https://style.tidyverse.org/" target="_blank">tidyverse style guide</a>. Preferably code is formatted consistently on each commit using <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml" target="_blank">GHA workflow</a>.</p></li>
+<li><p>Code smells are subjective and you may disagree with some linters. Use a <a href="https://lintr.r-lib.org/dev/articles/lintr.html">configuration file</a> to customize which linters you wish to include. Additionally, you can annotate parts of code that linters should ignore.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="detecting-issues-with-non-r-code" class="slide level2 smaller">
+<h2>Detecting issues with non-R code</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/headache.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>An R package contains a number of configuration files written in languages other than R (e.g., YAML, JSON, DCF, etc.), and you may also wish to make sure that none of them are malformed.</p>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>To detect multi-language code issues, you can use <a href="https://pre-commit.com/" target="_blank">pre-commit</a>, which is a framework for managing and maintaining git hooks. This framework can be accessed in R using <a href="https://lorenzwalthert.github.io/precommit/" target="_blank"><code>{precommit}</code></a>.</p>
+<div style="font-size: 20px;">
+<p>The framework offers <a href="https://pre-commit.com/hooks.html" target="_blank">hundreds of hooks</a> to choose from and you can choose ones relevant to your config files (e.g.&nbsp;to lint and format JSON and YAML files).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://github.com/r-lib/styler/blob/main/.github/workflows/pre-commit.yaml" target="_blank">GHA workflow</a> to detect any problems with non-R code on each commit. You can specify the hooks relevant to you in a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.pre-commit-config.yaml" target="_blank">pre-commit config file</a>.</p>
+</div>
+</div>
+<!-- ## Benchmarking -->
+</div>
+</section>
+<section id="checklist-for-code-quality" class="slide level2 smaller">
+<h2>Checklist for code quality</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that the code is readable, maintainable, and follows agreed conventions.</strong></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure code follows style guide.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure there are no known code quality issues.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure there are no severe performance regressions</td>
+</tr>
+</tbody>
+</table>
+</section></section>
 <section id="dependency-management" class="title-slide slide level1 center">
 <h1>Dependency management</h1>
 <p>Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.</p>
@@ -1922,7 +2164,7 @@ YAML</code></pre>
 </section>
 
 <section>
-<section id="section-4" class="title-slide slide level1 center">
+<section id="section-5" class="title-slide slide level1 center">
 <h1></h1>
 <!-- column layout -->
 <div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
@@ -2072,8 +2314,8 @@ YAML</code></pre>
 <p>Soft dependencies should be used conditionally across all contexts. Let’s say <code>{lme4}</code> is such a dependency.</p>
 </div><div class="column" style="width:30%;">
 <p>In <code>DESCRIPTION</code></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb15-1"><a href="#cb15-1"></a>Suggests:</span>
-<span id="cb15-2"><a href="#cb15-2"></a>    lme4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb21-1"><a href="#cb21-1"></a>Suggests:</span>
+<span id="cb21-2"><a href="#cb21-2"></a>    lme4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
@@ -2084,9 +2326,9 @@ YAML</code></pre>
 <div class="column" style="width:50%;">
 <p><strong>Examples</strong> in help pages should be executed only if package is available.</p>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># In R/file-1.R</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="co">#' @examplesIf requireNamespace("lme4")</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="co">#' lme4::lmer(...)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># In R/file-1.R</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="co">#' @examplesIf requireNamespace("lme4")</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="co">#' lme4::lmer(...)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <hr>
@@ -2109,11 +2351,11 @@ YAML</code></pre>
 <div class="column" style="width:50%;">
 <p><strong>Tests</strong> should be run only if package is available.</p>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># In tests/testthat/test-file-1.R</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">test_that</span>(<span class="st">"bla"</span>, {</span>
-<span id="cb17-3"><a href="#cb17-3"></a>  testthat<span class="sc">::</span><span class="fu">skip_if_not_installed</span>(<span class="st">"lme4"</span>)</span>
-<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">expect_equal</span>(lme4<span class="sc">::</span><span class="fu">lmer</span>(...), ...)</span>
-<span id="cb17-5"><a href="#cb17-5"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># In tests/testthat/test-file-1.R</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">test_that</span>(<span class="st">"bla"</span>, {</span>
+<span id="cb23-3"><a href="#cb23-3"></a>  testthat<span class="sc">::</span><span class="fu">skip_if_not_installed</span>(<span class="st">"lme4"</span>)</span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">expect_equal</span>(lme4<span class="sc">::</span><span class="fu">lmer</span>(...), ...)</span>
+<span id="cb23-5"><a href="#cb23-5"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <hr>
@@ -2161,7 +2403,7 @@ YAML</code></pre>
 <li><p>This trick won’t work for excluded vignettes (from <code>vignettes/</code> subdirectory or <code>.Rbuildignore</code>-ed). To ensure that excluded vignettes are using soft dependencies conditionally, run <code>{pkgdown}</code> in <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml" target="_blank">“noSuggests” mode</a>.</p></li>
 <li><p>For <code>R CMD check</code> with all dependencies installed, use <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-strict.yaml" target="_blank">strict workflow</a> that fails on any <code>NOTE</code>. To avoid failing on <code>NOTE</code>s accepted by CRAN, include this in <code>DESCRIPTION</code>:</p></li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb18-1"><a href="#cb18-1"></a>Config/rcmdcheck/ignore-inconsequential-notes: true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1"></a>Config/rcmdcheck/ignore-inconsequential-notes: true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2326,9 +2568,9 @@ YAML</code></pre>
 <div style="font-size: 20px;">
 <p>Example of an insignificant change.</p>
 </div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource diff number-lines code-with-copy"><code class="sourceCode diff"><span id="cb19-1"><a href="#cb19-1"></a># In `NEWS.md`</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="st">- witdh</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="va">+ width</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource diff number-lines code-with-copy"><code class="sourceCode diff"><span id="cb25-1"><a href="#cb25-1"></a># In `NEWS.md`</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="st">- witdh</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="va">+ width</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -2378,7 +2620,7 @@ YAML</code></pre>
 <h1>Further reading</h1>
 <p>For more extensive discussions on best practices in software development.</p>
 </section>
-<section id="section-5" class="slide level2 smaller">
+<section id="section-6" class="slide level2 smaller">
 <h2></h2>
 <h3 id="r-specific">R-specific</h3>
 <ul>
@@ -2425,7 +2667,7 @@ YAML</code></pre>
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
@@ -2441,37 +2683,53 @@ YAML</code></pre>
  pandoc   3.0 @ /usr/local/bin/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
- ! package     * version date (UTC) lib source
-   base        * 4.2.2   2022-10-31 [?] local
-   cli           3.6.0   2023-01-09 [1] CRAN (R 4.2.2)
- P compiler      4.2.2   2022-10-31 [1] local
- P datasets    * 4.2.2   2022-10-31 [1] local
-   digest        0.6.31  2022-12-11 [1] CRAN (R 4.2.2)
-   evaluate      0.20    2023-01-17 [1] CRAN (R 4.2.0)
-   fastmap       1.1.0   2021-01-25 [1] CRAN (R 4.2.0)
-   glue          1.6.2   2022-02-24 [1] CRAN (R 4.2.0)
- P graphics    * 4.2.2   2022-10-31 [1] local
- P grDevices   * 4.2.2   2022-10-31 [1] local
-   htmltools     0.5.4   2022-12-07 [1] CRAN (R 4.2.2)
-   jpeg          0.1-10  2022-11-29 [1] CRAN (R 4.2.0)
-   jsonlite      1.8.4   2022-12-06 [1] CRAN (R 4.2.2)
-   knitr         1.41    2022-11-18 [1] CRAN (R 4.2.2)
-   lifecycle     1.0.3   2022-10-07 [1] CRAN (R 4.2.1)
-   magrittr      2.0.3   2022-03-30 [1] CRAN (R 4.2.0)
- P methods     * 4.2.2   2022-10-31 [1] local
-   png           0.1-8   2022-11-29 [1] CRAN (R 4.2.2)
-   rlang         1.0.6   2022-09-24 [1] CRAN (R 4.2.1)
-   rmarkdown     2.20    2023-01-19 [1] CRAN (R 4.2.2)
-   rstudioapi    0.14    2022-08-22 [1] CRAN (R 4.2.1)
-   sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.2.0)
- P stats       * 4.2.2   2022-10-31 [1] local
-   stringi       1.7.12  2023-01-11 [1] CRAN (R 4.2.0)
-   stringr       1.5.0   2022-12-02 [1] CRAN (R 4.2.2)
- P tools         4.2.2   2022-10-31 [1] local
- P utils       * 4.2.2   2022-10-31 [1] local
-   vctrs         0.5.1   2022-11-16 [1] CRAN (R 4.2.2)
-   xfun          0.36    2022-12-21 [1] CRAN (R 4.2.0)
-   yaml          2.3.6   2022-10-18 [1] CRAN (R 4.2.1)
+ ! package      * version    date (UTC) lib source
+   backports      1.4.1      2021-12-13 [1] CRAN (R 4.2.0)
+   base         * 4.2.2      2022-10-31 [?] local
+   callr          3.7.3      2022-11-02 [1] CRAN (R 4.2.0)
+   cli            3.6.0      2023-01-09 [1] CRAN (R 4.2.2)
+ P compiler       4.2.2      2022-10-31 [1] local
+   crayon         1.5.2      2022-09-29 [1] CRAN (R 4.2.1)
+   cyclocomp      1.1.0      2016-09-10 [1] CRAN (R 4.2.0)
+ P datasets     * 4.2.2      2022-10-31 [1] local
+   desc           1.4.2      2022-09-08 [1] CRAN (R 4.2.1)
+   digest         0.6.31     2022-12-11 [1] CRAN (R 4.2.2)
+   evaluate       0.20       2023-01-17 [1] CRAN (R 4.2.0)
+   fastmap        1.1.0      2021-01-25 [1] CRAN (R 4.2.0)
+   glue           1.6.2      2022-02-24 [1] CRAN (R 4.2.0)
+ P graphics     * 4.2.2      2022-10-31 [1] local
+ P grDevices    * 4.2.2      2022-10-31 [1] local
+   htmltools      0.5.4      2022-12-07 [1] CRAN (R 4.2.2)
+   jpeg           0.1-10     2022-11-29 [1] CRAN (R 4.2.0)
+   jsonlite       1.8.4      2022-12-06 [1] CRAN (R 4.2.2)
+   knitr          1.41       2022-11-18 [1] CRAN (R 4.2.2)
+   lazyeval       0.2.2      2019-03-15 [1] CRAN (R 4.2.0)
+   lifecycle      1.0.3      2022-10-07 [1] CRAN (R 4.2.1)
+   lintr        * 3.0.2.9000 2023-01-06 [1] Github (r-lib/lintr@bb4d43d)
+   magrittr       2.0.3      2022-03-30 [1] CRAN (R 4.2.0)
+ P methods      * 4.2.2      2022-10-31 [1] local
+   png            0.1-8      2022-11-29 [1] CRAN (R 4.2.2)
+   processx       3.8.0      2022-10-26 [1] CRAN (R 4.2.1)
+   ps             1.7.2      2022-10-26 [1] CRAN (R 4.2.0)
+   R6             2.5.1.9000 2022-10-27 [1] local
+   remotes        2.4.2      2021-11-30 [1] CRAN (R 4.2.0)
+   rex            1.2.1      2021-11-26 [1] CRAN (R 4.2.0)
+   rlang          1.0.6      2022-09-24 [1] CRAN (R 4.2.1)
+   rmarkdown      2.20       2023-01-19 [1] CRAN (R 4.2.2)
+   rprojroot      2.0.3      2022-04-02 [1] CRAN (R 4.2.0)
+   rstudioapi     0.14       2022-08-22 [1] CRAN (R 4.2.1)
+   sessioninfo    1.2.2      2021-12-06 [1] CRAN (R 4.2.0)
+ P stats        * 4.2.2      2022-10-31 [1] local
+   stringi        1.7.12     2023-01-11 [1] CRAN (R 4.2.0)
+   stringr        1.5.0      2022-12-02 [1] CRAN (R 4.2.2)
+ P tools          4.2.2      2022-10-31 [1] local
+ P utils        * 4.2.2      2022-10-31 [1] local
+   vctrs          0.5.1      2022-11-16 [1] CRAN (R 4.2.2)
+   withr          2.5.0      2022-03-03 [1] CRAN (R 4.2.0)
+   xfun           0.36       2022-12-21 [1] CRAN (R 4.2.0)
+   xml2           1.3.3      2021-11-30 [1] CRAN (R 4.2.0)
+   xmlparsedata   1.0.5      2021-03-06 [1] CRAN (R 4.2.0)
+   yaml           2.3.6      2022-10-18 [1] CRAN (R 4.2.1)
 
  [1] /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library
 
