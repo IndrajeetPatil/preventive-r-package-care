@@ -1922,23 +1922,17 @@ The items on this list will vary significantly from package to package (e.g., do
 
 :::
 
-# Code quality
+<!-- # Code quality -->
 
-Preventive care 
+<!-- Preventive care  -->
 
-## styler
+<!-- ## styler -->
 
-## lint
+<!-- ## lint -->
 
-## Benchmarking
+<!-- ## Benchmarking -->
 
-Touchstone framework
-
-## Precommit
-
-
-
-# Fail on a NOTE
+<!-- ## Precommit -->
 
 # Dependency management
 
