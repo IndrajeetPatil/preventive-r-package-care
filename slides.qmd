@@ -2444,7 +2444,7 @@ knitr::include_graphics("media/target.png")
 
 # Eco-friendly workflows
 
-Do you *really* need to run all these workflows on each commit?!
+Do you *really* need to run all workflows on each commit?!
 
 ## Skipping workflows {.smaller}
 
@@ -2480,7 +2480,7 @@ Example of an insignificant change.
 
 ## Reducing count of workflow runs
 
-You can use a few or all of the following options to reduce the frequency with which the workflows are run.  
+You can use a few or all of the following options to reduce the frequency with which the workflows are run.
 
 - Use `[skip ci]` in your commit messages for commits with insignificant changes.
 - Run workflows only when a PR is marked "Ready for Review".
