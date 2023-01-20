@@ -1874,7 +1874,7 @@ Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/R-
 
 ## Additional tips 
 
-- If needed, you can run checks on additional platforms using [`{rhub}`](https://r-hub.github.io/rhub/articles/rhub.html).
+- If needed, you can run checks on additional platforms using [`{rhub}`](https://r-hub.github.io/rhub/articles/rhub.html){target='_blank'}.
 
 - Fully crossed checks (all major platforms $\times$ all supported R versions) are rarely necessary and definitely an overkill.
 
@@ -1922,17 +1922,282 @@ The items on this list will vary significantly from package to package (e.g., do
 
 :::
 
-<!-- # Code quality -->
+# Code quality
 
-<!-- Preventive care  -->
+Preventive care to detect code quality issues and performance regressions.
 
-<!-- ## styler -->
+## "Don’t comment bad code—rewrite it."
+\- Brian W. Kernighan
 
-<!-- ## lint -->
+#
+
+<!-- column layout -->
+
+:::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that the code is readable, maintainable, and follows agreed conventions.**
+
+:::
+
+:::
+
+::::
+
+:::::
+
+## Code quality issues {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/tumble-dryer.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+[Code smells](https://en.wikipedia.org/wiki/Code_smell){target='_blank'} (aka lints) are patterns that are known to be problematic for readability, efficiency, consistency, style, etc. Catching such issues early on can help prevent bugs and other issues from creeping into code, which can save time and effort when it comes to debugging and testing.
+
+:::: {.columns}
+
+::: {.column width='40%'}
+
+```{r}
+#| echo: false
+library(lintr)
+```
+
+
+```{r}
+#| eval: true
+#| code-line-numbers: false
+# code with a lint
+lint(text = "x = 1")
+```
+
+:::
+
+::: {.column width='10%'}
+
+:::
+
+::: {.column width='40%'}
+
+```{r}
+#| eval: true
+#| code-line-numbers: false
+# code without a lint
+lint(text = "x <- 1")
+```
+
+:::
+
+::::
+
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+In larger projects or teams, where multiple contributors may be working on the same codebase, it can become difficult for an individual contributor to detect code quality or formatting issues that they or someone else may have introduced.
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to make sure that there are no known code quality issues present?**
+
+:::
+
+:::
+
+::::
+
+## Detecting lints {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [`{lintr}`](https://r-lib.github.io/lintr/dev/){target='_blank'} to carry out static code analysis to detect code quality issues.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+lintr::lint_package()
+```
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/lint.yaml){target='_blank'} to detect all lints on each commit.
+
+:::{style="font-size: 20px;"}
+
+:::: {.columns}
+
+::: {.column width='60%'}
+
+This workflow can be overwhelming at first as it can detect hundreds of issues. Therefore, **don't** error if lints are found.
+
+You can use [another workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/lint-changed-files.yaml){target='_blank'} which fails only if lints are found **only** in files that changed in a PR. This is an easier and less disheartening way to clean lints.
+
+:::
+
+::: {.column width='40%'}
+
+```yaml
+# In `lint.yaml`
+env:
+  LINTR_ERROR_ON_LINT: false
+```
+
+<br>
+
+```yaml
+# In `lint-changed-files.yaml`
+env:
+  LINTR_ERROR_ON_LINT: true
+```
+
+:::
+
+::::
+
+:::
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- Most lints related to code formatting can be removed using [`{styler}`](https://r-lib.github.io/styler/){target='_blank'}. Preferably code is formatted consistently on each commit using [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml){target='_blank'}.
+
+- Code smells are subjective and you may disagree with some linters. Use a [configuration file](https://lintr.r-lib.org/dev/articles/lintr.html) to customize which linters you wish to include. Additionally, you can annotate parts of code that linters should ignore.
+
+:::
 
 <!-- ## Benchmarking -->
 
 <!-- ## Precommit -->
+
+## Checklist for code quality {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that the code is readable, maintainable, and follows agreed conventions.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                                  |
+| :---------------------------------------------------- |
+| Make sure code follows style guide.                   |
+| Make sure there are no known code quality issues.     |
+| Make sure there are no severe performance regressions |
 
 # Dependency management
 
