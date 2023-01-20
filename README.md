@@ -1,5 +1,13 @@
 
-# Preventive Care for R Packages
+## Preventive Care for R Packages
+
+As an R package developer, if you ever lay awake in the bed wondering:
+
+- if the users are having a bad experience while using the package,
+- if you will receive the dreaded CRAN email about archival, and
+- if you will be able to update the package in time,
+
+then this presentation is for you! 😊
 
 Link to slides:
 <https://indrajeetpatil.github.io/preventive-r-package-care/>

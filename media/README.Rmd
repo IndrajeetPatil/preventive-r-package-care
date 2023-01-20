@@ -2,25 +2,6 @@
 output: github_document
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
-
-## Preventive Care for R Packages
-
-As an R package developer, if you ever lay awake in the bed wondering:
-
-- if the users are having a bad experience while using the package,
-- if you will receive the dreaded CRAN email about archival, and
-- if you will be able to update the package in time,
-
-then this presentation is for you! 😊
-
-Link to slides: <https://indrajeetpatil.github.io/preventive-r-package-care/>
-
 ## Acknowledgements
 
 All images in the `/media` folder have been taken from [Flaticon](www.flaticon.com) by [freepikcompany](https://www.freepikcompany.com/). Huge thanks to them for making such fantastic resource freely available to the community!

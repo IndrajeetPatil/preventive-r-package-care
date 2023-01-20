@@ -9,7 +9,7 @@ Authors@R:
            comment = c(ORCID = "0000-0003-1995-6531", Twitter = "@patilindrajeets"))
 Description: This presentation contains tips on how to fight software entropy in 
     R package development. This is not a package, and the DESCRIPTION file is 
-    included to make it easier to install required packages in GitHub action workflows.
+    included to make it easier to install required packages in GitHub Actions workflows.
 License: CC0 1.0 Universal
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
