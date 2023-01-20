@@ -2410,16 +2410,25 @@ The items on this list will vary significantly from package to package (e.g., do
 
 :::
 
-# Unit testing
+<!-- # Unit testing -->
 
-offline
+<!-- offline -->
 
+# Code quality
 
-# Precommit
+Preventive care 
 
-# Benchmarking
+## styler
+
+## lint
+
+## Benchmarking
 
 Touchstone framework
+
+## Precommit
+
+
 
 # Fail on a NOTE
 
@@ -2437,9 +2446,9 @@ Sometimes two concerns can conflict: more examples versus package size
 
 # Conclusion
 
-# Further reading
+## Further reading {.smaller}
 
-## {.smaller}
+For more extensive discussions on best practices in R package development.
 
 - [Writing R Extensions](https://rstudio.github.io/r-manuals/r-exts/){target="_blank"}
 
@@ -2451,9 +2460,17 @@ If you are interested in good programming and software development practices, ch
 
 # Acknowledgements {.smaller}
 
-All images used in these slides have been taken from [Flaticon](www.flaticon.com){target="_blank"} by [freepikcompany](https://www.freepikcompany.com/){target="_blank"}. Huge thanks to them for making such fantastic resource freely available to the community.
+Thanks to all creators, maintainers, and contributors for the tools mentioned throughout the presentation. Without them, it won't be so easy to create robust package development architecture in R! 🙏
+
+<br>
+
+:::{style="background-color: #FEC868; padding: 20px; border-radius: 25px;"}
+
+All images used in these slides have been taken from [Flaticon](www.flaticon.com){target="_blank"} by [freepikcompany](https://www.freepikcompany.com/){target="_blank"}. Huge thanks to them for making such fantastic resource freely available.
 
 Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/){target="_blank"}, this license **does not** cover  images in the `/media` folder. If you use them, you need to follow the [attribution policy](https://support.flaticon.com/s/article/Attribution-How-when-and-where-FI?language=en_US){target="_blank"} stated by Flaticon.
+
+:::
 
 # Find me at...
 
