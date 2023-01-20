@@ -3,7 +3,7 @@
 
 If you ever lay awake in the bed wondering:
 
-- if the users having a bad experience while using the package,
+- if the users are having a bad experience while using the package,
 - if you will receive the dreaded CRAN email about archival, and
 - if you will be able to update the package in time,
 

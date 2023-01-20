@@ -36,7 +36,7 @@ knitr::include_graphics("media/preventive-care.jpeg")
 
 If you ever lay awake in the bed wondering:
 
-- if the users having a bad experience while using the package,
+- if the users are having a bad experience while using the package,
 - if you will receive the dreaded CRAN email about archival, and
 - if you will be able to update the package in time,
 
@@ -2416,10 +2416,6 @@ The items on this list will vary significantly from package to package (e.g., do
 
 :::
 
-<!-- # Unit testing -->
-
-<!-- offline -->
-
 # Code quality
 
 Preventive care 
@@ -2442,9 +2438,52 @@ Touchstone framework
 
 Do you *really* need to run all these workflows on each commit?!
 
+## Skipping workflows {.smaller}
+
+:::: {.columns}
+
+::: {.column width='70%'}
+
+Although GitHub generously allows its servers for free (thanks Microsoft!) for open-source projects to run all these workflows, they still expend energy and it might bother you that you are wasting energy even on insignificant changes.
+
+:::
+
+::: {.column width='30%'}
+
+:::{style="font-size: 20px;"}
+
+Example of a minor change.
+
+:::
+
+```diff
+# In `NEWS.md`
+- witdh
++ width
+```
+
+:::
+
+::::
+
+. . . 
+
+:::{.callout-tip}
+
+## Reducing count of workflow runs
+
+You can use a few or all of the following options to reduce the frequency with which the workflows are run.  
+
+- Use `[skip ci]` in your commit messages for commits with insignificant changes.
+- Run workflows only when a PR is marked "Ready for Review".
+- Skip running some workflows (spelling, HTML5, link rot, etc.) on each commit once all workflows are green. Instead, run them with weekly and monthly schedules, and then fix the newly found problems.
+- Run some workflows only when ready for a new release.
+
+:::
+
 # Caveats
 
-No good practice is dogma and there can always exist reasons to ignore it.
+No good practice is dogma. There can always exist reasons to ignore it.
 
 ## 
 
