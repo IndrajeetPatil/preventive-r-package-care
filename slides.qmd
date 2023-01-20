@@ -186,6 +186,107 @@ Automation
 
 ::::
 
+# Digging the pit of success
+
+How can software engineering improve sustainability
+
+## Be always release-ready {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='70%'}
+
+Based on research, *Accelerate* (Nicole, Humble, & Kim, 2018) argue that the key difference between high-performing vs low-performing software teams is *the ability to make a release at the drop of a hat*.
+
+For R packages, this translates to making sure that every commit on the `main`-branch is **release-ready**. 
+
+That is, if you were asked to make a new release soon, you can be confident that the latest commit doesn't have any documentation issues, code quality issues, performance regressions, etc.
+
+:::
+
+::: {.column width='30%'}
+
+```{r}
+#| echo: false
+#| out-width: "70%"
+knitr::include_graphics("media/accelerate.jpg")
+```
+
+:::
+
+::::
+
+. . . 
+
+<br>
+
+
+:::{style="background-color: #F3CCFF; padding: 20px; border-radius: 25px; text-align: center;"}
+
+How can software engineering help to achieve this goal?
+
+:::
+
+## Fighting software entropy {.smaller}
+
+The biggest reason why a software project becomes unsustainable is the unchecked accumulation of complexity.
+
+. . . 
+
+:::: {.columns}
+
+::: {.column width='20%'}
+
+```{r}
+#| echo: false
+knitr::include_graphics("media/engineer.png")
+```
+
+:::
+
+::: {.column width='80%'}
+
+**Software engineering is the active and conscious process of preventing complexity from growing.**
+
+It provides the methodology to make sure that the software works as intended and to ensure that it stays that way.
+
+:::
+
+::::
+
+. . . 
+
+:::{style="font-size: 25px;"}
+
+:::: {.columns}
+
+::: {.column width='20%'}
+
+```{r}
+#| echo: false
+knitr::include_graphics("media/checklist.png")
+```
+
+:::
+
+::: {.column width='80%'}
+
+Software development is an inherently complex process. To make it more manageable, we break it down into checklists of best practices—each designed to stave off complexity—so that we don't forget about them.
+
+Following each item on a checklist is a small improvement, but constantly keeping an eye on internal quality prevents software entropy from setting in. Although software engineering is more than about automating this process, it is undoubtedly an important part of it.
+
+:::
+
+::::
+
+:::
+
+# R package development
+
+Using automation to tick checklists for various aspects of package development.
+
 # Documentation
 
 Preventive care to make sure the docs are up-to-date.
@@ -1571,7 +1672,7 @@ There is almost never a need to explicitly highlight warnings intrinsic to your 
 
 . . .
 
-::: {style="background-color: #E1D7C6; padding: 20px; border-radius: 25px;"}
+::: {style="background-color: #FFDCA9; padding: 20px; border-radius: 25px;"}
 
 - Warnings are generated in contexts where functions in *your* package were used unexpectedly by the users. But such contexts shouldn't be deliberately highlighted in the documentation. Users should always see [happy path](https://en.wikipedia.org/wiki/Happy_path){target='_blank'} examples in help pages, README, or vignettes.
 
@@ -1587,7 +1688,7 @@ Warnings from dependencies can be critical and should be dealt with ASAP.
 
 . . .
 
-::: {style="background-color: #E1D7C6; padding: 20px; border-radius: 25px;"}
+::: {style="background-color: #FFFBC1; padding: 20px; border-radius: 25px;"}
 
 - If dependencies are emitting warnings because your functions are using imported code in unexpected ways, rewrite functions to remove warnings.
 
@@ -2625,9 +2726,13 @@ Suggests:
 
 ::: {.column width='50%'}
 
-<!-- TODO: add back verbatim chunk -->
+````{verbatim, eval=FALSE}
+<!-- In vignettes/doc-1.Rmd -->
+  ```{r eval = requireNamespace("lme4")}
+lme4::lmer(...)
+```
 
-placeholder text
+````
 
 :::
 

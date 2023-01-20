@@ -530,6 +530,73 @@
 </div>
 </div>
 </section></section>
+<section>
+<section id="digging-the-pit-of-success" class="title-slide slide level1 center">
+<h1>Digging the pit of success</h1>
+<p>How can software engineering improve sustainability</p>
+</section>
+<section id="be-always-release-ready" class="slide level2 smaller">
+<h2>Be always release-ready</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>Based on research, <em>Accelerate</em> (Nicole, Humble, &amp; Kim, 2018) argue that the key difference between high-performing vs low-performing software teams is <em>the ability to make a release at the drop of a hat</em>.</p>
+<p>For R packages, this translates to making sure that every commit on the <code>main</code>-branch is <strong>release-ready</strong>.</p>
+<p>That is, if you were asked to make a new release soon, you can be confident that the latest commit doesn’t have any documentation issues, code quality issues, performance regressions, etc.</p>
+</div><div class="column" style="width:30%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/accelerate.jpg" style="width:70.0%"></p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<div style="background-color: #F3CCFF; padding: 20px; border-radius: 25px; text-align: center;">
+<p>How can software engineering help to achieve this goal?</p>
+</div>
+</div>
+</section>
+<section id="fighting-software-entropy" class="slide level2 smaller">
+<h2>Fighting software entropy</h2>
+<p>The biggest reason why a software project becomes unsustainable is the unchecked accumulation of complexity.</p>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:20%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/engineer.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:80%;">
+<p><strong>Software engineering is the active and conscious process of preventing complexity from growing.</strong></p>
+<p>It provides the methodology to make sure that the software works as intended and to ensure that it stays that way.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div style="font-size: 25px;">
+<div class="columns">
+<div class="column" style="width:20%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/checklist.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:80%;">
+<p>Software development is an inherently complex process. To make it more manageable, we break it down into checklists of best practices—each designed to stave off complexity—so that we don’t forget about them.</p>
+<p>Following each item on a checklist is a small improvement, but constantly keeping an eye on internal quality prevents software entropy from setting in. Although software engineering is more than about automating this process, it is undoubtedly an important part of it.</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section id="r-package-development" class="title-slide slide level1 center">
+<h1>R package development</h1>
+<p>Using automation to tick checklists for various aspects of package development.</p>
+</section>
+
 <section id="documentation" class="title-slide slide level1 center">
 <h1>Documentation</h1>
 <p>Preventive care to make sure the docs are up-to-date.</p>
@@ -1620,7 +1687,7 @@ YAML</code></pre>
 <h2>Suppressing intrinsic warnings</h2>
 <p>There is almost never a need to explicitly highlight warnings intrinsic to your package.</p>
 <div class="fragment">
-<div style="background-color: #E1D7C6; padding: 20px; border-radius: 25px;">
+<div style="background-color: #FFDCA9; padding: 20px; border-radius: 25px;">
 <ul>
 <li><p>Warnings are generated in contexts where functions in <em>your</em> package were used unexpectedly by the users. But such contexts shouldn’t be deliberately highlighted in the documentation. Users should always see <a href="https://en.wikipedia.org/wiki/Happy_path" target="_blank">happy path</a> examples in help pages, README, or vignettes.</p></li>
 <li><p>While testing functions, you should use expectations (e.g.&nbsp;<code>testthat::expect_warning()</code>) to check that expected warnings are triggered. You shouldn’t print the warnings, since they can completely overwhelm the test log, which makes it difficult to catch important warnings.</p></li>
@@ -1633,7 +1700,7 @@ YAML</code></pre>
 <h2>Suppressing extrinsic warnings</h2>
 <p>Warnings from dependencies can be critical and should be dealt with ASAP.</p>
 <div class="fragment">
-<div style="background-color: #E1D7C6; padding: 20px; border-radius: 25px;">
+<div style="background-color: #FFFBC1; padding: 20px; border-radius: 25px;">
 <ul>
 <li><p>If dependencies are emitting warnings because your functions are using imported code in unexpected ways, rewrite functions to remove warnings.</p></li>
 <li><p>If the warnings are about deprecated functions or arguments, switch to using the suggested alternatives. Don’t wait until they are removed.</p></li>
@@ -2419,8 +2486,10 @@ x = 1
 <div class="column" style="width:50%;">
 <p><strong>Vignettes</strong> (or specific code chunks) should be executed only if package is available.</p>
 </div><div class="column" style="width:50%;">
-<!-- TODO: add back verbatim chunk -->
-<p>placeholder text</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1"></a>&lt;!-- In vignettes/doc-1.Rmd --&gt;</span>
+<span id="cb23-2"><a href="#cb23-2"></a>  ```{r eval = requireNamespace("lme4")}</span>
+<span id="cb23-3"><a href="#cb23-3"></a>lme4::lmer(...)</span>
+<span id="cb23-4"><a href="#cb23-4"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <hr>
@@ -2431,11 +2500,11 @@ x = 1
 <div class="column" style="width:50%;">
 <p><strong>Tests</strong> should be run only if package is available.</p>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># In tests/testthat/test-file-1.R</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">test_that</span>(<span class="st">"bla"</span>, {</span>
-<span id="cb23-3"><a href="#cb23-3"></a>  testthat<span class="sc">::</span><span class="fu">skip_if_not_installed</span>(<span class="st">"lme4"</span>)</span>
-<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">expect_equal</span>(lme4<span class="sc">::</span><span class="fu">lmer</span>(...), ...)</span>
-<span id="cb23-5"><a href="#cb23-5"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># In tests/testthat/test-file-1.R</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">test_that</span>(<span class="st">"bla"</span>, {</span>
+<span id="cb24-3"><a href="#cb24-3"></a>  testthat<span class="sc">::</span><span class="fu">skip_if_not_installed</span>(<span class="st">"lme4"</span>)</span>
+<span id="cb24-4"><a href="#cb24-4"></a>  <span class="fu">expect_equal</span>(lme4<span class="sc">::</span><span class="fu">lmer</span>(...), ...)</span>
+<span id="cb24-5"><a href="#cb24-5"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <hr>
@@ -2483,7 +2552,7 @@ x = 1
 <li><p>This trick won’t work for excluded vignettes (from <code>vignettes/</code> subdirectory or <code>.Rbuildignore</code>-ed). To ensure that excluded vignettes are using soft dependencies conditionally, run <code>{pkgdown}</code> in <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml" target="_blank">“noSuggests” mode</a>.</p></li>
 <li><p>For <code>R CMD check</code> with all dependencies installed, use <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-strict.yaml" target="_blank">strict workflow</a> that fails on any <code>NOTE</code>. To avoid failing on <code>NOTE</code>s accepted by CRAN, include this in <code>DESCRIPTION</code>:</p></li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1"></a>Config/rcmdcheck/ignore-inconsequential-notes: true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb25-1"><a href="#cb25-1"></a>Config/rcmdcheck/ignore-inconsequential-notes: true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2648,9 +2717,9 @@ x = 1
 <div style="font-size: 20px;">
 <p>Example of an insignificant change.</p>
 </div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource diff number-lines code-with-copy"><code class="sourceCode diff"><span id="cb25-1"><a href="#cb25-1"></a># In `NEWS.md`</span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="st">- witdh</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="va">+ width</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource diff number-lines code-with-copy"><code class="sourceCode diff"><span id="cb26-1"><a href="#cb26-1"></a># In `NEWS.md`</span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="st">- witdh</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="va">+ width</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -2756,7 +2825,7 @@ x = 1
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
