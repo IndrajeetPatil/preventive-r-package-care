@@ -1,6 +1,8 @@
 
 ## Preventive Care for R Packages
 
+<img src="media/preventive-care.jpeg" align="right" width="250" />
+
 As an R package developer, if you ever lay awake in the bed wondering:
 
 - if the users are having a bad experience while using the package,
@@ -11,6 +13,8 @@ then this presentation is for you! 😊
 
 Link to slides:
 <https://indrajeetpatil.github.io/preventive-r-package-care/>
+
+Feedback and suggestions are welcome!
 
 # Acknowledgements
 
