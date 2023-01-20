@@ -3024,6 +3024,22 @@ Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)]
 
 And Happy Package Care! 👼
 
+
+## Since you stayed behind...
+
+<br>
+<br>
+
+:::{style="background-color: #A0C3D2; padding: 30px; border-radius: 25px; text-align: center"}
+
+I am currently looking for a job, either as a **(Research) Software Engineer** or as a **Data Scientist**. 
+
+<br>
+
+If you know of any opportunities, let me know! 🙌
+
+:::
+
 ## Session information {.smaller}
 
 ```{r}
