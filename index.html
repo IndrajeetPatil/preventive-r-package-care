@@ -1905,15 +1905,16 @@ YAML</code></pre>
 <aside><div>
 <p>The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). So you can extend the list as you see fit for your workflow!</p>
 </div></aside></section></section>
-<section>
 <section id="code-quality" class="title-slide slide level1 center">
 <h1>Code quality</h1>
 <p>Preventive care to detect code quality issues and performance regressions.</p>
 </section>
-<section id="dont-comment-bad-coderewrite-it." class="slide level2">
-<h2>“Don’t comment bad code—rewrite it.”</h2>
+
+<section id="dont-comment-bad-coderewrite-it." class="title-slide slide level1 center">
+<h1>“Don’t comment bad code—rewrite it.”</h1>
 <p>- Brian W. Kernighan</p>
-</section></section>
+</section>
+
 <section>
 <section id="section-4" class="title-slide slide level1 center">
 <h1></h1>
@@ -2114,7 +2115,101 @@ x = 1
 <p>Use <a href="https://github.com/r-lib/styler/blob/main/.github/workflows/pre-commit.yaml" target="_blank">GHA workflow</a> to detect any problems with non-R code on each commit. You can specify the hooks relevant to you in a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.pre-commit-config.yaml" target="_blank">pre-commit config file</a>.</p>
 </div>
 </div>
-<!-- ## Benchmarking -->
+</div>
+</section>
+<section id="dont-slow-it-down" class="slide level2 smaller">
+<h2>Don’t slow it down</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/snail.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>If your package is mature and stable enough that you have started to invest in improving its efficiency, it is important that you have some metric by which you can benchmark if a new PR improves or degrades performance in comparison with the latest commit on <code>main</code>.</p>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/headache.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Checking for performance regressions just before or even after the release is not ideal, since it might be difficult to revert back to the state before regression took place.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to reliably benchmark PRs for performance regressions?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="detecting-performance-regressions" class="slide level2 smaller">
+<h2>Detecting performance regressions</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/touchstone.png" width="1185"></p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://github.com/r-lib/styler/blob/main/.github/workflows/touchstone-comment.yaml" target="_blank">GHA workflow</a> for benchmarking PRs and detecting any performance regressions.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="checklist-for-code-quality" class="slide level2 smaller">
@@ -2612,7 +2707,7 @@ x = 1
 </section></section>
 <section id="conclusion" class="title-slide slide level1 center">
 <h1>Conclusion</h1>
-<p>It is possible to build automated, robust, and reliable infrastructure for R package development, and doing so will improve the user experience and reduce (or even remove!) the maintenance headaches!</p>
+<p>It is possible to build robust automation infrastructure for R package development that can improve user experience and make long-term package development more reliable and sustainable.</p>
 </section>
 
 <section>

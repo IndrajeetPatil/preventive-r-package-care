@@ -957,7 +957,6 @@ knitr::include_graphics("media/problem-solved.png")
 
 ::::
 
-
 ## Detecting link rot {.smaller}
 
 <!-- column layout -->
@@ -1926,7 +1925,7 @@ The items on this list will vary significantly from package to package (e.g., do
 
 Preventive care to detect code quality issues and performance regressions.
 
-## "Don’t comment bad code—rewrite it."
+# "Don’t comment bad code—rewrite it."
 \- Brian W. Kernighan
 
 #
@@ -2237,9 +2236,128 @@ Use [GHA workflow](https://github.com/r-lib/styler/blob/main/.github/workflows/p
 
 ::::
 
+## Don't slow it down {.smaller}
 
-<!-- ## Benchmarking -->
+<!-- column layout -->
 
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/snail.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+If your package is mature and stable enough that you have started to invest in improving its efficiency, it is important that you have some metric by which you can benchmark if a new PR improves or degrades performance in comparison with the latest commit on `main`.
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Checking for performance regressions just before or even after the release is not ideal, since it might be difficult to revert back to the state before regression took place.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to reliably benchmark PRs for performance regressions?**
+
+:::
+
+:::
+
+::::
+
+## Detecting performance regressions {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+[`{touchstone}`](https://lorenzwalthert.github.io/touchstone/) offers a continuous benchmarking tool for reliable relative measurement of performance in the PR versus `main`. The results of this measurement are directly reported as a comment in GitHub Pull Requests.
+
+```{r}
+#| echo: false
+#| eval: true
+knitr::include_graphics("media/touchstone.png")
+```
+
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [GHA workflow](https://github.com/r-lib/styler/blob/main/.github/workflows/touchstone-comment.yaml){target='_blank'} for benchmarking PRs and detecting any performance regressions.
+
+:::
+
+::::
 
 ## Checklist for code quality {.smaller}
 
@@ -2848,7 +2966,7 @@ No good practice is dogma. There always exist exceptions.
 
 # Conclusion
 
-It is possible to build automated, robust, and reliable infrastructure for R package development, and doing so will improve the user experience and reduce (or even remove!) the maintenance headaches!
+It is possible to build robust automation infrastructure for R package development that can improve user experience and make long-term package development more reliable and sustainable.
 
 # Further reading
 

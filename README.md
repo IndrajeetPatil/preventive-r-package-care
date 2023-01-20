@@ -11,6 +11,11 @@ As an R package developer, if you ever lay awake in the bed wondering:
 
 then this presentation is for you! 😊
 
+**It is possible to build robust automation infrastructure for R package
+development that can improve user experience and make long-term package
+development more reliable and sustainable, and the presentation will
+discuss how to build such infrastructure.**
+
 Link to slides:
 <https://indrajeetpatil.github.io/preventive-r-package-care/>
 
