@@ -22,5 +22,6 @@ BugReports: https://github.com/IndrajeetPatil/preventive-r-package-care/issues
 Depends:
     knitr,
     fs,
+    lintr,
     quarto,
     reticulate
