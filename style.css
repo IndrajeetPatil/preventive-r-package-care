@@ -1,3 +1,7 @@
 .footer > p {
   font-size: 10px;
 }
+
+.reveal a {
+  color: #9753B8;
+}

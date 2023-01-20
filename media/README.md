@@ -1,7 +1,7 @@
 
 ## Preventive Care for R Packages
 
-If you ever lay awake in the bed wondering:
+As an R package developer, if you ever lay awake in the bed wondering:
 
 - if the users are having a bad experience while using the package,
 - if you will receive the dreaded CRAN email about archival, and

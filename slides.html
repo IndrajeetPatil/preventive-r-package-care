@@ -409,7 +409,7 @@
 
 <section id="target-audience" class="title-slide slide level1 smaller center">
 <h1>Target audience</h1>
-<p>If you ever lay awake in the bed wondering:</p>
+<p>As an R package developer, if you ever lay awake in the bed wondering:</p>
 <ul>
 <li>if the users are having a bad experience while using the package,</li>
 <li>if you will receive the dreaded CRAN email about archival, and</li>
@@ -518,7 +518,7 @@
 </div>
 </div>
 </div><div class="column" style="width:35%;">
-<p><br> Tool</p>
+<p><br> Tools</p>
 </div><div class="column" style="width:15%;">
 <div class="cell">
 <div class="cell-output-display">
@@ -540,7 +540,6 @@
 <p>- Bertrand Meyer</p>
 </section>
 
-<section>
 <section id="section-1" class="title-slide slide level1 center">
 <h1></h1>
 <!-- column layout -->
@@ -560,9 +559,63 @@
 </div>
 </div>
 </section>
+
+<section>
+<section id="make-sure-there-are-enough-examples-in-the-documentation." class="title-slide slide level1 center">
+<h1>Make sure there are enough examples in the documentation.</h1>
+
+</section>
+<section id="an-example-is-worth-a-thousand-words" class="slide level2 smaller">
+<h2>An example is worth a thousand words</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/research.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Access to abundant examples in help pages and vignettes provides a natural starting point for users to explore and experiment with the available functionality.</p>
+<p>Good examples are difficult to write, but any examples are better than none.</p>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/confused.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Without enough expository examples, users are left to fumble their way into discovering the available functionality.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to ensure that there are <em>enough</em> number of examples?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="sources-of-documentation" class="slide level2 smaller">
 <h2>Sources of documentation</h2>
-<p>Package documentation is typically scattered across the following documents.</p>
+<p>There are three types of documents that constitute package documentation.</p>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:30%;">
@@ -598,59 +651,8 @@
 </div>
 </div>
 </div>
-</section></section>
-<section>
-<section id="make-sure-there-are-enough-examples-in-the-documentation." class="title-slide slide level1 center">
-<h1>Make sure there are enough examples in the documentation.</h1>
-
-</section>
-<section id="an-example-is-worth-a-thousand-words" class="slide level2 smaller">
-<h2>An example is worth a thousand words</h2>
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/research.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<p>Access to abundant examples in help pages and vignettes provides a natural starting point for users to explore and experiment with the available functionality.</p>
-<p>Good examples are difficult to write, but any examples are better than none.</p>
-</div>
-</div>
 <p><br></p>
-<div class="fragment">
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/confused.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<p>Without enough expository examples, users are left to fumble their way into discovering rest of the available functionality.</p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p><br></p>
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/problem-solved.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<div style="color: red;">
-<p><strong>How to ensure that there are <em>enough</em> number of examples?</strong></p>
-</div>
-</div>
-</div>
-</div>
+<p>Therefore, we want to make sure that, when combined across these sources, there are enough examples to cover a significant proportion of available functionality.</p>
 </section>
 <section id="maintaining-example-code-coverage" class="slide level2 smaller">
 <h2>Maintaining example code coverage</h2>
@@ -670,7 +672,6 @@
 </div>
 </div>
 <div class="fragment">
-<p><br></p>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:9%;">
@@ -680,7 +681,7 @@
 </div>
 </div>
 </div><div class="column" style="width:91%;">
-<p>Use a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml" target="_blank">GHA workflow</a> to ensure that the code coverage via examples never drops below the chosen threshold.</p>
+<p>Use a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml" target="_blank">GHA workflow</a> to automate checking that the code coverage via examples never drops below the chosen threshold.</p>
 </div>
 </div>
 </div>
@@ -695,9 +696,10 @@
 </div>
 <div class="callout-content">
 <ul>
-<li><p>The choice of threshold is subjective and context-sensitive. Chasing after 100% example code coverage is futile.</p></li>
-<li><p>Vignettes not included in the package (by placing them in a <code>vignettes/</code> subdirectory or by adding them to <code>.Rbuildignore</code>) will not contribute towards the code coverage. You can adjust your coverage threshold accordingly.</p></li>
-<li><p>You can choose a threshold on a package-basis or on a file-basis (<code>covr::file_coverage()</code>).</p></li>
+<li><p>The choice of threshold is subjective and context-sensitive. Chasing after 100% example code coverage is futile (since this would require exposing every exception in the examples).</p></li>
+<li><p>The examples not run or tested on CRAN can still be counted for computing code coverage.</p></li>
+<li><p>Vignettes not included in the package (the ones in <code>vignettes/</code> subdirectory or <code>.Rbuildignore</code>) will not contribute towards the code coverage. Ditto for <code>README</code>. You can adjust the threshold accordingly.</p></li>
+<li><p>You could also choose the threshold on a file basis (<code>covr::file_coverage()</code>)</p></li>
 </ul>
 </div>
 </div>
@@ -735,7 +737,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p><code>README.md</code> is probably the first and the most-visited document in a project and any broken examples therein is bound to confuse many users.</p>
+<p><code>README.md</code> is probably the first and the most-visited document in a project and any broken examples therein are bound to confuse many users.</p>
 </div>
 </div>
 </div>
@@ -785,7 +787,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Use a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml" target="_blank">GHA workflow</a> to check that README can be successfully rendered on each commit.</p>
+<p>Use a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml" target="_blank">GHA workflow</a> to automate checking that README can be successfully rendered on each commit.</p>
 </div>
 </div>
 </div>
@@ -814,8 +816,8 @@
 <h1>Make sure <em>all</em> examples in help pages are working.</h1>
 
 </section>
-<section id="non-working-examples" class="slide level2 smaller">
-<h2>Non-working examples</h2>
+<section id="broken-examples-in-help-pages" class="slide level2 smaller">
+<h2>Broken examples in help pages</h2>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
@@ -835,7 +837,7 @@
 <p><strong>Types of examples</strong></p>
 </div>
 <div class="callout-content">
-<p>Help pages for exported functions should contain examples (Rd tag: <code>\examples{}</code>) illustrating their usage. But you can skip executing some examples (e.g.&nbsp;because they are too time-consuming). In particular, R allows offers following tags:</p>
+<p>Help pages for exported functions should contain examples illustrating their usage. But you can skip executing some examples (e.g.&nbsp;because they are too time-consuming) using any of the following tags:</p>
 <table>
 <thead>
 <tr class="header">
@@ -912,7 +914,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Use <a href="https://r-lib.github.io/devtools/" target="_blank"><code>{devtools}</code></a> to run all examples. You can then fix the broken ones.</p>
+<p>Use <a href="https://r-lib.github.io/devtools/" target="_blank"><code>{devtools}</code></a> to run all examples, and catch and fix the broken ones.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">run_examples</span>(<span class="at">run_dontrun =</span> <span class="cn">TRUE</span>, <span class="at">run_donttest =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1115,7 +1117,7 @@
 </div>
 </div><div class="column" style="width:90%;">
 <div style="color: red;">
-<p><strong>How to prevent link rot from accumulating?</strong></p>
+<p><strong>How to prevent link rot from accumulating in the documentation?</strong></p>
 </div>
 </div>
 </div>
@@ -1149,7 +1151,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Use GHA workflow to automate URL checking (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml" target="_blank">example workflow</a>). This will ensure that bad URLs will be discovered on each commit.</p>
+<p>Use <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml" target="_blank">GHA workflow</a> to check for bad URLs on each commit.</p>
 </div>
 </div>
 </div>
@@ -1165,8 +1167,8 @@
 <div class="callout-content">
 <ul>
 <li><p>If <code>{urlchecker}</code> finds dead URLs in <code>.html</code>/<code>.md</code> files, you will need to update <code>.Rmd</code>/<code>.qmd</code> files and then regenerate the docs. Otherwise, you will keep wondering why <code>urlchecker::url_update()</code> isn’t fixing the links.</p></li>
-<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 <li><p>There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 </ul>
 </div>
 </div>
@@ -1277,7 +1279,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Use <a href="https://docs.ropensci.org/spelling/" target="_blank"><code>{spelling}</code></a> to detect misspelled words and their location in the docs.</p>
+<p>Use <a href="https://docs.ropensci.org/spelling/" target="_blank"><code>{spelling}</code></a> to detect misspelt words and their location in the docs.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>spelling<span class="sc">::</span><span class="fu">spell_check_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1293,7 +1295,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Use GHA workflow to automate URL checking (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml" target="_blank">example workflow</a>). This will ensure that spelling mistakes will be discovered on each commit.</p>
+<p>Use <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml" target="_blank">GHA workflow</a> to ensure that spelling mistakes are discovered on each commit.</p>
 </div>
 </div>
 </div>
@@ -1310,6 +1312,7 @@ YAML</code></pre>
 <ul>
 <li><p>Instead of a GHA workflow, you can also include spell check tests in the package itself. For more, see <code>usethis::use_spell_check()</code>.</p></li>
 <li><p>If you install <a href="https://www.grammarly.com/desktop">Grammarly desktop</a>, it will flag spelling mistakes and will even suggest a clearer way to phrase your sentences. For VS Code, check out <a href="https://marketplace.visualstudio.com/items?itemName=znck.grammarly">Grammarly extension</a>.</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 </ul>
 </div>
 </div>
@@ -1332,7 +1335,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>HTML has few syntactic rules, and browsers may not even enforce the rules it does have. E.g., browsers will tolerate mismatched tags, missing end tags, misnested tags, etc. HTML5 standard aims to improve this situation, and package help pages use HTML5 standard since R 4.2.</p>
+<p>HTML has few syntactic rules, and browsers may not even enforce the rules it does have. E.g., browsers will tolerate mismatched tags, missing end tags, misnested tags, etc. HTML5 standard aims to improve this situation, and R package help pages use HTML5 standard since <code>R 4.2</code>.</p>
 </div>
 </div>
 <div class="fragment">
@@ -1396,7 +1399,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Use GHA workflow to automate checking validity of HTML manual (see <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/html-5-check.yaml" target="_blank">example workflow</a>) on each commit.</p>
+<p>Use <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/html-5-check.yaml" target="_blank">GHA workflow</a> to automate checking validity of HTML manual on each commit.</p>
 </div>
 </div>
 </div>
@@ -1411,7 +1414,8 @@ YAML</code></pre>
 </div>
 <div class="callout-content">
 <ul>
-<li>If your documentation contains math equations, you can choose between <a href="https://docs.ropensci.org/katex/reference/katex.html" target="_blank"><code>{katex}</code></a> and <a href="https://github.com/wviechtb/mathjaxr" target="_blank"><code>{mathjaxr}</code></a> to convert LaTeX math expressions to HTML for use in package manual pages.</li>
+<li><p>If your documentation contains math equations, have a look at <a href="https://docs.ropensci.org/katex/reference/katex.html" target="_blank"><code>{katex}</code></a>, <a href="https://CRAN.R-project.org/package=mathjaxr" target="_blank"><code>{mathjaxr}</code></a>, and <a href="https://CRAN.R-project.org/package=mathml" target="_blank"><code>{mathml}</code></a> to convert LaTeX math expressions to HTML for use in package manual pages.</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 </ul>
 </div>
 </div>
@@ -1465,406 +1469,6 @@ YAML</code></pre>
 </tbody>
 </table>
 </section></section>
-<section id="dependency-management" class="title-slide slide level1 center">
-<h1>Dependency management</h1>
-<p>Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.</p>
-</section>
-
-<section id="dependencies-are-invitations-for-other-people-to-break-your-package." class="title-slide slide level1 center">
-<h1>“Dependencies are invitations for other people to break your package.”</h1>
-<p>- Joshua Ulrich</p>
-</section>
-
-<section>
-<section id="section-2" class="title-slide slide level1 center">
-<h1></h1>
-<!-- column layout -->
-<div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/target.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<div style="color: blue; text-align: center;">
-<p><strong>To reduce maintenance headaches, make sure that the package is robust to availability of soft dependencies and breaking changes in hard dependencies.</strong></p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="types-of-dependencies" class="slide level2 smaller">
-<h2>Types of Dependencies</h2>
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/trust.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<p>Dependencies (code that your source code relies on) are an inevitable part of package development.</p>
-</div>
-</div>
-<div class="fragment">
-<div class="callout callout-important callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Not all dependencies are created equal!</strong></p>
-</div>
-<div class="callout-content">
-<p>Hard dependencies have a broader scope because they are needed at runtime; i.e.&nbsp;your package won’t work without them, while soft dependencies have a narrow scope; e.g.&nbsp;because they are needed only for testing or for examples.</p>
-<table>
-<colgroup>
-<col style="width: 12%">
-<col style="width: 23%">
-<col style="width: 63%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Dependency</th>
-<th style="text-align: center;">In <code>DESCRIPTION</code></th>
-<th style="text-align: center;">Scope</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">Hard</td>
-<td style="text-align: center;"><code>Depends</code>/<code>Imports</code></td>
-<td style="text-align: center;">Needed for your package to work as expected.</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Soft</td>
-<td style="text-align: center;"><code>Suggests</code></td>
-<td style="text-align: center;">Nice to have but your package will work regardless.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="make-sure-soft-dependencies-are-used-conditionally." class="title-slide slide level1 center">
-<h1>Make sure soft dependencies are used conditionally.</h1>
-
-</section>
-<section id="soft-dependency-hygiene" class="slide level2 smaller">
-<h2>Soft dependency hygiene</h2>
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/damaged-package.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<p>Dependencies bring risk. If a critical dependency becomes unavailable (e.g.&nbsp;because its author decides to archive it), bad luck. You <strong>must</strong> either refactor to remove dependency or look for an alternative. Otherwise, your package is no longer going to work.</p>
-<p>But this shouldn’t be the case for soft dependencies since they are not critical for your package to work.</p>
-</div>
-</div>
-<div class="fragment">
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/headache.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<p>In a high-level, user-facing package, there can be a substantial number of soft dependencies, and the package risks breakage for <em>any</em> unavailable soft dependency. Thus, soft dependencies should be used conditionally.</p>
-<div style="font-size: 20px;">
-<p>CRAN runs the additional <a href="https://www.stats.ox.ac.uk/pub/bdr/noSuggests/" target="_blank">“noSuggests” check</a> to look for possible breakages.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p><br></p>
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/problem-solved.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<div style="color: red;">
-<p><strong>How to make sure <em>all</em> soft dependencies are being conditionally used?</strong></p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="conditional-dependency-usage" class="slide level2 smaller">
-<h2>Conditional dependency usage</h2>
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:70%;">
-<p>Soft dependencies should be used conditionally across all contexts. Let’s say <code>{lme4}</code> is such a dependency.</p>
-</div><div class="column" style="width:30%;">
-<p>In <code>DESCRIPTION</code></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>Suggests:</span>
-<span id="cb11-2"><a href="#cb11-2"></a>    lme4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<p><br></p>
-<hr>
-<div class="fragment">
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Examples</strong> in help pages should be executed only if package is available.</p>
-</div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># In R/file-1.R</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#' @examplesIf requireNamespace("lme4")</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="co">#' lme4::lmer(...)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<hr>
-</div>
-<div class="fragment">
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Vignettes</strong> (or specific code chunks) should be executed only if package is available.</p>
-</div><div class="column" style="width:50%;">
-<!-- TODO: add back verbatim chunk -->
-<p>placeholder text</p>
-</div>
-</div>
-<hr>
-</div>
-<div class="fragment">
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Tests</strong> should be run only if package is available.</p>
-</div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># In tests/testthat/test-file-1.R</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">test_that</span>(<span class="st">"bla"</span>, {</span>
-<span id="cb13-3"><a href="#cb13-3"></a>  testthat<span class="sc">::</span><span class="fu">skip_if_not_installed</span>(<span class="st">"lme4"</span>)</span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">expect_equal</span>(lme4<span class="sc">::</span><span class="fu">lmer</span>(...), ...)</span>
-<span id="cb13-5"><a href="#cb13-5"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<hr>
-</div>
-</section>
-<section id="checking-conditional-usage" class="slide level2 smaller">
-<h2>Checking conditional usage</h2>
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/toolbox.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<div class="callout callout-important callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Trick: Run <code>R CMD check</code> twice!</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li>when <em>all</em> soft dependencies are available</li>
-<li>when <em>none</em> are available</li>
-</ul>
-<p>If the package passes <code>R CMD check</code> in the first but not the second context, you can be sure that some soft dependencies are not being used conditionally.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/robot.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<p>Use GHA workflows to install <em>all</em> dependencies (see <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-full.yaml" target="_blank">example workflow</a>) or <em>only</em> hard dependencies (see <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-no-suggests.yaml" target="_blank">example workflow</a>) and check if the package passes <code>R CMD check</code> on each commit.</p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="callout callout-tip callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Additional tips</strong></p>
-</div>
-<div class="callout-content">
-<p>This trick won’t work for excluded vignettes (from <code>vignettes/</code> subdirectory or <code>.Rbuildignore</code>-ed). You can run <code>{pkgdown}</code> in “noSuggests” mode (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml" target="_blank">example workflow</a>) to ensure that excluded vignettes are also using soft dependencies conditionally.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="anticipating-breakages" class="slide level2 smaller">
-<h2>Anticipating breakages</h2>
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/damaged-package.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<p>It is important to anticipate changes in dependencies that may break your packages. Although some maintainers (of your dependencies) will be kind enough to let you know of upcoming breaking changes, such communication can’t be assumed or might not even be possible.</p>
-<div style="font-size: 20px;">
-<p>If your package is not on CRAN, there is no way for the maintainers to detect breakages in reverse dependencies and inform maintainers. Similarly, if a reverse dependency is skipping tests on CRAN, possible breakages can go undetected.</p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/confused.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<p>Thus, you may figure out that something is broken <em>after</em> a dependency is updated, the package stops working for the users, and they inform you. This is especially true if your package is not under active development, and so CI/CD won’t detect that your package is broken.</p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p><br></p>
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/problem-solved.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<div style="color: red;">
-<p><strong>How to make sure you are on top of upcoming breaking changes in hard dependencies?</strong></p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="detecting-breakages-early" class="slide level2 smaller">
-<h2>Detecting breakages early</h2>
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/toolbox.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<p>In order to detect breakages earlier, you can run <code>R CMD check</code> by installing development versions of dependencies of your package.</p>
-</div>
-</div>
-<div class="fragment">
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/robot.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<p>Use scheduled GHA workflow to automate checking breakages (see <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-devel.yaml" target="_blank">example workflow</a>) on each commit.</p>
-<div style="font-size: 20px;">
-<p>How frequently you should run this check (e.g., once a month, every six months, etc.) and which dependencies you should include (e.g., only hard, only soft, a few of each, etc.) depends on how actively both your own package and your dependencies are being developed.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="callout callout-tip callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>What should you do if you <em>do</em> detect a breakage?</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li><p>If the root cause of breakage turns out to be a regression in the dependency, inform the maintainer so that they can revert the change.</p></li>
-<li><p>If the breakage is legitimate, make a PR to your repo with a fix but merge only when either the maintainer informs you of an upcoming release or the package has a new release. <strong>Don’t</strong> push the fix to <code>main</code>-branch because before release the breaking change might be reverted in the dependency itself.</p></li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="checklist-for-dependency-management" class="slide level2 smaller">
-<h2>Checklist for dependency management</h2>
-<!-- column layout -->
-<div class="columns">
-<div class="column" style="width:10%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="media/target.png" width="256"></p>
-</div>
-</div>
-</div><div class="column" style="width:90%;">
-<div style="color: blue; text-align: center;">
-<p><strong>To reduce maintenance headaches, make sure that the package is robust to availability of soft dependencies and breaking changes in hard dependencies.</strong></p>
-</div>
-</div>
-</div>
-<p><br></p>
-<table>
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Item</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Make sure examples in help pages are run conditionally.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Make sure vignettes (or code chunks therein) are executed conditionally.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Make sure tests are run conditionally.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Make sure excluded vignettes (or code chunks therein) are executed conditionally.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Anticipate possible breaking changes coming from dependencies and act on it.</td>
-</tr>
-</tbody>
-</table>
-</section></section>
 <section id="exception-handling" class="title-slide slide level1 center">
 <h1>Exception handling</h1>
 <p>Preventive care to make sure that you don’t miss out on important warnings.</p>
@@ -1876,7 +1480,7 @@ YAML</code></pre>
 </section>
 
 <section>
-<section id="section-3" class="title-slide slide level1 center">
+<section id="section-2" class="title-slide slide level1 center">
 <h1></h1>
 <!-- column layout -->
 <div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
@@ -1934,7 +1538,7 @@ YAML</code></pre>
 <tr class="odd">
 <td style="text-align: center;"><code>error</code></td>
 <td style="text-align: center;">high</td>
-<td style="text-align: center;">execution must stop because there is way to continue</td>
+<td style="text-align: center;">execution stopped because there was no way to continue</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><code>warning</code></td>
@@ -1955,9 +1559,9 @@ YAML</code></pre>
 </div>
 <p>Out of these, warnings are the most nebulous!</p>
 <ul>
-<li>Errors bring functions to a halt and users <em>must</em> attend to them.</li>
-<li>Messages are innocuous and <em>can</em> be safely ignored.</li>
-<li>But warnings are harbingers of problems that you will need to fix at some point and <em>need</em> to be dealt with, pronto. And yet you can choose to ignore them.</li>
+<li>Errors bring functions to a halt and you <em>must</em> attend to them.</li>
+<li>Messages are innocuous and you <em>can</em> be safely ignored.</li>
+<li>But warnings are harbingers of problems that you will need to fix at some point. They <em>need</em> to be dealt with, pronto, and yet it is easy to ignore them.</li>
 </ul>
 </section>
 <section id="a-needle-in-the-haystack" class="slide level2 smaller">
@@ -1977,18 +1581,18 @@ YAML</code></pre>
 <p><strong>Intrinsic warnings</strong></p>
 <p>Warnings that functions in your package produce to inform users. E.g. if your package has a function to winsorize data with a certain threshold, this could be a possible warning.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">winsorize</span>(x, <span class="at">threshold =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="co">#&gt; Warning message:</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="co">#&gt; `threshold` for winsorization must be a scalar between 0 and 0.5.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">winsorize</span>(x, <span class="at">threshold =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="dv">2</span>))</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co">#&gt; Warning message:</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="co">#&gt; `threshold` for winsorization must be a scalar between 0 and 0.5.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <p><strong>Extrinsic warnings</strong></p>
-<p>Warnings coming from packages you are using, either in examples or tests. E.g. if your package relies on <code>{ggplot2}</code>, you might get a warning like this.</p>
+<p>Warnings coming from dependencies you are using, either in examples or tests. E.g. if your package relies on <code>{ggplot2}</code>, you might get a warning like this.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="co">#&gt; Warning message:</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="co">#&gt; Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; Warning message:</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="co">#&gt; Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2020,7 +1624,7 @@ YAML</code></pre>
 <ul>
 <li><p>Warnings are generated in contexts where functions in <em>your</em> package were used unexpectedly by the users. But such contexts shouldn’t be deliberately highlighted in the documentation. Users should always see <a href="https://en.wikipedia.org/wiki/Happy_path" target="_blank">happy path</a> examples in help pages, README, or vignettes.</p></li>
 <li><p>While testing functions, you should use expectations (e.g.&nbsp;<code>testthat::expect_warning()</code>) to check that expected warnings are triggered. You shouldn’t print the warnings, since they can completely overwhelm the test log, which makes it difficult to catch important warnings.</p></li>
-<li><p>If it’s a complex function that can encounter a large number of slippery situations, it makes sense to provide an argument to turn off a few warnings (e.g.&nbsp;<code>verbose = FALSE</code>). You can then use this argument to omit warnings in package documentation.</p></li>
+<li><p>If it’s a complex package function that can encounter a large number of slippery situations, it makes sense for you to provide an argument to turn off a few warnings (e.g.&nbsp;<code>verbose = FALSE</code>) and use it to omit warnings in the docs.</p></li>
 </ul>
 </div>
 </div>
@@ -2031,10 +1635,10 @@ YAML</code></pre>
 <div class="fragment">
 <div style="background-color: #E1D7C6; padding: 20px; border-radius: 25px;">
 <ul>
-<li><p>If dependencies are generating warnings because your package functions are using imported code in unexpected ways, you should rewrite them to remove warnings.</p></li>
-<li><p>If the warnings are about deprecated functions or arguments, you should switch to using the suggested alternatives. Don’t wait until they are removed.</p></li>
+<li><p>If dependencies are emitting warnings because your functions are using imported code in unexpected ways, rewrite functions to remove warnings.</p></li>
+<li><p>If the warnings are about deprecated functions or arguments, switch to using the suggested alternatives. Don’t wait until they are removed.</p></li>
 <li><p>Some warnings are unavoidable and not as important. They can be suppressed using <code>suppressWarnings()</code>. That said, avoid using it in examples in help pages, lest users think that this is part of <em>your</em> package API.</p></li>
-<li><p>If the warnings are coming from somewhere upstream (e.g.&nbsp;<code>{ggplot2}</code> → <code>{ggside}</code> → your package), you have little control over them. You can ignore such warnings using <code>suppressWarnings()</code> and remove such calls once the warnings are fixed in upstream.</p></li>
+<li><p>If the warnings are coming from somewhere upstream (e.g.&nbsp;<code>{ggplot2}</code> → <code>{ggside}</code> → your package), you have little control over them. You can inform the upstream maintainer and ignore such warnings using <code>suppressWarnings()</code>. Don’t forget to remove suppress calls once the warnings are fixed upstream.</p></li>
 </ul>
 </div>
 </div>
@@ -2052,7 +1656,7 @@ YAML</code></pre>
 </div><div class="column" style="width:90%;">
 <p>To detect warnings, you can convert warnings into errors using <code>options()</code> and then run all your checks.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">warn =</span> 2L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">warn =</span> 2L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2082,8 +1686,8 @@ YAML</code></pre>
 </div>
 <div class="callout-content">
 <ul>
-<li><p>While you are at it, you might as well clean up messages. They might be harmless, but they do clog up logs and make it difficult to focus on warnings.</p></li>
-<li><p>If you set <code>warning=FALSE</code> in vignettes, note that this only suppresses warnings in the rendered output. When your users run this code interactively, they are still going to see the suppressed warnings.</p></li>
+<li><p>While you are at this cleanup, it might also be worth clean up intrinsic and extrinsic messages. They might be harmless, but they do clog up logs and make it difficult to focus on warnings.</p></li>
+<li><p>If you set <code>warning=FALSE</code> in vignettes, note that this only suppresses warnings in the rendered output. When your users run this code interactively, they are still going to see the suppressed warnings. <a href="https://en.wikipedia.org/wiki/Ostrich_policy" target="_blank">Ostrich policy</a> never works for software development.</p></li>
 </ul>
 </div>
 </div>
@@ -2140,7 +1744,7 @@ YAML</code></pre>
 </section>
 
 <section>
-<section id="section-4" class="title-slide slide level1 center">
+<section id="section-3" class="title-slide slide level1 center">
 <h1></h1>
 <!-- column layout -->
 <div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
@@ -2153,7 +1757,7 @@ YAML</code></pre>
 </div>
 </div><div class="column" style="width:90%;">
 <div style="color: blue; text-align: center;">
-<p><strong>For a good user experience, make sure that package would work as expected across diverse settings.</strong></p>
+<p><strong>For a good user experience, make sure that package works as expected across diverse settings.</strong></p>
 </div>
 </div>
 </div>
@@ -2170,7 +1774,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>You (the developer) may be working on the package in a certain setting: with a certain version of R, on a particular OS, in a certain locale, etc. Even if all tests pass and all examples run successfully for you locally, you can’t assume that your users will use the package in similar settings.</p>
+<p>You (the developer) may be developing the package in a certain setting: with a certain version of R, on a particular OS, in a certain locale, etc. Even if all tests pass and all examples run successfully for you locally, you can’t assume that your users will use the package in similar settings.</p>
 </div>
 </div>
 <div class="fragment">
@@ -2189,6 +1793,7 @@ YAML</code></pre>
 </div>
 </div>
 </div>
+<p><br></p>
 </div>
 <div class="fragment">
 <!-- column layout -->
@@ -2220,7 +1825,7 @@ YAML</code></pre>
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://r-lib.github.io/rcmdcheck/" target="_blank"><code>{rcmdcheck}</code></a> to run <code>R CMD check</code> from R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>rcmdcheck<span class="sc">::</span><span class="fu">rcmdcheck</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rcmdcheck<span class="sc">::</span><span class="fu">rcmdcheck</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div style="font-size: 20px;">
 <p>All the options you can set to further customize this check is beyond the scope of the current presentation.</p>
@@ -2237,7 +1842,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Use GHA workflow to automate running <code>R CMD check</code> for multiple R versions and/or platforms (see <a href="https://github.com/r-lib/lintr/blob/main/.github/workflows/R-CMD-check.yaml" target="_blank">example workflow</a>) on each commit to discover potential portability issues.</p>
+<p>Use <a href="https://github.com/r-lib/lintr/blob/main/.github/workflows/R-CMD-check.yaml" target="_blank">GHA workflow</a> to run <code>R CMD check</code> for multiple R versions and platforms on each commit to probe for potential portability issues.</p>
 </div>
 </div>
 </div>
@@ -2323,6 +1928,407 @@ YAML</code></pre>
 
 </section>
 
+<section id="dependency-management" class="title-slide slide level1 center">
+<h1>Dependency management</h1>
+<p>Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.</p>
+</section>
+
+<section id="dependencies-are-invitations-for-other-people-to-break-your-package." class="title-slide slide level1 center">
+<h1>“Dependencies are invitations for other people to break your package.”</h1>
+<p>- Joshua Ulrich</p>
+</section>
+
+<section>
+<section id="section-4" class="title-slide slide level1 center">
+<h1></h1>
+<!-- column layout -->
+<div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that the package is robust to availability of soft dependencies and breaking changes in hard dependencies.</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="types-of-dependencies" class="slide level2 smaller">
+<h2>Types of Dependencies</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/trust.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Dependencies (code that your source code relies on) are an inevitable part of package development.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Not all dependencies are created equal!</strong></p>
+</div>
+<div class="callout-content">
+<p>Hard dependencies have a broader scope because they are needed at runtime; i.e.&nbsp;your package won’t work without them, while soft dependencies have a narrow scope; e.g.&nbsp;because they are needed only for testing or for examples.</p>
+<table>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 23%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Dependency</th>
+<th style="text-align: center;">In <code>DESCRIPTION</code></th>
+<th style="text-align: center;">Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Hard</td>
+<td style="text-align: center;"><code>Depends</code>/<code>Imports</code></td>
+<td style="text-align: center;">Needed for your package to work as expected.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Soft</td>
+<td style="text-align: center;"><code>Suggests</code></td>
+<td style="text-align: center;">Nice to have but your package will work regardless.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-important callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Dependencies bring risk</strong></p>
+</div>
+<div class="callout-content">
+<p>If a critical dependency becomes unavailable (e.g.&nbsp;because its author decides to archive it), bad luck. You <strong>must</strong> either refactor to remove dependency or look for an alternative. Otherwise, your package is no longer going to work. But this shouldn’t be the case for soft dependencies since they are not critical for your package to work.</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="make-sure-soft-dependencies-are-used-conditionally." class="title-slide slide level1 center">
+<h1>Make sure soft dependencies are used conditionally.</h1>
+
+</section>
+<section id="soft-dependency-hygiene" class="slide level2 smaller">
+<h2>Soft dependency hygiene</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/damaged-package.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>In a high-level, user-facing package, there can be a substantial number of soft dependencies, and the package risks breakage for <em>any</em> unavailable soft dependency, if not used conditionally.</p>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/headache.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>It can be quite taxing for maintainers to remove examples or tests related to a soft dependency if gets archived, and restore them once the dependency is unarchived. To avoid this, soft dependencies should always be used conditionally.</p>
+<div style="font-size: 20px;">
+<p>CRAN runs the additional <a href="https://www.stats.ox.ac.uk/pub/bdr/noSuggests/" target="_blank">“noSuggests” check</a> to look for possible breakages.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to make sure <em>all</em> soft dependencies are being conditionally used?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="conditional-dependency-usage" class="slide level2 smaller">
+<h2>Conditional dependency usage</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>Soft dependencies should be used conditionally across all contexts. Let’s say <code>{lme4}</code> is such a dependency.</p>
+</div><div class="column" style="width:30%;">
+<p>In <code>DESCRIPTION</code></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb15-1"><a href="#cb15-1"></a>Suggests:</span>
+<span id="cb15-2"><a href="#cb15-2"></a>    lme4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p><br></p>
+<hr>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Examples</strong> in help pages should be executed only if package is available.</p>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># In R/file-1.R</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="co">#' @examplesIf requireNamespace("lme4")</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="co">#' lme4::lmer(...)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Vignettes</strong> (or specific code chunks) should be executed only if package is available.</p>
+</div><div class="column" style="width:50%;">
+<!-- TODO: add back verbatim chunk -->
+<p>placeholder text</p>
+</div>
+</div>
+<hr>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Tests</strong> should be run only if package is available.</p>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># In tests/testthat/test-file-1.R</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">test_that</span>(<span class="st">"bla"</span>, {</span>
+<span id="cb17-3"><a href="#cb17-3"></a>  testthat<span class="sc">::</span><span class="fu">skip_if_not_installed</span>(<span class="st">"lme4"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">expect_equal</span>(lme4<span class="sc">::</span><span class="fu">lmer</span>(...), ...)</span>
+<span id="cb17-5"><a href="#cb17-5"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+</div>
+</section>
+<section id="checking-conditional-usage" class="slide level2 smaller">
+<h2>Checking conditional usage</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>The trick here is to run <code>R CMD check</code> twice: Once when <em>all</em> soft dependencies are available, and once when <em>none</em> are available. If the package passes the <code>R CMD check</code> in the first but not the second context, you can be sure that some soft dependencies are not being used conditionally.</p>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use GHA workflows to install <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-full.yaml" target="_blank"><em>all</em> dependencies</a> or <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-no-suggests.yaml" target="_blank"><em>only</em> hard dependencies</a> and check if the package passes <code>R CMD check</code> on each commit.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>This trick won’t work for excluded vignettes (from <code>vignettes/</code> subdirectory or <code>.Rbuildignore</code>-ed). To ensure that excluded vignettes are using soft dependencies conditionally, run <code>{pkgdown}</code> in <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml" target="_blank">“noSuggests” mode</a>.</p></li>
+<li><p>For <code>R CMD check</code> with all dependencies, use <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-strict.yaml" target="_blank">strict workflow</a> that fails on any <code>NOTE</code>. To avoid failing on <code>NOTE</code>s accepted by CRAN, include this in <code>DESCRIPTION</code>:</p></li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb18-1"><a href="#cb18-1"></a>Config/rcmdcheck/ignore-inconsequential-notes: true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="anticipating-breakages" class="slide level2 smaller">
+<h2>Anticipating breakages</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/damaged-package.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>It is important to anticipate changes in dependencies that may break your packages. Although some maintainers (of your dependencies) will be kind enough to let you know of upcoming breaking changes, such communication can’t be assumed or might not even be possible.</p>
+<div style="font-size: 20px;">
+<p>If your package is not on CRAN, there is no way for the maintainers to detect breakages in reverse dependencies and inform maintainers. Similarly, if a reverse dependency is skipping tests on CRAN, possible breakages can go undetected.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/confused.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You may figure out that something is broken <em>after</em> a dependency is updated, the package stops working for the users, and they inform you. This is especially true if your package is not under active development, and so CI/CD won’t detect that your package is broken.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to detect upcoming breaking changes in dependencies?</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="detecting-breakages-early" class="slide level2 smaller">
+<h2>Detecting breakages early</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/toolbox.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>In order to detect breakages earlier, you can run <code>R CMD check</code> by installing development versions of dependencies.</p>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/robot.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use scheduled <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-devel.yaml" target="_blank">GHA workflow</a> to automate checking breakages.</p>
+<div style="font-size: 20px;">
+<p>How frequently you should run this check (e.g., once a month, once every six months, etc.) and which dependencies you should include (e.g., only hard, only soft, a few of each, etc.) depends on how actively both your own package and your dependencies are being developed.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>What should you do if you <em>do</em> detect a breakage?</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>If the root cause of breakage turns out to be a regression in the dependency, discuss with the maintainer.</p></li>
+<li><p>If the breakage is legitimate, make a PR to your repo with a fix but merge only when either the maintainer informs you of an upcoming release or the package has a new release. <strong>Don’t</strong> push the fix to the <code>main</code>-branch because the breaking change could be reverted before release.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="checklist-for-dependency-management" class="slide level2 smaller">
+<h2>Checklist for dependency management</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that the package is robust to availability of soft dependencies and breaking changes in hard dependencies.</strong></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<table>
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure examples in help pages are run conditionally.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure vignettes (or code chunks therein) are executed conditionally.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure tests are run conditionally.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure excluded vignettes (or code chunks therein) are executed conditionally.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Anticipate possible breaking changes coming from dependencies and act on it.</td>
+</tr>
+</tbody>
+</table>
+</section></section>
 <section>
 <section id="eco-friendly-workflows" class="title-slide slide level1 center">
 <h1>Eco-friendly workflows</h1>
@@ -2332,14 +2338,14 @@ YAML</code></pre>
 <h2>Skipping workflows</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
-<p>Although GitHub generously allows its servers for free (thanks Microsoft!) for open-source projects to run all these workflows, they still expend energy and it might bother you that you are wasting energy even on insignificant changes.</p>
+<p>Although all these workflows can be run for free (thanks Microsoft!), they still expend energy and it might bother you that you are wasting energy even on minor changes.</p>
 </div><div class="column" style="width:30%;">
 <div style="font-size: 20px;">
-<p>Example of a minor change.</p>
+<p>Example of an insignificant change.</p>
 </div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource diff number-lines code-with-copy"><code class="sourceCode diff"><span id="cb18-1"><a href="#cb18-1"></a># In `NEWS.md`</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="st">- witdh</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="va">+ width</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource diff number-lines code-with-copy"><code class="sourceCode diff"><span id="cb19-1"><a href="#cb19-1"></a># In `NEWS.md`</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="st">- witdh</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="va">+ width</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -2356,7 +2362,7 @@ YAML</code></pre>
 <ul>
 <li>Use <code>[skip ci]</code> in your commit messages for commits with insignificant changes.</li>
 <li>Run workflows only when a PR is marked “Ready for Review”.</li>
-<li>Skip running some workflows (spelling, HTML5, link rot, etc.) on each commit once all workflows are green. Instead, run them with weekly and monthly schedules, and then fix the newly found problems.</li>
+<li>Skip running some workflows (e.g., spelling, HTML5, link rot, etc.) on each commit once all workflows are green. Instead, run them with weekly or monthly schedules, and then fix the newly found problems.</li>
 <li>Run some workflows only when ready for a new release.</li>
 </ul>
 </div>
@@ -2367,13 +2373,16 @@ YAML</code></pre>
 <section>
 <section id="caveats" class="title-slide slide level1 center">
 <h1>Caveats</h1>
-<p>No good practice is dogma. There always exist reasons to ignore it.</p>
+<p>No good practice is dogma. There always exist exceptions.</p>
 </section>
 <section id="using-workflows-flexibly" class="slide level2 smaller">
 <h2>Using workflows flexibly</h2>
 <ul>
 <li><p>You can skip some workflows or create new workflows depending on the project-specific demands (e.g.&nbsp;compiled code, database connections, API access, etc.).</p></li>
-<li><p>Sometimes it might not even be possible to run all workflows successfully because a few of them conflict with each other. If you have a data visualization package (e.g.), the more examples you have in the documentation, the bigger the package size would be, which might leave a <code>NOTE</code> in <code>R CMD check</code> and strict workflow will fail. Which of these workflows is important is a subjective decision.</p></li>
+<li><p>Sometimes it might not even be possible to run all workflows successfully because a few of them conflict with each other.</p>
+<div style="font-size: 20px;">
+<p>If you have a data visualization package (e.g.), the more examples you have in the documentation, the bigger the package size would be, which might leave a <code>NOTE</code> in <code>R CMD check</code> and strict workflow will fail. Which of these workflows is more important is a subjective decision.</p>
+</div></li>
 </ul>
 </section></section>
 <section id="conclusion" class="title-slide slide level1 center">
@@ -2433,7 +2442,7 @@ YAML</code></pre>
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
