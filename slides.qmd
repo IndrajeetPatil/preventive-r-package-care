@@ -62,7 +62,7 @@ I will rely heavily on GitHub as the hosting platform and GitHub Actions as the 
 
 ## It's not *just* about CRAN
 
-Following the recommended practices will make packages more robust to CRAN checks, but that benefit is *incidental*. You can follow these practices even if you never plan to submit to CRAN. The goal here is ensuring better user experience and maintainability.
+Following the recommended practices will make packages more robust to CRAN checks, but that benefit is *incidental*. You can follow these practices even if you never plan to submit to CRAN. The goal here is to make user experience better and to reduce maintenance workload.
 
 :::
 
@@ -72,7 +72,7 @@ Following the recommended practices will make packages more robust to CRAN check
 
 ## It's not even about R
 
-You can actually utilize the practices outlined here to software development in any other programming language.
+The practices outlined here are relevant to software development in any other programming language (just replace the package with module/library/etc.).
 
 :::
 
@@ -2256,7 +2256,7 @@ Use GHA workflows to install [*all* dependencies](https://github.com/r-lib/actio
 
 - This trick won't work for excluded vignettes (from `vignettes/` subdirectory or `.Rbuildignore`-ed). To ensure that excluded vignettes are using soft dependencies conditionally, run `{pkgdown}` in ["noSuggests" mode](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml){target='_blank'}.
 
-- For `R CMD check` with all dependencies, use [strict workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-strict.yaml){target='_blank'} that fails on any `NOTE`. To avoid failing on `NOTE`s accepted by CRAN, include this in `DESCRIPTION`:
+- For `R CMD check` with all dependencies installed, use [strict workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-strict.yaml){target='_blank'} that fails on any `NOTE`. To avoid failing on `NOTE`s accepted by CRAN, include this in `DESCRIPTION`:
 
 ```dcf
 Config/rcmdcheck/ignore-inconsequential-notes: true

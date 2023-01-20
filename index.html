@@ -448,7 +448,7 @@
 <p><strong>It’s not <em>just</em> about CRAN</strong></p>
 </div>
 <div class="callout-content">
-<p>Following the recommended practices will make packages more robust to CRAN checks, but that benefit is <em>incidental</em>. You can follow these practices even if you never plan to submit to CRAN. The goal here is ensuring better user experience and maintainability.</p>
+<p>Following the recommended practices will make packages more robust to CRAN checks, but that benefit is <em>incidental</em>. You can follow these practices even if you never plan to submit to CRAN. The goal here is to make user experience better and to reduce maintenance workload.</p>
 </div>
 </div>
 </div>
@@ -462,7 +462,7 @@
 <p><strong>It’s not even about R</strong></p>
 </div>
 <div class="callout-content">
-<p>You can actually utilize the practices outlined here to software development in any other programming language.</p>
+<p>The practices outlined here are relevant to software development in any other programming language (just replace the package with module/library/etc.).</p>
 </div>
 </div>
 </div>
@@ -2159,7 +2159,7 @@ YAML</code></pre>
 <div class="callout-content">
 <ul>
 <li><p>This trick won’t work for excluded vignettes (from <code>vignettes/</code> subdirectory or <code>.Rbuildignore</code>-ed). To ensure that excluded vignettes are using soft dependencies conditionally, run <code>{pkgdown}</code> in <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml" target="_blank">“noSuggests” mode</a>.</p></li>
-<li><p>For <code>R CMD check</code> with all dependencies, use <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-strict.yaml" target="_blank">strict workflow</a> that fails on any <code>NOTE</code>. To avoid failing on <code>NOTE</code>s accepted by CRAN, include this in <code>DESCRIPTION</code>:</p></li>
+<li><p>For <code>R CMD check</code> with all dependencies installed, use <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-strict.yaml" target="_blank">strict workflow</a> that fails on any <code>NOTE</code>. To avoid failing on <code>NOTE</code>s accepted by CRAN, include this in <code>DESCRIPTION</code>:</p></li>
 </ul>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb18-1"><a href="#cb18-1"></a>Config/rcmdcheck/ignore-inconsequential-notes: true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
