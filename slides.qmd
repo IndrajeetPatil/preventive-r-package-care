@@ -32,9 +32,15 @@ knitr::include_graphics("media/preventive-care.jpeg")
 # "Software engineering ought to produce sustainability." 
 \- Mark Seemann (*Code That Fits in Your Head*)
 
-# Target audience
+# Target audience {.smaller}
 
-Specifying the intended audience early-on to check relevance of the content for you.
+If you ever lay awake in the bed wondering:
+
+- if the users having a bad experience while using the package,
+- if you will receive the dreaded CRAN email about archival, and
+- if you will be able to update the package in time,
+
+then this presentation is for you! 😊
 
 # Before we begin
 
