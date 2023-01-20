@@ -2367,23 +2367,38 @@ YAML</code></pre>
 <section>
 <section id="caveats" class="title-slide slide level1 center">
 <h1>Caveats</h1>
-<p>No good practice is dogma. There can always exist reasons to ignore it.</p>
+<p>No good practice is dogma. There always exist reasons to ignore it.</p>
 </section>
-<section id="section-5" class="slide level2">
-<h2></h2>
-<p>Sometimes two concerns can conflict: more examples versus package size</p>
+<section id="using-workflows-flexibly" class="slide level2 smaller">
+<h2>Using workflows flexibly</h2>
+<ul>
+<li><p>You can skip some workflows or create new workflows depending on the project-specific demands (e.g.&nbsp;compiled code, database connections, API access, etc.).</p></li>
+<li><p>Sometimes it might not even be possible to run all workflows successfully because a few of them conflict with each other. If you have a data visualization package (e.g.), the more examples you have in the documentation, the bigger the package size would be, which might leave a <code>NOTE</code> in <code>R CMD check</code> and strict workflow will fail. Which of these workflows is important is a subjective decision.</p></li>
+</ul>
 </section></section>
-<section>
 <section id="conclusion" class="title-slide slide level1 center">
 <h1>Conclusion</h1>
-
+<p>It is possible to build automated, robust, and reliable infrastructure for R package development, and doing so will improve the user experience and reduce (or even remove!) the maintenance headaches!</p>
 </section>
-<section id="further-reading" class="slide level2 smaller">
-<h2>Further reading</h2>
-<p>For more extensive discussions on best practices in R package development.</p>
+
+<section>
+<section id="further-reading" class="title-slide slide level1 center">
+<h1>Further reading</h1>
+<p>For more extensive discussions on best practices in software development.</p>
+</section>
+<section id="section-5" class="slide level2 smaller">
+<h2></h2>
+<h3 id="r-specific">R-specific</h3>
 <ul>
 <li><p><a href="https://rstudio.github.io/r-manuals/r-exts/" target="_blank">Writing R Extensions</a></p></li>
 <li><p>Wickham, H., and Bryan, J. (2023). <a href="https://r-pkgs.org/" target="_blank"><em>R Packages</em></a> (2nd edition). O’Reilly.</p></li>
+</ul>
+<h3 id="language-agnostic">Language-agnostic</h3>
+<ul>
+<li><p>McConnell, S. (2004). <em>Code Complete</em> (2nd edition). Microsoft Press.</p></li>
+<li><p>Martin, R.C. (2017) <em>Clean Architecture</em>. Addison-Wesley.</p></li>
+<li><p>Ousterhout, J. K. (2018). <em>A Philosophy of Software Design</em>. Palo Alto: Yaknyam Press.</p></li>
+<li><p>Seemann, M. (2021) <em>Code That Fits in Your Head</em>. Addison-Wesley.</p></li>
 </ul>
 </section></section>
 <section id="for-more" class="title-slide slide level1 center">

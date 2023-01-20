@@ -2483,21 +2483,39 @@ You can use a few or all of the following options to reduce the frequency with w
 
 # Caveats
 
-No good practice is dogma. There can always exist reasons to ignore it.
+No good practice is dogma. There always exist reasons to ignore it.
 
-## 
+## Using workflows flexibly {.smaller}
 
-Sometimes two concerns can conflict: more examples versus package size
+- You can skip some workflows or create new workflows depending on the project-specific demands (e.g. compiled code, database connections, API access, etc.).
+
+- Sometimes it might not even be possible to run all workflows successfully because a few of them conflict with each other. If you have a data visualization package (e.g.), the more examples you have in the documentation, the bigger the package size would be, which might leave a `NOTE` in `R CMD check` and strict workflow will fail. Which of these workflows is important is a subjective decision.
 
 # Conclusion
 
-## Further reading {.smaller}
+It is possible to build automated, robust, and reliable infrastructure for R package development, and doing so will improve the user experience and reduce (or even remove!) the maintenance headaches!
 
-For more extensive discussions on best practices in R package development.
+# Further reading
+
+For more extensive discussions on best practices in software development.
+
+## {.smaller}
+
+### R-specific
 
 - [Writing R Extensions](https://rstudio.github.io/r-manuals/r-exts/){target="_blank"}
 
 - Wickham, H., and Bryan, J. (2023). [*R Packages*](https://r-pkgs.org/){target="_blank"} (2nd edition). O'Reilly.
+
+### Language-agnostic
+
+- McConnell, S. (2004). *Code Complete* (2nd edition). Microsoft Press.
+
+- Martin, R.C. (2017) *Clean Architecture*. Addison-Wesley.
+
+- Ousterhout, J. K. (2018). *A Philosophy of Software Design*. Palo Alto: Yaknyam Press.
+
+- Seemann, M. (2021) *Code That Fits in Your Head*. Addison-Wesley.
 
 # For more
 
