@@ -10,7 +10,7 @@
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.119">
+  <meta name="generator" content="quarto-1.3.121">
 
   <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
   <title>slides</title>
@@ -2736,6 +2736,7 @@ YAML</code></pre>
 <li>Run workflows only when a PR is marked “Ready for Review”.</li>
 <li>Skip running some workflows (e.g., spelling, HTML5, link rot, etc.) on each commit once all workflows are green. Instead, run them with weekly or monthly schedules, and then fix the newly found problems.</li>
 <li>Run some workflows only when ready for a new release.</li>
+<li>Cancel <a href="https://docs.github.com/en/actions/using-jobs/using-concurrency" target="_blank">workflows in progress</a> if a new commit is made.</li>
 </ul>
 </div>
 </div>
@@ -2835,7 +2836,7 @@ YAML</code></pre>
  collate  C.UTF-8
  ctype    C.UTF-8
  tz       UTC
- date     2023-01-20
+ date     2023-01-21
  pandoc   3.0 @ /usr/bin/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
