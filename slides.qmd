@@ -3050,6 +3050,7 @@ You can use a few or all of the following options to reduce the frequency with w
 - Run workflows only when a PR is marked "Ready for Review".
 - Skip running some workflows (e.g., spelling, HTML5, link rot, etc.) on each commit once all workflows are green. Instead, run them with weekly or monthly schedules, and then fix the newly found problems.
 - Run some workflows only when ready for a new release.
+- Cancel [workflows in progress](https://docs.github.com/en/actions/using-jobs/using-concurrency){target="_blank"} if a new commit is made.
 
 :::
 
