@@ -2059,7 +2059,152 @@ knitr::include_graphics("media/target.png")
 
 :::::
 
-## Code quality issues {.smaller}
+# Make sure the code follows a style guide.
+
+## Code formatting {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/web-programming.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+The physical layout of the program can assist the reader in understanding the underlying logic. Additionally, understanding a large codebase is easier to follow when all the code has consistent formatting. Style guides outline conventions to enforce a uniform formatting schema across the codebase. 
+
+:::{style="font-size: 20px;"}
+
+Style guides can be highly opinionated and some arbitrary. So, more important than *which* style guide you follow is the fact that you follow *a* style guide. 
+
+:::
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+In larger projects or teams, multiple contributors may have different formatting preferences. This can lead to contributors undoing each others' changes, leading to unnecessarily large git diffs and even unnecessary unpleasantness.
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+<br>
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to make sure that codebase follows a consistent style guide?**
+
+:::
+
+:::
+
+::::
+
+## Following style guide {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [`{styler}`](https://r-lib.github.io/styler/){target='_blank'} to enforce the [tidyverse style guide](https://style.tidyverse.org/){target='_blank'} throughout the package (including source code, test files, vignettes, etc.).
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+styler::style_pkg()
+```
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml){target='_blank'} to format code consistently on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- You can use annotations (`styler: off` + `styler: on`) to instruct `{styler}` to ignore custom formatted code.
+
+- If you don't prefer the tidyverse style guide, either you can customize `{styler}` itself, or explore other packages (e.g. [`{formatR}`](https://CRAN.R-project.org/package=formatR){target='_blank'}, [`{BiocStyle}`](https://github.com/Bioconductor/BiocStyle/){target='_blank'}, etc.). For a full list, see [awesome-r-pkgtools](https://indrajeetpatil.github.io/awesome-r-pkgtools/#codedocument-formatting){target='_blank'}.
+
+:::
+
+# Make sure there are no known code quality issues.
+
+## Code quality assessment {.smaller}
 
 <!-- column layout -->
 
@@ -2134,7 +2279,7 @@ knitr::include_graphics("media/headache.png")
 
 ::: {.column width='90%'}
 
-In larger projects or teams, where multiple contributors may be working on the same codebase, it can become difficult for an individual contributor to detect code quality or formatting issues that they or someone else may have introduced.
+In larger projects or teams, where multiple contributors may be working on the same codebase, it can become difficult for an individual contributor to detect code quality issues that they or someone else may have introduced.
 
 :::
 
@@ -2255,9 +2400,9 @@ env:
 
 ## Additional tips 
 
-- Most lints related to code formatting can be removed using [`{styler}`](https://r-lib.github.io/styler/){target='_blank'}, which enforces [tidyverse style guide](https://style.tidyverse.org/){target='_blank'}. Preferably code is formatted consistently on each commit using [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml){target='_blank'}.
+- Most lints related to code formatting can be removed using [`{styler}`](https://r-lib.github.io/styler/){target='_blank'}, which enforces [tidyverse style guide](https://style.tidyverse.org/){target='_blank'}.
 
-- Code smells are subjective and you may disagree with some linters. Use a [configuration file](https://lintr.r-lib.org/dev/articles/lintr.html) to customize which linters you wish to include. Additionally, you can annotate parts of code that linters should ignore.
+- Code smells are subjective and you may disagree with some linters. Use a [configuration file](https://lintr.r-lib.org/dev/articles/lintr.html) to customize which linters you wish to include. Additionally, you can annotate parts of code that linters should ignore (e.g. `# nolint start: indentation_linter.` + `# nolint end`).
 
 :::
 
@@ -2336,6 +2481,8 @@ Use [GHA workflow](https://github.com/r-lib/styler/blob/main/.github/workflows/p
 :::
 
 ::::
+
+# Make sure there are no performance regressions.
 
 ## Don't slow it down {.smaller}
 
@@ -2488,11 +2635,11 @@ knitr::include_graphics("media/target.png")
 
 <br>
 
-| Item                                                  |
-| :---------------------------------------------------- |
-| Make sure code follows style guide.                   |
-| Make sure there are no known code quality issues.     |
-| Make sure there are no severe performance regressions |
+| Item                                              |
+| :------------------------------------------------ |
+| Make sure the code follows a style guide.         |
+| Make sure there are no known code quality issues. |
+| Make sure there are no performance regressions.   |
 
 # Dependency management
 
