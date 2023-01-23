@@ -22,7 +22,7 @@ Indrajeet Patil
 :::
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/preventive-care.jpeg")
+knitr::include_graphics("media/preventive-care.png")
 ```
 
 
@@ -283,11 +283,209 @@ Following each item on a checklist is a small improvement, but constantly keepin
 
 :::
 
+# "The only way to go fast, is to go well."
+\- Robert C. Martin
+
 # R package development
 
 Using automation to tick checklists for various aspects of package development.
 
-# Documentation
+## Plan
+
+First, you will see the checklists to tick, and then the details on how to build infrastructure to ensure that none of the checklist items are forgotten.
+
+- [Documentation](#documentation) 
+
+- [Exception handling](#warnings)
+
+- [Portability](#portability)
+
+- [Code quality](#codequality)
+
+- [Dependency management](#dependency)
+
+## Checklist for documentation {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**For a good user experience, make sure that the docs are plentiful, valid, and up-to-date.**
+
+:::
+
+:::
+
+::::
+
+| Item                                                      |
+| :-------------------------------------------------------- |
+| Make sure there are enough examples in the documentation. |
+| Make sure all README examples are working.                |
+| Make sure all examples in help pages are working.         |
+| Make sure examples in all vignettes are working.          |
+| Make sure all URLs are valid.                             |
+| Make sure there are no spelling mistakes.                 |
+| Make sure all HTML in the help pages is valid.            |
+
+## Checklist for exception handling {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that warnings are easily detected for further scrutiny and forthright dealt with.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                                     |
+| :------------------------------------------------------- |
+| Make sure examples in README produce no warnings.        |
+| Make sure examples in help pages produce no warnings.    |
+| Make sure examples in all vignettes produce no warnings. |
+| Make sure tests produce no extrinsic warnings.           |
+
+## Checklist for portability {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**For a good user experience, make sure that package would work as expected across diverse settings.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                                         |
+| :----------------------------------------------------------- |
+| Make sure package passes checks on commonly used OS.         |
+| Make sure package passes checks on all supported R versions. |
+| ...                                                          |
+
+::: aside
+
+The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). So you can extend the list as you see fit for your workflow!
+
+:::
+
+## Checklist for code quality {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that the code is readable, maintainable, and follows agreed conventions.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                              |
+| :------------------------------------------------ |
+| Make sure the code follows a style guide.         |
+| Make sure there are no known code quality issues. |
+| Make sure there are no performance regressions.   |
+
+## Checklist for dependency management {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that the package is robust to availability of soft dependencies and breaking changes in hard dependencies.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                                                              |
+| :-------------------------------------------------------------------------------- |
+| Make sure examples in help pages are run conditionally.                           |
+| Make sure vignettes (or code chunks therein) are executed conditionally.          |
+| Make sure tests are run conditionally.                                            |
+| Make sure excluded vignettes (or code chunks therein) are executed conditionally. |
+| Anticipate possible breaking changes coming from dependencies and act on it.      |
+
+# Documentation {#documentation}
 
 Preventive care to make sure the docs are up-to-date.
 
@@ -1514,7 +1712,7 @@ knitr::include_graphics("media/target.png")
 | Make sure there are no spelling mistakes.                 |
 | Make sure all HTML in the help pages is valid.            |
 
-# Exception handling
+# Exception handling {#warnings}
 
 Preventive care to make sure that you don't miss out on important warnings.
 
@@ -1612,7 +1810,7 @@ E.g. if your package has a function to winsorize data with a certain threshold, 
 
 ```{r}
 #| eval: false
-winsorize(x, threshold = c(0.3, 2))
+winsorize(x, threshold = 2)
 #> Warning message:
 #> `threshold` for winsorization must be a scalar between 0 and 0.5.
 ```
@@ -1624,14 +1822,13 @@ winsorize(x, threshold = c(0.3, 2))
 **Extrinsic warnings**
 
 Warnings coming from dependencies you are using, either in examples or tests.
-E.g. if your package relies on `{ggplot2}`, you might get a warning like this.
+E.g. if your package relies on `{ggside}`, you may have seen [this warning](https://github.com/jtlandis/ggside/issues/39){target='_blank'}.
 
 ```{r}
 #| eval: false
-ggplot(mtcars, aes(wt, mpg)) + geom_line(size = 1)
-#> Warning message:
-#> Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-#> ℹ Please use `linewidth` instead.
+ggplot(mpg, aes(hwy, class)) + geom_xsidedensity()
+#> Warning: Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.
+#> ℹ Please use `linewidth` in the `default_aes` field and elsewhere instead.
 ```
 
 :::
@@ -1798,7 +1995,7 @@ knitr::include_graphics("media/target.png")
 | Make sure examples in all vignettes produce no warnings. |
 | Make sure tests produce no extrinsic warnings.           |
 
-# Portability
+# Portability {#portability}
 
 Preventive care to make sure that your package works across a variety of settings.
 
@@ -2022,7 +2219,7 @@ The items on this list will vary significantly from package to package (e.g., do
 
 :::
 
-# Code quality
+# Code quality {#codequality}
 
 Preventive care to detect code quality issues and performance regressions.
 
@@ -2641,7 +2838,7 @@ knitr::include_graphics("media/target.png")
 | Make sure there are no known code quality issues. |
 | Make sure there are no performance regressions.   |
 
-# Dependency management
+# Dependency management {#dependency}
 
 Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.
 
@@ -3200,6 +3397,8 @@ You can use a few or all of the following options to reduce the frequency with w
 - Cancel [workflows in progress](https://docs.github.com/en/actions/using-jobs/using-concurrency){target="_blank"} if a new commit is made.
 
 :::
+
+
 
 # Caveats
 
