@@ -10,7 +10,7 @@
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.121">
+  <meta name="generator" content="quarto-1.3.124">
 
   <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
   <title>slides</title>
@@ -540,7 +540,7 @@
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:70%;">
-<p>Based on research, <em>Accelerate</em> (Nicole, Humble, &amp; Kim, 2018) argue that the key difference between high-performing vs low-performing software teams is <em>the ability to make a release at the drop of a hat</em>.</p>
+<p>Based on research, <em>Accelerate</em> (Forsgren, Humble, &amp; Kim, 2018) argue that the key difference between high-performing vs low-performing software teams is <em>the ability to make a release at the drop of a hat</em>.</p>
 <p>For R packages, this translates to making sure that every commit on the <code>main</code>-branch is <strong>release-ready</strong>.</p>
 <p>That is, if you were asked to make a new release soon, you can be confident that the latest commit doesn’t have any documentation issues, code quality issues, performance regressions, etc.</p>
 </div><div class="column" style="width:30%;">
@@ -839,7 +839,7 @@
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://rmarkdown.rstudio.com/github_document_format.html"><code>{rmarkdown}</code></a> to dynamically generate <code>README.md</code> from <code>README.Rmd</code>. If there is broken code in README, it will fail to render.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">"README.md"</span>, <span class="at">output_format =</span> rmarkdown<span class="sc">::</span><span class="fu">github_document</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">"README.Rmd"</span>, <span class="at">output_format =</span> rmarkdown<span class="sc">::</span><span class="fu">github_document</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1153,7 +1153,7 @@
 <p><br></p>
 <p><i class="fa-solid fa-link-slash fa-2xl" aria-label="link-slash"></i></p>
 </div><div class="column" style="width:90%;">
-<p>Package documentation often includes a plenty of hyperlinks to external resources. But some of them may become invalid over time.</p>
+<p>Package documentation often includes plenty of hyperlinks to external resources. But some of them may become invalid over time.</p>
 <p><a href="https://en.wikipedia.org/wiki/Link_rot" target="_blank">Link rot</a> happens because web pages move to new addresses or become permanently unavailable.</p>
 </div>
 </div>
@@ -1802,7 +1802,7 @@ YAML</code></pre>
 </section></section>
 <section id="portability" class="title-slide slide level1 center">
 <h1>Portability</h1>
-<p>Preventive care to make sure that package works across a variety of settings.</p>
+<p>Preventive care to make sure that your package works across a variety of settings.</p>
 </section>
 
 <section id="each-new-user-of-a-new-system-uncovers-a-new-class-of-bugs." class="title-slide slide level1 center">
@@ -2634,7 +2634,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>The trick here is to run <code>R CMD check</code> twice: Once when <em>all</em> soft dependencies are available, and once when <em>none</em> are available. If the package passes the <code>R CMD check</code> in the first but not the second context, you can be sure that some soft dependencies are not being used conditionally.</p>
+<p>The trick here is to run <code>R CMD check</code> twice: once when <em>all</em> soft dependencies are available, and once when <em>none</em> are available. If the package passes the <code>R CMD check</code> in the first but not the second context, you can be sure that some soft dependencies are not being used conditionally.</p>
 </div>
 </div>
 <div class="fragment">
@@ -2905,7 +2905,7 @@ YAML</code></pre>
 
 <section id="acknowledgements" class="title-slide slide level1 smaller center">
 <h1>Acknowledgements</h1>
-<p>Thanks to all creators, maintainers, and contributors for the tools mentioned throughout the presentation. Without them, it won’t be so easy to create robust package development architecture in R! 🙏</p>
+<p>Thanks to all creators, maintainers, and contributors for the tools mentioned throughout the presentation. Without them, it wouldn’t be so easy to create robust package development architecture in R! 🙏</p>
 <p><br></p>
 <div style="background-color: #FEC868; padding: 20px; border-radius: 25px;">
 <p>All images used in these slides have been taken from <a href="www.flaticon.com" target="_blank">Flaticon</a> by <a href="https://www.freepikcompany.com/" target="_blank">freepikcompany</a>. Huge thanks to them for making such fantastic resource freely available.</p>
@@ -2951,7 +2951,7 @@ YAML</code></pre>
  collate  C.UTF-8
  ctype    C.UTF-8
  tz       UTC
- date     2023-01-22
+ date     2023-01-23
  pandoc   3.0 @ /usr/bin/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
@@ -2994,7 +2994,7 @@ YAML</code></pre>
  stringr        1.5.0   2022-12-02 [1] RSPM
  tools          4.2.2   2022-10-31 [3] local
  utils        * 4.2.2   2022-10-31 [3] local
- vctrs          0.5.1   2022-11-16 [1] RSPM
+ vctrs          0.5.2   2023-01-23 [1] CRAN (R 4.2.2)
  withr          2.5.0   2022-03-03 [1] RSPM
  xfun           0.36    2022-12-21 [1] RSPM
  xml2           1.3.3   2021-11-30 [1] RSPM
