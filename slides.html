@@ -401,7 +401,7 @@
 
 <!-- Need to install extension from https://github.com/quarto-ext/fontawesome -->
 <!-- Run `quarto install extension quarto-ext/fontawesome` in terminal -->
-<img data-src="media/preventive-care.jpeg" class="r-stretch"></section>
+<img data-src="media/preventive-care.png" width="507" class="r-stretch"></section>
 <section id="software-engineering-ought-to-produce-sustainability." class="title-slide slide level1 center">
 <h1>“Software engineering ought to produce sustainability.”</h1>
 <p>- Mark Seemann (<em>Code That Fits in Your Head</em>)</p>
@@ -592,11 +592,233 @@
 </div>
 </div>
 </section></section>
+<section id="the-only-way-to-go-fast-is-to-go-well." class="title-slide slide level1 center">
+<h1>“The only way to go fast, is to go well.”</h1>
+<p>- Robert C. Martin</p>
+</section>
+
+<section>
 <section id="r-package-development" class="title-slide slide level1 center">
 <h1>R package development</h1>
 <p>Using automation to tick checklists for various aspects of package development.</p>
 </section>
+<section id="plan" class="slide level2">
+<h2>Plan</h2>
+<p>First, you will see the checklists to tick, and then the details on how to build infrastructure to ensure that none of the checklist items are forgotten.</p>
+<ul>
+<li><p><a href="#/documentation">Documentation</a></p></li>
+<li><p><a href="#/warnings">Exception handling</a></p></li>
+<li><p><a href="#/portability">Portability</a></p></li>
+<li><p><a href="#/codequality">Code quality</a></p></li>
+<li><p><a href="#/dependency">Dependency management</a></p></li>
+</ul>
+</section>
+<section id="checklist-for-documentation" class="slide level2 smaller">
+<h2>Checklist for documentation</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>For a good user experience, make sure that the docs are plentiful, valid, and up-to-date.</strong></p>
+</div>
+</div>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure there are enough examples in the documentation.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure all README examples are working.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all examples in help pages are working.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure examples in all vignettes are working.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all URLs are valid.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure there are no spelling mistakes.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all HTML in the help pages is valid.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="checklist-for-exception-handling" class="slide level2 smaller">
+<h2>Checklist for exception handling</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that warnings are easily detected for further scrutiny and forthright dealt with.</strong></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure examples in README produce no warnings.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure examples in help pages produce no warnings.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure examples in all vignettes produce no warnings.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure tests produce no extrinsic warnings.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="checklist-for-portability" class="slide level2 smaller">
+<h2>Checklist for portability</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>For a good user experience, make sure that package would work as expected across diverse settings.</strong></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure package passes checks on commonly used OS.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure package passes checks on all supported R versions.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">…</td>
+</tr>
+</tbody>
+</table>
 
+<aside><div>
+<p>The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). So you can extend the list as you see fit for your workflow!</p>
+</div></aside></section>
+<section id="checklist-for-code-quality" class="slide level2 smaller">
+<h2>Checklist for code quality</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that the code is readable, maintainable, and follows agreed conventions.</strong></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure the code follows a style guide.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure there are no known code quality issues.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure there are no performance regressions.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="checklist-for-dependency-management" class="slide level2 smaller">
+<h2>Checklist for dependency management</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/target.png" width="256"></p>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that the package is robust to availability of soft dependencies and breaking changes in hard dependencies.</strong></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<table>
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure examples in help pages are run conditionally.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure vignettes (or code chunks therein) are executed conditionally.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure tests are run conditionally.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure excluded vignettes (or code chunks therein) are executed conditionally.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Anticipate possible breaking changes coming from dependencies and act on it.</td>
+</tr>
+</tbody>
+</table>
+</section></section>
 <section id="documentation" class="title-slide slide level1 center">
 <h1>Documentation</h1>
 <p>Preventive care to make sure the docs are up-to-date.</p>
@@ -1489,7 +1711,7 @@ YAML</code></pre>
 </div>
 </div>
 </section>
-<section id="checklist-for-documentation" class="slide level2 smaller">
+<section id="checklist-for-documentation-1" class="slide level2 smaller">
 <h2>Checklist for documentation</h2>
 <!-- column layout -->
 <div class="columns">
@@ -1536,7 +1758,7 @@ YAML</code></pre>
 </tbody>
 </table>
 </section></section>
-<section id="exception-handling" class="title-slide slide level1 center">
+<section id="warnings" class="title-slide slide level1 center">
 <h1>Exception handling</h1>
 <p>Preventive care to make sure that you don’t miss out on important warnings.</p>
 </section>
@@ -1648,18 +1870,17 @@ YAML</code></pre>
 <p><strong>Intrinsic warnings</strong></p>
 <p>Warnings that functions in your package produce to inform users. E.g. if your package has a function to winsorize data with a certain threshold, this could be a possible warning.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">winsorize</span>(x, <span class="at">threshold =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="dv">2</span>))</span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">winsorize</span>(x, <span class="at">threshold =</span> <span class="dv">2</span>)</span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="co">#&gt; Warning message:</span></span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="co">#&gt; `threshold` for winsorization must be a scalar between 0 and 0.5.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <p><strong>Extrinsic warnings</strong></p>
-<p>Warnings coming from dependencies you are using, either in examples or tests. E.g. if your package relies on <code>{ggplot2}</code>, you might get a warning like this.</p>
+<p>Warnings coming from dependencies you are using, either in examples or tests. E.g. if your package relies on <code>{ggside}</code>, you may have seen <a href="https://github.com/jtlandis/ggside/issues/39" target="_blank">this warning</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; Warning message:</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="co">#&gt; Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(hwy, class)) <span class="sc">+</span> <span class="fu">geom_xsidedensity</span>()</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; Warning: Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="co">#&gt; ℹ Please use `linewidth` in the `default_aes` field and elsewhere instead.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1761,7 +1982,7 @@ YAML</code></pre>
 </div>
 </div>
 </section>
-<section id="checklist-for-exception-handling" class="slide level2 smaller">
+<section id="checklist-for-exception-handling-1" class="slide level2 smaller">
 <h2>Checklist for exception handling</h2>
 <!-- column layout -->
 <div class="columns">
@@ -1933,7 +2154,7 @@ YAML</code></pre>
 </div>
 </div>
 </section>
-<section id="checklist-for-portability" class="slide level2 smaller">
+<section id="checklist-for-portability-1" class="slide level2 smaller">
 <h2>Checklist for portability</h2>
 <!-- column layout -->
 <div class="columns">
@@ -1972,7 +2193,7 @@ YAML</code></pre>
 <aside><div>
 <p>The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). So you can extend the list as you see fit for your workflow!</p>
 </div></aside></section></section>
-<section id="code-quality" class="title-slide slide level1 center">
+<section id="codequality" class="title-slide slide level1 center">
 <h1>Code quality</h1>
 <p>Preventive care to detect code quality issues and performance regressions.</p>
 </section>
@@ -2377,7 +2598,7 @@ YAML</code></pre>
 </div>
 </div>
 </section>
-<section id="checklist-for-code-quality" class="slide level2 smaller">
+<section id="checklist-for-code-quality-1" class="slide level2 smaller">
 <h2>Checklist for code quality</h2>
 <!-- column layout -->
 <div class="columns">
@@ -2413,7 +2634,7 @@ YAML</code></pre>
 </tbody>
 </table>
 </section></section>
-<section id="dependency-management" class="title-slide slide level1 center">
+<section id="dependency" class="title-slide slide level1 center">
 <h1>Dependency management</h1>
 <p>Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.</p>
 </section>
@@ -2771,7 +2992,7 @@ YAML</code></pre>
 </div>
 </div>
 </section>
-<section id="checklist-for-dependency-management" class="slide level2 smaller">
+<section id="checklist-for-dependency-management-1" class="slide level2 smaller">
 <h2>Checklist for dependency management</h2>
 <!-- column layout -->
 <div class="columns">
