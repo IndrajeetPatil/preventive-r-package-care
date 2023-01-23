@@ -198,7 +198,7 @@ How can software engineering improve sustainability
 
 ::: {.column width='70%'}
 
-Based on research, *Accelerate* (Nicole, Humble, & Kim, 2018) argue that the key difference between high-performing vs low-performing software teams is *the ability to make a release at the drop of a hat*.
+Based on research, *Accelerate* (Forsgren, Humble, & Kim, 2018) argue that the key difference between high-performing vs low-performing software teams is *the ability to make a release at the drop of a hat*.
 
 For R packages, this translates to making sure that every commit on the `main`-branch is **release-ready**. 
 
@@ -629,7 +629,7 @@ Use [`{rmarkdown}`](https://rmarkdown.rstudio.com/github_document_format.html) t
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
-rmarkdown::render("README.md", output_format = rmarkdown::github_document())
+rmarkdown::render("README.Rmd", output_format = rmarkdown::github_document())
 ```
 
 :::
@@ -997,7 +997,7 @@ Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pk
 
 ::: {.column width='90%'}
 
-Package documentation often includes a plenty of hyperlinks to external resources. But some of them may become invalid over time.
+Package documentation often includes plenty of hyperlinks to external resources. But some of them may become invalid over time.
 
 [Link rot](https://en.wikipedia.org/wiki/Link_rot){target='_blank'} happens because web pages move to new addresses or become permanently unavailable.
 
@@ -1800,7 +1800,7 @@ knitr::include_graphics("media/target.png")
 
 # Portability
 
-Preventive care to make sure that package works across a variety of settings.
+Preventive care to make sure that your package works across a variety of settings.
 
 # "Each new user of a new system uncovers a new class of bugs."
 \- Brian Kernighan
@@ -2931,7 +2931,7 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='90%'}
 
-The trick here is to run `R CMD check` twice: Once when *all* soft dependencies are available, and once when *none* are available. If the package passes the `R CMD check` in the first but not the second context, you can be sure that some soft dependencies are not being used conditionally.
+The trick here is to run `R CMD check` twice: once when *all* soft dependencies are available, and once when *none* are available. If the package passes the `R CMD check` in the first but not the second context, you can be sure that some soft dependencies are not being used conditionally.
  
 :::
 
@@ -3249,7 +3249,7 @@ If you are interested in good programming and software development practices, ch
 
 # Acknowledgements {.smaller}
 
-Thanks to all creators, maintainers, and contributors for the tools mentioned throughout the presentation. Without them, it won't be so easy to create robust package development architecture in R! 🙏
+Thanks to all creators, maintainers, and contributors for the tools mentioned throughout the presentation. Without them, it wouldn't be so easy to create robust package development architecture in R! 🙏
 
 <br>
 
