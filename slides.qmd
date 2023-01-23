@@ -3398,8 +3398,6 @@ You can use a few or all of the following options to reduce the frequency with w
 
 :::
 
-
-
 # Caveats
 
 No good practice is dogma. There always exist exceptions.
@@ -3410,15 +3408,15 @@ No good practice is dogma. There always exist exceptions.
 
 - Sometimes it might not even be possible to run all workflows successfully because a few of them conflict with each other. 
 
-  :::{style="font-size: 20px;"}
+:::{style="font-size: 20px;"}
   
-  If you have a data visualization package (e.g.), the more examples you have in the documentation, the bigger the package size would be, which might leave a `NOTE` in `R CMD check` and strict workflow will fail. Which of these workflows is more important is a subjective decision.
+If you have a data visualization package (e.g.), the more examples you have in the documentation, the bigger the package size would be, which might leave a `NOTE` in `R CMD check` and strict workflow will fail. Which of these workflows is more important is a subjective decision.
   
-  :::
+:::
 
 # Conclusion
 
-It is possible to build robust automation infrastructure for R package development that can improve user experience and make long-term package development more reliable and sustainable.
+It is possible to build a robust automation infrastructure for R package development that can improve user experience and make long-term package development more reliable and sustainable.
 
 # Further reading
 
@@ -3475,7 +3473,6 @@ Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)]
 # Thank You 
 
 And Happy Package Care! 👼
-
 
 ## Since you stayed behind...
 
