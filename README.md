@@ -1,9 +1,9 @@
 
 ## Preventive Care for R Packages
 
-<img src="media/preventive-care.jpeg" align="right" width="250" />
+<img src="media/preventive-care.png" align="right" width="250" />
 
-As an R package developer, if you ever lay awake in the bed wondering:
+As an R package developer, if you ever lay awake in bed wondering:
 
 - if the users are having a bad experience while using the package,
 - if you will receive the dreaded CRAN email about archival, and
