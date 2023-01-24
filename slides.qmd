@@ -3416,7 +3416,7 @@ If you have a data visualization package (e.g.), the more examples you have in t
 
 # Conclusion
 
-It is possible to build a robust automation infrastructure for R package development that can improve user experience and make long-term package development more reliable and sustainable.
+It is possible to build robust automation infrastructure for R package development that can improve user experience and make long-term development more reliable and sustainable.
 
 # Further reading
 
