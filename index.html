@@ -1910,8 +1910,8 @@ YAML</code></pre>
 <div style="background-color: #FFDCA9; padding: 20px; border-radius: 25px;">
 <ul>
 <li><p>Warnings are generated in contexts where functions in <em>your</em> package were used unexpectedly by the users. But such contexts shouldn’t be deliberately highlighted in the documentation. Users should always see <a href="https://en.wikipedia.org/wiki/Happy_path" target="_blank">happy path</a> examples in help pages, README, or vignettes.</p></li>
-<li><p>While testing functions, you should use expectations (e.g.&nbsp;<code>testthat::expect_warning()</code>) to check that expected warnings are triggered. You shouldn’t print the warnings, since they can completely overwhelm the test log, which makes it difficult to catch important warnings.</p></li>
-<li><p>If it’s a complex package function that can encounter a large number of slippery situations, it makes sense for you to provide an argument to turn off a few warnings (e.g.&nbsp;<code>verbose = FALSE</code>) and use it to omit warnings in the docs.</p></li>
+<li><p>While testing functions, you should use expectations (e.g.&nbsp;<code>testthat::expect_warning()</code>) to check that expected warnings are triggered. You shouldn’t print the warnings, since they can completely overwhelm the test log and make it difficult to catch important warnings.</p></li>
+<li><p>If it’s a complex package function that can encounter a large number of slippery situations, it makes sense to provide an argument to turn off a few warnings (e.g.&nbsp;<code>verbose = FALSE</code>) and use it to omit warnings in the docs.</p></li>
 </ul>
 </div>
 </div>
@@ -1973,8 +1973,8 @@ YAML</code></pre>
 </div>
 <div class="callout-content">
 <ul>
-<li><p>While you are at this cleanup, it might also be worth clean up intrinsic and extrinsic messages. They might be harmless, but they do clog up logs and make it difficult to focus on warnings.</p></li>
-<li><p>If you set <code>warning=FALSE</code> in vignettes, note that this only suppresses warnings in the rendered output. When your users run this code interactively, they are still going to see the suppressed warnings. <a href="https://en.wikipedia.org/wiki/Ostrich_policy" target="_blank">Ostrich policy</a> never works for software development.</p></li>
+<li><p>While you are at this cleanup, it might also be worth cleaning up intrinsic and extrinsic messages. They might be harmless, but they do clog up logs and make it difficult to focus on warnings.</p></li>
+<li><p>If you set <code>warning=FALSE</code> in vignettes, this only suppresses warnings in the rendered output. When users run this code interactively, they will still see the suppressed warnings. <a href="https://en.wikipedia.org/wiki/Ostrich_policy" target="_blank">Ostrich policy</a> never works for software development.</p></li>
 </ul>
 </div>
 </div>
@@ -2074,9 +2074,9 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>If you restrict your checks only to run on these specific settings, you may not anticipate the problems your users may experience in other settings (e.g., the graphics device that works on <code>windows</code> may not work on <code>macOS</code>, code that works with <code>R 4.1</code> may not work with <code>R 3.6</code>, etc.).</p>
+<p>If you restrict your checks only to these specific settings, you may not catch problems experienced by users in other settings (e.g., the graphics device that works on <code>windows</code> may not work on <code>macOS</code>, code that works with <code>R 4.1</code> may not work with <code>R 3.6</code>, etc.).</p>
 <div style="font-size: 20px;">
-<p>The assumption here is that your package claims to support these settings. If your package docs clearly state that the package will work only on (e.g.) Windows, you don’t need to worry about other OS.</p>
+<p>The key assumption here is that your package claims to support these settings. If your package docs clearly state that the package will work only on (e.g.) Windows, you don’t need to worry about other OS.</p>
 </div>
 </div>
 </div>
@@ -2239,9 +2239,9 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>The physical layout of the program can assist the reader in understanding the underlying logic. Additionally, understanding a large codebase is easier to follow when all the code has consistent formatting. Style guides outline conventions to enforce a uniform formatting schema across the codebase.</p>
+<p>The physical layout of the program can assist the reader in understanding the underlying logic. Additionally, understanding a large codebase is easier when all the code has consistent formatting. Style guides outline conventions to enforce a uniform formatting schema across the codebase.</p>
 <div style="font-size: 20px;">
-<p>Style guides can be highly opinionated and some arbitrary. So, more important than <em>which</em> style guide you follow is the fact that you follow <em>a</em> style guide.</p>
+<p>Style guides can be highly opinionated and arbitrary. So, more important than <em>which</em> style guide you follow is the fact that you follow <em>a</em> style guide.</p>
 </div>
 </div>
 </div>
