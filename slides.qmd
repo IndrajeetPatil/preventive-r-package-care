@@ -1871,9 +1871,9 @@ There is almost never a need to explicitly highlight warnings intrinsic to your 
 
 - Warnings are generated in contexts where functions in *your* package were used unexpectedly by the users. But such contexts shouldn't be deliberately highlighted in the documentation. Users should always see [happy path](https://en.wikipedia.org/wiki/Happy_path){target='_blank'} examples in help pages, README, or vignettes.
 
-- While testing functions, you should use expectations (e.g. `testthat::expect_warning()`) to check that expected warnings are triggered. You shouldn't print the warnings, since they can completely overwhelm the test log, which makes it difficult to catch important warnings.
+- While testing functions, you should use expectations (e.g. `testthat::expect_warning()`) to check that expected warnings are triggered. You shouldn't print the warnings, since they can completely overwhelm the test log and make it difficult to catch important warnings.
 
-- If it's a complex package function that can encounter a large number of slippery situations, it makes sense for you to provide an argument to turn off a few warnings (e.g. `verbose = FALSE`) and use it to omit warnings in the docs.
+- If it's a complex package function that can encounter a large number of slippery situations, it makes sense to provide an argument to turn off a few warnings (e.g. `verbose = FALSE`) and use it to omit warnings in the docs.
 
 :::
 
@@ -1952,9 +1952,9 @@ Use GHA workflows to automate checking presence of warnings in [help pages](http
 
 ## Additional tips 
 
-- While you are at this cleanup, it might also be worth clean up intrinsic and extrinsic messages. They might be harmless, but they do clog up logs and make it difficult to focus on warnings.
+- While you are at this cleanup, it might also be worth cleaning up intrinsic and extrinsic messages. They might be harmless, but they do clog up logs and make it difficult to focus on warnings.
 
-- If you set `warning=FALSE` in vignettes, note that this only suppresses warnings in the rendered output. When your users run this code interactively, they are still going to see the suppressed warnings. [Ostrich policy](https://en.wikipedia.org/wiki/Ostrich_policy){target='_blank'} never works for software development.
+- If you set `warning=FALSE` in vignettes, this only suppresses warnings in the rendered output. When users run this code interactively, they will still see the suppressed warnings. [Ostrich policy](https://en.wikipedia.org/wiki/Ostrich_policy){target='_blank'} never works for software development.
 
 :::
 
@@ -2068,11 +2068,11 @@ knitr::include_graphics("media/confused.png")
 
 ::: {.column width='90%'}
 
-If you restrict your checks only to run on these specific settings, you may not anticipate the problems your users may experience in other settings (e.g., the graphics device that works on `windows` may not work on `macOS`, code that works with `R 4.1` may not work with `R 3.6`, etc.). 
+If you restrict your checks only to these specific settings, you may not catch problems experienced by users in other settings (e.g., the graphics device that works on `windows` may not work on `macOS`, code that works with `R 4.1` may not work with `R 3.6`, etc.).
 
 :::{style="font-size: 20px;"}
 
-The assumption here is that your package claims to support these settings. If your package docs clearly state that the package will work only on (e.g.) Windows, you don't need to worry about other OS.
+The key assumption here is that your package claims to support these settings. If your package docs clearly state that the package will work only on (e.g.) Windows, you don't need to worry about other OS.
 
 :::
 
@@ -2274,11 +2274,11 @@ knitr::include_graphics("media/web-programming.png")
 
 ::: {.column width='90%'}
 
-The physical layout of the program can assist the reader in understanding the underlying logic. Additionally, understanding a large codebase is easier to follow when all the code has consistent formatting. Style guides outline conventions to enforce a uniform formatting schema across the codebase. 
+The physical layout of the program can assist the reader in understanding the underlying logic. Additionally, understanding a large codebase is easier when all the code has consistent formatting. Style guides outline conventions to enforce a uniform formatting schema across the codebase. 
 
 :::{style="font-size: 20px;"}
 
-Style guides can be highly opinionated and some arbitrary. So, more important than *which* style guide you follow is the fact that you follow *a* style guide. 
+Style guides can be highly opinionated and arbitrary. So, more important than *which* style guide you follow is the fact that you follow *a* style guide.
 
 :::
 
