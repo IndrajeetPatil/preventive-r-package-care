@@ -1865,21 +1865,21 @@ YAML</code></pre>
 <div class="callout-content">
 <p>There are two kinds of warnings that you, as a developer, will need to deal with:</p>
 <div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Intrinsic warnings</strong></p>
-<p>Warnings that functions in your package produce to inform users. E.g. if your package has a function to winsorize data with a certain threshold, this could be a possible warning.</p>
+<div class="column" style="width:45%;">
+<p><strong>Intrinsic warnings</strong> are warnings produced by functions in <em>your</em> package.</p>
+<p>E.g. a warning from a function to winsorize data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">winsorize</span>(x, <span class="at">threshold =</span> <span class="dv">2</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="co">#&gt; Warning message:</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="co">#&gt; `threshold` for winsorization must be a scalar between 0 and 0.5.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">winsorize</span>(x, <span class="at">threshold =</span> <span class="dv">2</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning message:</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `threshold` for winsorization must be a scalar between 0 and 0.5.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div><div class="column" style="width:50%;">
-<p><strong>Extrinsic warnings</strong></p>
-<p>Warnings coming from dependencies you are using, either in examples or tests. E.g. if your package relies on <code>{ggside}</code>, you may have seen <a href="https://github.com/jtlandis/ggside/issues/39" target="_blank">this warning</a>.</p>
+</div><div class="column" style="width:55%;">
+<p><strong>Extrinsic warnings</strong> are warnings stemming from your package <em>dependencies</em>.</p>
+<p>E.g. a possible <a href="https://github.com/jtlandis/ggside/issues/39" target="_blank">warning</a> if your package relies on <code>{ggside}</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(hwy, class)) <span class="sc">+</span> <span class="fu">geom_xsidedensity</span>()</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; Warning: Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="co">#&gt; ℹ Please use `linewidth` in the `default_aes` field and elsewhere instead.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(hwy, class)) <span class="sc">+</span> <span class="fu">geom_xsidedensity</span>()</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Please use `linewidth` in the `default_aes` field and elsewhere instead.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1897,8 +1897,8 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>With a significant amount of package functionality and dependencies, there can be plenty of warnings that at any given moment.</p>
-<p>To avoid missing out on important warnings, there should ideally be <strong>zero of either type of warning</strong> in your package documentation and tests. This makes it easy to notice and deal with new warnings as they appear.</p>
+<p>With a significant amount of package functionality and dependencies, there can be plenty of warnings at any given moment.</p>
+<p>To avoid missing out on important warnings, there should ideally be <strong>zero of either type of warning</strong> in your package documentation and tests. This makes it easy to notice and deal with new, potentially critical warnings as they appear.</p>
 </div>
 </div>
 </div>
