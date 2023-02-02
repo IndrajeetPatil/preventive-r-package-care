@@ -10,7 +10,7 @@
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.140">
+  <meta name="generator" content="quarto-1.3.149">
 
   <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
   <title>slides</title>
@@ -434,7 +434,7 @@
 <p><strong>It’s not about the tools</strong></p>
 </div>
 <div class="callout-content">
-<p>I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. Even if you use neither, the broader takeaways should still be relevant. And, of course, you can implement the necessary checks with the tools you prefer.</p>
+<p>I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. Even if you use neither, the broader takeaways should still be relevant. You can implement the necessary checks with preferred tech stack.</p>
 </div>
 </div>
 </div>
@@ -448,7 +448,7 @@
 <p><strong>It’s not <em>just</em> about CRAN</strong></p>
 </div>
 <div class="callout-content">
-<p>Following the recommended practices will make packages more robust to CRAN checks, but that benefit is <em>incidental</em>. You can follow these practices even if you never plan to submit to CRAN. The goal here is to make user experience better and to reduce maintenance workload.</p>
+<p>Following the recommended practices will make packages more robust to CRAN checks, but that benefit is <em>incidental</em>. You can follow these practices even if you never plan to submit to CRAN. The goal here is to improve user experience and reduce maintenance workload.</p>
 </div>
 </div>
 </div>
@@ -462,7 +462,7 @@
 <p><strong>It’s not even about R</strong></p>
 </div>
 <div class="callout-content">
-<p>The practices outlined here are relevant to software development in any other programming language (just replace the package with module/library/etc.).</p>
+<p>The practices outlined here are just as relevant to software development in any other programming language (just replace the package with module/library/etc.).</p>
 </div>
 </div>
 </div>
@@ -540,7 +540,7 @@
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:70%;">
-<p>Based on research, <em>Accelerate</em> (Forsgren, Humble, &amp; Kim, 2018) argue that the key difference between high-performing vs low-performing software teams is <em>the ability to make a release at the drop of a hat</em>.</p>
+<p>Based on research, <em>Accelerate</em> (Forsgren, Humble, &amp; Kim, 2018) argues that the key difference between high-performing vs low-performing software teams is <em>the ability to make a release at the drop of a hat</em>.</p>
 <p>For R packages, this translates to making sure that every commit on the <code>main</code>-branch is <strong>release-ready</strong>.</p>
 <p>That is, if you were asked to make a new release soon, you can be confident that the latest commit doesn’t have any documentation issues, code quality issues, performance regressions, etc.</p>
 </div><div class="column" style="width:30%;">
@@ -586,7 +586,7 @@
 </div>
 </div><div class="column" style="width:80%;">
 <p>Software development is an inherently complex process. To make it more manageable, we break it down into checklists of best practices—each designed to stave off complexity—so that we don’t forget about them.</p>
-<p>Following each item on a checklist is a small improvement, but constantly keeping an eye on internal quality prevents software entropy from setting in. Although software engineering is more than about automating this process, it is undoubtedly an important part of it.</p>
+<p>Following each item on a checklist is a small improvement, but constantly keeping an eye on internal quality prevents software entropy from growing. Although software engineering is more than about automating this process, automation is undoubtedly an important part of it.</p>
 </div>
 </div>
 </div>
@@ -988,7 +988,7 @@
 <li><p>The choice of threshold is subjective and context-sensitive. Chasing after 100% example code coverage is futile (since this would require exposing every exception in the examples).</p></li>
 <li><p>The examples not run or tested on CRAN can still be counted for computing code coverage.</p></li>
 <li><p>Vignettes not included in the package (the ones in <code>vignettes/</code> subdirectory or <code>.Rbuildignore</code>) will not contribute towards the code coverage. Ditto for <code>README</code>. You can adjust the threshold accordingly.</p></li>
-<li><p>You could also choose the threshold on a file basis (<code>covr::file_coverage()</code>)</p></li>
+<li><p>You could also choose the threshold on a file basis (<code>covr::file_coverage()</code>).</p></li>
 </ul>
 </div>
 </div>
@@ -1092,7 +1092,7 @@
 <div class="callout-content">
 <ul>
 <li><p>If you are starting a new project, create README using <a href="https://usethis.r-lib.org/reference/use_readme_rmd.html"><code>usethis::use_readme_rmd()</code></a>.</p></li>
-<li><p>If you need to convert your existing <code>.md</code> to <code>.Rmd</code>, you are <a href="https://github.com/yihui/knitr/issues/1807">currently</a> out of luck. You will need to do this manually.</p></li>
+<li><p>If you need to convert an existing <code>.md</code> to <code>.Rmd</code>, you are <a href="https://github.com/yihui/knitr/issues/1807">currently</a> out of luck. You will need to do this manually.</p></li>
 <li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule" target="_blank">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 </ul>
 </div>
@@ -1289,12 +1289,11 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Thus, broken examples in excluded vignettes won’t be caught by <code>R CMD check</code>. Although users might not see them on CRAN, as a maintainer, you don’t wish to retain defunct examples in the documentation.</p>
+<p>Thus, the <code>R CMD check</code> won’t catch broken examples in excluded vignettes. Although users might not see them on CRAN, you shouldn’t retain defunct examples anywhere in the documentation. This also makes excluded vignettes future-proof; if you decide to include them in the package, there won’t be any issues.</p>
 </div>
 </div>
 </div>
 <div class="fragment">
-<p><br></p>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
@@ -1322,7 +1321,7 @@
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Although excluded vignettes may not be checked by <code>R CMD check</code>, they are still built by <a href="https://r-lib.github.io/pkgdown/"><code>{pkgdown}</code></a> to generate a static website. This would detect any broken examples.</p>
+<p>Although excluded vignettes may not be checked by <code>R CMD check</code>, they are still built by <a href="https://r-lib.github.io/pkgdown/"><code>{pkgdown}</code></a> to generate a static website. Thus, building a website would detect any broken examples in excluded vignettes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pkgdown<span class="sc">::</span><span class="fu">build_site</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1456,7 +1455,7 @@
 <div class="callout-content">
 <ul>
 <li><p>If <code>{urlchecker}</code> finds dead URLs in <code>.html</code>/<code>.md</code> files, you will need to update <code>.Rmd</code>/<code>.qmd</code> files and then regenerate the docs. Otherwise, you will keep wondering why <code>urlchecker::url_update()</code> isn’t fixing the links.</p></li>
-<li><p>There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help.</p></li>
+<li><p>There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help. If false positives persist, you may decide to not mark builds as failed if any broken links are found.</p></li>
 <li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 </ul>
 </div>
@@ -1584,7 +1583,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Use <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml" target="_blank">GHA workflow</a> to ensure that spelling mistakes are discovered on each commit.</p>
+<p>Use <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml" target="_blank">GHA workflow</a> to ensure that spelling mistakes are caught on each commit.</p>
 </div>
 </div>
 </div>
@@ -1849,8 +1848,8 @@ YAML</code></pre>
 <p>Out of these, warnings are the most nebulous!</p>
 <ul>
 <li>Errors bring functions to a halt and you <em>must</em> attend to them.</li>
-<li>Messages are innocuous and you <em>can</em> be safely ignored.</li>
-<li>But warnings are harbingers of problems that you will need to fix at some point. They <em>need</em> to be dealt with, pronto, and yet it is easy to ignore them.</li>
+<li>Messages are innocuous and you <em>can</em> safely ignore them.</li>
+<li>But warnings are harbingers of problems that you will need to fix at some point. They <em>need</em> to be dealt with, <em>pronto</em>, and yet it is easy to ignore them.</li>
 </ul>
 </section>
 <section id="a-needle-in-the-haystack" class="slide level2 smaller">
@@ -3169,7 +3168,7 @@ YAML</code></pre>
  collate  C.UTF-8
  ctype    C.UTF-8
  tz       UTC
- date     2023-01-29
+ date     2023-02-02
  pandoc   3.0 @ /usr/bin/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
@@ -3208,7 +3207,7 @@ YAML</code></pre>
  tools          4.2.2   2022-10-31 [3] local
  utils        * 4.2.2   2022-10-31 [3] local
  withr          2.5.0   2022-03-03 [1] RSPM
- xfun           0.36    2022-12-21 [1] RSPM
+ xfun           0.37    2023-01-31 [1] RSPM
  xml2           1.3.3   2021-11-30 [1] RSPM
  xmlparsedata   1.0.5   2021-03-06 [1] RSPM
  yaml           2.3.7   2023-01-23 [1] RSPM
