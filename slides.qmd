@@ -2936,7 +2936,7 @@ knitr::include_graphics("media/damaged-package.png")
 
 ::: {.column width='90%'}
 
-In a high-level, user-facing package, there can be a substantial number of soft dependencies, and the package risks breakage for *any* unavailable soft dependency, if not used conditionally.
+In a high-level, user-facing package, there can be a substantial number of soft dependencies. The package then risks breakage for *any* unavailable soft dependency, if it is not used conditionally.
 
 :::
 
