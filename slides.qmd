@@ -1799,15 +1799,15 @@ There are two kinds of warnings that you, as a developer, will need to deal with
 
 :::: {.columns}
 
-::: {.column width='50%'}
+::: {.column width='45%'}
 
-**Intrinsic warnings**
+**Intrinsic warnings** are warnings produced by functions in *your* package.
 
-Warnings that functions in your package produce to inform users.
-E.g. if your package has a function to winsorize data with a certain threshold, this could be a possible warning.
+E.g. a warning from a function to winsorize data.
 
 ```{r}
 #| eval: false
+#| code-line-numbers: false
 winsorize(x, threshold = 2)
 #> Warning message:
 #> `threshold` for winsorization must be a scalar between 0 and 0.5.
@@ -1815,15 +1815,15 @@ winsorize(x, threshold = 2)
 
 :::
 
-::: {.column width='50%'}
+::: {.column width='55%'}
 
-**Extrinsic warnings**
+**Extrinsic warnings** are warnings stemming from your package *dependencies*.
 
-Warnings coming from dependencies you are using, either in examples or tests.
-E.g. if your package relies on `{ggside}`, you may have seen [this warning](https://github.com/jtlandis/ggside/issues/39){target='_blank'}.
+E.g. a possible [warning](https://github.com/jtlandis/ggside/issues/39){target='_blank'} if your package relies on `{ggside}`.
 
 ```{r}
 #| eval: false
+#| code-line-numbers: false
 ggplot(mpg, aes(hwy, class)) + geom_xsidedensity()
 #> Warning: Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.
 #> ℹ Please use `linewidth` in the `default_aes` field and elsewhere instead.
@@ -1853,9 +1853,9 @@ knitr::include_graphics("media/cleaning.png")
 
 ::: {.column width='90%'}
 
-With a significant amount of package functionality and dependencies, there can be plenty of warnings that at any given moment.
+With a significant amount of package functionality and dependencies, there can be plenty of warnings at any given moment.
 
-To avoid missing out on important warnings, there should ideally be **zero of either type of warning** in your package documentation and tests. This makes it easy to notice and deal with new warnings as they appear.
+To avoid missing out on important warnings, there should ideally be **zero of either type of warning** in your package documentation and tests. This makes it easy to notice and deal with new, potentially critical warnings as they appear.
 
 :::
 
