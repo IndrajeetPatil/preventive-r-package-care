@@ -10,7 +10,7 @@
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.151">
+  <meta name="generator" content="quarto-1.3.153">
 
   <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
   <title>slides</title>
@@ -3102,6 +3102,80 @@ YAML</code></pre>
 </ul>
 <div style="font-size: 20px;">
 <p>If you have a data visualization package (e.g.), the more examples you have in the documentation, the bigger the package size would be, which might leave a <code>NOTE</code> in <code>R CMD check</code> and strict workflow will fail. Which of these workflows is more important is a subjective decision.</p>
+</div>
+</section></section>
+<section id="failure-is-the-only-option" class="title-slide slide level1 center">
+<h1>Failure is the only option</h1>
+<p>It is necessary that builds fail for any existing or newly found issues.</p>
+</section>
+
+<section>
+<section id="later-equals-never." class="title-slide slide level1 center">
+<h1>“Later equals never.”</h1>
+<p>- LeBlanc’s Law</p>
+</section>
+<section id="managing-technical-debt" class="slide level2 smaller">
+<h2>Managing technical debt</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<!-- [Credits](https://vincentdnl.com/drawings/){target='_blank'} -->
+<div class="cell fig-cap-location-bottom">
+<div class="cell-output-display">
+<p><img data-src="media/technical_debt.png" width="690"></p>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tomorrow never comes</strong></p>
+</div>
+<div class="callout-content">
+<p>It might seem excessive that workflows fail if <em>any</em> issue is found (<em>“Really?! You want builds to fail even if there is a single code quality issue?!”</em>).</p>
+<p>But this is the only way to sidestep procrastination (<em>“We can fix the broken link later!”</em>) that can lead to the accumulation of technical debt. With time, this debt can compound and every new feature requires longer to implement.</p>
+<p>Failed builds also act as organizational quality control mechanisms. You will no longer need to justify carving out time to address technical debt if a new release can’t be made unless all checks are green.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Once green, always green</strong></p>
+</div>
+<div class="callout-content">
+<p>The initial work you will put into achieving green checks will pay dividends in the long run. And, once a check is green, you only need to make sure that it stays that way for every PR.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="easing-into-it" class="slide level2 smaller">
+<h2>Easing into it</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="media/bike-fall.jpeg" style="width:100.0%"></p>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<p>It might not be feasible to implement all workflows in one go, especially whey they will be marked as failed as long as all relevant issues have been dealt with.</p>
+<p>This is especially true for organizations that have a policy to always keep the default branch “green”.</p>
+<div style="font-size: 20px;">
+<p>I’d highly recommend that you adopt such a policy, both for your organization and private repositories.</p>
+</div>
+<div style="background-color: #FFD56F; padding: 20px; border-radius: 25px;">
+<p>You can adopt an <strong>incremental approach</strong> of adding one workflow per PR.</p>
+<p>This PR can be merged when the new workflow runs successfully.</p>
+</div>
+</div>
 </div>
 </section></section>
 <section id="conclusion" class="title-slide slide level1 center">
