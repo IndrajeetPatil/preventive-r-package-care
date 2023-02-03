@@ -10,7 +10,7 @@
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.149">
+  <meta name="generator" content="quarto-1.3.151">
 
   <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
   <title>slides</title>
@@ -1941,14 +1941,13 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>To detect warnings, you can convert warnings into errors using <code>options()</code> and then run all your checks.</p>
+<p>Convert warnings into errors during checks to detect warnings.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">warn =</span> 2L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <div class="fragment">
-<p><br></p>
 <!-- column layout -->
 <div class="columns">
 <div class="column" style="width:10%;">
@@ -1973,8 +1972,23 @@ YAML</code></pre>
 </div>
 <div class="callout-content">
 <ul>
+<li>If a function is <em>designed</em> to show warnings, then you can prevent workflows from failing by conditionally running it.</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examplesIf getOption("warn") &lt; 2L</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' function_showing_warning()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1"></a>```{r eval = getOption("warn") &lt; 2L}</span>
+<span id="cb15-2"><a href="#cb15-2"></a>function_showing_warning()</span>
+<span id="cb15-3"><a href="#cb15-3"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<ul>
 <li><p>While you are at this cleanup, it might also be worth cleaning up intrinsic and extrinsic messages. They might be harmless, but they do clog up logs and make it difficult to focus on warnings.</p></li>
-<li><p>If you set <code>warning=FALSE</code> in vignettes, this only suppresses warnings in the rendered output. When users run this code interactively, they will still see the suppressed warnings. <a href="https://en.wikipedia.org/wiki/Ostrich_policy" target="_blank">Ostrich policy</a> never works for software development.</p></li>
+<li><p>Setting <code>warning=FALSE</code> in vignettes only suppresses warnings in the rendered output. When users run this code interactively, they will still see warnings. <a href="https://en.wikipedia.org/wiki/Ostrich_policy" target="_blank">Ostrich policy</a> never works for software development.</p></li>
 </ul>
 </div>
 </div>
@@ -2112,7 +2126,7 @@ YAML</code></pre>
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://r-lib.github.io/rcmdcheck/" target="_blank"><code>{rcmdcheck}</code></a> to run <code>R CMD check</code> from R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rcmdcheck<span class="sc">::</span><span class="fu">rcmdcheck</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rcmdcheck<span class="sc">::</span><span class="fu">rcmdcheck</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div style="font-size: 20px;">
 <p>All the options you can set to further customize this check is beyond the scope of the current presentation.</p>
@@ -2290,7 +2304,7 @@ YAML</code></pre>
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://r-lib.github.io/styler/" target="_blank"><code>{styler}</code></a> to enforce the <a href="https://style.tidyverse.org/" target="_blank">tidyverse style guide</a> throughout the package (including source code, test files, vignettes, etc.).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>styler<span class="sc">::</span><span class="fu">style_pkg</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>styler<span class="sc">::</span><span class="fu">style_pkg</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2347,8 +2361,8 @@ YAML</code></pre>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code with a lint</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lint</span>(<span class="at">text =</span> <span class="st">"x = 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code with a lint</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lint</span>(<span class="at">text =</span> <span class="st">"x = 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>::warning file=&lt;text&gt;,line=1,col=3::file=&lt;text&gt;,line=1,col=3,[assignment_linter] Use &lt;-, not =, for assignment.</code></pre>
 </div>
@@ -2357,8 +2371,8 @@ YAML</code></pre>
 
 </div><div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code without a lint</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lint</span>(<span class="at">text =</span> <span class="st">"x &lt;- 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code without a lint</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lint</span>(<span class="at">text =</span> <span class="st">"x &lt;- 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2408,7 +2422,7 @@ YAML</code></pre>
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://r-lib.github.io/lintr/dev/" target="_blank"><code>{lintr}</code></a> to carry out static code analysis to detect code quality issues.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lintr<span class="sc">::</span><span class="fu">lint_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lintr<span class="sc">::</span><span class="fu">lint_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2429,13 +2443,13 @@ YAML</code></pre>
 <p>This workflow can be overwhelming at first as it can detect hundreds of issues. Therefore, <strong>don’t</strong> error if lints are found.</p>
 <p>You can use <a href="https://github.com/r-lib/lintr/blob/main/.github/workflows/lint-changed-files.yaml" target="_blank">another workflow</a> which fails only if lints are found <strong>only</strong> in files that changed in a PR. This is an easier and less disheartening way to clean lints.</p>
 </div><div class="column" style="width:40%;">
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># In `lint.yaml`</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">env</span><span class="kw">:</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="at">  </span><span class="fu">LINTR_ERROR_ON_LINT</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># In `lint.yaml`</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="at">  </span><span class="fu">LINTR_ERROR_ON_LINT</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># In `lint-changed-files.yaml`</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">env</span><span class="kw">:</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="at">  </span><span class="fu">LINTR_ERROR_ON_LINT</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># In `lint-changed-files.yaml`</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="at">  </span><span class="fu">LINTR_ERROR_ON_LINT</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2791,8 +2805,8 @@ YAML</code></pre>
 <p>Soft dependencies should be used conditionally across all contexts. Let’s say <code>{lme4}</code> is such a dependency.</p>
 </div><div class="column" style="width:30%;">
 <p>In <code>DESCRIPTION</code></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb22-1"><a href="#cb22-1"></a>Suggests:</span>
-<span id="cb22-2"><a href="#cb22-2"></a>    lme4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1"></a>Suggests:</span>
+<span id="cb24-2"><a href="#cb24-2"></a>    lme4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
@@ -2803,9 +2817,9 @@ YAML</code></pre>
 <div class="column" style="width:50%;">
 <p><strong>Examples</strong> in help pages should be executed only if package is available.</p>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># In R/file-1.R</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="co">#' @examplesIf requireNamespace("lme4")</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="co">#' lme4::lmer(...)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># In R/file-1.R</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="co">#' @examplesIf requireNamespace("lme4")</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="co">#' lme4::lmer(...)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <hr>
@@ -2816,10 +2830,10 @@ YAML</code></pre>
 <div class="column" style="width:50%;">
 <p><strong>Vignettes</strong> (or specific code chunks) should be executed only if package is available.</p>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1"></a>&lt;!-- In vignettes/doc-1.Rmd --&gt;</span>
-<span id="cb24-2"><a href="#cb24-2"></a>  ```{r eval = requireNamespace("lme4")}</span>
-<span id="cb24-3"><a href="#cb24-3"></a>lme4::lmer(...)</span>
-<span id="cb24-4"><a href="#cb24-4"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1"></a>&lt;!-- In vignettes/doc-1.Rmd --&gt;</span>
+<span id="cb26-2"><a href="#cb26-2"></a>```{r eval = requireNamespace("lme4")}</span>
+<span id="cb26-3"><a href="#cb26-3"></a>lme4::lmer(...)</span>
+<span id="cb26-4"><a href="#cb26-4"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <hr>
@@ -2830,11 +2844,11 @@ YAML</code></pre>
 <div class="column" style="width:50%;">
 <p><strong>Tests</strong> should be run only if package is available.</p>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># In tests/testthat/test-file-1.R</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">test_that</span>(<span class="st">"bla"</span>, {</span>
-<span id="cb25-3"><a href="#cb25-3"></a>  testthat<span class="sc">::</span><span class="fu">skip_if_not_installed</span>(<span class="st">"lme4"</span>)</span>
-<span id="cb25-4"><a href="#cb25-4"></a>  <span class="fu">expect_equal</span>(lme4<span class="sc">::</span><span class="fu">lmer</span>(...), ...)</span>
-<span id="cb25-5"><a href="#cb25-5"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># In tests/testthat/test-file-1.R</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">test_that</span>(<span class="st">"bla"</span>, {</span>
+<span id="cb27-3"><a href="#cb27-3"></a>  testthat<span class="sc">::</span><span class="fu">skip_if_not_installed</span>(<span class="st">"lme4"</span>)</span>
+<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">expect_equal</span>(lme4<span class="sc">::</span><span class="fu">lmer</span>(...), ...)</span>
+<span id="cb27-5"><a href="#cb27-5"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <hr>
@@ -2882,7 +2896,7 @@ YAML</code></pre>
 <li><p>This trick won’t work for excluded vignettes (from <code>vignettes/</code> subdirectory or <code>.Rbuildignore</code>-ed). To ensure that excluded vignettes are using soft dependencies conditionally, run <code>{pkgdown}</code> in <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml" target="_blank">“noSuggests” mode</a>.</p></li>
 <li><p>For <code>R CMD check</code> with all dependencies installed, use <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-strict.yaml" target="_blank">strict workflow</a> that fails on any <code>NOTE</code>. To avoid failing on <code>NOTE</code>s accepted by CRAN, include this in <code>DESCRIPTION</code>:</p></li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb26-1"><a href="#cb26-1"></a>Config/rcmdcheck/ignore-inconsequential-notes: true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb28-1"><a href="#cb28-1"></a>Config/rcmdcheck/ignore-inconsequential-notes: true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -3047,9 +3061,9 @@ YAML</code></pre>
 <div style="font-size: 20px;">
 <p>Example of an insignificant change.</p>
 </div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource diff number-lines code-with-copy"><code class="sourceCode diff"><span id="cb27-1"><a href="#cb27-1"></a># In `NEWS.md`</span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="st">- witdh</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="va">+ width</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource diff number-lines code-with-copy"><code class="sourceCode diff"><span id="cb29-1"><a href="#cb29-1"></a># In `NEWS.md`</span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="st">- witdh</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="va">+ width</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -3156,7 +3170,7 @@ YAML</code></pre>
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
@@ -3168,7 +3182,7 @@ YAML</code></pre>
  collate  C.UTF-8
  ctype    C.UTF-8
  tz       UTC
- date     2023-02-02
+ date     2023-02-03
  pandoc   3.0 @ /usr/bin/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
