@@ -3439,6 +3439,93 @@ If you have a data visualization package (e.g.), the more examples you have in t
   
 :::
 
+# Failure is the only option
+
+It is necessary that builds fail for any existing or newly found issues.
+
+# "Later equals never."
+\- LeBlanc's Law
+
+## Managing technical debt {.smaller}
+
+:::: {.columns}
+
+::: {.column width='40%'}
+
+<!-- [Credits](https://vincentdnl.com/drawings/){target='_blank'} -->
+
+```{r}
+#| echo: false
+#| fig-cap-location: bottom
+knitr::include_graphics("media/technical_debt.png")
+```
+
+:::
+
+::: {.column width='60%'}
+
+:::{.callout-tip}
+
+## Tomorrow never comes
+
+It might seem excessive that workflows fail if *any* issue is found (*"Really?! You want builds to fail even if there is a single code quality issue?!"*).
+
+But this is the only way to sidestep procrastination (*"We can fix the broken link later!"*) that can lead to the accumulation of technical debt. With time, this debt can compound and every new feature requires longer to implement.
+
+Failed builds also act as organizational quality control mechanisms. You will no longer need to justify carving out time to address technical debt if a new release can't be made unless all checks are green.
+
+:::
+
+:::
+
+::::
+
+:::{.callout-note}
+
+## Once green, always green
+
+The initial work you will put into achieving green checks will pay dividends in the long run. And, once a check is green, you only need to make sure that it stays that way for every PR.
+
+:::
+
+## Easing into it {.smaller}
+
+:::: {.columns}
+
+::: {.column width='40%'}
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+knitr::include_graphics("media/bike-fall.jpeg")
+```
+
+:::
+
+::: {.column width='60%'}
+
+It might not be feasible to implement all workflows in one go, especially whey they will be marked as failed as long as all relevant issues have been dealt with.
+
+This is especially true for organizations that have a policy to always keep the default branch "green".
+
+:::{style="font-size: 20px;"}
+
+I'd highly recommend that you adopt such a policy, both for your organization and private repositories.
+
+:::
+
+:::{style="background-color: #FFD56F; padding: 20px; border-radius: 25px;"}
+
+You can adopt an **incremental approach** of adding one workflow per PR.
+
+This PR can be merged when the new workflow runs successfully.
+
+:::
+
+:::
+
+::::
+
 # Conclusion
 
 It is possible to build robust automation infrastructure for R package development that can improve user experience and make long-term development more reliable and sustainable.
