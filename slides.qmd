@@ -1,11 +1,10 @@
 ---
 format:
   revealjs:
-    css: style.css 
+    css: style.css
     theme: simple
     slide-number: true
     preview-links: auto
-    footer: "Source code for these slides can be found [on GitHub](https://github.com/IndrajeetPatil/preventive-r-package-care/){target='_blank'}."
 execute:
   echo: true
 keywords: ["software-engineering", "r-packages", "best-practices", "CRAN"]
@@ -3551,6 +3550,12 @@ For more extensive discussions on best practices in software development.
 - Ousterhout, J. K. (2018). *A Philosophy of Software Design*. Palo Alto: Yaknyam Press.
 
 - Seemann, M. (2021) *Code That Fits in Your Head*. Addison-Wesley.
+
+# 
+
+Source code for these slides can be found [on GitHub](https://github.com/IndrajeetPatil/preventive-r-package-care/){target='_blank'}.
+
+Star the repo and share with others if you liked the slides! 😊
 
 # For more
 
