@@ -10,7 +10,7 @@
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.230">
+  <meta name="generator" content="quarto-1.4.251">
 
   <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
   <title>slides</title>
@@ -1945,7 +1945,7 @@ YAML</code></pre>
 </div><div class="column" style="width:90%;">
 <p>Convert warnings into errors during checks to detect warnings.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">warn =</span> 2L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">warn =</span> <span class="dv">2</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -3255,11 +3255,12 @@ YAML</code></pre>
  collate  C.UTF-8
  ctype    C.UTF-8
  tz       UTC
- date     2023-07-17
+ date     2023-07-23
  pandoc   3.1.3 @ /usr/bin/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
  package      * version date (UTC) lib source
+ backports      1.4.1   2021-12-13 [1] RSPM
  base         * 4.3.1   2023-07-11 [3] local
  callr          3.7.3   2022-11-02 [1] RSPM
  cli            3.6.1   2023-03-23 [1] RSPM
@@ -3270,20 +3271,26 @@ YAML</code></pre>
  desc           1.4.2   2022-09-08 [1] RSPM
  digest         0.6.33  2023-07-07 [1] RSPM
  evaluate       0.21    2023-05-05 [1] RSPM
+ fansi          1.0.4   2023-01-22 [1] RSPM
  fastmap        1.1.1   2023-02-24 [1] RSPM
+ glue           1.6.2   2022-02-24 [1] RSPM
  graphics     * 4.3.1   2023-07-11 [3] local
  grDevices    * 4.3.1   2023-07-11 [3] local
  htmltools      0.5.5   2023-03-23 [1] RSPM
  jsonlite       1.8.7   2023-06-29 [1] RSPM
  knitr          1.43    2023-05-25 [1] RSPM
  lazyeval       0.2.2   2019-03-15 [1] RSPM
- lintr        * 3.0.2   2022-10-19 [1] RSPM
+ lifecycle      1.0.3   2022-10-07 [1] RSPM
+ lintr        * 3.1.0   2023-07-19 [1] RSPM
+ magrittr       2.0.3   2022-03-30 [1] RSPM
  methods      * 4.3.1   2023-07-11 [3] local
+ pillar         1.9.0   2023-03-22 [1] RSPM
+ pkgconfig      2.0.3   2019-09-22 [1] RSPM
  png            0.1-8   2022-11-29 [1] RSPM
  processx       3.8.2   2023-06-30 [1] RSPM
  ps             1.7.5   2023-04-18 [1] RSPM
  R6             2.5.1   2021-08-19 [1] RSPM
- remotes        2.4.2   2021-11-30 [1] RSPM
+ remotes        2.4.2.1 2023-07-18 [1] RSPM
  rex            1.2.1   2021-11-26 [1] RSPM
  rlang          1.1.1   2023-04-28 [1] RSPM
  rmarkdown      2.23    2023-07-01 [1] RSPM
@@ -3291,8 +3298,11 @@ YAML</code></pre>
  rstudioapi     0.15.0  2023-07-07 [1] RSPM
  sessioninfo    1.2.2   2021-12-06 [1] any (@1.2.2)
  stats        * 4.3.1   2023-07-11 [3] local
+ tibble         3.2.1   2023-03-20 [1] RSPM
  tools          4.3.1   2023-07-11 [3] local
+ utf8           1.2.3   2023-01-31 [1] RSPM
  utils        * 4.3.1   2023-07-11 [3] local
+ vctrs          0.6.3   2023-06-14 [1] RSPM
  withr          2.5.0   2022-03-03 [1] RSPM
  xfun           0.39    2023-04-20 [1] RSPM
  xml2           1.3.5   2023-07-06 [1] RSPM
