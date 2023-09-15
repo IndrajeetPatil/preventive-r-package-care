@@ -1,4 +1,5 @@
 Package: preventive-r-package-care
+Type: Presentation
 Title: Preventive Care for R Packages
 Version: 1.0
 Authors@R: 
