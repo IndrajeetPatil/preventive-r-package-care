@@ -410,7 +410,7 @@ knitr::include_graphics("media/target.png")
 
 ::: aside
 
-The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). So you can extend the list as you see fit for your workflow!
+The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). Extend the list for your workflow!
 
 :::
 
@@ -2583,9 +2583,9 @@ Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/li
 
 ::: {.column width='60%'}
 
-This workflow can be overwhelming at first as it can detect hundreds of issues. Therefore, **don't** error if lints are found.
+This workflow can be overwhelming at first as it can detect thousands of lints. Therefore, **don't** error if lints are present.
 
-You can use [another workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/lint-changed-files.yaml){target='_blank'} which fails only if lints are found **only** in files that changed in a PR. This is an easier and less disheartening way to clean lints.
+You can use [another workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/lint-changed-files.yaml){target='_blank'} which fails if lints are found **only** in files that changed in a Pull Request. This is an easier and less disheartening way to clean lints.
 
 :::
 
@@ -2721,7 +2721,7 @@ knitr::include_graphics("media/snail.png")
 
 ::: {.column width='90%'}
 
-If your package is mature and stable enough that you have started to invest in improving its efficiency, it is important that you have some metric by which you can benchmark if a new PR improves or degrades performance in comparison with the latest commit on `main`.
+If your package is mature and stable enough that you have started to invest in improving its efficiency, it is important that you have some metric by which you can benchmark if a new Pull Request improves or degrades performance in comparison with the latest commit on `main`.
 
 :::
 
@@ -2769,7 +2769,7 @@ knitr::include_graphics("media/problem-solved.png")
 
 ::: {style="color: red;"}
 
-**How to reliably benchmark PRs for performance regressions?**
+**How to reliably benchmark Pull Requests for performance regressions?**
 
 :::
 
@@ -2793,7 +2793,7 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='90%'}
 
-[`{touchstone}`](https://lorenzwalthert.github.io/touchstone/) offers a continuous benchmarking tool for reliable relative measurement of performance in the PR versus `main`. The results of this measurement are directly reported as a comment in GitHub Pull Requests.
+[`{touchstone}`](https://lorenzwalthert.github.io/touchstone/) offers a continuous benchmarking tool for reliable relative measurement of performance in the Pull Request versus `main`-branch. The results are directly reported as a comment in GitHub Pull Requests.
 
 ```{r}
 #| echo: false
@@ -2984,7 +2984,7 @@ knitr::include_graphics("media/headache.png")
 
 ::: {.column width='90%'}
 
-It can be quite taxing for maintainers to remove examples or tests related to a soft dependency if gets archived, and restore them once the dependency is unarchived. To avoid this, soft dependencies should always be used conditionally.
+It can be quite taxing for maintainers to remove examples or tests related to a soft dependency if it gets archived, and restore them once the dependency is unarchived. To avoid this, soft dependencies should always be used conditionally.
 
 :::{style="font-size: 20px;"}
 
@@ -3186,7 +3186,7 @@ Use GHA workflows to install [*all* dependencies](https://github.com/r-lib/actio
 
 ## Additional tips 
 
-- This trick won't work for excluded vignettes (from `vignettes/` subdirectory or `.Rbuildignore`-ed). To ensure that excluded vignettes are using soft dependencies conditionally, run `{pkgdown}` in ["noSuggests" mode](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml){target='_blank'}.
+- This trick won't work for excluded vignettes (from `vignettes/` subdirectory or `.Rbuildignore`-ed). To ensure that excluded vignettes are using soft dependencies conditionally, build package website in ["noSuggests" mode](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml){target='_blank'}.
 
 - For `R CMD check` with all dependencies installed, use [strict workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-strict.yaml){target='_blank'} that fails on any `NOTE`. To avoid failing on `NOTE`s accepted by CRAN, include this in `DESCRIPTION`:
 
@@ -3483,7 +3483,7 @@ Failed builds also act as organizational quality control mechanisms. You will no
 
 ## Once green, always green
 
-The initial work you will put into achieving green checks will pay dividends in the long run. And, once a check is green, you only need to make sure that it stays that way for every PR.
+The initial work you will put into achieving green checks will pay dividends in the long run. And, once a check is green, you only need to make sure that it stays that way for each new commit to the `main`-branch.
 
 :::
 
@@ -3503,7 +3503,7 @@ knitr::include_graphics("media/bike-fall.jpeg")
 
 ::: {.column width='60%'}
 
-It might not be feasible to implement all workflows in one go, especially whey they will be marked as failed as long as all relevant issues have been dealt with.
+It might not be feasible to implement all workflows in one go, especially when they will be marked as failed until *all* relevant issues have been dealt with.
 
 This is especially true for organizations that have a policy to always keep the default branch "green".
 
