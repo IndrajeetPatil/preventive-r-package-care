@@ -810,7 +810,7 @@
 </table>
 
 <aside><div>
-<p>The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). So you can extend the list as you see fit for your workflow!</p>
+<p>The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). Extend the list for your workflow!</p>
 </div></aside></section>
 <section id="checklist-for-code-quality" class="slide level2 smaller">
 <h2>Checklist for code quality</h2>
@@ -2904,8 +2904,8 @@ YAML</code></pre>
 <div style="font-size: 20px;">
 <div class="columns">
 <div class="column" style="width:60%;">
-<p>This workflow can be overwhelming at first as it can detect hundreds of issues. Therefore, <strong>don’t</strong> error if lints are found.</p>
-<p>You can use <a href="https://github.com/r-lib/lintr/blob/main/.github/workflows/lint-changed-files.yaml" target="_blank">another workflow</a> which fails only if lints are found <strong>only</strong> in files that changed in a PR. This is an easier and less disheartening way to clean lints.</p>
+<p>This workflow can be overwhelming at first as it can detect thousands of lints. Therefore, <strong>don’t</strong> error if lints are present.</p>
+<p>You can use <a href="https://github.com/r-lib/lintr/blob/main/.github/workflows/lint-changed-files.yaml" target="_blank">another workflow</a> which fails if lints are found <strong>only</strong> in files that changed in a Pull Request. This is an easier and less disheartening way to clean lints.</p>
 </div><div class="column" style="width:40%;">
 <div class="sourceCode" id="cb22"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># In `lint.yaml`</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a><span class="fu">env</span><span class="kw">:</span></span>
@@ -3027,7 +3027,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>If your package is mature and stable enough that you have started to invest in improving its efficiency, it is important that you have some metric by which you can benchmark if a new PR improves or degrades performance in comparison with the latest commit on <code>main</code>.</p>
+<p>If your package is mature and stable enough that you have started to invest in improving its efficiency, it is important that you have some metric by which you can benchmark if a new Pull Request improves or degrades performance in comparison with the latest commit on <code>main</code>.</p>
 </div>
 </div>
 <div class="fragment">
@@ -3068,7 +3068,7 @@ YAML</code></pre>
 </div>
 </div><div class="column" style="width:90%;">
 <div style="color: red;">
-<p><strong>How to reliably benchmark PRs for performance regressions?</strong></p>
+<p><strong>How to reliably benchmark Pull Requests for performance regressions?</strong></p>
 </div>
 </div>
 </div>
@@ -3091,7 +3091,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p><a href="https://lorenzwalthert.github.io/touchstone/"><code>{touchstone}</code></a> offers a continuous benchmarking tool for reliable relative measurement of performance in the PR versus <code>main</code>. The results of this measurement are directly reported as a comment in GitHub Pull Requests.</p>
+<p><a href="https://lorenzwalthert.github.io/touchstone/"><code>{touchstone}</code></a> offers a continuous benchmarking tool for reliable relative measurement of performance in the Pull Request versus <code>main</code>-branch. The results are directly reported as a comment in GitHub Pull Requests.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-539a35d47e664c97a50115a146a7f1bd-86" class="quarto-figure quarto-figure-center" width="1185">
@@ -3320,7 +3320,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>It can be quite taxing for maintainers to remove examples or tests related to a soft dependency if gets archived, and restore them once the dependency is unarchived. To avoid this, soft dependencies should always be used conditionally.</p>
+<p>It can be quite taxing for maintainers to remove examples or tests related to a soft dependency if it gets archived, and restore them once the dependency is unarchived. To avoid this, soft dependencies should always be used conditionally.</p>
 <div style="font-size: 20px;">
 <p>CRAN runs the additional <a href="https://www.stats.ox.ac.uk/pub/bdr/noSuggests/" target="_blank">“noSuggests” check</a> to look for possible breakages.</p>
 </div>
@@ -3459,7 +3459,7 @@ YAML</code></pre>
 </div>
 <div class="callout-content">
 <ul>
-<li><p>This trick won’t work for excluded vignettes (from <code>vignettes/</code> subdirectory or <code>.Rbuildignore</code>-ed). To ensure that excluded vignettes are using soft dependencies conditionally, run <code>{pkgdown}</code> in <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml" target="_blank">“noSuggests” mode</a>.</p></li>
+<li><p>This trick won’t work for excluded vignettes (from <code>vignettes/</code> subdirectory or <code>.Rbuildignore</code>-ed). To ensure that excluded vignettes are using soft dependencies conditionally, build package website in <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml" target="_blank">“noSuggests” mode</a>.</p></li>
 <li><p>For <code>R CMD check</code> with all dependencies installed, use <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-strict.yaml" target="_blank">strict workflow</a> that fails on any <code>NOTE</code>. To avoid failing on <code>NOTE</code>s accepted by CRAN, include this in <code>DESCRIPTION</code>:</p></li>
 </ul>
 <div class="sourceCode" id="cb28"><pre class="sourceCode numberSource dcf number-lines code-with-copy"><code class="sourceCode"><span id="cb28-1"><a href="#cb28-1"></a>Config/rcmdcheck/ignore-inconsequential-notes: true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3759,7 +3759,7 @@ YAML</code></pre>
 <p><strong>Once green, always green</strong></p>
 </div>
 <div class="callout-content">
-<p>The initial work you will put into achieving green checks will pay dividends in the long run. And, once a check is green, you only need to make sure that it stays that way for every PR.</p>
+<p>The initial work you will put into achieving green checks will pay dividends in the long run. And, once a check is green, you only need to make sure that it stays that way for each new commit to the <code>main</code>-branch.</p>
 </div>
 </div>
 </div>
@@ -3780,7 +3780,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:60%;">
-<p>It might not be feasible to implement all workflows in one go, especially whey they will be marked as failed as long as all relevant issues have been dealt with.</p>
+<p>It might not be feasible to implement all workflows in one go, especially when they will be marked as failed until <em>all</em> relevant issues have been dealt with.</p>
 <p>This is especially true for organizations that have a policy to always keep the default branch “green”.</p>
 <div style="font-size: 20px;">
 <p>I’d highly recommend that you adopt such a policy, both for your organization and private repositories.</p>
