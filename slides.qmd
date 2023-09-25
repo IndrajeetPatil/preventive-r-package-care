@@ -334,7 +334,7 @@ knitr::include_graphics("media/target.png")
 | Make sure there are enough examples in the documentation. |
 | Make sure all README examples are working.                |
 | Make sure all examples in help pages are working.         |
-| Make sure examples in all vignettes are working.          |
+| Make sure examples in vignettes are working.              |
 | Make sure all URLs are valid.                             |
 | Make sure there are no spelling mistakes.                 |
 | Make sure all HTML in the help pages is valid.            |
@@ -371,7 +371,7 @@ knitr::include_graphics("media/target.png")
 | :------------------------------------------------------- |
 | Make sure examples in README produce no warnings.        |
 | Make sure examples in help pages produce no warnings.    |
-| Make sure examples in all vignettes produce no warnings. |
+| Make sure examples in vignettes produce no warnings.     |
 | Make sure tests produce no extrinsic warnings.           |
 
 ## Checklist for portability {.smaller}
@@ -1022,7 +1022,7 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/mai
 - Examples that are *meant* to fail should use any of the following patterns:
 
     * `if (FALSE) { ... }` (if example is included only for illustrative purposes)
-    * `try({ ... })` (if the intent is to show the error)
+    * `try({ ... })` (if the intent is to display the error message)
 
 - If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger){target='_blank'}  (e.g. once a week).
 
@@ -1667,7 +1667,7 @@ Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/html
 
 ## Additional tips 
 
-- If your documentation contains math equations, have a look at [`{katex}`](https://docs.ropensci.org/katex/reference/katex.html){target='_blank'}, [`{mathjaxr}`](https://CRAN.R-project.org/package=mathjaxr){target='_blank'}, and [`{mathml}`](https://CRAN.R-project.org/package=mathml){target='_blank'} to convert LaTeX math expressions to HTML for use in package manual pages.
+- If your documentation contains math equations, have a look at [`{katex}`](https://docs.ropensci.org/katex/reference/katex.html){target='_blank'}, [`{mathjaxr}`](https://CRAN.R-project.org/package=mathjaxr){target='_blank'},  [`{mathml}`](https://CRAN.R-project.org/package=mathml){target='_blank'}, etc. to convert LaTeX math expressions to HTML for use in package help pages.
 
 - If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
 
@@ -1704,7 +1704,7 @@ knitr::include_graphics("media/target.png")
 | Make sure there are enough examples in the documentation. |
 | Make sure all README examples are working.                |
 | Make sure all examples in help pages are working.         |
-| Make sure examples in all vignettes are working.          |
+| Make sure examples in vignettes are working.              |
 | Make sure all URLs are valid.                             |
 | Make sure there are no spelling mistakes.                 |
 | Make sure all HTML in the help pages is valid.            |
@@ -1854,7 +1854,7 @@ knitr::include_graphics("media/cleaning.png")
 
 With a significant amount of package functionality and dependencies, there can be plenty of warnings at any given moment.
 
-To avoid missing out on important warnings, there should ideally be **zero of either type of warning** in your package documentation and tests. This makes it easy to notice and deal with new, potentially critical warnings as they appear.
+To avoid missing out on important warnings, there should ideally be **zero of either type of warnings** in your package documentation and tests. This makes it easy to notice and deal with new, potentially critical warnings as they appear.
 
 :::
 
@@ -2016,7 +2016,7 @@ knitr::include_graphics("media/target.png")
 | :------------------------------------------------------- |
 | Make sure examples in README produce no warnings.        |
 | Make sure examples in help pages produce no warnings.    |
-| Make sure examples in all vignettes produce no warnings. |
+| Make sure examples in vignettes produce no warnings.     |
 | Make sure tests produce no extrinsic warnings.           |
 
 # Portability {#portability}
@@ -2239,7 +2239,7 @@ knitr::include_graphics("media/target.png")
 
 ::: aside
 
-The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). So you can extend the list as you see fit for your workflow!
+The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). Extend it for your workflow!
 
 :::
 
