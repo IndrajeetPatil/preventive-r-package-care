@@ -708,7 +708,7 @@
 <td style="text-align: left;">Make sure all examples in help pages are working.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Make sure examples in all vignettes are working.</td>
+<td style="text-align: left;">Make sure examples in vignettes are working.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Make sure all URLs are valid.</td>
@@ -759,7 +759,7 @@
 <td style="text-align: left;">Make sure examples in help pages produce no warnings.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Make sure examples in all vignettes produce no warnings.</td>
+<td style="text-align: left;">Make sure examples in vignettes produce no warnings.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Make sure tests produce no extrinsic warnings.</td>
@@ -1437,7 +1437,7 @@
 <li><p>Examples that are <em>meant</em> to fail should use any of the following patterns:</p>
 <ul>
 <li><code>if (FALSE) { ... }</code> (if example is included only for illustrative purposes)</li>
-<li><code>try({ ... })</code> (if the intent is to show the error)</li>
+<li><code>try({ ... })</code> (if the intent is to display the error message)</li>
 </ul></li>
 <li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger" target="_blank">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 </ul>
@@ -2016,7 +2016,7 @@ YAML</code></pre>
 </div>
 <div class="callout-content">
 <ul>
-<li><p>If your documentation contains math equations, have a look at <a href="https://docs.ropensci.org/katex/reference/katex.html" target="_blank"><code>{katex}</code></a>, <a href="https://CRAN.R-project.org/package=mathjaxr" target="_blank"><code>{mathjaxr}</code></a>, and <a href="https://CRAN.R-project.org/package=mathml" target="_blank"><code>{mathml}</code></a> to convert LaTeX math expressions to HTML for use in package manual pages.</p></li>
+<li><p>If your documentation contains math equations, have a look at <a href="https://docs.ropensci.org/katex/reference/katex.html" target="_blank"><code>{katex}</code></a>, <a href="https://CRAN.R-project.org/package=mathjaxr" target="_blank"><code>{mathjaxr}</code></a>, <a href="https://CRAN.R-project.org/package=mathml" target="_blank"><code>{mathml}</code></a>, etc. to convert LaTeX math expressions to HTML for use in package help pages.</p></li>
 <li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
 </ul>
 </div>
@@ -2063,7 +2063,7 @@ YAML</code></pre>
 <td style="text-align: left;">Make sure all examples in help pages are working.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Make sure examples in all vignettes are working.</td>
+<td style="text-align: left;">Make sure examples in vignettes are working.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Make sure all URLs are valid.</td>
@@ -2236,7 +2236,7 @@ YAML</code></pre>
 </div>
 </div><div class="column" style="width:90%;">
 <p>With a significant amount of package functionality and dependencies, there can be plenty of warnings at any given moment.</p>
-<p>To avoid missing out on important warnings, there should ideally be <strong>zero of either type of warning</strong> in your package documentation and tests. This makes it easy to notice and deal with new, potentially critical warnings as they appear.</p>
+<p>To avoid missing out on important warnings, there should ideally be <strong>zero of either type of warnings</strong> in your package documentation and tests. This makes it easy to notice and deal with new, potentially critical warnings as they appear.</p>
 </div>
 </div>
 </div>
@@ -2382,7 +2382,7 @@ YAML</code></pre>
 <td style="text-align: left;">Make sure examples in help pages produce no warnings.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Make sure examples in all vignettes produce no warnings.</td>
+<td style="text-align: left;">Make sure examples in vignettes produce no warnings.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Make sure tests produce no extrinsic warnings.</td>
@@ -2602,7 +2602,7 @@ YAML</code></pre>
 </table>
 
 <aside><div>
-<p>The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). So you can extend the list as you see fit for your workflow!</p>
+<p>The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). Extend it for your workflow!</p>
 </div></aside></section></section>
 <section id="codequality" class="title-slide slide level1 center">
 <h1>Code quality</h1>
@@ -3867,7 +3867,7 @@ YAML</code></pre>
  collate  C.UTF-8
  ctype    C.UTF-8
  tz       UTC
- date     2023-09-24
+ date     2023-09-25
  pandoc   3.1.8 @ /usr/bin/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
