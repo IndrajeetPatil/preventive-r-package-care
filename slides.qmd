@@ -3196,6 +3196,55 @@ Config/rcmdcheck/ignore-inconsequential-notes: true
 
 :::
 
+## Special care for examples {.smaller}
+
+Prefer using `\donttest()` over `\dontrun()` for [skipping examples](https://indrajeetpatil.github.io/preventive-r-package-care/#/broken-examples-in-help-pages). 
+
+This is because the latter will be skipped during R CMD Check and `{pkgdown}` also will not execute these examples. Therefore, you will miss out on an example that should be run conditionally. This can become an issue if you do decide to run this example in the future by removing `\dontrun`.
+
+. . . 
+
+E.g., assuming `{lme4}` is a soft dependency and is not available:
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+Won't fail in "noSuggests" workflow
+
+```{.r}
+#' @examples
+#' \dontrun{
+#'   lme4::lmer(...)
+#' }
+```
+
+:::
+
+::: {.column width='50%'}
+
+Will fail in "noSuggests" workflow
+
+```{.r}
+#' @examples
+#' \donttest{
+#'   lme4::lmer(...)
+#' }
+```
+
+:::
+
+::::
+
+Expected usage:
+
+```{.r}
+#' @examplesIf requireNamespace("lme4")
+#' \donttest{
+#'   lme4::lmer(...)
+#' }
+```
+
 ## Anticipating breakages {.smaller}
 
 <!-- column layout -->
