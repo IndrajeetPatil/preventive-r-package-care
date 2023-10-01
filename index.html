@@ -2904,6 +2904,34 @@ YAML</code></pre>
 </div>
 </div>
 </section>
+<section id="special-care-for-examples" class="slide level2 smaller">
+<h2>Special care for examples</h2>
+<p>Prefer using <code>\donttest()</code> over <code>\dontrun()</code> for <a href="https://indrajeetpatil.github.io/preventive-r-package-care/#/broken-examples-in-help-pages">skipping examples</a>.</p>
+<p>This is because the latter will be skipped during R CMD Check and <code>{pkgdown}</code> also will not execute these examples. Therefore, you will miss out on an example that should be run conditionally. This can become an issue if you do decide to run this example in the future by removing <code>\dontrun</code>.</p>
+<div class="fragment">
+<p>E.g., assuming <code>{lme4}</code> is a soft dependency and is not available:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Won’t fail in “noSuggests” workflow</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co">#' @examples</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="co">#' \dontrun{</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="co">#'   lme4::lmer(...)</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="co">#' }</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<p>Will fail in “noSuggests” workflow</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co">#' @examples</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="co">#' \donttest{</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="co">#'   lme4::lmer(...)</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="co">#' }</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Expected usage:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">#' @examplesIf requireNamespace("lme4")</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="co">#' \donttest{</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="co">#'   lme4::lmer(...)</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="co">#' }</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="anticipating-breakages" class="slide level2 smaller">
 <h2>Anticipating breakages</h2>
 <!-- column layout -->
@@ -3063,9 +3091,9 @@ YAML</code></pre>
 <div style="font-size: 20px;">
 <p>Example of an insignificant change.</p>
 </div>
-<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource diff number-lines code-with-copy"><code class="sourceCode diff"><span id="cb29-1"><a href="#cb29-1"></a># In `NEWS.md`</span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="st">- witdh</span></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="va">+ width</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource diff number-lines code-with-copy"><code class="sourceCode diff"><span id="cb32-1"><a href="#cb32-1"></a># In `NEWS.md`</span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="st">- witdh</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="va">+ width</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -3243,7 +3271,7 @@ YAML</code></pre>
 <section id="session-information" class="slide level2 smaller">
 <h2>Session information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">include_base =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
