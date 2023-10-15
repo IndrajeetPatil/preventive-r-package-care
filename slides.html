@@ -10,7 +10,7 @@
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.404">
+  <meta name="generator" content="quarto-1.4.422">
 
   <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
   <title>slides</title>
@@ -958,7 +958,7 @@
 </div><div class="column" style="width:91%;">
 <p>Use <a href="https://covr.r-lib.org/" target="_blank"><code>{covr}</code></a> to compute example code coverage (i.e.&nbsp;proportion of the source code that is executed when running examples in help pages and vignettes), and to ensure that it is above a certain threshold.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">package_coverage</span>(<span class="at">type =</span> <span class="fu">c</span>(<span class="st">"examples"</span>, <span class="st">"vignettes"</span>), <span class="at">commentDonttest =</span> <span class="cn">FALSE</span>, <span class="at">commentDontrun =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">package_coverage</span>(<span class="at">type =</span> <span class="fu">c</span>(<span class="st">"examples"</span>, <span class="st">"vignettes"</span>), <span class="at">commentDonttest =</span> <span class="cn">FALSE</span>, <span class="at">commentDontrun =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1063,7 +1063,7 @@
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://rmarkdown.rstudio.com/github_document_format.html"><code>{rmarkdown}</code></a> to dynamically generate <code>README.md</code> from <code>README.Rmd</code>. If there is broken code in README, it will fail to render.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">"README.Rmd"</span>, <span class="at">output_format =</span> rmarkdown<span class="sc">::</span><span class="fu">github_document</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">"README.Rmd"</span>, <span class="at">output_format =</span> rmarkdown<span class="sc">::</span><span class="fu">github_document</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1207,7 +1207,7 @@
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://r-lib.github.io/devtools/" target="_blank"><code>{devtools}</code></a> to run all examples, and catch and fix the broken ones.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">run_examples</span>(<span class="at">run_dontrun =</span> <span class="cn">TRUE</span>, <span class="at">run_donttest =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">run_examples</span>(<span class="at">run_dontrun =</span> <span class="cn">TRUE</span>, <span class="at">run_donttest =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1325,7 +1325,7 @@
 </div><div class="column" style="width:90%;">
 <p>Although excluded vignettes may not be checked by <code>R CMD check</code>, they are still built by <a href="https://r-lib.github.io/pkgdown/"><code>{pkgdown}</code></a> to generate a static website. Thus, building a website would detect any broken examples in excluded vignettes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pkgdown<span class="sc">::</span><span class="fu">build_site</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pkgdown<span class="sc">::</span><span class="fu">build_site</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1426,7 +1426,7 @@
 </div><div class="column" style="width:90%;">
 <p>You can use <a href="https://r-lib.github.io/urlchecker/" target="_blank"><code>{urlchecker}</code></a> to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>urlchecker<span class="sc">::</span><span class="fu">url_check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>urlchecker<span class="sc">::</span><span class="fu">url_check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1571,7 +1571,7 @@ YAML</code></pre>
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://docs.ropensci.org/spelling/" target="_blank"><code>{spelling}</code></a> to detect misspelt words and their location in the docs.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>spelling<span class="sc">::</span><span class="fu">spell_check_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>spelling<span class="sc">::</span><span class="fu">spell_check_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1674,7 +1674,7 @@ YAML</code></pre>
 </div><div class="column" style="width:90%;">
 <p>CRAN uses <a href="https://www.html-tidy.org/documentation/">HTML tidy</a> to detect markup errors in HTML. But, if you use <a href="https://roxygen2.r-lib.org/" target="_blank"><code>{roxygen2}</code></a>, it will ensure against producing any invalid HTML.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>roxygen2<span class="sc">::</span><span class="fu">roxygenise</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>roxygen2<span class="sc">::</span><span class="fu">roxygenise</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1871,7 +1871,7 @@ YAML</code></pre>
 <p><strong>Intrinsic warnings</strong> are warnings produced by functions in <em>your</em> package.</p>
 <p>E.g. a warning from a function to winsorize data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">winsorize</span>(x, <span class="at">threshold =</span> <span class="dv">2</span>)</span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">winsorize</span>(x, <span class="at">threshold =</span> <span class="dv">2</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning message:</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `threshold` for winsorization must be a scalar between 0 and 0.5.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1879,7 +1879,7 @@ YAML</code></pre>
 <p><strong>Extrinsic warnings</strong> are warnings stemming from your package <em>dependencies</em>.</p>
 <p>E.g. a possible <a href="https://github.com/jtlandis/ggside/issues/39" target="_blank">warning</a> if your package relies on <code>{ggside}</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(hwy, class)) <span class="sc">+</span> <span class="fu">geom_xsidedensity</span>()</span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(hwy, class)) <span class="sc">+</span> <span class="fu">geom_xsidedensity</span>()</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Please use `linewidth` in the `default_aes` field and elsewhere instead.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1945,7 +1945,7 @@ YAML</code></pre>
 </div><div class="column" style="width:90%;">
 <p>Convert warnings into errors during checks to detect warnings.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">warn =</span> <span class="dv">2</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">warn =</span> <span class="dv">2</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1979,7 +1979,7 @@ YAML</code></pre>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examplesIf getOption("warn") &lt; 2L</span></span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examplesIf getOption("warn") &lt; 2L</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' function_showing_warning()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -2128,7 +2128,7 @@ YAML</code></pre>
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://r-lib.github.io/rcmdcheck/" target="_blank"><code>{rcmdcheck}</code></a> to run <code>R CMD check</code> from R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rcmdcheck<span class="sc">::</span><span class="fu">rcmdcheck</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rcmdcheck<span class="sc">::</span><span class="fu">rcmdcheck</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div style="font-size: 20px;">
 <p>All the options you can set to further customize this check is beyond the scope of the current presentation.</p>
@@ -2306,7 +2306,7 @@ YAML</code></pre>
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://r-lib.github.io/styler/" target="_blank"><code>{styler}</code></a> to enforce the <a href="https://style.tidyverse.org/" target="_blank">tidyverse style guide</a> throughout the package (including source code, test files, vignettes, etc.).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>styler<span class="sc">::</span><span class="fu">style_pkg</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>styler<span class="sc">::</span><span class="fu">style_pkg</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2363,7 +2363,7 @@ YAML</code></pre>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code with a lint</span></span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code with a lint</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lint</span>(<span class="at">text =</span> <span class="st">"x = 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>::warning file=&lt;text&gt;,line=1,col=3::file=&lt;text&gt;,line=1,col=3,[assignment_linter] Use &lt;-, not =, for assignment.</code></pre>
@@ -2373,7 +2373,7 @@ YAML</code></pre>
 
 </div><div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code without a lint</span></span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code without a lint</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lint</span>(<span class="at">text =</span> <span class="st">"x &lt;- 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -2424,7 +2424,7 @@ YAML</code></pre>
 </div><div class="column" style="width:90%;">
 <p>Use <a href="https://r-lib.github.io/lintr/dev/" target="_blank"><code>{lintr}</code></a> to carry out static code analysis to detect code quality issues.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lintr<span class="sc">::</span><span class="fu">lint_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lintr<span class="sc">::</span><span class="fu">lint_package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -3283,7 +3283,7 @@ YAML</code></pre>
  collate  C.UTF-8
  ctype    C.UTF-8
  tz       UTC
- date     2023-10-09
+ date     2023-10-15
  pandoc   3.1.8 @ /usr/bin/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
@@ -3299,12 +3299,12 @@ YAML</code></pre>
  desc           1.4.2   2022-09-08 [1] RSPM
  digest         0.6.33  2023-07-07 [1] RSPM
  evaluate       0.22    2023-09-29 [1] RSPM
- fansi          1.0.4   2023-01-22 [1] RSPM
+ fansi          1.0.5   2023-10-08 [1] RSPM
  fastmap        1.1.1   2023-02-24 [1] RSPM
  glue           1.6.2   2022-02-24 [1] RSPM
  graphics     * 4.3.1   2023-10-03 [3] local
  grDevices    * 4.3.1   2023-10-03 [3] local
- htmltools      0.5.6   2023-08-10 [1] RSPM
+ htmltools      0.5.6.1 2023-10-06 [1] RSPM
  jsonlite       1.8.7   2023-06-29 [1] RSPM
  knitr          1.44    2023-09-11 [1] RSPM
  lazyeval       0.2.2   2019-03-15 [1] RSPM
@@ -3330,7 +3330,7 @@ YAML</code></pre>
  tools          4.3.1   2023-10-03 [3] local
  utf8           1.2.3   2023-01-31 [1] RSPM
  utils        * 4.3.1   2023-10-03 [3] local
- vctrs          0.6.3   2023-06-14 [1] RSPM
+ vctrs          0.6.4   2023-10-12 [1] RSPM
  withr          2.5.1   2023-09-26 [1] RSPM
  xfun           0.40    2023-08-09 [1] RSPM
  xml2           1.3.5   2023-07-06 [1] RSPM
