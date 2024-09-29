@@ -6,10 +6,10 @@
 <script src="slides_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-79bb3942e891885f9f7af119cd221462.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-018089954d508eae8a473f0b7f0491f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.11">
+  <meta name="generator" content="quarto-1.6.15">
 
   <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
   <title>slides</title>
@@ -96,7 +96,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-614b5beebb58f47b92bc1ac53271adaa.css">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-1e587555c88b7c190541c7e56b11ff91.css">
   <link rel="stylesheet" href="style.css">
   <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -665,30 +665,30 @@
 </div></div>
 <table class="caption-top">
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">Item</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure there are enough examples in the documentation.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure all README examples are working.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure all examples in help pages are working.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure examples in vignettes are working.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure all URLs are valid.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure there are no spelling mistakes.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure all HTML in the help pages is valid.</td>
 </tr>
 </tbody>
@@ -716,21 +716,21 @@
 <p><br></p>
 <table class="caption-top">
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">Item</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure examples in README produce no warnings.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure examples in help pages produce no warnings.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure examples in vignettes produce no warnings.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure tests produce no extrinsic warnings.</td>
 </tr>
 </tbody>
@@ -758,18 +758,18 @@
 <p><br></p>
 <table class="caption-top">
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">Item</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure package passes checks on commonly used OS.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure package passes checks on all supported R versions.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">…</td>
 </tr>
 </tbody>
@@ -800,18 +800,18 @@
 <p><br></p>
 <table class="caption-top">
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">Item</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure the code follows a style guide.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure there are no known code quality issues.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure there are no performance regressions.</td>
 </tr>
 </tbody>
@@ -842,24 +842,24 @@
 <col style="width: 100%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">Item</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure examples in help pages are run conditionally.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure vignettes (or code chunks therein) are executed conditionally.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure tests are run conditionally.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure excluded vignettes (or code chunks therein) are executed conditionally.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Anticipate possible breaking changes coming from dependencies and act on it.</td>
 </tr>
 </tbody>
@@ -1223,24 +1223,24 @@
 <p>Help pages for exported functions should contain examples illustrating their usage. But you can skip executing some examples (e.g.&nbsp;because they are too time-consuming) using any of the following tags:</p>
 <table class="caption-top">
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: center;">Tag</th>
 <th style="text-align: center;">Run by <code>example()</code>?</th>
 <th style="text-align: center;">Run by <code>R CMD check</code>?</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"><code>\dontrun{}</code></td>
 <td style="text-align: center;">❌</td>
 <td style="text-align: center;">❌</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"><code>\donttest{}</code></td>
 <td style="text-align: center;">✅</td>
 <td style="text-align: center;">❌</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"><code>\dontshow{}</code></td>
 <td style="text-align: center;">✅</td>
 <td style="text-align: center;">✅</td>
@@ -1890,30 +1890,30 @@ YAML</code></pre>
 </div></div>
 <table class="caption-top">
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">Item</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure there are enough examples in the documentation.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure all README examples are working.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure all examples in help pages are working.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure examples in vignettes are working.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure all URLs are valid.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure there are no spelling mistakes.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure all HTML in the help pages is valid.</td>
 </tr>
 </tbody>
@@ -1985,24 +1985,24 @@ YAML</code></pre>
 <col style="width: 76%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: center;">Condition</th>
 <th style="text-align: center;">Severity</th>
 <th style="text-align: center;">Meaning</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"><code>error</code></td>
 <td style="text-align: center;">high</td>
 <td style="text-align: center;">execution stopped because there was no way to continue</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"><code>warning</code></td>
 <td style="text-align: center;">medium</td>
 <td style="text-align: center;">execution encountered some problem but recovered</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"><code>message</code></td>
 <td style="text-align: center;">low</td>
 <td style="text-align: center;">execution was successful and here are some extra details</td>
@@ -2192,21 +2192,21 @@ YAML</code></pre>
 <p><br></p>
 <table class="caption-top">
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">Item</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure examples in README produce no warnings.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure examples in help pages produce no warnings.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure examples in vignettes produce no warnings.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure tests produce no extrinsic warnings.</td>
 </tr>
 </tbody>
@@ -2385,18 +2385,18 @@ YAML</code></pre>
 <p><br></p>
 <table class="caption-top">
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">Item</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure package passes checks on commonly used OS.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure package passes checks on all supported R versions.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">…</td>
 </tr>
 </tbody>
@@ -2888,18 +2888,18 @@ YAML</code></pre>
 <p><br></p>
 <table class="caption-top">
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">Item</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure the code follows a style guide.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure there are no known code quality issues.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure there are no performance regressions.</td>
 </tr>
 </tbody>
@@ -2973,19 +2973,19 @@ YAML</code></pre>
 <col style="width: 63%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: center;">Dependency</th>
 <th style="text-align: center;">In <code>DESCRIPTION</code></th>
 <th style="text-align: center;">Scope</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: center;">Hard</td>
 <td style="text-align: center;"><code>Depends</code>/<code>Imports</code></td>
 <td style="text-align: center;">Needed for your package to work as expected.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;">Soft</td>
 <td style="text-align: center;"><code>Suggests</code></td>
 <td style="text-align: center;">Nice to have but your package will work regardless.</td>
@@ -3347,24 +3347,24 @@ YAML</code></pre>
 <col style="width: 100%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">Item</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure examples in help pages are run conditionally.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure vignettes (or code chunks therein) are executed conditionally.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Make sure tests are run conditionally.</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">Make sure excluded vignettes (or code chunks therein) are executed conditionally.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">Anticipate possible breaking changes coming from dependencies and act on it.</td>
 </tr>
 </tbody>
@@ -3581,9 +3581,9 @@ YAML</code></pre>
  collate  C.UTF-8
  ctype    C.UTF-8
  tz       UTC
- date     2024-09-22
+ date     2024-09-29
  pandoc   3.4 @ /opt/hostedtoolcache/pandoc/3.4/x64/ (via rmarkdown)
- quarto   1.6.11 @ /usr/local/bin/quarto
+ quarto   1.6.15 @ /usr/local/bin/quarto
 
 ─ Packages ───────────────────────────────────────────────────────────────────
  package      * version    date (UTC) lib source
@@ -3833,7 +3833,7 @@ YAML</code></pre>
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
