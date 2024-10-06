@@ -3618,7 +3618,7 @@ Thanks to all creators, maintainers, and contributors for the tools mentioned th
 
 :::{style="background-color: #FEC868; padding: 20px; border-radius: 25px;"}
 
-All images used in these slides have been taken from [Flaticon](www.flaticon.com){target="_blank"} by [freepikcompany](https://www.freepikcompany.com/){target="_blank"}. Huge thanks to them for making such fantastic resource freely available.
+All images used in these slides have been taken from [Flaticon](www.flaticon.com){target="_blank"} by [freepik](https://www.freepik.com/){target="_blank"}. Huge thanks to them for making such fantastic resource freely available.
 
 Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/){target="_blank"}, this license **does not** cover  images in the `/media` folder. If you use them, you need to follow the [attribution policy](https://support.flaticon.com/){target="_blank"} stated by Flaticon.
 
