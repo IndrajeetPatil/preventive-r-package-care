@@ -24,8 +24,8 @@ Feedback and suggestions are welcome!
 
 All icons used in these slides have been taken from
 [Flaticon](www.flaticon.com) by
-[freepikcompany](https://www.freepikcompany.com/). Huge thanks to them
-for making such fantastic resource freely available to the community!
+[freepikcompany](https://www.freepik.com/). Huge thanks to them for
+making such fantastic resource freely available to the community!
 
 # License
 
