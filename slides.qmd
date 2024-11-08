@@ -13,6 +13,8 @@ keywords: ["software-engineering", "r-packages", "best-practices", "CRAN"]
 ## Preventive Care for R Packages {style="text-align: center;"}
 
 <!-- Don't render this file manually. Run `renderer.R` script instead. -->
+<!-- Need to install extension from https://github.com/quarto-ext/fontawesome -->
+<!-- Run `quarto install extension quarto-ext/fontawesome` in terminal -->
 
 ::: {style="text-align: center;"}
 
@@ -24,9 +26,6 @@ Indrajeet Patil
 knitr::include_graphics("media/preventive-care.png")
 ```
 
-
-<!-- Need to install extension from https://github.com/quarto-ext/fontawesome -->
-<!-- Run `quarto install extension quarto-ext/fontawesome` in terminal -->
 
 # "Software engineering ought to produce sustainability." 
 \- Mark Seemann (*Code That Fits in Your Head*)
