@@ -1977,7 +1977,7 @@ function_showing_warning()
 
 ::::
 
-- While you are at this cleanup, it might also be worth cleaning up intrinsic and extrinsic messages. They might be harmless, but they do clog up logs and make it difficult to focus on warnings.
+- While you are at, it might also be worth cleaning up intrinsic and extrinsic messages. They might be harmless, but they do clog up logs and make it difficult to focus on warnings.
 
 - Setting `warning=FALSE` in vignettes only suppresses warnings in the rendered output. When users run this code interactively, they will still see warnings. [Ostrich policy](https://en.wikipedia.org/wiki/Ostrich_policy){target='_blank'} never works for software development.
 
