@@ -5,6 +5,7 @@ format:
     theme: simple
     slide-number: true
     preview-links: auto
+    embed-resources: true
 execute:
   echo: true
 keywords: ["software-engineering", "r-packages", "best-practices", "CRAN"]
