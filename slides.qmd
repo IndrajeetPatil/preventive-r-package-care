@@ -9,6 +9,9 @@ format:
 execute:
   echo: true
 keywords: ["software-engineering", "r-packages", "best-practices", "CRAN"]
+pagetitle: "Preventive Care for R Packages"
+author-meta: "Indrajeet Patil"
+date-meta: "`r Sys.time()`"
 ---
 
 ## Preventive Care for R Packages {style="text-align: center;"}
