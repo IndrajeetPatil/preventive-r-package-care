@@ -1940,7 +1940,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use GHA workflows to automate checking presence of warnings in [help pages](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml){target='_blank'}, [README](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml){target='_blank'}, [vignettes](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml){target='_blank'}, and [tests](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-test-warnings.yaml){target='_blank'} (`testthat::test_dir("tests")`) on each commit.
+Use GHA workflows to automate checking presence of warnings in [help pages](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml){target='_blank'}, [README](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml){target='_blank'}, [vignettes](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml){target='_blank'}, and [tests](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml){target='_blank'} (`testthat::test_dir("tests")`) on each commit.
 
 :::
 
@@ -2588,7 +2588,7 @@ Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/li
 
 This workflow can be overwhelming at first as it can detect thousands of lints. Therefore, **don't** error if lints are present.
 
-You can use [another workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/lint-changed-files.yaml){target='_blank'} which fails if lints are found **only** in files that changed in a Pull Request. This is an easier and less disheartening way to clean lints.
+You can use [another workflow](https://github.com/easystats/workflows/blob/main/.github/workflows/lint-changed-files.yaml){target='_blank'} which fails if lints are found **only** in files that changed in a Pull Request. This is an easier and less disheartening way to clean lints.
 
 :::
 
@@ -3191,7 +3191,7 @@ Use GHA workflows to install [*all* dependencies](https://github.com/r-lib/actio
 
 - This trick won't work for excluded vignettes (from `vignettes/` subdirectory or `.Rbuildignore`-ed). To ensure that excluded vignettes are using soft dependencies conditionally, build package website in ["noSuggests" mode](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml){target='_blank'}.
 
-- For `R CMD check` with all dependencies installed, use [strict workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-strict.yaml){target='_blank'} that fails on any `NOTE`. To avoid failing on `NOTE`s accepted by CRAN, include this in `DESCRIPTION`:
+- For `R CMD check` with all dependencies installed, use [strict workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check.yaml){target='_blank'} that fails on any `NOTE`. To avoid failing on `NOTE`s accepted by CRAN, include this in `DESCRIPTION`:
 
 ```dcf
 Config/rcmdcheck/ignore-inconsequential-notes: true
