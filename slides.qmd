@@ -1531,8 +1531,6 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/
 
 - Instead of a GHA workflow, you can also include spell check tests in the package itself. For more, see `usethis::use_spell_check()`.
 
-- If you install [Grammarly desktop](https://www.grammarly.com/desktop), it will flag spelling mistakes and will even suggest a clearer way to phrase your sentences. For VS Code, check out [Grammarly extension](https://marketplace.visualstudio.com/items?itemName=znck.grammarly).
-
 - If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 :::
