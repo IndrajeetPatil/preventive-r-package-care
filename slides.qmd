@@ -1010,7 +1010,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-all-examples.yaml){target='_blank'} to make sure all examples in help pages are working on each commit.
+Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml){target='_blank'} to make sure all examples in help pages are working on each commit.
 
 :::
 
@@ -1940,7 +1940,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use GHA workflows to automate checking presence of warnings in [help pages](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml){target='_blank'}, [README](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml){target='_blank'}, [vignettes](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-vignette-warnings.yaml){target='_blank'}, and [tests](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-test-warnings.yaml){target='_blank'} (`testthat::test_dir("tests")`) on each commit.
+Use GHA workflows to automate checking presence of warnings in [help pages](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml){target='_blank'}, [README](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml){target='_blank'}, [vignettes](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml){target='_blank'}, and [tests](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-test-warnings.yaml){target='_blank'} (`testthat::test_dir("tests")`) on each commit.
 
 :::
 
