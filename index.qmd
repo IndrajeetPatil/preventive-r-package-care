@@ -1027,7 +1027,7 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/mai
     * `if (FALSE) { ... }` (if example is included only for illustrative purposes)
     * `try({ ... })` (if the intent is to display the error message)
 
-- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger){target='_blank'}  (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger){target='_blank'} (e.g. once a week).
 
 :::
 
