@@ -870,7 +870,7 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/mai
 
 - If you need to convert an existing `.md` to `.Rmd`, you are [currently](https://github.com/yihui/knitr/issues/1807) out of luck. You will need to do this manually.
 
-- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule){target='_blank'} (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule){target='_blank'} (e.g. once a week).
 
 :::
 
@@ -1173,7 +1173,7 @@ Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pk
 
 - Code chunks that are *meant* to fail should use `error=TRUE` option.
 
-- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule){target='_blank'} (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule){target='_blank'} (e.g. once a week).
 
 :::
 
@@ -1317,7 +1317,7 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/
 
 - There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help. If false positives persist, you may decide to not mark builds as failed if any broken links are found.
 
-- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 :::
 
@@ -1531,7 +1531,7 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/
 
 - Instead of a GHA workflow, you can also include spell check tests in the package itself. For more, see `usethis::use_spell_check()`.
 
-- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 :::
 
@@ -1670,7 +1670,7 @@ Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/html
 
 - If your documentation contains math equations, have a look at [`{katex}`](https://docs.ropensci.org/katex/reference/katex.html){target='_blank'}, [`{mathjaxr}`](https://CRAN.R-project.org/package=mathjaxr){target='_blank'},  [`{mathml}`](https://CRAN.R-project.org/package=mathml){target='_blank'}, etc. to convert LaTeX math expressions to HTML for use in package help pages.
 
-- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 :::
 
@@ -3619,9 +3619,9 @@ Thanks to all creators, maintainers, and contributors for the tools mentioned th
 
 :::{style="background-color: #FEC868; padding: 20px; border-radius: 25px;"}
 
-All images used in these slides have been taken from [Flaticon](www.flaticon.com){target="_blank"} by [freepik](https://www.freepik.com/){target="_blank"}. Huge thanks to them for making such fantastic resource freely available.
+All images used in these slides have been taken from *Flaticon* (www.flaticon.com){target="_blank"} by *freepik* (www.freepik.com){target="_blank"}. Huge thanks to them for making such fantastic resource freely available.
 
-Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/){target="_blank"}, this license **does not** cover  images in the `/media` folder. If you use them, you need to follow the [attribution policy](www.flaticon.com){target="_blank"} stated by Flaticon.
+Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/){target="_blank"}, this license **does not** cover images in the `/media` folder. If you use them, you need to follow the [attribution policy](www.flaticon.com){target="_blank"} stated by *Flaticon*.
 
 :::
 
