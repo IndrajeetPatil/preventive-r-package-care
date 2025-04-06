@@ -3629,7 +3629,7 @@ Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)]
 
 {{< fa brands twitter >}} [Twitter](http://twitter.com/patilindrajeets){target="_blank"}
 
-{{< fa brands linkedin >}} [LikedIn](https://www.linkedin.com/in/indrajeet-patil-397865174/){target="_blank"}
+{{< fa brands linkedin >}} [LikedIn](https://www.linkedin.com/in/indrajeet-patil-ph-d-397865174/){target="_blank"}
 
 {{< fa brands github >}} [GitHub](http://github.com/IndrajeetPatil){target="_blank"}
 
