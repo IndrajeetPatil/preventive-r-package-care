@@ -29,7 +29,6 @@ canonical-url: "https://indrajeetpatil.github.io/preventive-r-package-care/"
 
 ## Preventive Care for R Packages {style="text-align: center;"}
 
-<!-- Don't render this file manually. Run `renderer.R` script instead. -->
 <!-- Need to install extension from https://github.com/quarto-ext/fontawesome -->
 <!-- Run `quarto install extension quarto-ext/fontawesome` in terminal -->
 
@@ -3592,7 +3591,26 @@ This PR can be merged when the new workflow runs successfully.
 
 It is possible to build robust automation infrastructure for R package development that can improve user experience and make long-term development more reliable and sustainable.
 
-# Further reading
+
+# Acknowledgements {.smaller}
+
+Thanks to all creators, maintainers, and contributors for the tools mentioned throughout the presentation. Without them, it wouldn't be so easy to create robust package development architecture in R! 🙏
+
+<br>
+
+:::{style="background-color: #FEC868; padding: 20px; border-radius: 25px;"}
+
+All images used in these slides have been taken from *Flaticon* (www.flaticon.com) by *freepik* (www.freepik.com). Huge thanks to them for making such fantastic resource freely available.
+
+Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/), this license **does not** cover images in the `/media` folder. If you use them, you need to follow the attribution policy stated by *Flaticon*.
+
+:::
+
+# Thank You 
+
+And Happy Package Care! 👼
+
+# Further reading {data-visibility="uncounted"}
 
 For more extensive discussions on best practices in software development.
 
@@ -3620,25 +3638,11 @@ Source code for these slides can be found [on GitHub](https://github.com/Indraje
 
 Star the repo and share with others if you liked the slides! 😊
 
-# For more
+# For more {data-visibility="uncounted"}
 
 If you are interested in good programming and software development practices, check out my other [slide decks](https://sites.google.com/site/indrajeetspatilmorality/presentations).
 
-# Acknowledgements {.smaller}
-
-Thanks to all creators, maintainers, and contributors for the tools mentioned throughout the presentation. Without them, it wouldn't be so easy to create robust package development architecture in R! 🙏
-
-<br>
-
-:::{style="background-color: #FEC868; padding: 20px; border-radius: 25px;"}
-
-All images used in these slides have been taken from *Flaticon* (www.flaticon.com) by *freepik* (www.freepik.com). Huge thanks to them for making such fantastic resource freely available.
-
-Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/), this license **does not** cover images in the `/media` folder. If you use them, you need to follow the attribution policy stated by *Flaticon*.
-
-:::
-
-# Find me at...
+# Find me at... {data-visibility="uncounted"}
 
 {{< fa brands linkedin >}} [LikedIn](https://www.linkedin.com/in/indrajeet-patil-ph-d-397865174/)
 
@@ -3647,7 +3651,3 @@ Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)]
 {{< fa solid link >}} [Website](https://sites.google.com/site/indrajeetspatilmorality/)
 
 {{< fa solid envelope >}} [E-mail](mailto:patilindrajeet.science@gmail.com)
-
-# Thank You 
-
-And Happy Package Care! 👼
