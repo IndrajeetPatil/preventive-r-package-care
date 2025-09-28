@@ -1,0 +1,3822 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head>
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-c6982bbdd90c704a9b15aa23d87ad911.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="index_files/libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.2">
+
+  <meta name="author" content="Indrajeet Patil">
+  <meta name="dcterms.date" content="2025-09-28 07:40:11.914747">
+  <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
+  <title>Preventive Care for R Packages</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-0fde88a82f0356838740f155f1088782.css">
+  <link rel="stylesheet" href="style.css">
+  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-V70CY3LGWT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-V70CY3LGWT");
+  </script>
+
+  <meta property="og:title" content="Preventive Care for R Packages">
+  <meta property="og:description" content="A comprehensive guide to R package development using automation to tick checklists for documentation, exception handling, portability, code quality, and dependency management. Learn how to make your R packages sustainable and release-ready.">
+  <meta property="og:image" content="https://indrajeetpatil.github.io/preventive-r-package-care/media/social-media-card.png">
+  <meta property="og:url" content="https://indrajeetpatil.github.io/preventive-r-package-care/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Preventive Care for R Packages">
+  <meta name="twitter:description" content="A comprehensive guide to R package development using automation to tick checklists for documentation, exception handling, portability, code quality, and dependency management. Learn how to make your R packages sustainable and release-ready.">
+  <meta name="twitter:image" content="https://indrajeetpatil.github.io/preventive-r-package-care/media/social-media-card.png">
+<link rel="canonical" href="https://indrajeetpatil.github.io/preventive-r-package-care/">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="preventive-care-for-r-packages" class="slide level2" style="text-align: center;">
+<h2>Preventive Care for R Packages</h2>
+<!-- Don't render this file manually. Run `renderer.R` script instead. -->
+<!-- Need to install extension from https://github.com/quarto-ext/fontawesome -->
+<!-- Run `quarto install extension quarto-ext/fontawesome` in terminal -->
+<div style="text-align: center;">
+<p>Indrajeet Patil</p>
+</div>
+
+<img data-src="media/preventive-care.png" width="507" class="r-stretch"></section>
+<section id="software-engineering-ought-to-produce-sustainability." class="title-slide slide level1 center">
+<h1>“Software engineering ought to produce sustainability.”</h1>
+<p>- Mark Seemann (<em>Code That Fits in Your Head</em>)</p>
+</section>
+
+<section id="target-audience" class="title-slide slide level1 smaller center">
+<h1>Target audience</h1>
+<p>As an R package developer, if you ever lay awake in the bed wondering:</p>
+<ul>
+<li>if the users are having a bad experience while using the package,</li>
+<li>if you will receive the dreaded CRAN email about archival, and</li>
+<li>if you will be able to update the package in time,</li>
+</ul>
+<p>then this presentation is for you! 😊</p>
+</section>
+
+<section>
+<section id="before-we-begin" class="title-slide slide level1 center">
+<h1>Before we begin</h1>
+<p>Don’t miss the forest for the trees.</p>
+</section>
+<section id="section" class="slide level2 smaller">
+<h2></h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>It’s not about the tools</strong></p>
+</div>
+<div class="callout-content">
+<p>I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. Even if you use neither, the broader takeaways should still be relevant. You can implement the necessary checks with preferred tech stack.</p>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>It’s not <em>just</em> about CRAN</strong></p>
+</div>
+<div class="callout-content">
+<p>Following the recommended practices will make packages more robust to CRAN checks, but that benefit is <em>incidental</em>. You can follow these practices even if you never plan to submit to CRAN. The goal here is to improve user experience and reduce maintenance workload.</p>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>It’s not even about R</strong></p>
+</div>
+<div class="callout-content">
+<p>The practices outlined here are just as relevant to software development in any other programming language (just replace the package with module/library/etc.).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="iconography" class="slide level2 smaller">
+<h2>Iconography</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:15%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:35%;">
+<p><br> Overarching goal</p>
+</div><div class="column" style="width:15%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:35%;">
+<p><br> Problem to solve</p>
+</div></div>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:15%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/confused.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:35%;">
+<p><br> Bad user experience</p>
+</div><div class="column" style="width:15%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/headache.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:35%;">
+<p><br> Maintenance headaches</p>
+</div></div>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:15%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:35%;">
+<p><br> Tools</p>
+</div><div class="column" style="width:15%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:35%;">
+<p><br> Automation</p>
+</div></div>
+</section></section>
+<section>
+<section id="digging-the-pit-of-success" class="title-slide slide level1 center">
+<h1>Digging the pit of success</h1>
+<p>How can software engineering improve sustainability</p>
+</section>
+<section id="be-always-release-ready" class="slide level2 smaller">
+<h2>Be always release-ready</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>Based on research, <em>Accelerate</em> (Forsgren, Humble, &amp; Kim, 2018) argues that the key difference between high-performing vs low-performing software teams is <em>the ability to make a release at the drop of a hat</em>.</p>
+<p>For R packages, this translates to making sure that every commit on the <code>main</code>-branch is <strong>release-ready</strong>.</p>
+<p>That is, if you were asked to make a new release soon, you can be confident that the latest commit doesn’t have any documentation issues, code quality issues, performance regressions, etc.</p>
+</div><div class="column" style="width:30%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/accelerate.jpg" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<div class="fragment">
+<p><br></p>
+<div style="background-color: #F3CCFF; padding: 20px; border-radius: 25px; text-align: center;">
+<p>How can software engineering help to achieve this goal?</p>
+</div>
+</div>
+</section>
+<section id="fighting-software-entropy" class="slide level2 smaller">
+<h2>Fighting software entropy</h2>
+<p>The biggest reason why a software project becomes unsustainable is the unchecked accumulation of complexity.</p>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:20%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/engineer.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:80%;">
+<p><strong>Software engineering is the active and conscious process of preventing complexity from growing.</strong></p>
+<p>It provides the methodology to make sure that the software works as intended and to ensure that it stays that way.</p>
+</div></div>
+</div>
+<div class="fragment">
+<div style="font-size: 25px;">
+<div class="columns">
+<div class="column" style="width:20%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/checklist.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:80%;">
+<p>Software development is an inherently complex process. To make it more manageable, we break it down into checklists of best practices—each designed to stave off complexity—so that we don’t forget about them.</p>
+<p>Following each item on a checklist is a small improvement, but constantly keeping an eye on internal quality prevents software entropy from growing. Although software engineering is more than about automating this process, automation is undoubtedly an important part of it.</p>
+</div></div>
+</div>
+</div>
+</section></section>
+<section id="the-only-way-to-go-fast-is-to-go-well." class="title-slide slide level1 center">
+<h1>“The only way to go fast, is to go well.”</h1>
+<p>- Robert C. Martin</p>
+</section>
+
+<section>
+<section id="r-package-development" class="title-slide slide level1 center">
+<h1>R package development</h1>
+<p>Using automation to tick checklists for various aspects of package development.</p>
+</section>
+<section id="plan" class="slide level2">
+<h2>Plan</h2>
+<p>First, you will see the checklists to tick, and then the details on how to build infrastructure to ensure that none of the checklist items are forgotten.</p>
+<ul>
+<li><p><a href="#/documentation">Documentation</a></p></li>
+<li><p><a href="#/warnings">Exception handling</a></p></li>
+<li><p><a href="#/portability">Portability</a></p></li>
+<li><p><a href="#/codequality">Code quality</a></p></li>
+<li><p><a href="#/dependency">Dependency management</a></p></li>
+</ul>
+</section>
+<section id="checklist-for-documentation" class="slide level2 smaller">
+<h2>Checklist for documentation</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>For a good user experience, make sure that the docs are plentiful, valid, and up-to-date.</strong></p>
+</div>
+</div></div>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure there are enough examples in the documentation.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure all README examples are working.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all examples in help pages are working.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure examples in vignettes are working.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all URLs are valid.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure there are no spelling mistakes.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all HTML in the help pages is valid.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="checklist-for-exception-handling" class="slide level2 smaller">
+<h2>Checklist for exception handling</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that warnings are easily detected for further scrutiny and forthright dealt with.</strong></p>
+</div>
+</div></div>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure examples in README produce no warnings.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure examples in help pages produce no warnings.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure examples in vignettes produce no warnings.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure tests produce no extrinsic warnings.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="checklist-for-portability" class="slide level2 smaller">
+<h2>Checklist for portability</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>For a good user experience, make sure that package would work as expected across diverse settings.</strong></p>
+</div>
+</div></div>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure package passes checks on commonly used OS.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure package passes checks on all supported R versions.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">…</td>
+</tr>
+</tbody>
+</table>
+
+<aside><div>
+<p>The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). Extend the list for your workflow!</p>
+</div></aside></section>
+<section id="checklist-for-code-quality" class="slide level2 smaller">
+<h2>Checklist for code quality</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that the code is readable, maintainable, and follows agreed conventions.</strong></p>
+</div>
+</div></div>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure the code follows a style guide.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure there are no known code quality issues.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure there are no performance regressions.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="checklist-for-dependency-management" class="slide level2 smaller">
+<h2>Checklist for dependency management</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that the package is robust to availability of soft dependencies and breaking changes in hard dependencies.</strong></p>
+</div>
+</div></div>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure examples in help pages are run conditionally.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure vignettes (or code chunks therein) are executed conditionally.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure tests are run conditionally.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure excluded vignettes (or code chunks therein) are executed conditionally.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Anticipate possible breaking changes coming from dependencies and act on it.</td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section id="documentation" class="title-slide slide level1 center">
+<h1>Documentation</h1>
+<p>Preventive care to make sure the docs are up-to-date.</p>
+</section>
+
+<section id="incorrect-documentation-is-often-worse-than-no-documentation." class="title-slide slide level1 center">
+<h1>“Incorrect documentation is often worse than no documentation.”</h1>
+<p>- Bertrand Meyer</p>
+</section>
+
+<section id="section-1" class="title-slide slide level1 center">
+<h1></h1>
+<!-- column layout -->
+<div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>For a good user experience, make sure that the docs are plentiful, valid, and up-to-date.</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+
+<section>
+<section id="make-sure-there-are-enough-examples-in-the-documentation." class="title-slide slide level1 center">
+<h1>Make sure there are enough examples in the documentation.</h1>
+
+</section>
+<section id="an-example-is-worth-a-thousand-words" class="slide level2 smaller">
+<h2>An example is worth a thousand words</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/research.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Access to abundant examples in help pages and vignettes provides a natural starting point for users to explore and experiment with the available functionality.</p>
+<p>Good examples are difficult to write, but any examples are better than none.</p>
+</div></div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/confused.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Without enough expository examples, users are left to fumble their way into discovering the available functionality.</p>
+</div></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to ensure that there are <em>enough</em> number of examples?</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="sources-of-documentation" class="slide level2 smaller">
+<h2>Sources of documentation</h2>
+<p>There are three types of documents that constitute package documentation.</p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:30%;">
+<div style="text-align: center;">
+<p><strong>README.md</strong></p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/readme.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div style="text-align: center;">
+<p><strong>Help pages</strong></p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/example.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div style="text-align: center;">
+<p><strong>Vignettes</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/application.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<p><br></p>
+<p>Therefore, we want to make sure that, when combined across these sources, there are enough examples to cover a significant proportion of available functionality.</p>
+</section>
+<section id="maintaining-example-code-coverage" class="slide level2 smaller">
+<h2>Maintaining example code coverage</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:9%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:91%;">
+<p>Use <a href="https://covr.r-lib.org/"><code>{covr}</code></a> to compute example code coverage (i.e.&nbsp;proportion of the source code that is executed when running examples in help pages and vignettes), and to ensure that it is above a certain threshold.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">package_coverage</span>(<span class="at">type =</span> <span class="fu">c</span>(<span class="st">"examples"</span>, <span class="st">"vignettes"</span>), <span class="at">commentDonttest =</span> <span class="cn">FALSE</span>, <span class="at">commentDontrun =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:9%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:91%;">
+<p>Use a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml">GHA workflow</a> to automate checking that the code coverage via examples never drops below the chosen threshold.</p>
+</div></div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>The choice of threshold is subjective and context-sensitive. Chasing after 100% example code coverage is futile (since this would require exposing every exception in the examples).</p></li>
+<li><p>The examples not run or tested on CRAN can still be counted for computing code coverage.</p></li>
+<li><p>Vignettes not included in the package (the ones in <code>vignettes/</code> subdirectory or <code>.Rbuildignore</code>) will not contribute towards the code coverage. Ditto for <code>README</code>. You can adjust the threshold accordingly.</p></li>
+<li><p>You could also choose the threshold on a file basis (<code>covr::file_coverage()</code>).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="make-sure-all-readme-examples-are-working." class="title-slide slide level1 center">
+<h1>Make sure all README examples are working.</h1>
+
+</section>
+<section id="readme-documentation" class="slide level2 smaller">
+<h2>README documentation</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/readme.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p><code>README.md</code> provides a quick overview of the package API and can feature examples of key functions.</p>
+<p>Although breaking changes might be infrequent, when they do occur, the code in README may become defunct.</p>
+</div></div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/confused.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p><code>README.md</code> is probably the first and the most-visited document in a project and any broken examples therein are bound to confuse many users.</p>
+</div></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to insure against broken code in README?</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="detecting-broken-readme-examples" class="slide level2 smaller">
+<h2>Detecting broken README examples</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://rmarkdown.rstudio.com/github_document_format.html"><code>{rmarkdown}</code></a> to dynamically generate <code>README.md</code> from <code>README.Rmd</code>. If there is broken code in README, it will fail to render.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">"README.Rmd"</span>, <span class="at">output_format =</span> rmarkdown<span class="sc">::</span><span class="fu">github_document</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml">GHA workflow</a> to automate checking that README can be successfully rendered on each commit.</p>
+</div></div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>If you are starting a new project, create README using <a href="https://usethis.r-lib.org/reference/use_readme_rmd.html"><code>usethis::use_readme_rmd()</code></a>.</p></li>
+<li><p>If you need to convert an existing <code>.md</code> to <code>.Rmd</code>, you are <a href="https://github.com/yihui/knitr/issues/1807">currently</a> out of luck. You will need to do this manually.</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="make-sure-all-examples-in-help-pages-are-working." class="title-slide slide level1 center">
+<h1>Make sure <em>all</em> examples in help pages are working.</h1>
+
+</section>
+<section id="broken-examples-in-help-pages" class="slide level2 smaller">
+<h2>Broken examples in help pages</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/example.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Types of examples</strong></p>
+</div>
+<div class="callout-content">
+<p>Help pages for exported functions should contain examples illustrating their usage. But you can skip executing some examples (e.g.&nbsp;because they are too time-consuming) using any of the following tags:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Tag</th>
+<th style="text-align: center;">Run by <code>example()</code>?</th>
+<th style="text-align: center;">Run by <code>R CMD check</code>?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>\dontrun{}</code></td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>\donttest{}</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>\dontshow{}</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/confused.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Thus, broken <code>\dontrun{}</code> and <code>\donttest{}</code> examples may not be flagged by <code>R CMD check</code>. Users will still see these examples, and wonder why they aren’t working for them.</p>
+<div style="font-size: 20px;">
+<p>CRAN’s additional <a href="https://www.stats.ox.ac.uk/pub/bdr/donttest/">“donttest” check</a> does run <code>\donttest{}</code> examples.</p>
+</div>
+</div></div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to catch examples that don’t run successfully?</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="checking-all-examples" class="slide level2 smaller">
+<h2>Checking all examples</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://r-lib.github.io/devtools/"><code>{devtools}</code></a> to run all examples, and catch and fix the broken ones.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">run_examples</span>(<span class="at">run_dontrun =</span> <span class="cn">TRUE</span>, <span class="at">run_donttest =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml">GHA workflow</a> to make sure all examples in help pages are working on each commit.</p>
+</div></div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Examples that are <em>meant</em> to fail should use any of the following patterns:</p>
+<ul>
+<li><code>if (FALSE) { ... }</code> (if example is included only for illustrative purposes)</li>
+<li><code>try({ ... })</code> (if the intent is to display the error message)</li>
+</ul></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="make-sure-examples-in-all-vignettes-are-working." class="title-slide slide level1 center">
+<h1>Make sure examples in <em>all</em> vignettes are working.</h1>
+
+</section>
+<section id="vignette-examples" class="slide level2 smaller">
+<h2>Vignette examples</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/application.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Types of vignettes</strong></p>
+</div>
+<div class="callout-content">
+<p>Vignettes included in the package will fail if examples are broken. But you can choose to exclude some vignettes to reduce package size or to reduce check time. You can do so by placing them in a <code>vignettes/</code> subdirectory or by adding them to <code>.Rbuildignore</code>.</p>
+</div>
+</div>
+</div>
+</div></div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/headache.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Thus, the <code>R CMD check</code> won’t catch broken examples in excluded vignettes. Although users might not see them on CRAN, you shouldn’t retain defunct examples anywhere in the documentation. This also makes excluded vignettes future-proof; if you decide to include them in the package, there won’t be any issues.</p>
+</div></div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to detect broken examples in excluded vignettes?</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="building-all-vignettes" class="slide level2 smaller">
+<h2>Building all vignettes</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Although excluded vignettes may not be checked by <code>R CMD check</code>, they are still built by <a href="https://r-lib.github.io/pkgdown/"><code>{pkgdown}</code></a> to generate a static website. Thus, building a website would detect any broken examples in excluded vignettes.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>pkgdown<span class="sc">::</span><span class="fu">build_site</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use a <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/pkgdown.yaml">GHA workflow</a> to make sure examples in <em>all</em> vignettes are working on each commit.</p>
+</div></div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Code chunks that are <em>meant</em> to fail should use <code>error=TRUE</code> option.</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="make-sure-all-urls-are-valid." class="title-slide slide level1 center">
+<h1>Make sure <em>all</em> URLs are valid.</h1>
+
+</section>
+<section id="what-is-link-rot" class="slide level2 smaller">
+<h2>What is link rot?</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<p><i class="fa-solid fa-link-slash fa-2xl" aria-label="link-slash"></i></p>
+</div><div class="column" style="width:90%;">
+<p>Package documentation often includes plenty of hyperlinks to external resources. But some of them may become invalid over time.</p>
+<p><a href="https://en.wikipedia.org/wiki/Link_rot">Link rot</a> happens because web pages move to new addresses or become permanently unavailable.</p>
+</div></div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/confused.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Such dangling references can be frustrating for the users trying to access the resources that the dead links were previously pointing to.</p>
+</div></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to prevent link rot from accumulating in the documentation?</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="detecting-link-rot" class="slide level2 smaller">
+<h2>Detecting link rot</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You can use <a href="https://r-lib.github.io/urlchecker/"><code>{urlchecker}</code></a> to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>urlchecker<span class="sc">::</span><span class="fu">url_check</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+<p><br></p>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml">GHA workflow</a> to check for bad URLs on each commit.</p>
+</div></div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>If <code>{urlchecker}</code> finds dead URLs in <code>.html</code>/<code>.md</code> files, you will need to update <code>.Rmd</code>/<code>.qmd</code> files and then regenerate the docs. Otherwise, you will keep wondering why <code>urlchecker::url_update()</code> isn’t fixing the links.</p></li>
+<li><p>There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help. If false positives persist, you may decide to not mark builds as failed if any broken links are found.</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="make-sure-there-are-no-spelling-mistakes." class="title-slide slide level1 center">
+<h1>Make sure there are no spelling mistakes.</h1>
+
+</section>
+<section id="spelling-mistakes" class="slide level2 smaller">
+<h2>Spelling mistakes</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/spell-check.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Spelling mistakes are inevitable and, if left unchecked, they can accumulate rapidly with the increase in the documentation.</p>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/confused.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can’t find the meaning of the misspelt word.</p>
+<p>Additionally, misspelling technical words (e.g.&nbsp;<em>innode</em> vs.&nbsp;<a href="https://en.wikipedia.org/wiki/Inode"><em>inode</em></a>) can lead users down the wrong path and waste their time.</p>
+</div></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to prevent spelling mistakes from accumulating in the documentation?</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="creating-a-list-of-allowed-misspellings" class="slide level2 smaller">
+<h2>Creating a list of allowed misspellings</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>There exist multiple English spelling standards (e.g.&nbsp;in British English: <em>anaemia</em>, but in American English: <em>anemia</em>). You can specify your preferred standard in <code>DESCRIPTION</code>.</p>
+</div><div class="column" style="width:30%;">
+<p>E.g. for British English</p>
+<pre class="dcf"><code>Language: en-GB</code></pre>
+</div></div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>Additionally, some technical words will not be recognized by dictionaries, but you don’t want these to be considered spelling mistakes either. You can create a list of allowed misspelt words in the <code>WORDLIST</code> file.</p>
+</div><div class="column" style="width:20%;">
+<p>File location</p>
+<pre><code>├── DESCRIPTION
+├── inst
+│   └── WORDLIST</code></pre>
+</div><div class="column" style="width:20%;">
+<p>Example file</p>
+<pre><code>addin
+api
+AppVeyor
+biocthis
+bootswatch
+...
+winbuilder
+YAML</code></pre>
+</div></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<p>Now you are all set for detecting spelling mistakes!</p>
+</div>
+</section>
+<section id="detecting-spelling-mistakes" class="slide level2 smaller">
+<h2>Detecting spelling mistakes</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://docs.ropensci.org/spelling/"><code>{spelling}</code></a> to detect misspelt words and their location in the docs.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>spelling<span class="sc">::</span><span class="fu">spell_check_package</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml">GHA workflow</a> to ensure that spelling mistakes are caught on each commit.</p>
+</div></div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Instead of a GHA workflow, you can also include spell check tests in the package itself. For more, see <code>usethis::use_spell_check()</code>.</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="make-sure-all-html-in-the-help-pages-is-valid." class="title-slide slide level1 center">
+<h1>Make sure <em>all</em> HTML in the help pages is valid.</h1>
+
+</section>
+<section id="html5-check" class="slide level2 smaller">
+<h2>HTML5 check</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/html-5.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>HTML has few syntactic rules, and browsers may not even enforce the rules it does have. E.g., browsers will tolerate mismatched tags, missing end tags, misnested tags, etc. HTML5 standard aims to improve this situation, and R package help pages use HTML5 standard since <code>R 4.2</code>.</p>
+</div></div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/headache.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You will thus need to make sure that your package documentation neither generates invalid HTML nor contains raw invalid HTML.</p>
+</div></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to make sure help pages have valid HTML?</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="detecting-invalid-html" class="slide level2 smaller">
+<h2>Detecting invalid HTML</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>CRAN uses <a href="https://www.html-tidy.org/documentation/">HTML tidy</a> to detect markup errors in HTML. But, if you use <a href="https://roxygen2.r-lib.org/"><code>{roxygen2}</code></a>, it will ensure against producing any invalid HTML.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>roxygen2<span class="sc">::</span><span class="fu">roxygenise</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/html-5-check.yaml">GHA workflow</a> to automate checking validity of HTML manual on each commit.</p>
+</div></div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>If your documentation contains math equations, have a look at <a href="https://docs.ropensci.org/katex/reference/katex.html"><code>{katex}</code></a>, <a href="https://CRAN.R-project.org/package=mathjaxr"><code>{mathjaxr}</code></a>, <a href="https://CRAN.R-project.org/package=mathml"><code>{mathml}</code></a>, etc. to convert LaTeX math expressions to HTML for use in package help pages.</p></li>
+<li><p>If the repo is not under active development, you can run the workflow on a <a href="https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule">scheduled time</a> (e.g.&nbsp;once a week).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="checklist-for-documentation-1" class="slide level2 smaller">
+<h2>Checklist for documentation</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>For a good user experience, make sure that the docs are plentiful, valid, and up-to-date.</strong></p>
+</div>
+</div></div>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure there are enough examples in the documentation.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure all README examples are working.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all examples in help pages are working.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure examples in vignettes are working.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all URLs are valid.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure there are no spelling mistakes.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure all HTML in the help pages is valid.</td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section id="warnings" class="title-slide slide level1 center">
+<h1>Exception handling</h1>
+<p>Preventive care to make sure that you don’t miss out on important warnings.</p>
+</section>
+
+<section id="there-is-a-problem-with-warnings.-no-one-reads-them." class="title-slide slide level1 center">
+<h1>“There is a problem with warnings. No one reads them.”</h1>
+<p>- Patrick Burns</p>
+</section>
+
+<section>
+<section id="section-2" class="title-slide slide level1 center">
+<h1></h1>
+<!-- column layout -->
+<div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that warnings are easily detected for further scrutiny and forthright dealt with.</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="sending-signals" class="slide level2 smaller">
+<h2>Sending signals</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/warning.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Types of conditions/exceptions</strong></p>
+</div>
+<div class="callout-content">
+<p>A function can use <a href="https://adv-r.hadley.nz/conditions.html">conditions</a> to signal that something unexpected has happened with varying severity.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 10%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Condition</th>
+<th style="text-align: center;">Severity</th>
+<th style="text-align: center;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>error</code></td>
+<td style="text-align: center;">high</td>
+<td style="text-align: center;">execution stopped because there was no way to continue</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>warning</code></td>
+<td style="text-align: center;">medium</td>
+<td style="text-align: center;">execution encountered some problem but recovered</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>message</code></td>
+<td style="text-align: center;">low</td>
+<td style="text-align: center;">execution was successful and here are some extra details</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div></div>
+<p>Out of these, warnings are the most nebulous!</p>
+<ul>
+<li>Errors bring functions to a halt and you <em>must</em> attend to them.</li>
+<li>Messages are innocuous and you <em>can</em> safely ignore them.</li>
+<li>But warnings are harbingers of problems that you will need to fix at some point. They <em>need</em> to be dealt with, <em>pronto</em>, and yet it is easy to ignore them.</li>
+</ul>
+</section>
+<section id="a-needle-in-the-haystack" class="slide level2 smaller">
+<h2>A needle in the haystack</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Types of warnings</strong></p>
+</div>
+<div class="callout-content">
+<p>There are two kinds of warnings that you, as a developer, will need to deal with:</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><strong>Intrinsic warnings</strong> are warnings produced by functions in <em>your</em> package.</p>
+<p>E.g. a warning from a function to winsorize data.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">winsorize</span>(x, <span class="at">threshold =</span> <span class="dv">2</span>)</span>
+<span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning message:</span></span>
+<span id="cb11-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `threshold` for winsorization must be a scalar between 0 and 0.5.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:55%;">
+<p><strong>Extrinsic warnings</strong> are warnings stemming from your package <em>dependencies</em>.</p>
+<p>E.g. a possible <a href="https://github.com/jtlandis/ggside/issues/39">warning</a> if your package relies on <code>{ggside}</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(hwy, class)) <span class="sc">+</span> <span class="fu">geom_xsidedensity</span>()</span>
+<span id="cb12-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.</span></span>
+<span id="cb12-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Please use `linewidth` in the `default_aes` field and elsewhere instead.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/cleaning.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>With a significant amount of package functionality and dependencies, there can be plenty of warnings at any given moment.</p>
+<p>To avoid missing out on important warnings, there should ideally be <strong>zero of either type of warnings</strong> in your package documentation and tests. This makes it easy to notice and deal with new, potentially critical warnings as they appear.</p>
+</div></div>
+</div>
+</section>
+<section id="suppressing-intrinsic-warnings" class="slide level2 smaller">
+<h2>Suppressing intrinsic warnings</h2>
+<p>There is almost never a need to explicitly highlight warnings intrinsic to your package.</p>
+<div class="fragment">
+<div style="background-color: #FFDCA9; padding: 20px; border-radius: 25px;">
+<ul>
+<li><p>Warnings are generated in contexts where functions in <em>your</em> package were used unexpectedly by the users. But such contexts shouldn’t be deliberately highlighted in the documentation. Users should always see <a href="https://en.wikipedia.org/wiki/Happy_path">happy path</a> examples in help pages, README, or vignettes.</p></li>
+<li><p>While testing functions, you should use expectations (e.g.&nbsp;<code>testthat::expect_warning()</code>) to check that expected warnings are triggered. You shouldn’t print the warnings, since they can completely overwhelm the test log and make it difficult to catch important warnings.</p></li>
+<li><p>If it’s a complex package function that can encounter a large number of slippery situations, it makes sense to provide an argument to turn off a few warnings (e.g.&nbsp;<code>verbose = FALSE</code>) and use it to omit warnings in the docs.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="suppressing-extrinsic-warnings" class="slide level2 smaller">
+<h2>Suppressing extrinsic warnings</h2>
+<p>Warnings from dependencies can be critical and should be dealt with ASAP.</p>
+<div class="fragment">
+<div style="background-color: #FFFBC1; padding: 20px; border-radius: 25px;">
+<ul>
+<li><p>If dependencies are emitting warnings because your functions are using imported code in unexpected ways, rewrite functions to remove warnings.</p></li>
+<li><p>If the warnings are about deprecated functions or arguments, switch to using the suggested alternatives. Don’t wait until they are removed.</p></li>
+<li><p>Some warnings are unavoidable and not as important. They can be suppressed using <code>suppressWarnings()</code>. That said, avoid using it in examples in help pages, lest users think that this is part of <em>your</em> package API.</p></li>
+<li><p>If the warnings are coming from somewhere upstream (e.g.&nbsp;<code>{ggplot2}</code> → <code>{ggside}</code> → your package), you have little control over them. You can inform the upstream maintainer and ignore such warnings using <code>suppressWarnings()</code>. Don’t forget to remove suppress calls once the warnings are fixed upstream.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="detecting-warnings" class="slide level2 smaller">
+<h2>Detecting warnings</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Convert warnings into errors during checks to detect warnings.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">warn =</span> <span class="dv">2</span>L)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use GHA workflows to automate checking presence of warnings in <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml">help pages</a>, <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml">README</a>, <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml">vignettes</a>, and <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml">tests</a> (<code>testthat::test_dir("tests")</code>) on each commit.</p>
+</div></div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>If a function is <em>designed</em> to show warnings, then you can prevent workflows from failing by conditionally running it.</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examplesIf getOption("warn") &lt; 2L</span></span>
+<span id="cb14-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#' function_showing_warning()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a>```{r eval = getOption("warn") &lt; 2L}</span>
+<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a>function_showing_warning()</span>
+<span id="cb15-3"><a href="" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<ul>
+<li><p>While you are at, it might also be worth cleaning up intrinsic and extrinsic messages. They might be harmless, but they do clog up logs and make it difficult to focus on warnings.</p></li>
+<li><p>Setting <code>warning=FALSE</code> in vignettes only suppresses warnings in the rendered output. When users run this code interactively, they will still see warnings. <a href="https://en.wikipedia.org/wiki/Ostrich_policy">Ostrich policy</a> never works for software development.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="checklist-for-exception-handling-1" class="slide level2 smaller">
+<h2>Checklist for exception handling</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that warnings are easily detected for further scrutiny and forthright dealt with.</strong></p>
+</div>
+</div></div>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure examples in README produce no warnings.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure examples in help pages produce no warnings.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure examples in vignettes produce no warnings.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure tests produce no extrinsic warnings.</td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section id="portability" class="title-slide slide level1 center">
+<h1>Portability</h1>
+<p>Preventive care to make sure that your package works across a variety of settings.</p>
+</section>
+
+<section id="each-new-user-of-a-new-system-uncovers-a-new-class-of-bugs." class="title-slide slide level1 center">
+<h1>“Each new user of a new system uncovers a new class of bugs.”</h1>
+<p>- Brian Kernighan</p>
+</section>
+
+<section>
+<section id="section-3" class="title-slide slide level1 center">
+<h1></h1>
+<!-- column layout -->
+<div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>For a good user experience, make sure that package works as expected across diverse settings.</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="the-unbearable-diversity-of-contexts" class="slide level2 smaller">
+<h2>The unbearable diversity of contexts</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/difference.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You (the developer) may be developing the package in a certain setting: with a certain version of R, on a particular OS, in a certain locale, etc. Even if all tests pass and all examples run successfully for you locally, you can’t assume that your users will use the package in similar settings.</p>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/confused.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>If you restrict your checks only to these specific settings, you may not catch problems experienced by users in other settings (e.g., the graphics device that works on <code>windows</code> may not work on <code>macOS</code>, code that works with <code>R 4.1</code> may not work with <code>R 3.6</code>, etc.).</p>
+<div style="font-size: 20px;">
+<p>The key assumption here is that your package claims to support these settings. If your package docs clearly state that the package will work only on (e.g.) Windows, you don’t need to worry about other OS.</p>
+</div>
+</div></div>
+<p><br></p>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to make sure that your package is working as expected across various settings?</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="checking-across-multiple-settings" class="slide level2 smaller">
+<h2>Checking across multiple settings</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://r-lib.github.io/rcmdcheck/"><code>{rcmdcheck}</code></a> to run <code>R CMD check</code> from R.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a>rcmdcheck<span class="sc">::</span><span class="fu">rcmdcheck</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div style="font-size: 20px;">
+<p>All the options you can set to further customize this check is beyond the scope of the current presentation.</p>
+</div>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://github.com/r-lib/lintr/blob/main/.github/workflows/R-CMD-check.yaml">GHA workflow</a> to run <code>R CMD check</code> for multiple R versions and platforms on each commit to probe for potential portability issues.</p>
+</div></div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>If needed, you can run checks on additional platforms using <a href="https://r-hub.github.io/rhub/articles/rhub.html"><code>{rhub}</code></a>.</p></li>
+<li><p>Fully crossed checks (all major platforms <span class="math inline">\(\times\)</span> all supported R versions) are rarely necessary and definitely an overkill.</p></li>
+<li><p>Ideally, the package should be tested until the oldest R version it purports to support. E.g. if <code>DESCRIPTION</code> says <code>R &gt;= 3.4</code>, then you should check until <code>R 3.4</code> to make sure that the package indeed works for this R version. If you check only until <code>R 3.5</code>, it is instead better to bump version in <code>DESCRIPTION</code>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="checklist-for-portability-1" class="slide level2 smaller">
+<h2>Checklist for portability</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>For a good user experience, make sure that package would work as expected across diverse settings.</strong></p>
+</div>
+</div></div>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure package passes checks on commonly used OS.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure package passes checks on all supported R versions.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">…</td>
+</tr>
+</tbody>
+</table>
+
+<aside><div>
+<p>The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). Extend it for your workflow!</p>
+</div></aside></section></section>
+<section id="codequality" class="title-slide slide level1 center">
+<h1>Code quality</h1>
+<p>Preventive care to detect code quality issues and performance regressions.</p>
+</section>
+
+<section id="dont-comment-bad-coderewrite-it." class="title-slide slide level1 center">
+<h1>“Don’t comment bad code—rewrite it.”</h1>
+<p>- Brian W. Kernighan</p>
+</section>
+
+<section id="section-4" class="title-slide slide level1 center">
+<h1></h1>
+<!-- column layout -->
+<div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that the code is readable, maintainable, and follows agreed conventions.</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+
+<section>
+<section id="make-sure-the-code-follows-a-style-guide." class="title-slide slide level1 center">
+<h1>Make sure the code follows a style guide.</h1>
+
+</section>
+<section id="code-formatting" class="slide level2 smaller">
+<h2>Code formatting</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/web-programming.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>The physical layout of the program can assist the reader in understanding the underlying logic. Additionally, understanding a large codebase is easier when all the code has consistent formatting. Style guides outline conventions to enforce a uniform formatting schema across the codebase.</p>
+<div style="font-size: 20px;">
+<p>Style guides can be highly opinionated and arbitrary. So, more important than <em>which</em> style guide you follow is the fact that you follow <em>a</em> style guide.</p>
+</div>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/headache.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>In larger projects or teams, multiple contributors may have different formatting preferences. This can lead to contributors undoing each others’ changes, leading to unnecessarily large git diffs and even unnecessary unpleasantness.</p>
+</div></div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to make sure that codebase follows a consistent style guide?</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="following-style-guide" class="slide level2 smaller">
+<h2>Following style guide</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://r-lib.github.io/styler/"><code>{styler}</code></a> to enforce the <a href="https://style.tidyverse.org/">tidyverse style guide</a> throughout the package (including source code, test files, vignettes, etc.).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a>styler<span class="sc">::</span><span class="fu">style_pkg</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml">GHA workflow</a> to format code consistently on each commit.</p>
+</div></div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>You can use annotations (<code>styler: off</code> + <code>styler: on</code>) to instruct <code>{styler}</code> to ignore custom formatted code.</p></li>
+<li><p>If you don’t prefer the tidyverse style guide, either you can customize <code>{styler}</code> itself, or explore other packages (e.g.&nbsp;<a href="https://CRAN.R-project.org/package=formatR"><code>{formatR}</code></a>, <a href="https://github.com/Bioconductor/BiocStyle/"><code>{BiocStyle}</code></a>, etc.). For a full list, see <a href="https://indrajeetpatil.github.io/awesome-r-pkgtools/#codedocument-formatting">awesome-r-pkgtools</a>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="make-sure-there-are-no-known-code-quality-issues." class="title-slide slide level1 center">
+<h1>Make sure there are no known code quality issues.</h1>
+
+</section>
+<section id="code-quality-assessment" class="slide level2 smaller">
+<h2>Code quality assessment</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/tumble-dryer.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p><a href="https://en.wikipedia.org/wiki/Code_smell">Code smells</a> (aka lints) are patterns that are known to be problematic for readability, efficiency, consistency, style, etc. Catching such issues early on can help prevent bugs and other issues from creeping into code, which can save time and effort when it comes to debugging and testing.</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># code with a lint</span></span>
+<span id="cb18-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">lint</span>(<span class="at">text =</span> <span class="st">"x = 1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>::warning file=&lt;text&gt;,line=1,col=3::file=&lt;text&gt;,line=1,col=3,[assignment_linter] Use one of &lt;-, &lt;&lt;- for assignment, not =.</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:40%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># code without a lint</span></span>
+<span id="cb20-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">lint</span>(<span class="at">text =</span> <span class="st">"x &lt;- 1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/headache.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>In larger projects or teams, where multiple contributors may be working on the same codebase, it can become difficult for an individual contributor to detect code quality issues that they or someone else may have introduced.</p>
+</div></div>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to make sure that there are no known code quality issues present?</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="detecting-lints" class="slide level2 smaller">
+<h2>Detecting lints</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://r-lib.github.io/lintr/dev/"><code>{lintr}</code></a> to carry out static code analysis to detect code quality issues.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-hidden="true" tabindex="-1"></a>lintr<span class="sc">::</span><span class="fu">lint_package</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://github.com/r-lib/lintr/blob/main/.github/workflows/lint.yaml">GHA workflow</a> to detect all lints on each commit.</p>
+<div style="font-size: 20px;">
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>This workflow can be overwhelming at first as it can detect thousands of lints. Therefore, <strong>don’t</strong> error if lints are present.</p>
+<p>You can use <a href="https://github.com/easystats/workflows/blob/main/.github/workflows/lint-changed-files.yaml">another workflow</a> which fails if lints are found <strong>only</strong> in files that changed in a Pull Request. This is an easier and less disheartening way to clean lints.</p>
+</div><div class="column" style="width:40%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># In `lint.yaml`</span></span>
+<span id="cb22-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb22-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">LINTR_ERROR_ON_LINT</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># In `lint-changed-files.yaml`</span></span>
+<span id="cb23-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb23-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">LINTR_ERROR_ON_LINT</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+</div>
+</div></div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Most lints related to code formatting can be removed using <a href="https://r-lib.github.io/styler/"><code>{styler}</code></a>, which enforces <a href="https://style.tidyverse.org/">tidyverse style guide</a>.</p></li>
+<li><p>Code smells are subjective and you may disagree with some linters. Use a <a href="https://lintr.r-lib.org/dev/articles/lintr.html">configuration file</a> to customize which linters you wish to include. Additionally, you can annotate parts of code that linters should ignore (e.g.&nbsp;<code># nolint start: indentation_linter.</code> + <code># nolint end</code>).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="detecting-issues-with-non-r-code" class="slide level2 smaller">
+<h2>Detecting issues with non-R code</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/headache.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>An R package contains a number of configuration files written in languages other than R (e.g., YAML, JSON, DCF, etc.), and you may also wish to make sure that none of them are malformed.</p>
+</div></div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>To detect multi-language code issues, you can use <a href="https://pre-commit.com/">pre-commit</a>, which is a framework for managing and maintaining git hooks. This framework can be accessed in R using <a href="https://lorenzwalthert.github.io/precommit/"><code>{precommit}</code></a>.</p>
+<div style="font-size: 20px;">
+<p>The framework offers <a href="https://pre-commit.com/hooks.html">hundreds of hooks</a> to choose from and you can choose ones relevant to your config files (e.g.&nbsp;to lint and format JSON and YAML files).</p>
+</div>
+</div></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://github.com/r-lib/styler/blob/main/.github/workflows/pre-commit.yaml">GHA workflow</a> to detect any problems with non-R code on each commit. You can specify the hooks relevant to you in a <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.pre-commit-config.yaml">pre-commit config file</a>.</p>
+</div></div>
+</div>
+</section></section>
+<section>
+<section id="make-sure-there-are-no-performance-regressions." class="title-slide slide level1 center">
+<h1>Make sure there are no performance regressions.</h1>
+
+</section>
+<section id="dont-slow-it-down" class="slide level2 smaller">
+<h2>Don’t slow it down</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/snail.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>If your package is mature and stable enough that you have started to invest in improving its efficiency, it is important that you have some metric by which you can benchmark if a new Pull Request improves or degrades performance in comparison with the latest commit on <code>main</code>.</p>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/headache.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Checking for performance regressions just before or even after the release is not ideal, since it might be difficult to revert back to the state before regression took place.</p>
+</div></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to reliably benchmark Pull Requests for performance regressions?</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="detecting-performance-regressions" class="slide level2 smaller">
+<h2>Detecting performance regressions</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p><a href="https://lorenzwalthert.github.io/touchstone/"><code>{touchstone}</code></a> offers a continuous benchmarking tool for reliable relative measurement of performance in the Pull Request versus <code>main</code>-branch. The results are directly reported as a comment in GitHub Pull Requests.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/touchstone.png" width="1185"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use <a href="https://github.com/r-lib/styler/blob/main/.github/workflows/touchstone-comment.yaml">GHA workflow</a> for benchmarking PRs and detecting any performance regressions.</p>
+</div></div>
+</div>
+</section>
+<section id="checklist-for-code-quality-1" class="slide level2 smaller">
+<h2>Checklist for code quality</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that the code is readable, maintainable, and follows agreed conventions.</strong></p>
+</div>
+</div></div>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure the code follows a style guide.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure there are no known code quality issues.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure there are no performance regressions.</td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section id="dependency" class="title-slide slide level1 center">
+<h1>Dependency management</h1>
+<p>Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.</p>
+</section>
+
+<section id="dependencies-are-invitations-for-other-people-to-break-your-package." class="title-slide slide level1 center">
+<h1>“Dependencies are invitations for other people to break your package.”</h1>
+<p>- Joshua Ulrich</p>
+</section>
+
+<section>
+<section id="section-5" class="title-slide slide level1 center">
+<h1></h1>
+<!-- column layout -->
+<div style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;">
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that the package is robust to availability of soft dependencies and breaking changes in hard dependencies.</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="types-of-dependencies" class="slide level2 smaller">
+<h2>Types of Dependencies</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/trust.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Dependencies (code that your source code relies on) are an inevitable part of package development.</p>
+</div></div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Not all dependencies are created equal!</strong></p>
+</div>
+<div class="callout-content">
+<p>Hard dependencies have a broader scope because they are needed at runtime; i.e.&nbsp;your package won’t work without them, while soft dependencies have a narrow scope; e.g.&nbsp;because they are needed only for testing or for examples.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 23%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Dependency</th>
+<th style="text-align: center;">In <code>DESCRIPTION</code></th>
+<th style="text-align: center;">Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Hard</td>
+<td style="text-align: center;"><code>Depends</code>/<code>Imports</code></td>
+<td style="text-align: center;">Needed for your package to work as expected.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Soft</td>
+<td style="text-align: center;"><code>Suggests</code></td>
+<td style="text-align: center;">Nice to have but your package will work regardless.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Dependencies bring risk</strong></p>
+</div>
+<div class="callout-content">
+<p>If a critical dependency becomes unavailable (e.g.&nbsp;because its author decides to archive it), bad luck. You <strong>must</strong> either refactor to remove dependency or look for an alternative. Otherwise, your package is no longer going to work. But this shouldn’t be the case for soft dependencies since they are not critical for your package to work.</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="make-sure-soft-dependencies-are-used-conditionally." class="title-slide slide level1 center">
+<h1>Make sure soft dependencies are used conditionally.</h1>
+
+</section>
+<section id="soft-dependency-hygiene" class="slide level2 smaller">
+<h2>Soft dependency hygiene</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/damaged-package.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>In a high-level, user-facing package, there can be a substantial number of soft dependencies. The package then risks breakage for <em>any</em> unavailable soft dependency, if it is not used conditionally.</p>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/headache.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>It can be quite taxing for maintainers to remove examples or tests related to a soft dependency if it gets archived, and restore them once the dependency is unarchived. To avoid this, soft dependencies should always be used conditionally.</p>
+<div style="font-size: 20px;">
+<p>CRAN runs the additional <a href="https://www.stats.ox.ac.uk/pub/bdr/noSuggests/">“noSuggests” check</a> to look for possible breakages.</p>
+</div>
+</div></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to make sure <em>all</em> soft dependencies are being conditionally used?</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="conditional-dependency-usage" class="slide level2 smaller">
+<h2>Conditional dependency usage</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>Soft dependencies should be used conditionally across all contexts. Let’s say <code>{lme4}</code> is such a dependency.</p>
+</div><div class="column" style="width:30%;">
+<p>In <code>DESCRIPTION</code></p>
+<pre class="dcf"><code>Suggests:
+    lme4</code></pre>
+</div></div>
+<p><br></p>
+<hr>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Examples</strong> in help pages should be executed only if package is available.</p>
+</div><div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># In R/file-1.R</span></span>
+<span id="cb25-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examplesIf requireNamespace("lme4")</span></span>
+<span id="cb25-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#' lme4::lmer(...)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<hr>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Vignettes</strong> (or specific code chunks) should be executed only if package is available.</p>
+</div><div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="" aria-hidden="true" tabindex="-1"></a>&lt;!-- In vignettes/doc-1.Rmd --&gt;</span>
+<span id="cb26-2"><a href="" aria-hidden="true" tabindex="-1"></a>```{r eval = requireNamespace("lme4")}</span>
+<span id="cb26-3"><a href="" aria-hidden="true" tabindex="-1"></a>lme4::lmer(...)</span>
+<span id="cb26-4"><a href="" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<hr>
+</div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Tests</strong> should be run only if package is available.</p>
+</div><div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># In tests/testthat/test-file-1.R</span></span>
+<span id="cb27-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"bla"</span>, {</span>
+<span id="cb27-3"><a href="" aria-hidden="true" tabindex="-1"></a>  testthat<span class="sc">::</span><span class="fu">skip_if_not_installed</span>(<span class="st">"lme4"</span>)</span>
+<span id="cb27-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(lme4<span class="sc">::</span><span class="fu">lmer</span>(...), ...)</span>
+<span id="cb27-5"><a href="" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<hr>
+</div>
+</section>
+<section id="checking-conditional-usage" class="slide level2 smaller">
+<h2>Checking conditional usage</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>The trick here is to run <code>R CMD check</code> twice: once when <em>all</em> soft dependencies are available, and once when <em>none</em> are available. If the package passes the <code>R CMD check</code> in the first but not the second context, you can be sure that some soft dependencies are not being used conditionally.</p>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use GHA workflows to install <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-full.yaml"><em>all</em> dependencies</a> or <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-no-suggests.yaml"><em>only</em> hard dependencies</a> and check if the package passes <code>R CMD check</code> on each commit.</p>
+</div></div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Additional tips</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>This trick won’t work for excluded vignettes (from <code>vignettes/</code> subdirectory or <code>.Rbuildignore</code>-ed). To ensure that excluded vignettes are using soft dependencies conditionally, build package website in <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml">“noSuggests” mode</a>.</p></li>
+<li><p>For <code>R CMD check</code> with all dependencies installed, use <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check.yaml">strict workflow</a> that fails on any <code>NOTE</code>. To avoid failing on <code>NOTE</code>s accepted by CRAN, include this in <code>DESCRIPTION</code>:</p></li>
+</ul>
+<pre class="dcf"><code>Config/rcmdcheck/ignore-inconsequential-notes: true</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="special-care-for-examples" class="slide level2 smaller">
+<h2>Special care for examples</h2>
+<p>Prefer using <code>\donttest()</code> over <code>\dontrun()</code> for <a href="https://indrajeetpatil.github.io/preventive-r-package-care/#/broken-examples-in-help-pages">skipping examples</a>.</p>
+<p>This is because the latter will be skipped during R CMD Check and <code>{pkgdown}</code> also will not execute these examples. Therefore, you will miss out on an example that should be run conditionally. This can become an issue if you do decide to run this example in the future by removing <code>\dontrun</code>.</p>
+<div class="fragment">
+<p>E.g., assuming <code>{lme4}</code> is a soft dependency and is not available:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Won’t fail in “noSuggests” workflow</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<span id="cb29-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#' \dontrun{</span></span>
+<span id="cb29-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#'   lme4::lmer(...)</span></span>
+<span id="cb29-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#' }</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:50%;">
+<p>Will fail in “noSuggests” workflow</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<span id="cb30-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#' \donttest{</span></span>
+<span id="cb30-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#'   lme4::lmer(...)</span></span>
+<span id="cb30-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#' }</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<p>Expected usage:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examplesIf requireNamespace("lme4")</span></span>
+<span id="cb31-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#' \donttest{</span></span>
+<span id="cb31-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#'   lme4::lmer(...)</span></span>
+<span id="cb31-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#' }</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="anticipating-breakages" class="slide level2 smaller">
+<h2>Anticipating breakages</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/damaged-package.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>It is important to anticipate changes in dependencies that may break your packages. Although some maintainers (of your dependencies) will be kind enough to let you know of upcoming breaking changes, such communication can’t be assumed or might not even be possible.</p>
+<div style="font-size: 20px;">
+<p>If your package is not on CRAN, there is no way for the maintainers to detect breakages in reverse dependencies and inform maintainers. Similarly, if a reverse dependency is skipping tests on CRAN, possible breakages can go undetected.</p>
+</div>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/confused.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>You may figure out that something is broken <em>after</em> a dependency is updated, the package stops working for the users, and they inform you. This is especially true if your package is not under active development, and so CI/CD won’t detect that your package is broken.</p>
+</div></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/problem-solved.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: red;">
+<p><strong>How to detect upcoming breaking changes in dependencies?</strong></p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="detecting-breakages-early" class="slide level2 smaller">
+<h2>Detecting breakages early</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/toolbox.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>In order to detect breakages earlier, you can run <code>R CMD check</code> by installing development versions of dependencies.</p>
+</div></div>
+<div class="fragment">
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/robot.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<p>Use scheduled <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-devel.yaml">GHA workflow</a> to automate checking breakages.</p>
+<div style="font-size: 20px;">
+<p>How frequently you should run this check (e.g., once a month, once every six months, etc.) and which dependencies you should include (e.g., only hard, only soft, a few of each, etc.) depends on how actively both your own package and your dependencies are being developed.</p>
+</div>
+</div></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>What should you do if you <em>do</em> detect a breakage?</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>If the root cause of breakage turns out to be a regression in the dependency, discuss with the maintainer.</p></li>
+<li><p>If the breakage is legitimate, make a PR to your repo with a fix but merge only when either the maintainer informs you of an upcoming release or the package has a new release. <strong>Don’t</strong> push the fix to the <code>main</code>-branch because the breaking change could be reverted before release.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="checklist-for-dependency-management-1" class="slide level2 smaller">
+<h2>Checklist for dependency management</h2>
+<!-- column layout -->
+<div class="columns">
+<div class="column" style="width:10%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/target.png" width="256"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:90%;">
+<div style="color: blue; text-align: center;">
+<p><strong>To reduce maintenance headaches, make sure that the package is robust to availability of soft dependencies and breaking changes in hard dependencies.</strong></p>
+</div>
+</div></div>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Make sure examples in help pages are run conditionally.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure vignettes (or code chunks therein) are executed conditionally.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Make sure tests are run conditionally.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Make sure excluded vignettes (or code chunks therein) are executed conditionally.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Anticipate possible breaking changes coming from dependencies and act on it.</td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section>
+<section id="eco-friendly-workflows" class="title-slide slide level1 center">
+<h1>Eco-friendly workflows</h1>
+<p>Do you <em>really</em> need to run all workflows on each commit?!</p>
+</section>
+<section id="skipping-workflows" class="slide level2 smaller">
+<h2>Skipping workflows</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>Although all these workflows can be run for free (thanks Microsoft!), they still expend energy and it might bother you that you are wasting energy even on minor changes.</p>
+</div><div class="column" style="width:30%;">
+<div style="font-size: 20px;">
+<p>Example of an insignificant change.</p>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode diff code-with-copy"><code class="sourceCode diff"><span id="cb32-1"><a href="" aria-hidden="true" tabindex="-1"></a># In `NEWS.md`</span>
+<span id="cb32-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">- witdh</span></span>
+<span id="cb32-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">+ width</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Reducing count of workflow runs</strong></p>
+</div>
+<div class="callout-content">
+<p>You can use a few or all of the following options to reduce the frequency with which the workflows are run.</p>
+<ul>
+<li>Use <code>[skip ci]</code> in your commit messages for commits with insignificant changes.</li>
+<li>Run workflows only when a PR is marked “Ready for Review”.</li>
+<li>Skip running some workflows (e.g., spelling, HTML5, link rot, etc.) on each commit once all workflows are green. Instead, run them with weekly or monthly schedules, and then fix the newly found problems.</li>
+<li>Run some workflows only when ready for a new release.</li>
+<li>Cancel <a href="https://docs.github.com/en/actions/using-jobs/using-concurrency">workflows in progress</a> if a new commit is made.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="caveats" class="title-slide slide level1 center">
+<h1>Caveats</h1>
+<p>No good practice is dogma. There always exist exceptions.</p>
+</section>
+<section id="using-workflows-flexibly" class="slide level2 smaller">
+<h2>Using workflows flexibly</h2>
+<ul>
+<li><p>You can skip some workflows or create new workflows depending on the project-specific demands (e.g.&nbsp;compiled code, database connections, API access, etc.).</p></li>
+<li><p>Sometimes it might not even be possible to run all workflows successfully because a few of them conflict with each other.</p></li>
+</ul>
+<div style="font-size: 20px;">
+<p>If you have a data visualization package (e.g.), the more examples you have in the documentation, the bigger the package size would be, which might leave a <code>NOTE</code> in <code>R CMD check</code> and strict workflow will fail. Which of these workflows is more important is a subjective decision.</p>
+</div>
+</section></section>
+<section id="failure-is-the-only-option" class="title-slide slide level1 center">
+<h1>Failure is the only option</h1>
+<p>It is necessary that builds fail for any existing or newly found issues.</p>
+</section>
+
+<section>
+<section id="later-equals-never." class="title-slide slide level1 center">
+<h1>“Later equals never.”</h1>
+<p>- LeBlanc’s Law</p>
+</section>
+<section id="managing-technical-debt" class="slide level2 smaller">
+<h2>Managing technical debt</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<!-- [Credits](https://vincentdnl.com/drawings/) -->
+<div class="cell fig-cap-location-bottom">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/technical_debt.png" width="690"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tomorrow never comes</strong></p>
+</div>
+<div class="callout-content">
+<p>It might seem excessive that workflows fail if <em>any</em> issue is found (<em>“Really?! You want builds to fail even if there is a single code quality issue?!”</em>).</p>
+<p>But this is the only way to sidestep procrastination (<em>“We can fix the broken link later!”</em>) that can lead to the accumulation of technical debt. With time, this debt can compound and every new feature requires longer to implement.</p>
+<p>Failed builds also act as organizational quality control mechanisms. You will no longer need to justify carving out time to address technical debt if a new release can’t be made unless all checks are green.</p>
+</div>
+</div>
+</div>
+</div></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Once green, always green</strong></p>
+</div>
+<div class="callout-content">
+<p>The initial work you will put into achieving green checks will pay dividends in the long run. And, once a check is green, you only need to make sure that it stays that way for each new commit to the <code>main</code>-branch.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="easing-into-it" class="slide level2 smaller">
+<h2>Easing into it</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="media/bike-fall.jpeg" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<p>It might not be feasible to implement all workflows in one go, especially when they will be marked as failed until <em>all</em> relevant issues have been dealt with.</p>
+<p>This is especially true for organizations that have a policy to always keep the default branch “green”.</p>
+<div style="font-size: 20px;">
+<p>I’d highly recommend that you adopt such a policy, both for your organization and private repositories.</p>
+</div>
+<div style="background-color: #FFD56F; padding: 20px; border-radius: 25px;">
+<p>You can adopt an <strong>incremental approach</strong> of adding one workflow per PR.</p>
+<p>This PR can be merged when the new workflow runs successfully.</p>
+</div>
+</div></div>
+</section></section>
+<section id="conclusion" class="title-slide slide level1 center">
+<h1>Conclusion</h1>
+<p>It is possible to build robust automation infrastructure for R package development that can improve user experience and make long-term development more reliable and sustainable.</p>
+</section>
+
+<section>
+<section id="further-reading" class="title-slide slide level1 center">
+<h1>Further reading</h1>
+<p>For more extensive discussions on best practices in software development.</p>
+</section>
+<section id="section-6" class="slide level2 smaller">
+<h2></h2>
+<h3 id="r-specific">R-specific</h3>
+<ul>
+<li><p><a href="https://rstudio.github.io/r-manuals/r-exts/">Writing R Extensions</a></p></li>
+<li><p>Wickham, H., and Bryan, J. (2023). <a href="https://r-pkgs.org/"><em>R Packages</em></a> (2nd edition). O’Reilly.</p></li>
+</ul>
+<h3 id="language-agnostic">Language-agnostic</h3>
+<ul>
+<li><p>McConnell, S. (2004). <em>Code Complete</em> (2nd edition). Microsoft Press.</p></li>
+<li><p>Martin, R.C. (2017) <em>Clean Architecture</em>. Addison-Wesley.</p></li>
+<li><p>Ousterhout, J. K. (2018). <em>A Philosophy of Software Design</em>. Palo Alto: Yaknyam Press.</p></li>
+<li><p>Seemann, M. (2021) <em>Code That Fits in Your Head</em>. Addison-Wesley.</p></li>
+</ul>
+</section></section>
+<section id="section-7" class="title-slide slide level1 center">
+<h1></h1>
+<p>Source code for these slides can be found <a href="https://github.com/IndrajeetPatil/preventive-r-package-care/">on GitHub</a>.</p>
+<p>Star the repo and share with others if you liked the slides! 😊</p>
+</section>
+
+<section id="for-more" class="title-slide slide level1 center">
+<h1>For more</h1>
+<p>If you are interested in good programming and software development practices, check out my other <a href="https://sites.google.com/site/indrajeetspatilmorality/presentations">slide decks</a>.</p>
+</section>
+
+<section id="acknowledgements" class="title-slide slide level1 smaller center">
+<h1>Acknowledgements</h1>
+<p>Thanks to all creators, maintainers, and contributors for the tools mentioned throughout the presentation. Without them, it wouldn’t be so easy to create robust package development architecture in R! 🙏</p>
+<p><br></p>
+<div style="background-color: #FEC868; padding: 20px; border-radius: 25px;">
+<p>All images used in these slides have been taken from <em>Flaticon</em> (www.flaticon.com) by <em>freepik</em> (www.freepik.com). Huge thanks to them for making such fantastic resource freely available.</p>
+<p>Although the current repository is published under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal (CC0 1.0)</a>, this license <strong>does not</strong> cover images in the <code>/media</code> folder. If you use them, you need to follow the attribution policy stated by <em>Flaticon</em>.</p>
+</div>
+</section>
+
+<section id="find-me-at" class="title-slide slide level1 center">
+<h1>Find me at…</h1>
+<p><i class="fa-brands fa-linkedin" aria-label="linkedin"></i> <a href="https://www.linkedin.com/in/indrajeet-patil-ph-d-397865174/">LikedIn</a></p>
+<p><i class="fa-brands fa-github" aria-label="github"></i> <a href="http://github.com/IndrajeetPatil">GitHub</a></p>
+<p><i class="fa-solid fa-link" aria-label="link"></i> <a href="https://sites.google.com/site/indrajeetspatilmorality/">Website</a></p>
+<p><i class="fa-solid fa-envelope" aria-label="envelope"></i> <a href="mailto:patilindrajeet.science@gmail.com">E-mail</a></p>
+</section>
+
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank You</h1>
+<p>And Happy Package Care! 👼</p>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+                // target, if specified
+                link.setAttribute("target", "_blank");
+                if (link.getAttribute("rel") === null) {
+                  link.setAttribute("rel", "noopener");
+                }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
