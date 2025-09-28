@@ -4,16 +4,27 @@ format:
     css: style.css
     theme: simple
     slide-number: true
+    code-line-numbers: false
     preview-links: auto
-    embed-resources: true
-    link-external-newwindow: true
+    keyboard: true
+    touch: true
+    help: true
     include-in-header: meta-tags.html
+    link-external-newwindow: true
+    google-analytics: "G-V70CY3LGWT"
 execute:
   echo: true
 keywords: ["software-engineering", "r-packages", "best-practices", "CRAN"]
+description-meta: "A comprehensive guide to R package development using automation to tick checklists for documentation, exception handling, portability, code quality, and dependency management. Learn how to make your R packages sustainable and release-ready."
+license: "CC0 1.0 Universal"
 pagetitle: "Preventive Care for R Packages"
 author-meta: "Indrajeet Patil"
-date-meta: "`r Sys.time()`"
+date-meta: "now"
+lang: "en"
+dir: "ltr"
+image: "media/social-media-card.png"
+image-alt: "Preview image for presentation about preventive care for R packages"
+canonical-url: "https://indrajeetpatil.github.io/preventive-r-package-care/"
 ---
 
 ## Preventive Care for R Packages {style="text-align: center;"}
@@ -684,7 +695,7 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='91%'}
 
-Use [`{covr}`](https://covr.r-lib.org/){target='_blank'} to compute example code coverage (i.e. proportion of the source code that is executed when running examples in help pages and vignettes), and to ensure that it is above a certain threshold.
+Use [`{covr}`](https://covr.r-lib.org/) to compute example code coverage (i.e. proportion of the source code that is executed when running examples in help pages and vignettes), and to ensure that it is above a certain threshold.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -711,7 +722,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='91%'}
 
-Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml){target='_blank'} to automate checking that the code coverage via examples never drops below the chosen threshold.
+Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml) to automate checking that the code coverage via examples never drops below the chosen threshold.
 
 :::
 
@@ -856,7 +867,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml){target='_blank'} to automate checking that README can be successfully rendered on each commit.
+Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml) to automate checking that README can be successfully rendered on each commit.
 
 :::
 
@@ -872,7 +883,7 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/mai
 
 - If you need to convert an existing `.md` to `.Rmd`, you are [currently](https://github.com/yihui/knitr/issues/1807) out of luck. You will need to do this manually.
 
-- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule){target='_blank'} (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 :::
 
@@ -934,7 +945,7 @@ Thus, broken `\dontrun{}` and `\donttest{}` examples may not be flagged by `R CM
 
 :::{style="font-size: 20px;"}
 
-CRAN's additional ["donttest" check](https://www.stats.ox.ac.uk/pub/bdr/donttest/){target='_blank'} does run `\donttest{}` examples.
+CRAN's additional ["donttest" check](https://www.stats.ox.ac.uk/pub/bdr/donttest/) does run `\donttest{}` examples.
 
 :::
 
@@ -985,7 +996,7 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='90%'}
 
-Use [`{devtools}`](https://r-lib.github.io/devtools/){target='_blank'} to run all examples, and catch and fix the broken ones.
+Use [`{devtools}`](https://r-lib.github.io/devtools/) to run all examples, and catch and fix the broken ones.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -1012,7 +1023,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml){target='_blank'} to make sure all examples in help pages are working on each commit.
+Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml) to make sure all examples in help pages are working on each commit.
 
 :::
 
@@ -1029,7 +1040,7 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/mai
     * `if (FALSE) { ... }` (if example is included only for illustrative purposes)
     * `try({ ... })` (if the intent is to display the error message)
 
-- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule){target='_blank'} (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 :::
 
@@ -1161,7 +1172,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pkgdown.yaml){target='_blank'} to make sure examples in *all* vignettes are working on each commit.
+Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pkgdown.yaml) to make sure examples in *all* vignettes are working on each commit.
 
 :::
 
@@ -1175,7 +1186,7 @@ Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pk
 
 - Code chunks that are *meant* to fail should use `error=TRUE` option.
 
-- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule){target='_blank'} (e.g. once a week).
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule) (e.g. once a week).
 
 :::
 
@@ -1199,7 +1210,7 @@ Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pk
 
 Package documentation often includes plenty of hyperlinks to external resources. But some of them may become invalid over time.
 
-[Link rot](https://en.wikipedia.org/wiki/Link_rot){target='_blank'} happens because web pages move to new addresses or become permanently unavailable.
+[Link rot](https://en.wikipedia.org/wiki/Link_rot) happens because web pages move to new addresses or become permanently unavailable.
 
 :::
 
@@ -1274,7 +1285,7 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='90%'}
 
-You can use [`{urlchecker}`](https://r-lib.github.io/urlchecker/){target='_blank'} to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.
+You can use [`{urlchecker}`](https://r-lib.github.io/urlchecker/) to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -1303,7 +1314,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml){target='_blank'} to check for bad URLs on each commit.
+Use [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml) to check for bad URLs on each commit.
 
 :::
 
@@ -1367,7 +1378,7 @@ knitr::include_graphics("media/confused.png")
 
 Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can't find the meaning of the misspelt word. 
 
-Additionally, misspelling technical words (e.g. *innode* vs. [*inode*](https://en.wikipedia.org/wiki/Inode){target='_blank'}) can lead users down the wrong path and waste their time. 
+Additionally, misspelling technical words (e.g. *innode* vs. [*inode*](https://en.wikipedia.org/wiki/Inode)) can lead users down the wrong path and waste their time. 
 
 :::
 
@@ -1492,7 +1503,7 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='90%'}
 
-Use [`{spelling}`](https://docs.ropensci.org/spelling/){target='_blank'} to detect misspelt words and their location in the docs.
+Use [`{spelling}`](https://docs.ropensci.org/spelling/) to detect misspelt words and their location in the docs.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -1519,7 +1530,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml){target='_blank'} to ensure that spelling mistakes are caught on each commit.
+Use [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml) to ensure that spelling mistakes are caught on each commit.
 
 :::
 
@@ -1629,7 +1640,7 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='90%'}
 
-CRAN uses [HTML tidy](https://www.html-tidy.org/documentation/) to detect markup errors in HTML. But, if you use [`{roxygen2}`](https://roxygen2.r-lib.org/){target='_blank'}, it will ensure against producing any invalid HTML.
+CRAN uses [HTML tidy](https://www.html-tidy.org/documentation/) to detect markup errors in HTML. But, if you use [`{roxygen2}`](https://roxygen2.r-lib.org/), it will ensure against producing any invalid HTML.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -1658,7 +1669,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/html-5-check.yaml){target='_blank'} to automate checking validity of HTML manual on each commit.
+Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/html-5-check.yaml) to automate checking validity of HTML manual on each commit.
 
 :::
 
@@ -1670,7 +1681,7 @@ Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/html
 
 ## Additional tips 
 
-- If your documentation contains math equations, have a look at [`{katex}`](https://docs.ropensci.org/katex/reference/katex.html){target='_blank'}, [`{mathjaxr}`](https://CRAN.R-project.org/package=mathjaxr){target='_blank'},  [`{mathml}`](https://CRAN.R-project.org/package=mathml){target='_blank'}, etc. to convert LaTeX math expressions to HTML for use in package help pages.
+- If your documentation contains math equations, have a look at [`{katex}`](https://docs.ropensci.org/katex/reference/katex.html), [`{mathjaxr}`](https://CRAN.R-project.org/package=mathjaxr),  [`{mathml}`](https://CRAN.R-project.org/package=mathml), etc. to convert LaTeX math expressions to HTML for use in package help pages.
 
 - If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule) (e.g. once a week).
 
@@ -1821,7 +1832,7 @@ winsorize(x, threshold = 2)
 
 **Extrinsic warnings** are warnings stemming from your package *dependencies*.
 
-E.g. a possible [warning](https://github.com/jtlandis/ggside/issues/39){target='_blank'} if your package relies on `{ggside}`.
+E.g. a possible [warning](https://github.com/jtlandis/ggside/issues/39) if your package relies on `{ggside}`.
 
 ```{r}
 #| eval: false
@@ -1871,7 +1882,7 @@ There is almost never a need to explicitly highlight warnings intrinsic to your 
 
 ::: {style="background-color: #FFDCA9; padding: 20px; border-radius: 25px;"}
 
-- Warnings are generated in contexts where functions in *your* package were used unexpectedly by the users. But such contexts shouldn't be deliberately highlighted in the documentation. Users should always see [happy path](https://en.wikipedia.org/wiki/Happy_path){target='_blank'} examples in help pages, README, or vignettes.
+- Warnings are generated in contexts where functions in *your* package were used unexpectedly by the users. But such contexts shouldn't be deliberately highlighted in the documentation. Users should always see [happy path](https://en.wikipedia.org/wiki/Happy_path) examples in help pages, README, or vignettes.
 
 - While testing functions, you should use expectations (e.g. `testthat::expect_warning()`) to check that expected warnings are triggered. You shouldn't print the warnings, since they can completely overwhelm the test log and make it difficult to catch important warnings.
 
@@ -1940,7 +1951,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use GHA workflows to automate checking presence of warnings in [help pages](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml){target='_blank'}, [README](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml){target='_blank'}, [vignettes](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml){target='_blank'}, and [tests](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml){target='_blank'} (`testthat::test_dir("tests")`) on each commit.
+Use GHA workflows to automate checking presence of warnings in [help pages](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml), [README](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml), [vignettes](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml), and [tests](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml) (`testthat::test_dir("tests")`) on each commit.
 
 :::
 
@@ -1983,7 +1994,7 @@ function_showing_warning()
 
 - While you are at, it might also be worth cleaning up intrinsic and extrinsic messages. They might be harmless, but they do clog up logs and make it difficult to focus on warnings.
 
-- Setting `warning=FALSE` in vignettes only suppresses warnings in the rendered output. When users run this code interactively, they will still see warnings. [Ostrich policy](https://en.wikipedia.org/wiki/Ostrich_policy){target='_blank'} never works for software development.
+- Setting `warning=FALSE` in vignettes only suppresses warnings in the rendered output. When users run this code interactively, they will still see warnings. [Ostrich policy](https://en.wikipedia.org/wiki/Ostrich_policy) never works for software development.
 
 :::
 
@@ -2153,7 +2164,7 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='90%'}
 
-Use [`{rcmdcheck}`](https://r-lib.github.io/rcmdcheck/){target='_blank'} to run `R CMD check` from R.
+Use [`{rcmdcheck}`](https://r-lib.github.io/rcmdcheck/) to run `R CMD check` from R.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -2186,7 +2197,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/R-CMD-check.yaml){target='_blank'} to run `R CMD check` for multiple R versions and platforms on each commit to probe for potential portability issues.
+Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/R-CMD-check.yaml) to run `R CMD check` for multiple R versions and platforms on each commit to probe for potential portability issues.
 
 :::
 
@@ -2198,7 +2209,7 @@ Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/R-
 
 ## Additional tips 
 
-- If needed, you can run checks on additional platforms using [`{rhub}`](https://r-hub.github.io/rhub/articles/rhub.html){target='_blank'}.
+- If needed, you can run checks on additional platforms using [`{rhub}`](https://r-hub.github.io/rhub/articles/rhub.html).
 
 - Fully crossed checks (all major platforms $\times$ all supported R versions) are rarely necessary and definitely an overkill.
 
@@ -2381,7 +2392,7 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='90%'}
 
-Use [`{styler}`](https://r-lib.github.io/styler/){target='_blank'} to enforce the [tidyverse style guide](https://style.tidyverse.org/){target='_blank'} throughout the package (including source code, test files, vignettes, etc.).
+Use [`{styler}`](https://r-lib.github.io/styler/) to enforce the [tidyverse style guide](https://style.tidyverse.org/) throughout the package (including source code, test files, vignettes, etc.).
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -2408,7 +2419,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml){target='_blank'} to format code consistently on each commit.
+Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml) to format code consistently on each commit.
 
 :::
 
@@ -2422,7 +2433,7 @@ Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/styl
 
 - You can use annotations (`styler: off` + `styler: on`) to instruct `{styler}` to ignore custom formatted code.
 
-- If you don't prefer the tidyverse style guide, either you can customize `{styler}` itself, or explore other packages (e.g. [`{formatR}`](https://CRAN.R-project.org/package=formatR){target='_blank'}, [`{BiocStyle}`](https://github.com/Bioconductor/BiocStyle/){target='_blank'}, etc.). For a full list, see [awesome-r-pkgtools](https://indrajeetpatil.github.io/awesome-r-pkgtools/#codedocument-formatting){target='_blank'}.
+- If you don't prefer the tidyverse style guide, either you can customize `{styler}` itself, or explore other packages (e.g. [`{formatR}`](https://CRAN.R-project.org/package=formatR), [`{BiocStyle}`](https://github.com/Bioconductor/BiocStyle/), etc.). For a full list, see [awesome-r-pkgtools](https://indrajeetpatil.github.io/awesome-r-pkgtools/#codedocument-formatting).
 
 :::
 
@@ -2444,7 +2455,7 @@ knitr::include_graphics("media/tumble-dryer.png")
 
 ::: {.column width='90%'}
 
-[Code smells](https://en.wikipedia.org/wiki/Code_smell){target='_blank'} (aka lints) are patterns that are known to be problematic for readability, efficiency, consistency, style, etc. Catching such issues early on can help prevent bugs and other issues from creeping into code, which can save time and effort when it comes to debugging and testing.
+[Code smells](https://en.wikipedia.org/wiki/Code_smell) (aka lints) are patterns that are known to be problematic for readability, efficiency, consistency, style, etc. Catching such issues early on can help prevent bugs and other issues from creeping into code, which can save time and effort when it comes to debugging and testing.
 
 :::: {.columns}
 
@@ -2551,7 +2562,7 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='90%'}
 
-Use [`{lintr}`](https://r-lib.github.io/lintr/dev/){target='_blank'} to carry out static code analysis to detect code quality issues.
+Use [`{lintr}`](https://r-lib.github.io/lintr/dev/) to carry out static code analysis to detect code quality issues.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -2578,7 +2589,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/lint.yaml){target='_blank'} to detect all lints on each commit.
+Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/lint.yaml) to detect all lints on each commit.
 
 :::{style="font-size: 20px;"}
 
@@ -2588,7 +2599,7 @@ Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/li
 
 This workflow can be overwhelming at first as it can detect thousands of lints. Therefore, **don't** error if lints are present.
 
-You can use [another workflow](https://github.com/easystats/workflows/blob/main/.github/workflows/lint-changed-files.yaml){target='_blank'} which fails if lints are found **only** in files that changed in a Pull Request. This is an easier and less disheartening way to clean lints.
+You can use [another workflow](https://github.com/easystats/workflows/blob/main/.github/workflows/lint-changed-files.yaml) which fails if lints are found **only** in files that changed in a Pull Request. This is an easier and less disheartening way to clean lints.
 
 :::
 
@@ -2624,7 +2635,7 @@ env:
 
 ## Additional tips 
 
-- Most lints related to code formatting can be removed using [`{styler}`](https://r-lib.github.io/styler/){target='_blank'}, which enforces [tidyverse style guide](https://style.tidyverse.org/){target='_blank'}.
+- Most lints related to code formatting can be removed using [`{styler}`](https://r-lib.github.io/styler/), which enforces [tidyverse style guide](https://style.tidyverse.org/).
 
 - Code smells are subjective and you may disagree with some linters. Use a [configuration file](https://lintr.r-lib.org/dev/articles/lintr.html) to customize which linters you wish to include. Additionally, you can annotate parts of code that linters should ignore (e.g. `# nolint start: indentation_linter.` + `# nolint end`).
 
@@ -2670,11 +2681,11 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='90%'}
 
-To detect multi-language code issues, you can use [pre-commit](https://pre-commit.com/){target='_blank'}, which is a framework for managing and maintaining git hooks. This framework can be accessed in R using [`{precommit}`](https://lorenzwalthert.github.io/precommit/){target='_blank'}. 
+To detect multi-language code issues, you can use [pre-commit](https://pre-commit.com/), which is a framework for managing and maintaining git hooks. This framework can be accessed in R using [`{precommit}`](https://lorenzwalthert.github.io/precommit/). 
 
 :::{style="font-size: 20px;"}
 
-The framework offers [hundreds of hooks](https://pre-commit.com/hooks.html){target='_blank'} to choose from and you can choose ones relevant to your config files (e.g. to lint and format JSON and YAML files).
+The framework offers [hundreds of hooks](https://pre-commit.com/hooks.html) to choose from and you can choose ones relevant to your config files (e.g. to lint and format JSON and YAML files).
 
 :::
 
@@ -2700,7 +2711,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/r-lib/styler/blob/main/.github/workflows/pre-commit.yaml){target='_blank'} to detect any problems with non-R code on each commit. You can specify the hooks relevant to you in a [pre-commit config file](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.pre-commit-config.yaml){target='_blank'}.
+Use [GHA workflow](https://github.com/r-lib/styler/blob/main/.github/workflows/pre-commit.yaml) to detect any problems with non-R code on each commit. You can specify the hooks relevant to you in a [pre-commit config file](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.pre-commit-config.yaml).
 
 :::
 
@@ -2825,7 +2836,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/r-lib/styler/blob/main/.github/workflows/touchstone-comment.yaml){target='_blank'} for benchmarking PRs and detecting any performance regressions.
+Use [GHA workflow](https://github.com/r-lib/styler/blob/main/.github/workflows/touchstone-comment.yaml) for benchmarking PRs and detecting any performance regressions.
 
 :::
 
@@ -2991,7 +3002,7 @@ It can be quite taxing for maintainers to remove examples or tests related to a 
 
 :::{style="font-size: 20px;"}
 
-CRAN runs the additional ["noSuggests" check](https://www.stats.ox.ac.uk/pub/bdr/noSuggests/){target='_blank'} to look for possible breakages.
+CRAN runs the additional ["noSuggests" check](https://www.stats.ox.ac.uk/pub/bdr/noSuggests/) to look for possible breakages.
 
 :::
 
@@ -3177,7 +3188,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use GHA workflows to install [*all* dependencies](https://github.com/r-lib/actions/blob/v2-branch/examples/check-full.yaml){target='_blank'} or [*only* hard dependencies](https://github.com/r-lib/actions/blob/v2-branch/examples/check-no-suggests.yaml){target='_blank'} and check if the package passes `R CMD check` on each commit.
+Use GHA workflows to install [*all* dependencies](https://github.com/r-lib/actions/blob/v2-branch/examples/check-full.yaml) or [*only* hard dependencies](https://github.com/r-lib/actions/blob/v2-branch/examples/check-no-suggests.yaml) and check if the package passes `R CMD check` on each commit.
 
 :::
 
@@ -3189,9 +3200,9 @@ Use GHA workflows to install [*all* dependencies](https://github.com/r-lib/actio
 
 ## Additional tips 
 
-- This trick won't work for excluded vignettes (from `vignettes/` subdirectory or `.Rbuildignore`-ed). To ensure that excluded vignettes are using soft dependencies conditionally, build package website in ["noSuggests" mode](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml){target='_blank'}.
+- This trick won't work for excluded vignettes (from `vignettes/` subdirectory or `.Rbuildignore`-ed). To ensure that excluded vignettes are using soft dependencies conditionally, build package website in ["noSuggests" mode](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml).
 
-- For `R CMD check` with all dependencies installed, use [strict workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check.yaml){target='_blank'} that fails on any `NOTE`. To avoid failing on `NOTE`s accepted by CRAN, include this in `DESCRIPTION`:
+- For `R CMD check` with all dependencies installed, use [strict workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check.yaml) that fails on any `NOTE`. To avoid failing on `NOTE`s accepted by CRAN, include this in `DESCRIPTION`:
 
 ```dcf
 Config/rcmdcheck/ignore-inconsequential-notes: true
@@ -3364,7 +3375,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use scheduled [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-devel.yaml){target='_blank'} to automate checking breakages.
+Use scheduled [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-devel.yaml) to automate checking breakages.
 
 :::{style="font-size: 20px;"}
 
@@ -3503,7 +3514,7 @@ It is necessary that builds fail for any existing or newly found issues.
 
 ::: {.column width='40%'}
 
-<!-- [Credits](https://vincentdnl.com/drawings/){target='_blank'} -->
+<!-- [Credits](https://vincentdnl.com/drawings/) -->
 
 ```{r}
 #| echo: false
@@ -3605,7 +3616,7 @@ For more extensive discussions on best practices in software development.
 
 # 
 
-Source code for these slides can be found [on GitHub](https://github.com/IndrajeetPatil/preventive-r-package-care/){target='_blank'}.
+Source code for these slides can be found [on GitHub](https://github.com/IndrajeetPatil/preventive-r-package-care/).
 
 Star the repo and share with others if you liked the slides! 😊
 
@@ -3640,10 +3651,3 @@ Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)]
 # Thank You 
 
 And Happy Package Care! 👼
-
-## Session information {.smaller}
-
-```{r}
-sessioninfo::session_info(include_base = TRUE)
-```
-
