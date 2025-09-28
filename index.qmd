@@ -7,6 +7,7 @@ format:
     preview-links: auto
     embed-resources: true
     link-external-newwindow: true
+    include-in-header: meta-tags.html
 execute:
   echo: true
 keywords: ["software-engineering", "r-packages", "best-practices", "CRAN"]
