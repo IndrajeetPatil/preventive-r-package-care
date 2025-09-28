@@ -3610,35 +3610,9 @@ Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)]
 
 And Happy Package Care! 👼
 
-# Further reading {data-visibility="uncounted"}
-
-For more extensive discussions on best practices in software development.
-
-## {.smaller}
-
-### R-specific
-
-- [Writing R Extensions](https://rstudio.github.io/r-manuals/r-exts/)
-
-- Wickham, H., and Bryan, J. (2023). [*R Packages*](https://r-pkgs.org/) (2nd edition). O'Reilly.
-
-### Language-agnostic
-
-- McConnell, S. (2004). *Code Complete* (2nd edition). Microsoft Press.
-
-- Martin, R.C. (2017) *Clean Architecture*. Addison-Wesley.
-
-- Ousterhout, J. K. (2018). *A Philosophy of Software Design*. Palo Alto: Yaknyam Press.
-
-- Seemann, M. (2021) *Code That Fits in Your Head*. Addison-Wesley.
-
-# 
+# For more {data-visibility="uncounted"}
 
 Source code for these slides can be found [on GitHub](https://github.com/IndrajeetPatil/preventive-r-package-care/).
-
-Star the repo and share with others if you liked the slides! 😊
-
-# For more {data-visibility="uncounted"}
 
 If you are interested in good programming and software development practices, check out my other [slide decks](https://sites.google.com/site/indrajeetspatilmorality/presentations).
 
