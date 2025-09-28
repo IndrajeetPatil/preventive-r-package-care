@@ -19,7 +19,7 @@ description-meta: "A comprehensive guide to R package development using automati
 license: "CC0 1.0 Universal"
 pagetitle: "Preventive Care for R Packages"
 author-meta: "Indrajeet Patil"
-date-meta: "now"
+date-meta: "`r Sys.time()`"
 lang: "en"
 dir: "ltr"
 image: "media/social-media-card.png"
