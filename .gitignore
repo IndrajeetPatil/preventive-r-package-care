@@ -1,2 +1,13 @@
-^.*\.Rproj$
-^\.Rproj\.user$
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+README.html
+.DS_Store
+
+docs/
+_extensions/
+index.html
+index_files/
+slides.html
+slides.pdf
