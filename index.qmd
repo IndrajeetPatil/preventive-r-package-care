@@ -1,0 +1,3653 @@
+---
+format:
+  revealjs:
+    css: style.css
+    theme: simple
+    slide-number: true
+    code-line-numbers: false
+    preview-links: auto
+    keyboard: true
+    touch: true
+    help: true
+    include-in-header: meta-tags.html
+    link-external-newwindow: true
+    google-analytics: "G-V70CY3LGWT"
+execute:
+  echo: true
+keywords: ["software-engineering", "r-packages", "best-practices", "CRAN"]
+description-meta: "A comprehensive guide to R package development using automation to tick checklists for documentation, exception handling, portability, code quality, and dependency management. Learn how to make your R packages sustainable and release-ready."
+license: "CC0 1.0 Universal"
+pagetitle: "Preventive Care for R Packages"
+author-meta: "Indrajeet Patil"
+date-meta: "now"
+lang: "en"
+dir: "ltr"
+image: "media/social-media-card.png"
+image-alt: "Preview image for presentation about preventive care for R packages"
+canonical-url: "https://indrajeetpatil.github.io/preventive-r-package-care/"
+---
+
+## Preventive Care for R Packages {style="text-align: center;"}
+
+<!-- Don't render this file manually. Run `renderer.R` script instead. -->
+<!-- Need to install extension from https://github.com/quarto-ext/fontawesome -->
+<!-- Run `quarto install extension quarto-ext/fontawesome` in terminal -->
+
+::: {style="text-align: center;"}
+
+Indrajeet Patil
+
+:::
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/preventive-care.png")
+```
+
+
+# "Software engineering ought to produce sustainability." 
+\- Mark Seemann (*Code That Fits in Your Head*)
+
+# Target audience {.smaller}
+
+As an R package developer, if you ever lay awake in the bed wondering:
+
+- if the users are having a bad experience while using the package,
+- if you will receive the dreaded CRAN email about archival, and
+- if you will be able to update the package in time,
+
+then this presentation is for you! 😊
+
+# Before we begin
+
+Don't miss the forest for the trees.
+
+## {.smaller}
+
+:::{.callout-important}
+
+## It's not about the tools
+
+I will rely heavily on GitHub as the hosting platform and GitHub Actions as the CI/CD framework. Even if you use neither, the broader takeaways should still be relevant. You can implement the necessary checks with preferred tech stack.
+
+:::
+
+<br>
+
+:::{.callout-note}
+
+## It's not *just* about CRAN
+
+Following the recommended practices will make packages more robust to CRAN checks, but that benefit is *incidental*. You can follow these practices even if you never plan to submit to CRAN. The goal here is to improve user experience and reduce maintenance workload.
+
+:::
+
+<br>
+
+:::{.callout-tip}
+
+## It's not even about R
+
+The practices outlined here are just as relevant to software development in any other programming language (just replace the package with module/library/etc.).
+
+:::
+
+## Iconography {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='15%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='35%'}
+
+<br>
+Overarching goal
+
+:::
+
+::: {.column width='15%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='35%'}
+
+<br>
+Problem to solve
+
+:::
+
+::::
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='15%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/confused.png")
+```
+
+:::
+
+::: {.column width='35%'}
+
+<br>
+Bad user experience
+
+:::
+
+::: {.column width='15%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='35%'}
+
+<br>
+Maintenance headaches
+
+:::
+
+::::
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='15%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='35%'}
+
+<br>
+Tools
+
+:::
+
+::: {.column width='15%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='35%'}
+
+<br>
+Automation
+
+:::
+
+::::
+
+# Digging the pit of success
+
+How can software engineering improve sustainability
+
+## Be always release-ready {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='70%'}
+
+Based on research, *Accelerate* (Forsgren, Humble, & Kim, 2018) argues that the key difference between high-performing vs low-performing software teams is *the ability to make a release at the drop of a hat*.
+
+For R packages, this translates to making sure that every commit on the `main`-branch is **release-ready**. 
+
+That is, if you were asked to make a new release soon, you can be confident that the latest commit doesn't have any documentation issues, code quality issues, performance regressions, etc.
+
+:::
+
+::: {.column width='30%'}
+
+```{r}
+#| echo: false
+#| out-width: "70%"
+knitr::include_graphics("media/accelerate.jpg")
+```
+
+:::
+
+::::
+
+. . . 
+
+<br>
+
+
+:::{style="background-color: #F3CCFF; padding: 20px; border-radius: 25px; text-align: center;"}
+
+How can software engineering help to achieve this goal?
+
+:::
+
+## Fighting software entropy {.smaller}
+
+The biggest reason why a software project becomes unsustainable is the unchecked accumulation of complexity.
+
+. . . 
+
+:::: {.columns}
+
+::: {.column width='20%'}
+
+```{r}
+#| echo: false
+knitr::include_graphics("media/engineer.png")
+```
+
+:::
+
+::: {.column width='80%'}
+
+**Software engineering is the active and conscious process of preventing complexity from growing.**
+
+It provides the methodology to make sure that the software works as intended and to ensure that it stays that way.
+
+:::
+
+::::
+
+. . . 
+
+:::{style="font-size: 25px;"}
+
+:::: {.columns}
+
+::: {.column width='20%'}
+
+```{r}
+#| echo: false
+knitr::include_graphics("media/checklist.png")
+```
+
+:::
+
+::: {.column width='80%'}
+
+Software development is an inherently complex process. To make it more manageable, we break it down into checklists of best practices—each designed to stave off complexity—so that we don't forget about them.
+
+Following each item on a checklist is a small improvement, but constantly keeping an eye on internal quality prevents software entropy from growing. Although software engineering is more than about automating this process, automation is undoubtedly an important part of it.
+
+:::
+
+::::
+
+:::
+
+# "The only way to go fast, is to go well."
+\- Robert C. Martin
+
+# R package development
+
+Using automation to tick checklists for various aspects of package development.
+
+## Plan
+
+First, you will see the checklists to tick, and then the details on how to build infrastructure to ensure that none of the checklist items are forgotten.
+
+- [Documentation](#documentation) 
+
+- [Exception handling](#warnings)
+
+- [Portability](#portability)
+
+- [Code quality](#codequality)
+
+- [Dependency management](#dependency)
+
+## Checklist for documentation {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**For a good user experience, make sure that the docs are plentiful, valid, and up-to-date.**
+
+:::
+
+:::
+
+::::
+
+| Item                                                      |
+| :-------------------------------------------------------- |
+| Make sure there are enough examples in the documentation. |
+| Make sure all README examples are working.                |
+| Make sure all examples in help pages are working.         |
+| Make sure examples in vignettes are working.              |
+| Make sure all URLs are valid.                             |
+| Make sure there are no spelling mistakes.                 |
+| Make sure all HTML in the help pages is valid.            |
+
+## Checklist for exception handling {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that warnings are easily detected for further scrutiny and forthright dealt with.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                                     |
+| :------------------------------------------------------- |
+| Make sure examples in README produce no warnings.        |
+| Make sure examples in help pages produce no warnings.    |
+| Make sure examples in vignettes produce no warnings.     |
+| Make sure tests produce no extrinsic warnings.           |
+
+## Checklist for portability {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**For a good user experience, make sure that package would work as expected across diverse settings.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                                         |
+| :----------------------------------------------------------- |
+| Make sure package passes checks on commonly used OS.         |
+| Make sure package passes checks on all supported R versions. |
+| ...                                                          |
+
+::: aside
+
+The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). Extend the list for your workflow!
+
+:::
+
+## Checklist for code quality {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that the code is readable, maintainable, and follows agreed conventions.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                              |
+| :------------------------------------------------ |
+| Make sure the code follows a style guide.         |
+| Make sure there are no known code quality issues. |
+| Make sure there are no performance regressions.   |
+
+## Checklist for dependency management {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that the package is robust to availability of soft dependencies and breaking changes in hard dependencies.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                                                              |
+| :-------------------------------------------------------------------------------- |
+| Make sure examples in help pages are run conditionally.                           |
+| Make sure vignettes (or code chunks therein) are executed conditionally.          |
+| Make sure tests are run conditionally.                                            |
+| Make sure excluded vignettes (or code chunks therein) are executed conditionally. |
+| Anticipate possible breaking changes coming from dependencies and act on it.      |
+
+# Documentation {#documentation}
+
+Preventive care to make sure the docs are up-to-date.
+
+# "Incorrect documentation is often worse than no documentation."
+\- Bertrand Meyer
+
+#
+
+<!-- column layout -->
+
+:::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**For a good user experience, make sure that the docs are plentiful, valid, and up-to-date.**
+
+:::
+
+:::
+
+::::
+
+:::::
+
+# Make sure there are enough examples in the documentation.
+
+## An example is worth a thousand words {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/research.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Access to abundant examples in help pages and vignettes provides a natural starting point for users to explore and experiment with the available functionality. 
+
+Good examples are difficult to write, but any examples are better than none.
+
+:::
+
+::::
+
+<br>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/confused.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Without enough expository examples, users are left to fumble their way into discovering the available functionality.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to ensure that there are *enough* number of examples?**
+
+:::
+
+:::
+
+::::
+
+## Sources of documentation {.smaller}
+
+There are three types of documents that constitute package documentation.
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='30%'}
+
+:::{style="text-align: center;"}
+
+**README.md**
+
+:::
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/readme.png")
+```
+
+:::
+
+::: {.column width='5%'}
+
+:::
+
+::: {.column width='30%'}
+
+:::{style="text-align: center;"}
+
+**Help pages**
+
+:::
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/example.png")
+```
+
+:::
+
+::: {.column width='5%'}
+
+:::
+
+::: {.column width='30%'}
+
+:::{style="text-align: center;"}
+
+**Vignettes**
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/application.png")
+```
+
+:::
+
+:::
+
+::::
+
+<br>
+
+Therefore, we want to make sure that, when combined across these sources, there are enough examples to cover a significant proportion of available functionality.
+
+## Maintaining example code coverage {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='9%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='91%'}
+
+Use [`{covr}`](https://covr.r-lib.org/) to compute example code coverage (i.e. proportion of the source code that is executed when running examples in help pages and vignettes), and to ensure that it is above a certain threshold.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+package_coverage(type = c("examples", "vignettes"), commentDonttest = FALSE, commentDontrun = FALSE)
+```
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='9%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='91%'}
+
+Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml) to automate checking that the code coverage via examples never drops below the chosen threshold.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- The choice of threshold is subjective and context-sensitive. Chasing after 100% example code coverage is futile (since this would require exposing every exception in the examples).
+
+- The examples not run or tested on CRAN can still be counted for computing code coverage.
+
+- Vignettes not included in the package (the ones in `vignettes/` subdirectory or `.Rbuildignore`) will not contribute towards the code coverage. Ditto for `README`. You can adjust the threshold accordingly.
+
+- You could also choose the threshold on a file basis (`covr::file_coverage()`).
+
+:::
+
+# Make sure all README examples are working.
+
+## README documentation {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/readme.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+`README.md` provides a quick overview of the package API and can feature examples of key functions. 
+
+Although breaking changes might be infrequent, when they do occur, the code in README may become defunct.
+
+:::
+
+::::
+
+<br>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/confused.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+`README.md` is probably the first and the most-visited document in a project and any broken examples therein are bound to confuse many users.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to insure against broken code in README?**
+
+:::
+
+:::
+
+::::
+
+## Detecting broken README examples {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [`{rmarkdown}`](https://rmarkdown.rstudio.com/github_document_format.html) to dynamically generate `README.md` from `README.Rmd`. If there is broken code in README, it will fail to render.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+rmarkdown::render("README.Rmd", output_format = rmarkdown::github_document())
+```
+
+:::
+
+::::
+
+<br>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml) to automate checking that README can be successfully rendered on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- If you are starting a new project, create README using [`usethis::use_readme_rmd()`](https://usethis.r-lib.org/reference/use_readme_rmd.html).
+
+- If you need to convert an existing `.md` to `.Rmd`, you are [currently](https://github.com/yihui/knitr/issues/1807) out of luck. You will need to do this manually.
+
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule) (e.g. once a week).
+
+:::
+
+# Make sure *all* examples in help pages are working.
+
+## Broken examples in help pages {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/example.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{.callout-note}
+
+## Types of examples
+
+Help pages for exported functions should contain examples illustrating their usage. But you can skip executing some examples (e.g. because they are too time-consuming) using any of the following tags:
+
+|      Tag      | Run by `example()`? | Run by `R CMD check`? |
+| :-----------: | :-----------------: | :-------------------: |
+| `\dontrun{}`  |         ❌          |          ❌           |
+| `\donttest{}` |         ✅          |          ❌           |
+| `\dontshow{}` |         ✅          |          ✅           |
+
+:::
+
+:::
+
+::::
+
+. . . 
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/confused.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Thus, broken `\dontrun{}` and `\donttest{}` examples may not be flagged by `R CMD check`. Users will still see these examples, and wonder why they aren't working for them.
+
+:::{style="font-size: 20px;"}
+
+CRAN's additional ["donttest" check](https://www.stats.ox.ac.uk/pub/bdr/donttest/) does run `\donttest{}` examples.
+
+:::
+
+:::
+
+::::
+
+. . . 
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to catch examples that don't run successfully?**
+
+:::
+
+:::
+
+::::
+
+## Checking all examples {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [`{devtools}`](https://r-lib.github.io/devtools/) to run all examples, and catch and fix the broken ones.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+devtools::run_examples(run_dontrun = TRUE, run_donttest = TRUE)
+```
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml) to make sure all examples in help pages are working on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- Examples that are *meant* to fail should use any of the following patterns:
+
+    * `if (FALSE) { ... }` (if example is included only for illustrative purposes)
+    * `try({ ... })` (if the intent is to display the error message)
+
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule) (e.g. once a week).
+
+:::
+
+# Make sure examples in *all* vignettes are working.
+
+## Vignette examples {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/application.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{.callout-note}
+
+## Types of vignettes
+
+Vignettes included in the package will fail if examples are broken. But you can choose to exclude some vignettes to reduce package size or to reduce check time. You can do so by placing them in a `vignettes/` subdirectory or by adding them to `.Rbuildignore`.
+
+:::
+
+:::
+
+::::
+
+<br>
+
+. . . 
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Thus, the `R CMD check` won't catch broken examples in excluded vignettes. Although users might not see them on CRAN, you shouldn't retain defunct examples anywhere in the documentation. This also makes excluded vignettes future-proof; if you decide to include them in the package, there won't be any issues.
+
+:::
+
+::::
+
+. . . 
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to detect broken examples in excluded vignettes?**
+
+:::
+
+:::
+
+::::
+
+## Building all vignettes {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Although excluded vignettes may not be checked by `R CMD check`, they are still built by [`{pkgdown}`](https://r-lib.github.io/pkgdown/) to generate a static website. Thus, building a website would detect any broken examples in excluded vignettes.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+pkgdown::build_site()
+```
+
+:::
+
+::::
+
+<br>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pkgdown.yaml) to make sure examples in *all* vignettes are working on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- Code chunks that are *meant* to fail should use `error=TRUE` option.
+
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule) (e.g. once a week).
+
+:::
+
+# Make sure *all* URLs are valid.
+
+## What is link rot? {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+{{< fa solid link-slash size=2xl >}}
+
+:::
+
+::: {.column width='90%'}
+
+Package documentation often includes plenty of hyperlinks to external resources. But some of them may become invalid over time.
+
+[Link rot](https://en.wikipedia.org/wiki/Link_rot) happens because web pages move to new addresses or become permanently unavailable.
+
+:::
+
+:::: 
+
+. . . 
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/confused.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Such dangling references can be frustrating for the users trying to access the resources that the dead links were previously pointing to.
+
+:::
+
+::::
+
+. . . 
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to prevent link rot from accumulating in the documentation?**
+
+:::
+
+:::
+
+::::
+
+## Detecting link rot {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+You can use [`{urlchecker}`](https://r-lib.github.io/urlchecker/) to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+urlchecker::url_check()
+```
+
+:::
+
+::::
+
+<br>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml) to check for bad URLs on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- If `{urlchecker}` finds dead URLs in `.html`/`.md` files, you will need to update `.Rmd`/`.qmd` files and then regenerate the docs. Otherwise, you will keep wondering why `urlchecker::url_update()` isn't fixing the links.
+
+- There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help. If false positives persist, you may decide to not mark builds as failed if any broken links are found.
+
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule) (e.g. once a week).
+
+:::
+
+# Make sure there are no spelling mistakes.
+
+## Spelling mistakes {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/spell-check.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Spelling mistakes are inevitable and, if left unchecked, they can accumulate rapidly with the increase in the documentation.
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/confused.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Spelling mistakes obvious to native speakers may not be so for non-native speakers, who will be frustrated that they can't find the meaning of the misspelt word. 
+
+Additionally, misspelling technical words (e.g. *innode* vs. [*inode*](https://en.wikipedia.org/wiki/Inode)) can lead users down the wrong path and waste their time. 
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to prevent spelling mistakes from accumulating in the documentation?**
+
+:::
+
+:::
+
+::::
+
+## Creating a list of allowed misspellings {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='70%'}
+
+There exist multiple English spelling standards (e.g. in British English: *anaemia*, but in American English: *anemia*). You can specify your preferred standard in `DESCRIPTION`.
+
+:::
+
+::: {.column width='30%'}
+
+E.g. for British English
+
+```dcf
+Language: en-GB
+```
+
+:::
+
+::::
+
+. . . 
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='60%'}
+
+Additionally, some technical words will not be recognized by dictionaries, but you don't want these to be considered spelling mistakes either. You can create a list of allowed misspelt words in the `WORDLIST` file.
+
+:::
+
+::: {.column width='20%'}
+
+File location
+
+```
+├── DESCRIPTION
+├── inst
+│   └── WORDLIST
+```
+
+:::
+
+::: {.column width='20%'}
+
+Example file
+
+```
+addin
+api
+AppVeyor
+biocthis
+bootswatch
+...
+winbuilder
+YAML
+```
+
+:::
+
+::::
+
+. . . 
+
+<br>
+
+Now you are all set for detecting spelling mistakes!
+
+## Detecting spelling mistakes {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [`{spelling}`](https://docs.ropensci.org/spelling/) to detect misspelt words and their location in the docs.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+spelling::spell_check_package()
+```
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml) to ensure that spelling mistakes are caught on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- Instead of a GHA workflow, you can also include spell check tests in the package itself. For more, see `usethis::use_spell_check()`.
+
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule) (e.g. once a week).
+
+:::
+
+# Make sure *all* HTML in the help pages is valid.
+
+## HTML5 check {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/html-5.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+HTML has few syntactic rules, and browsers may not even enforce the rules it does have. E.g., browsers will tolerate mismatched tags, missing end tags, misnested tags, etc. HTML5 standard aims to improve this situation, and R package help pages use HTML5 standard since `R 4.2`.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+You will thus need to make sure that your package documentation neither generates invalid HTML nor contains raw invalid HTML.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to make sure help pages have valid HTML?**
+
+:::
+
+:::
+
+::::
+
+## Detecting invalid HTML {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+CRAN uses [HTML tidy](https://www.html-tidy.org/documentation/) to detect markup errors in HTML. But, if you use [`{roxygen2}`](https://roxygen2.r-lib.org/), it will ensure against producing any invalid HTML.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+roxygen2::roxygenise()
+```
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/html-5-check.yaml) to automate checking validity of HTML manual on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- If your documentation contains math equations, have a look at [`{katex}`](https://docs.ropensci.org/katex/reference/katex.html), [`{mathjaxr}`](https://CRAN.R-project.org/package=mathjaxr),  [`{mathml}`](https://CRAN.R-project.org/package=mathml), etc. to convert LaTeX math expressions to HTML for use in package help pages.
+
+- If the repo is not under active development, you can run the workflow on a [scheduled time](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule) (e.g. once a week).
+
+:::
+
+## Checklist for documentation {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**For a good user experience, make sure that the docs are plentiful, valid, and up-to-date.**
+
+:::
+
+:::
+
+::::
+
+| Item                                                      |
+| :-------------------------------------------------------- |
+| Make sure there are enough examples in the documentation. |
+| Make sure all README examples are working.                |
+| Make sure all examples in help pages are working.         |
+| Make sure examples in vignettes are working.              |
+| Make sure all URLs are valid.                             |
+| Make sure there are no spelling mistakes.                 |
+| Make sure all HTML in the help pages is valid.            |
+
+# Exception handling {#warnings}
+
+Preventive care to make sure that you don't miss out on important warnings.
+
+# "There is a problem with warnings. No one reads them." 
+\- Patrick Burns
+
+#
+
+<!-- column layout -->
+
+:::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that warnings are easily detected for further scrutiny and forthright dealt with.**
+
+:::
+
+:::
+
+::::
+
+:::::
+
+## Sending signals {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/warning.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{.callout-note}
+
+## Types of conditions/exceptions
+
+A function can use [conditions](https://adv-r.hadley.nz/conditions.html) to signal that something unexpected has happened with varying severity.
+
+| Condition | Severity |                         Meaning                          |
+| :-------: | :------: | :------------------------------------------------------: |
+|  `error`  |   high   |  execution stopped because there was no way to continue  |
+| `warning` |  medium  |     execution encountered some problem but recovered     |
+| `message` |   low    | execution was successful and here are some extra details |
+
+:::
+
+:::
+
+::::
+
+Out of these, warnings are the most nebulous! 
+
+- Errors bring functions to a halt and you *must* attend to them. 
+- Messages are innocuous and you *can* safely ignore them. 
+- But warnings are harbingers of problems that you will need to fix at some point. They *need* to be dealt with, *pronto*, and yet it is easy to ignore them.
+
+## A needle in the haystack {.smaller}
+
+:::{.callout-note}
+
+## Types of warnings
+
+There are two kinds of warnings that you, as a developer, will need to deal with:
+
+:::: {.columns}
+
+::: {.column width='45%'}
+
+**Intrinsic warnings** are warnings produced by functions in *your* package.
+
+E.g. a warning from a function to winsorize data.
+
+```{r}
+#| eval: false
+#| code-line-numbers: false
+winsorize(x, threshold = 2)
+#> Warning message:
+#> `threshold` for winsorization must be a scalar between 0 and 0.5.
+```
+
+:::
+
+::: {.column width='55%'}
+
+**Extrinsic warnings** are warnings stemming from your package *dependencies*.
+
+E.g. a possible [warning](https://github.com/jtlandis/ggside/issues/39) if your package relies on `{ggside}`.
+
+```{r}
+#| eval: false
+#| code-line-numbers: false
+ggplot(mpg, aes(hwy, class)) + geom_xsidedensity()
+#> Warning: Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.
+#> ℹ Please use `linewidth` in the `default_aes` field and elsewhere instead.
+```
+
+:::
+
+::::
+
+:::
+
+. . . 
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/cleaning.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+With a significant amount of package functionality and dependencies, there can be plenty of warnings at any given moment.
+
+To avoid missing out on important warnings, there should ideally be **zero of either type of warnings** in your package documentation and tests. This makes it easy to notice and deal with new, potentially critical warnings as they appear.
+
+:::
+
+::::
+
+## Suppressing intrinsic warnings {.smaller}
+
+There is almost never a need to explicitly highlight warnings intrinsic to your package.
+
+. . .
+
+::: {style="background-color: #FFDCA9; padding: 20px; border-radius: 25px;"}
+
+- Warnings are generated in contexts where functions in *your* package were used unexpectedly by the users. But such contexts shouldn't be deliberately highlighted in the documentation. Users should always see [happy path](https://en.wikipedia.org/wiki/Happy_path) examples in help pages, README, or vignettes.
+
+- While testing functions, you should use expectations (e.g. `testthat::expect_warning()`) to check that expected warnings are triggered. You shouldn't print the warnings, since they can completely overwhelm the test log and make it difficult to catch important warnings.
+
+- If it's a complex package function that can encounter a large number of slippery situations, it makes sense to provide an argument to turn off a few warnings (e.g. `verbose = FALSE`) and use it to omit warnings in the docs.
+
+:::
+
+## Suppressing extrinsic warnings {.smaller}
+
+Warnings from dependencies can be critical and should be dealt with ASAP.
+
+. . .
+
+::: {style="background-color: #FFFBC1; padding: 20px; border-radius: 25px;"}
+
+- If dependencies are emitting warnings because your functions are using imported code in unexpected ways, rewrite functions to remove warnings.
+
+- If the warnings are about deprecated functions or arguments, switch to using the suggested alternatives. Don't wait until they are removed.
+
+- Some warnings are unavoidable and not as important. They can be suppressed using `suppressWarnings()`. That said, avoid using it in examples in help pages, lest users think that this is part of *your* package API.
+
+- If the warnings are coming from somewhere upstream (e.g. `{ggplot2}` → `{ggside}` → your package), you have little control over them. You can inform the upstream maintainer and ignore such warnings using `suppressWarnings()`. Don't forget to remove suppress calls once the warnings are fixed upstream.
+
+:::
+
+## Detecting warnings {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Convert warnings into errors during checks to detect warnings.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+options(warn = 2L)
+```
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use GHA workflows to automate checking presence of warnings in [help pages](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml), [README](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml), [vignettes](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml), and [tests](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml) (`testthat::test_dir("tests")`) on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- If a function is *designed* to show warnings, then you can prevent workflows from failing by conditionally running it.
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+```{r}
+#| eval: false
+#| code-line-numbers: false
+#' @examplesIf getOption("warn") < 2L
+#' function_showing_warning()
+```
+
+:::
+
+::: {.column width='50%'}
+
+````{verbatim, eval=FALSE}
+#| code-line-numbers: false
+```{r eval = getOption("warn") < 2L}
+function_showing_warning()
+```
+
+````
+
+:::
+
+::::
+
+- While you are at, it might also be worth cleaning up intrinsic and extrinsic messages. They might be harmless, but they do clog up logs and make it difficult to focus on warnings.
+
+- Setting `warning=FALSE` in vignettes only suppresses warnings in the rendered output. When users run this code interactively, they will still see warnings. [Ostrich policy](https://en.wikipedia.org/wiki/Ostrich_policy) never works for software development.
+
+:::
+
+## Checklist for exception handling {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that warnings are easily detected for further scrutiny and forthright dealt with.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                                     |
+| :------------------------------------------------------- |
+| Make sure examples in README produce no warnings.        |
+| Make sure examples in help pages produce no warnings.    |
+| Make sure examples in vignettes produce no warnings.     |
+| Make sure tests produce no extrinsic warnings.           |
+
+# Portability {#portability}
+
+Preventive care to make sure that your package works across a variety of settings.
+
+# "Each new user of a new system uncovers a new class of bugs."
+\- Brian Kernighan
+
+#
+
+<!-- column layout -->
+
+:::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**For a good user experience, make sure that package works as expected across diverse settings.**
+
+:::
+
+:::
+
+::::
+
+:::::
+
+## The unbearable diversity of contexts {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/difference.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+You (the developer) may be developing the package in a certain setting: with a certain version of R, on a particular OS, in a certain locale, etc. Even if all tests pass and all examples run successfully for you locally, you can't assume that your users will use the package in similar settings. 
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/confused.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+If you restrict your checks only to these specific settings, you may not catch problems experienced by users in other settings (e.g., the graphics device that works on `windows` may not work on `macOS`, code that works with `R 4.1` may not work with `R 3.6`, etc.).
+
+:::{style="font-size: 20px;"}
+
+The key assumption here is that your package claims to support these settings. If your package docs clearly state that the package will work only on (e.g.) Windows, you don't need to worry about other OS.
+
+:::
+
+:::
+
+::::
+
+<br>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to make sure that your package is working as expected across various settings?**
+
+:::
+
+:::
+
+::::
+
+## Checking across multiple settings {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [`{rcmdcheck}`](https://r-lib.github.io/rcmdcheck/) to run `R CMD check` from R.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+rcmdcheck::rcmdcheck()
+```
+
+:::{style="font-size: 20px;"}
+
+All the options you can set to further customize this check is beyond the scope of the current presentation.
+
+:::
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/R-CMD-check.yaml) to run `R CMD check` for multiple R versions and platforms on each commit to probe for potential portability issues.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- If needed, you can run checks on additional platforms using [`{rhub}`](https://r-hub.github.io/rhub/articles/rhub.html).
+
+- Fully crossed checks (all major platforms $\times$ all supported R versions) are rarely necessary and definitely an overkill.
+
+- Ideally, the package should be tested until the oldest R version it purports to support. E.g. if `DESCRIPTION` says `R >= 3.4`, then you should check until `R 3.4` to make sure that the package indeed works for this R version. If you check only until `R 3.5`, it is instead better to bump version in `DESCRIPTION`.
+
+:::
+
+## Checklist for portability {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**For a good user experience, make sure that package would work as expected across diverse settings.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                                         |
+| :----------------------------------------------------------- |
+| Make sure package passes checks on commonly used OS.         |
+| Make sure package passes checks on all supported R versions. |
+| ...                                                          |
+
+::: aside
+
+The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). Extend it for your workflow!
+
+:::
+
+# Code quality {#codequality}
+
+Preventive care to detect code quality issues and performance regressions.
+
+# "Don’t comment bad code—rewrite it."
+\- Brian W. Kernighan
+
+#
+
+<!-- column layout -->
+
+:::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that the code is readable, maintainable, and follows agreed conventions.**
+
+:::
+
+:::
+
+::::
+
+:::::
+
+# Make sure the code follows a style guide.
+
+## Code formatting {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+<br>
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/web-programming.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+The physical layout of the program can assist the reader in understanding the underlying logic. Additionally, understanding a large codebase is easier when all the code has consistent formatting. Style guides outline conventions to enforce a uniform formatting schema across the codebase. 
+
+:::{style="font-size: 20px;"}
+
+Style guides can be highly opinionated and arbitrary. So, more important than *which* style guide you follow is the fact that you follow *a* style guide.
+
+:::
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+In larger projects or teams, multiple contributors may have different formatting preferences. This can lead to contributors undoing each others' changes, leading to unnecessarily large git diffs and even unnecessary unpleasantness.
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+<br>
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to make sure that codebase follows a consistent style guide?**
+
+:::
+
+:::
+
+::::
+
+## Following style guide {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [`{styler}`](https://r-lib.github.io/styler/) to enforce the [tidyverse style guide](https://style.tidyverse.org/) throughout the package (including source code, test files, vignettes, etc.).
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+styler::style_pkg()
+```
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml) to format code consistently on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- You can use annotations (`styler: off` + `styler: on`) to instruct `{styler}` to ignore custom formatted code.
+
+- If you don't prefer the tidyverse style guide, either you can customize `{styler}` itself, or explore other packages (e.g. [`{formatR}`](https://CRAN.R-project.org/package=formatR), [`{BiocStyle}`](https://github.com/Bioconductor/BiocStyle/), etc.). For a full list, see [awesome-r-pkgtools](https://indrajeetpatil.github.io/awesome-r-pkgtools/#codedocument-formatting).
+
+:::
+
+# Make sure there are no known code quality issues.
+
+## Code quality assessment {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/tumble-dryer.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+[Code smells](https://en.wikipedia.org/wiki/Code_smell) (aka lints) are patterns that are known to be problematic for readability, efficiency, consistency, style, etc. Catching such issues early on can help prevent bugs and other issues from creeping into code, which can save time and effort when it comes to debugging and testing.
+
+:::: {.columns}
+
+::: {.column width='40%'}
+
+```{r}
+#| echo: false
+library(lintr)
+```
+
+
+```{r}
+#| eval: true
+#| code-line-numbers: false
+# code with a lint
+lint(text = "x = 1")
+```
+
+:::
+
+::: {.column width='10%'}
+
+:::
+
+::: {.column width='40%'}
+
+```{r}
+#| eval: true
+#| code-line-numbers: false
+# code without a lint
+lint(text = "x <- 1")
+```
+
+:::
+
+::::
+
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+In larger projects or teams, where multiple contributors may be working on the same codebase, it can become difficult for an individual contributor to detect code quality issues that they or someone else may have introduced.
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to make sure that there are no known code quality issues present?**
+
+:::
+
+:::
+
+::::
+
+## Detecting lints {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [`{lintr}`](https://r-lib.github.io/lintr/dev/) to carry out static code analysis to detect code quality issues.
+
+```{r, eval=FALSE}
+#| code-line-numbers: false
+lintr::lint_package()
+```
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/lint.yaml) to detect all lints on each commit.
+
+:::{style="font-size: 20px;"}
+
+:::: {.columns}
+
+::: {.column width='60%'}
+
+This workflow can be overwhelming at first as it can detect thousands of lints. Therefore, **don't** error if lints are present.
+
+You can use [another workflow](https://github.com/easystats/workflows/blob/main/.github/workflows/lint-changed-files.yaml) which fails if lints are found **only** in files that changed in a Pull Request. This is an easier and less disheartening way to clean lints.
+
+:::
+
+::: {.column width='40%'}
+
+```yaml
+# In `lint.yaml`
+env:
+  LINTR_ERROR_ON_LINT: false
+```
+
+<br>
+
+```yaml
+# In `lint-changed-files.yaml`
+env:
+  LINTR_ERROR_ON_LINT: true
+```
+
+:::
+
+::::
+
+:::
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- Most lints related to code formatting can be removed using [`{styler}`](https://r-lib.github.io/styler/), which enforces [tidyverse style guide](https://style.tidyverse.org/).
+
+- Code smells are subjective and you may disagree with some linters. Use a [configuration file](https://lintr.r-lib.org/dev/articles/lintr.html) to customize which linters you wish to include. Additionally, you can annotate parts of code that linters should ignore (e.g. `# nolint start: indentation_linter.` + `# nolint end`).
+
+:::
+
+## Detecting issues with non-R code {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+An R package contains a number of configuration files written in languages other than R (e.g., YAML, JSON, DCF, etc.), and you may also wish to make sure that none of them are malformed.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+To detect multi-language code issues, you can use [pre-commit](https://pre-commit.com/), which is a framework for managing and maintaining git hooks. This framework can be accessed in R using [`{precommit}`](https://lorenzwalthert.github.io/precommit/). 
+
+:::{style="font-size: 20px;"}
+
+The framework offers [hundreds of hooks](https://pre-commit.com/hooks.html) to choose from and you can choose ones relevant to your config files (e.g. to lint and format JSON and YAML files).
+
+:::
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [GHA workflow](https://github.com/r-lib/styler/blob/main/.github/workflows/pre-commit.yaml) to detect any problems with non-R code on each commit. You can specify the hooks relevant to you in a [pre-commit config file](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.pre-commit-config.yaml).
+
+:::
+
+::::
+
+# Make sure there are no performance regressions.
+
+## Don't slow it down {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/snail.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+If your package is mature and stable enough that you have started to invest in improving its efficiency, it is important that you have some metric by which you can benchmark if a new Pull Request improves or degrades performance in comparison with the latest commit on `main`.
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Checking for performance regressions just before or even after the release is not ideal, since it might be difficult to revert back to the state before regression took place.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to reliably benchmark Pull Requests for performance regressions?**
+
+:::
+
+:::
+
+::::
+
+## Detecting performance regressions {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+[`{touchstone}`](https://lorenzwalthert.github.io/touchstone/) offers a continuous benchmarking tool for reliable relative measurement of performance in the Pull Request versus `main`-branch. The results are directly reported as a comment in GitHub Pull Requests.
+
+```{r}
+#| echo: false
+#| eval: true
+knitr::include_graphics("media/touchstone.png")
+```
+
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [GHA workflow](https://github.com/r-lib/styler/blob/main/.github/workflows/touchstone-comment.yaml) for benchmarking PRs and detecting any performance regressions.
+
+:::
+
+::::
+
+## Checklist for code quality {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that the code is readable, maintainable, and follows agreed conventions.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                              |
+| :------------------------------------------------ |
+| Make sure the code follows a style guide.         |
+| Make sure there are no known code quality issues. |
+| Make sure there are no performance regressions.   |
+
+# Dependency management {#dependency}
+
+Preventive care to make sure that all suggested (aka weak or soft) dependencies are used conditionally.
+
+# "Dependencies are invitations for other people to break your package."
+\- Joshua Ulrich
+
+#
+
+<!-- column layout -->
+
+:::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that the package is robust to availability of soft dependencies and breaking changes in hard dependencies.**
+
+:::
+
+:::
+
+::::
+
+:::::
+
+## Types of Dependencies {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/trust.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Dependencies (code that your source code relies on) are an inevitable part of package development.
+
+:::
+
+::::
+
+. . . 
+
+:::{.callout-note}
+
+## Not all dependencies are created equal! 
+
+Hard dependencies have a broader scope because they are needed at runtime; i.e. your package won't work without them, while soft dependencies have a narrow scope; e.g. because they are needed only for testing or for examples.
+
+| Dependency |  In `DESCRIPTION`   |                        Scope                        |
+| :--------: | :-----------------: | :-------------------------------------------------: |
+|    Hard    | `Depends`/`Imports` |    Needed for your package to work as expected.     |
+|    Soft    |     `Suggests`      | Nice to have but your package will work regardless. |
+
+:::
+
+:::{.callout-important}
+
+## Dependencies bring risk
+
+If a critical dependency becomes unavailable (e.g. because its author decides to archive it), bad luck. You **must** either refactor to remove dependency or look for an alternative. Otherwise, your package is no longer going to work. But this shouldn't be the case for soft dependencies since they are not critical for your package to work.
+
+:::
+
+# Make sure soft dependencies are used conditionally.
+
+## Soft dependency hygiene {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/damaged-package.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+In a high-level, user-facing package, there can be a substantial number of soft dependencies. The package then risks breakage for *any* unavailable soft dependency, if it is not used conditionally.
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/headache.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+It can be quite taxing for maintainers to remove examples or tests related to a soft dependency if it gets archived, and restore them once the dependency is unarchived. To avoid this, soft dependencies should always be used conditionally.
+
+:::{style="font-size: 20px;"}
+
+CRAN runs the additional ["noSuggests" check](https://www.stats.ox.ac.uk/pub/bdr/noSuggests/) to look for possible breakages.
+
+:::
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to make sure *all* soft dependencies are being conditionally used?**
+
+:::
+
+:::
+
+::::
+
+## Conditional dependency usage {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='70%'}
+
+Soft dependencies should be used conditionally across all contexts. 
+Let's say `{lme4}` is such a dependency.
+
+:::
+
+::: {.column width='30%'}
+
+In `DESCRIPTION`
+
+```dcf
+Suggests:
+    lme4
+```
+
+:::
+
+::::
+
+<br>
+
+<hr>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+**Examples** in help pages should be executed only if package is available.
+
+:::
+
+::: {.column width='50%'}
+
+```{.r}
+# In R/file-1.R
+#' @examplesIf requireNamespace("lme4")
+#' lme4::lmer(...)
+```
+
+:::
+
+::::
+
+<hr>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+**Vignettes** (or specific code chunks) should be executed only if package is available.
+
+:::
+
+::: {.column width='50%'}
+
+````{verbatim, eval=FALSE}
+<!-- In vignettes/doc-1.Rmd -->
+```{r eval = requireNamespace("lme4")}
+lme4::lmer(...)
+```
+
+````
+
+:::
+
+::::
+
+<hr>
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+**Tests** should be run only if package is available.
+
+:::
+
+::: {.column width='50%'}
+
+```{.r}
+# In tests/testthat/test-file-1.R
+test_that("bla", {
+  testthat::skip_if_not_installed("lme4")
+  expect_equal(lme4::lmer(...), ...)
+})
+```
+
+:::
+
+::::
+
+<hr>
+
+## Checking conditional usage {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+The trick here is to run `R CMD check` twice: once when *all* soft dependencies are available, and once when *none* are available. If the package passes the `R CMD check` in the first but not the second context, you can be sure that some soft dependencies are not being used conditionally.
+ 
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use GHA workflows to install [*all* dependencies](https://github.com/r-lib/actions/blob/v2-branch/examples/check-full.yaml) or [*only* hard dependencies](https://github.com/r-lib/actions/blob/v2-branch/examples/check-no-suggests.yaml) and check if the package passes `R CMD check` on each commit.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Additional tips 
+
+- This trick won't work for excluded vignettes (from `vignettes/` subdirectory or `.Rbuildignore`-ed). To ensure that excluded vignettes are using soft dependencies conditionally, build package website in ["noSuggests" mode](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml).
+
+- For `R CMD check` with all dependencies installed, use [strict workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check.yaml) that fails on any `NOTE`. To avoid failing on `NOTE`s accepted by CRAN, include this in `DESCRIPTION`:
+
+```dcf
+Config/rcmdcheck/ignore-inconsequential-notes: true
+```
+
+:::
+
+## Special care for examples {.smaller}
+
+Prefer using `\donttest()` over `\dontrun()` for [skipping examples](https://indrajeetpatil.github.io/preventive-r-package-care/#/broken-examples-in-help-pages). 
+
+This is because the latter will be skipped during R CMD Check and `{pkgdown}` also will not execute these examples. Therefore, you will miss out on an example that should be run conditionally. This can become an issue if you do decide to run this example in the future by removing `\dontrun`.
+
+. . . 
+
+E.g., assuming `{lme4}` is a soft dependency and is not available:
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+Won't fail in "noSuggests" workflow
+
+```{.r}
+#' @examples
+#' \dontrun{
+#'   lme4::lmer(...)
+#' }
+```
+
+:::
+
+::: {.column width='50%'}
+
+Will fail in "noSuggests" workflow
+
+```{.r}
+#' @examples
+#' \donttest{
+#'   lme4::lmer(...)
+#' }
+```
+
+:::
+
+::::
+
+Expected usage:
+
+```{.r}
+#' @examplesIf requireNamespace("lme4")
+#' \donttest{
+#'   lme4::lmer(...)
+#' }
+```
+
+## Anticipating breakages {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/damaged-package.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+It is important to anticipate changes in dependencies that may break your packages. Although some maintainers (of your dependencies) will be kind enough to let you know of upcoming breaking changes, such communication can't be assumed or might not even be possible. 
+
+:::{style="font-size: 20px;"}
+
+If your package is not on CRAN, there is no way for the maintainers to detect breakages in reverse dependencies and inform maintainers. Similarly, if a reverse dependency is skipping tests on CRAN, possible breakages can go undetected. 
+
+:::
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/confused.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+You may figure out that something is broken *after* a dependency is updated, the package stops working for the users, and they inform you. This is especially true if your package is not under active development, and so CI/CD won't detect that your package is broken.
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/problem-solved.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to detect upcoming breaking changes in dependencies?**
+
+:::
+
+:::
+
+::::
+
+## Detecting breakages early {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/toolbox.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+In order to detect breakages earlier, you can run `R CMD check` by installing development versions of dependencies. 
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/robot.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use scheduled [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-devel.yaml) to automate checking breakages.
+
+:::{style="font-size: 20px;"}
+
+How frequently you should run this check (e.g., once a month, once every six months, etc.) and which dependencies you should include (e.g., only hard, only soft, a few of each, etc.) depends on how actively both your own package and your dependencies are being developed. 
+
+:::
+
+:::
+
+::::
+
+. . .
+
+<br>
+
+:::{.callout-tip}
+
+## What should you do if you *do* detect a breakage?
+
+- If the root cause of breakage turns out to be a regression in the dependency, discuss with the maintainer.
+
+- If the breakage is legitimate, make a PR to your repo with a fix but merge only when either the maintainer informs you of an upcoming release or the package has a new release. **Don't** push the fix to the `main`-branch because the breaking change could be reverted before release.
+
+:::
+
+## Checklist for dependency management {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To reduce maintenance headaches, make sure that the package is robust to availability of soft dependencies and breaking changes in hard dependencies.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                                                              |
+| :-------------------------------------------------------------------------------- |
+| Make sure examples in help pages are run conditionally.                           |
+| Make sure vignettes (or code chunks therein) are executed conditionally.          |
+| Make sure tests are run conditionally.                                            |
+| Make sure excluded vignettes (or code chunks therein) are executed conditionally. |
+| Anticipate possible breaking changes coming from dependencies and act on it.      |
+
+# Eco-friendly workflows
+
+Do you *really* need to run all workflows on each commit?!
+
+## Skipping workflows {.smaller}
+
+:::: {.columns}
+
+::: {.column width='70%'}
+
+Although all these workflows can be run for free (thanks Microsoft!), they still expend energy and it might bother you that you are wasting energy even on minor changes.
+
+:::
+
+::: {.column width='30%'}
+
+:::{style="font-size: 20px;"}
+
+Example of an insignificant change.
+
+:::
+
+```diff
+# In `NEWS.md`
+- witdh
++ width
+```
+
+:::
+
+::::
+
+. . . 
+
+:::{.callout-tip}
+
+## Reducing count of workflow runs
+
+You can use a few or all of the following options to reduce the frequency with which the workflows are run.
+
+- Use `[skip ci]` in your commit messages for commits with insignificant changes.
+- Run workflows only when a PR is marked "Ready for Review".
+- Skip running some workflows (e.g., spelling, HTML5, link rot, etc.) on each commit once all workflows are green. Instead, run them with weekly or monthly schedules, and then fix the newly found problems.
+- Run some workflows only when ready for a new release.
+- Cancel [workflows in progress](https://docs.github.com/en/actions/using-jobs/using-concurrency) if a new commit is made.
+
+:::
+
+# Caveats
+
+No good practice is dogma. There always exist exceptions.
+
+## Using workflows flexibly {.smaller}
+
+- You can skip some workflows or create new workflows depending on the project-specific demands (e.g. compiled code, database connections, API access, etc.).
+
+- Sometimes it might not even be possible to run all workflows successfully because a few of them conflict with each other. 
+
+:::{style="font-size: 20px;"}
+  
+If you have a data visualization package (e.g.), the more examples you have in the documentation, the bigger the package size would be, which might leave a `NOTE` in `R CMD check` and strict workflow will fail. Which of these workflows is more important is a subjective decision.
+  
+:::
+
+# Failure is the only option
+
+It is necessary that builds fail for any existing or newly found issues.
+
+# "Later equals never."
+\- LeBlanc's Law
+
+## Managing technical debt {.smaller}
+
+:::: {.columns}
+
+::: {.column width='40%'}
+
+<!-- [Credits](https://vincentdnl.com/drawings/) -->
+
+```{r}
+#| echo: false
+#| fig-cap-location: bottom
+knitr::include_graphics("media/technical_debt.png")
+```
+
+:::
+
+::: {.column width='60%'}
+
+:::{.callout-tip}
+
+## Tomorrow never comes
+
+It might seem excessive that workflows fail if *any* issue is found (*"Really?! You want builds to fail even if there is a single code quality issue?!"*).
+
+But this is the only way to sidestep procrastination (*"We can fix the broken link later!"*) that can lead to the accumulation of technical debt. With time, this debt can compound and every new feature requires longer to implement.
+
+Failed builds also act as organizational quality control mechanisms. You will no longer need to justify carving out time to address technical debt if a new release can't be made unless all checks are green.
+
+:::
+
+:::
+
+::::
+
+:::{.callout-note}
+
+## Once green, always green
+
+The initial work you will put into achieving green checks will pay dividends in the long run. And, once a check is green, you only need to make sure that it stays that way for each new commit to the `main`-branch.
+
+:::
+
+## Easing into it {.smaller}
+
+:::: {.columns}
+
+::: {.column width='40%'}
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+knitr::include_graphics("media/bike-fall.jpeg")
+```
+
+:::
+
+::: {.column width='60%'}
+
+It might not be feasible to implement all workflows in one go, especially when they will be marked as failed until *all* relevant issues have been dealt with.
+
+This is especially true for organizations that have a policy to always keep the default branch "green".
+
+:::{style="font-size: 20px;"}
+
+I'd highly recommend that you adopt such a policy, both for your organization and private repositories.
+
+:::
+
+:::{style="background-color: #FFD56F; padding: 20px; border-radius: 25px;"}
+
+You can adopt an **incremental approach** of adding one workflow per PR.
+
+This PR can be merged when the new workflow runs successfully.
+
+:::
+
+:::
+
+::::
+
+# Conclusion
+
+It is possible to build robust automation infrastructure for R package development that can improve user experience and make long-term development more reliable and sustainable.
+
+# Further reading
+
+For more extensive discussions on best practices in software development.
+
+## {.smaller}
+
+### R-specific
+
+- [Writing R Extensions](https://rstudio.github.io/r-manuals/r-exts/)
+
+- Wickham, H., and Bryan, J. (2023). [*R Packages*](https://r-pkgs.org/) (2nd edition). O'Reilly.
+
+### Language-agnostic
+
+- McConnell, S. (2004). *Code Complete* (2nd edition). Microsoft Press.
+
+- Martin, R.C. (2017) *Clean Architecture*. Addison-Wesley.
+
+- Ousterhout, J. K. (2018). *A Philosophy of Software Design*. Palo Alto: Yaknyam Press.
+
+- Seemann, M. (2021) *Code That Fits in Your Head*. Addison-Wesley.
+
+# 
+
+Source code for these slides can be found [on GitHub](https://github.com/IndrajeetPatil/preventive-r-package-care/).
+
+Star the repo and share with others if you liked the slides! 😊
+
+# For more
+
+If you are interested in good programming and software development practices, check out my other [slide decks](https://sites.google.com/site/indrajeetspatilmorality/presentations).
+
+# Acknowledgements {.smaller}
+
+Thanks to all creators, maintainers, and contributors for the tools mentioned throughout the presentation. Without them, it wouldn't be so easy to create robust package development architecture in R! 🙏
+
+<br>
+
+:::{style="background-color: #FEC868; padding: 20px; border-radius: 25px;"}
+
+All images used in these slides have been taken from *Flaticon* (www.flaticon.com) by *freepik* (www.freepik.com). Huge thanks to them for making such fantastic resource freely available.
+
+Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/), this license **does not** cover images in the `/media` folder. If you use them, you need to follow the attribution policy stated by *Flaticon*.
+
+:::
+
+# Find me at...
+
+{{< fa brands linkedin >}} [LikedIn](https://www.linkedin.com/in/indrajeet-patil-ph-d-397865174/)
+
+{{< fa brands github >}} [GitHub](http://github.com/IndrajeetPatil)
+
+{{< fa solid link >}} [Website](https://sites.google.com/site/indrajeetspatilmorality/)
+
+{{< fa solid envelope >}} [E-mail](mailto:patilindrajeet.science@gmail.com)
+
+# Thank You 
+
+And Happy Package Care! 👼
