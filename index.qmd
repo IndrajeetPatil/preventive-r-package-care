@@ -12,6 +12,8 @@ format:
     include-in-header: meta-tags.html
     link-external-newwindow: true
     google-analytics: "G-V70CY3LGWT"
+revealjs-plugins:
+  - fontawesome
 execute:
   echo: true
 keywords: ["software-engineering", "r-packages", "best-practices", "CRAN"]
