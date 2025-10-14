@@ -44,6 +44,9 @@ Indrajeet Patil
 knitr::include_graphics("media/preventive-care.png")
 ```
 
+::: {style="text-align: center; font-size: 0.7em; margin-top: 2em; color: #666;"}
+Source code for these slides can be found [on GitHub](https://github.com/IndrajeetPatil/preventive-r-package-care/).
+:::
 
 # "Software engineering ought to produce sustainability." 
 \- Mark Seemann (*Code That Fits in Your Head*)
@@ -3612,18 +3615,21 @@ Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)]
 
 And Happy Package Care! 👼
 
-# For more {data-visibility="uncounted"}
+<br>
+<br>
 
-Source code for these slides can be found [on GitHub](https://github.com/IndrajeetPatil/preventive-r-package-care/).
+::: {style="text-align: center; font-size: 0.7em;"}
 
-If you are interested in good programming and software development practices, check out my other [slide decks](https://sites.google.com/site/indrajeetspatilmorality/presentations).
+Check out my other [slide decks](https://sites.google.com/site/indrajeetspatilmorality/presentations) on software development best practices
 
-# Find me at... {data-visibility="uncounted"}
+:::
 
-{{< fa brands linkedin >}} [LikedIn](https://www.linkedin.com/in/indrajeet-patil-ph-d-397865174/)
+::: {style="text-align: center; font-size: 1em;"}
 
-{{< fa brands github >}} [GitHub](http://github.com/IndrajeetPatil)
+[{{< fa brands linkedin >}}](https://www.linkedin.com/in/indrajeet-patil-ph-d-397865174/)
+&nbsp;&nbsp;
+[{{< fa brands github >}}](http://github.com/IndrajeetPatil) 
+&nbsp;&nbsp;
+[{{< fa solid envelope >}}](mailto:patilindrajeet.science@gmail.com)
 
-{{< fa solid link >}} [Website](https://sites.google.com/site/indrajeetspatilmorality/)
-
-{{< fa solid envelope >}} [E-mail](mailto:patilindrajeet.science@gmail.com)
+:::
