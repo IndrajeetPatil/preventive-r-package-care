@@ -6,13 +6,13 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-ac077c1e730dfeb5e42400639d17284e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-a67ac2868200dddf7a4f0e3ae403775c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="index_files/libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="index_files/libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.13">
+  <meta name="generator" content="quarto-1.9.16">
 
   <meta name="author" content="Indrajeet Patil">
-  <meta name="dcterms.date" content="2025-12-15 05:31:32.112922">
+  <meta name="dcterms.date" content="2025-12-28 04:21:29.327201">
   <meta name="keywords" content="software-engineering, r-packages, best-practices, CRAN">
   <title>Preventive Care for R Packages</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -99,7 +99,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-0fde88a82f0356838740f155f1088782.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-0427d8d92a431aa6a6430e53ec02a470.css">
   <link rel="stylesheet" href="style.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -3124,7 +3124,7 @@ YAML</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:90%;">
-<p>Use scheduled <a href="https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-devel.yaml">GHA workflow</a> to automate checking breakages.</p>
+<p>Use scheduled GHA workflow to automate checking breakages (e.g.&nbsp;checking against R-devel or GitHub versions of dependencies).</p>
 <div style="font-size: 20px;">
 <p>How frequently you should run this check (e.g., once a month, once every six months, etc.) and which dependencies you should include (e.g., only hard, only soft, a few of each, etc.) depends on how actively both your own package and your dependencies are being developed.</p>
 </div>
