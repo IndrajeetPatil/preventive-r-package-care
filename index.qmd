@@ -3379,7 +3379,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use scheduled [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check-devel.yaml) to automate checking breakages.
+Use scheduled GHA workflow to automate checking breakages (e.g. checking against R-devel or GitHub versions of dependencies).
 
 :::{style="font-size: 20px;"}
 
