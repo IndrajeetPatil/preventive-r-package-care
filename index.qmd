@@ -2601,24 +2601,24 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 
 ::: {.column width='60%'}
 
-This workflow can be overwhelming at first as it can detect thousands of lints. Therefore, **don't** error if lints are present.
+This workflow can be overwhelming at first as it can detect thousands of lints. It includes two parallel jobs: a full-package lint (runs on every push and PR) and a `lint-changed-files` job (runs only on PRs).
 
-You can use [another workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/lint.yaml) which fails if lints are found **only** in files that changed in a Pull Request. This is an easier and less disheartening way to clean lints.
+The `lint-changed-files` job fails if lints are found **only** in files that changed in a Pull Request. This is an easier and less disheartening way to clean lints.
 
 :::
 
 ::: {.column width='40%'}
 
 ```yaml
-# In `lint.yaml`
+# `lint` job (push & PRs)
 env:
-  LINTR_ERROR_ON_LINT: false
+  LINTR_ERROR_ON_LINT: true
 ```
 
 <br>
 
 ```yaml
-# In `lint-changed-files.yaml`
+# `lint-changed-files` job (PRs only)
 env:
   LINTR_ERROR_ON_LINT: true
 ```
