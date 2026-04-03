@@ -1,4 +1,4 @@
-name: Build Presentation
+name: Build and Deploy Presentation
 
 on:
   push:
@@ -10,4 +10,6 @@ jobs:
   build-and-deploy:
     uses: IndrajeetPatil/workflows/.github/workflows/build-presentation-r.yaml@main
     permissions:
-      contents: write
+      contents: read
+      pages: write
+      id-token: write
