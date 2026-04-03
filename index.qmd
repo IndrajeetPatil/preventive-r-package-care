@@ -2685,7 +2685,7 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='90%'}
 
-To detect multi-language code issues, you can use [pre-commit](https://pre-commit.com/), which is a framework for managing and maintaining git hooks. This framework can be accessed in R using [`{precommit}`](https://lorenzwalthert.github.io/precommit/). 
+To detect multi-language code issues, you can use [prek](https://github.com/j178/prek) — a fast, Rust-native drop-in replacement for [pre-commit](https://pre-commit.com/) — to manage and maintain git hooks. The [`{precommit}`](https://lorenzwalthert.github.io/precommit/) R package provides R-specific hooks.
 
 :::{style="font-size: 20px;"}
 
@@ -2715,7 +2715,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/pre-commit.yaml) to detect any problems with non-R code on each commit. You can specify the hooks relevant to you in a [pre-commit config file](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.pre-commit-config.yaml).
+Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/pre-commit.yaml) to detect any problems with non-R code on each commit. You can specify the hooks relevant to you in a [prek config file](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.pre-commit-config.yaml).
 
 :::
 
