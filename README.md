@@ -35,7 +35,4 @@ them, you need to follow the attribution policy stated by _Flaticon_.
 
 ## Code of Conduct
 
-Please note that the preventive-r-package-care project is released with
-a [Contributor Code of
-Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html).
-By contributing to this project, you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](https://www.contributor-covenant.org/version/3/0/code_of_conduct/). By contributing to this project, you agree to abide by its terms.
