@@ -5,3 +5,8 @@
 README.html
 .DS_Store
 /.claude/
+
+# Quarto
+/.quarto/
+_site/
+_extensions/
