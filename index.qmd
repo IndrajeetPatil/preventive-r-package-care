@@ -726,7 +726,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='91%'}
 
-Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml) to automate checking that the code coverage via examples never drops below the chosen threshold.
+Use a [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/test-coverage.yaml) to automate checking that the code coverage via examples never drops below the chosen threshold.
 
 :::
 
@@ -871,7 +871,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml) to automate checking that README can be successfully rendered on each commit.
+Use a [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/check-extra.yaml) to automate checking that README can be successfully rendered on each commit.
 
 :::
 
@@ -1027,7 +1027,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use a [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml) to make sure all examples in help pages are working on each commit.
+Use a [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/check-extra.yaml) to make sure all examples in help pages are working on each commit.
 
 :::
 
@@ -1318,7 +1318,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-link-rot.yaml) to check for bad URLs on each commit.
+Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/check-link-rot.yaml) to check for bad URLs on each commit.
 
 :::
 
@@ -1534,7 +1534,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-spelling.yaml) to ensure that spelling mistakes are caught on each commit.
+Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/check-extra.yaml) to ensure that spelling mistakes are caught on each commit.
 
 :::
 
@@ -1955,7 +1955,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use GHA workflows to automate checking presence of warnings in [help pages](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/test-coverage-examples.yaml), [README](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-readme.yaml), [vignettes](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml), and [tests](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/check-no-warnings.yaml) (`testthat::test_dir("tests")`) on each commit.
+Use GHA workflows to automate checking presence of warnings in [help pages](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/test-coverage.yaml), [README](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/check-extra.yaml), [vignettes](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/check-extra.yaml), and [tests](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/check-extra.yaml) (`testthat::test_dir("tests")`) on each commit.
 
 :::
 
@@ -2201,7 +2201,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/R-CMD-check.yaml) to run `R CMD check` for multiple R versions and platforms on each commit to probe for potential portability issues.
+Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/R-CMD-check.yaml) to run `R CMD check` for multiple R versions and platforms on each commit to probe for potential portability issues.
 
 :::
 
@@ -2593,7 +2593,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/lint.yaml) to detect all lints on each commit.
+Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/lint.yaml) to detect all lints on each commit.
 
 :::{style="font-size: 20px;"}
 
@@ -2601,24 +2601,24 @@ Use [GHA workflow](https://github.com/r-lib/lintr/blob/main/.github/workflows/li
 
 ::: {.column width='60%'}
 
-This workflow can be overwhelming at first as it can detect thousands of lints. Therefore, **don't** error if lints are present.
+This workflow can be overwhelming at first as it can detect thousands of lints. It includes two parallel jobs: a full-package lint (runs on every push and PR) and a `lint-changed-files` job (runs only on PRs).
 
-You can use [another workflow](https://github.com/easystats/workflows/blob/main/.github/workflows/lint-changed-files.yaml) which fails if lints are found **only** in files that changed in a Pull Request. This is an easier and less disheartening way to clean lints.
+The `lint-changed-files` job fails if lints are found **only** in files that changed in a Pull Request. This is an easier and less disheartening way to clean lints.
 
 :::
 
 ::: {.column width='40%'}
 
 ```yaml
-# In `lint.yaml`
+# `lint` job (push & PRs)
 env:
-  LINTR_ERROR_ON_LINT: false
+  LINTR_ERROR_ON_LINT: true
 ```
 
 <br>
 
 ```yaml
-# In `lint-changed-files.yaml`
+# `lint-changed-files` job (PRs only)
 env:
   LINTR_ERROR_ON_LINT: true
 ```
@@ -2715,7 +2715,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/r-lib/styler/blob/main/.github/workflows/pre-commit.yaml) to detect any problems with non-R code on each commit. You can specify the hooks relevant to you in a [pre-commit config file](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.pre-commit-config.yaml).
+Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/pre-commit.yaml) to detect any problems with non-R code on each commit. You can specify the hooks relevant to you in a [pre-commit config file](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.pre-commit-config.yaml).
 
 :::
 
@@ -3204,9 +3204,9 @@ Use GHA workflows to install [*all* dependencies](https://github.com/r-lib/actio
 
 ## Additional tips 
 
-- This trick won't work for excluded vignettes (from `vignettes/` subdirectory or `.Rbuildignore`-ed). To ensure that excluded vignettes are using soft dependencies conditionally, build package website in ["noSuggests" mode](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/pkgdown-no-suggests.yaml).
+- This trick won't work for excluded vignettes (from `vignettes/` subdirectory or `.Rbuildignore`-ed). To ensure that excluded vignettes are using soft dependencies conditionally, build package website in ["noSuggests" mode](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/pkgdown.yaml).
 
-- For `R CMD check` with all dependencies installed, use [strict workflow](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.github/workflows/R-CMD-check.yaml) that fails on any `NOTE`. To avoid failing on `NOTE`s accepted by CRAN, include this in `DESCRIPTION`:
+- For `R CMD check` with all dependencies installed, use [strict workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/R-CMD-check.yaml) that fails on any `NOTE`. To avoid failing on `NOTE`s accepted by CRAN, include this in `DESCRIPTION`:
 
 ```dcf
 Config/rcmdcheck/ignore-inconsequential-notes: true
