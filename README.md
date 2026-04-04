@@ -15,7 +15,7 @@ development that can improve user experience and make long-term
 development more reliable and sustainable.**
 
 The slides discuss how to build such infrastructure:
-<https://indrajeetpatil.github.io/preventive-r-package-care/>
+<https://www.indrapatil.com/preventive-r-package-care/>
 
 Feedback and suggestions are welcome!
 

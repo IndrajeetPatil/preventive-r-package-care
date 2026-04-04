@@ -26,7 +26,7 @@ lang: "en"
 dir: "ltr"
 image: "media/social-media-card.png"
 image-alt: "Preview image for presentation about preventive care for R packages"
-canonical-url: "https://indrajeetpatil.github.io/preventive-r-package-care/"
+canonical-url: "https://www.indrapatil.com/preventive-r-package-care/"
 ---
 
 ## Preventive Care for R Packages {style="text-align: center;"}
@@ -2437,7 +2437,7 @@ Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/styl
 
 - You can use annotations (`styler: off` + `styler: on`) to instruct `{styler}` to ignore custom formatted code.
 
-- If you don't prefer the tidyverse style guide, either you can customize `{styler}` itself, or explore other packages (e.g. [`{formatR}`](https://CRAN.R-project.org/package=formatR), [`{BiocStyle}`](https://github.com/Bioconductor/BiocStyle/), etc.). For a full list, see [awesome-r-pkgtools](https://indrajeetpatil.github.io/awesome-r-pkgtools/#codedocument-formatting).
+- If you don't prefer the tidyverse style guide, either you can customize `{styler}` itself, or explore other packages (e.g. [`{formatR}`](https://CRAN.R-project.org/package=formatR), [`{BiocStyle}`](https://github.com/Bioconductor/BiocStyle/), etc.). For a full list, see [awesome-r-pkgtools](https://www.indrapatil.com/awesome-r-pkgtools/#codedocument-formatting).
 
 :::
 
@@ -3216,7 +3216,7 @@ Config/rcmdcheck/ignore-inconsequential-notes: true
 
 ## Special care for examples {.smaller}
 
-Prefer using `\donttest()` over `\dontrun()` for [skipping examples](https://indrajeetpatil.github.io/preventive-r-package-care/#/broken-examples-in-help-pages). 
+Prefer using `\donttest()` over `\dontrun()` for [skipping examples](https://www.indrapatil.com/preventive-r-package-care/#/broken-examples-in-help-pages). 
 
 This is because the latter will be skipped during R CMD Check and `{pkgdown}` also will not execute these examples. Therefore, you will miss out on an example that should be run conditionally. This can become an issue if you do decide to run this example in the future by removing `\dontrun`.
 
@@ -3620,7 +3620,7 @@ And Happy Package Care! 👼
 
 ::: {style="text-align: center; font-size: 0.7em;"}
 
-Check out my other [slide decks](https://indrajeetpatil.github.io/presentations/) on software development best practices
+Check out my other [slide decks](https://www.indrapatil.com/presentations/) on software development best practices
 
 :::
 
