@@ -2396,11 +2396,11 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='90%'}
 
-Use [`{styler}`](https://r-lib.github.io/styler/) to enforce the [tidyverse style guide](https://style.tidyverse.org/) throughout the package (including source code, test files, vignettes, etc.).
+Use [`air`](https://github.com/posit-dev/air) to format R code consistently throughout the package (including source code, test files, vignettes, etc.). `air` is a fast, opinionated R code formatter inspired by tools like Prettier (JS) and Black (Python).
 
-```{r, eval=FALSE}
+```{bash, eval=FALSE}
 #| code-line-numbers: false
-styler::style_pkg()
+air format .
 ```
 
 :::
@@ -2423,7 +2423,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml) to format code consistently on each commit.
+Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/check-formatting.yaml) to check that code is consistently formatted on each commit.
 
 :::
 
@@ -2435,9 +2435,9 @@ Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/styl
 
 ## Additional tips 
 
-- You can use annotations (`styler: off` + `styler: on`) to instruct `{styler}` to ignore custom formatted code.
+- You can customize formatting rules using an [`air.toml`](https://posit-dev.github.io/air/configuration.html) configuration file.
 
-- If you don't prefer the tidyverse style guide, either you can customize `{styler}` itself, or explore other packages (e.g. [`{formatR}`](https://CRAN.R-project.org/package=formatR), [`{BiocStyle}`](https://github.com/Bioconductor/BiocStyle/), etc.). For a full list, see [awesome-r-pkgtools](https://www.indrapatil.com/awesome-r-pkgtools/#codedocument-formatting).
+- Unlike `{styler}`, which auto-commits formatted code, the `check-formatting` workflow only *checks* that code is formatted correctly. You format locally with `air format .` before pushing.
 
 :::
 
@@ -2639,7 +2639,7 @@ env:
 
 ## Additional tips 
 
-- Most lints related to code formatting can be removed using [`{styler}`](https://r-lib.github.io/styler/), which enforces [tidyverse style guide](https://style.tidyverse.org/).
+- Most lints related to code formatting can be removed using [`air`](https://github.com/posit-dev/air).
 
 - Code smells are subjective and you may disagree with some linters. Use a [configuration file](https://lintr.r-lib.org/dev/articles/lintr.html) to customize which linters you wish to include. Additionally, you can annotate parts of code that linters should ignore (e.g. `# nolint start: indentation_linter.` + `# nolint end`).
 
