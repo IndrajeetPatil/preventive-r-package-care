@@ -10,4 +10,4 @@ name: check-link-rot
 
 jobs:
   check-link-rot:
-    uses: IndrajeetPatil/workflows/.github/workflows/check-link-rot.yaml@main
+    uses: IndrajeetPatil/workflows/.github/workflows/check-link-rot.yaml@1e69930054a834a872713395ba85670ed7555084
