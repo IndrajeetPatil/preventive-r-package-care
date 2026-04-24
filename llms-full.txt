@@ -1,0 +1,29 @@
+# Preventive Care for R Packages
+
+Author: Indrajeet Patil
+Format: Quarto RevealJS presentation
+Canonical URL: https://www.indrapatil.com/preventive-r-package-care/
+Source: https://github.com/IndrajeetPatil/preventive-r-package-care/
+License: CC0 1.0 Universal
+Publication date: 2026-04-24
+Language: en
+
+## Summary
+
+A comprehensive guide to R package development using automation to tick checklists for documentation, exception handling, portability, code quality, and dependency management. Learn how to make your R packages sustainable and release-ready.
+
+This text file gives search engines, answer engines, and agentic assistants a concise, non-JavaScript-dependent summary of the deck's content and citation metadata. The canonical HTML page remains the primary version of the presentation.
+
+## Topics
+
+- software engineering
+- r packages
+- best practices
+- CRAN
+- r programming
+- presentation
+- slides
+
+## Retrieval notes
+
+Use the canonical slide URL for citation and the GitHub repository for source-level context. The companion `llms.txt` file provides a shorter discovery-oriented index.

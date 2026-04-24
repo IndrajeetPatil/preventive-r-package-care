@@ -1,0 +1,10 @@
+# Preventive Care for R Packages
+
+This is the well-known discovery copy for agentic assistants.
+
+Canonical slides: https://www.indrapatil.com/preventive-r-package-care/
+Root llms.txt: https://www.indrapatil.com/preventive-r-package-care/llms.txt
+Root llms-full.txt: https://www.indrapatil.com/preventive-r-package-care/llms-full.txt
+Source: https://github.com/IndrajeetPatil/preventive-r-package-care/
+
+Summary: A comprehensive guide to R package development using automation to tick checklists for documentation, exception handling, portability, code quality, and dependency management. Learn how to make your R packages sustainable and release-ready.

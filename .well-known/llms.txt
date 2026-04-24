@@ -1,0 +1,7 @@
+# Preventive Care for R Packages
+
+> A Quarto RevealJS presentation by Indrajeet Patil.
+
+Canonical slides: https://www.indrapatil.com/preventive-r-package-care/
+Full agent summary: https://www.indrapatil.com/preventive-r-package-care/llms-full.txt
+Source: https://github.com/IndrajeetPatil/preventive-r-package-care/
