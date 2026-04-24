@@ -11,7 +11,7 @@ format:
     help: true
     include-in-header: meta-tags.html
     link-external-newwindow: true
-    google-analytics: "G-V70CY3LGWT"
+    google-analytics: "G-3BQ49J7KYH"
 revealjs-plugins:
   - fontawesome
 execute:
