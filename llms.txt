@@ -1,0 +1,27 @@
+# Preventive Care for R Packages
+
+> A Quarto RevealJS presentation by Indrajeet Patil.
+
+A comprehensive guide to R package development using automation to tick checklists for documentation, exception handling, portability, code quality, and dependency management. Learn how to make your R packages sustainable and release-ready.
+
+## Primary URL
+
+- [Slides](https://www.indrapatil.com/preventive-r-package-care/)
+
+## Source
+
+- [GitHub repository](https://github.com/IndrajeetPatil/preventive-r-package-care/)
+
+## Topics
+
+- software engineering
+- r packages
+- best practices
+- CRAN
+- r programming
+- presentation
+- slides
+
+## Machine-readable companion
+
+- [Full agent summary](https://www.indrapatil.com/preventive-r-package-care/llms-full.txt)
