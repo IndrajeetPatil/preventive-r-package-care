@@ -32,7 +32,3 @@ Although the current repository is published under [CC0 1.0 Universal
 (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/), this
 license **does not** cover images in the `/media` folder. If you use
 them, you need to follow the attribution policy stated by _Flaticon_.
-
-## Code of Conduct
-
-Please note that this project is released with a [Contributor Code of Conduct](https://www.contributor-covenant.org/version/3/0/code_of_conduct/). By contributing to this project, you agree to abide by its terms.
