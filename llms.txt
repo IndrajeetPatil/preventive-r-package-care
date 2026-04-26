@@ -2,7 +2,7 @@
 
 > A Quarto RevealJS presentation by Indrajeet Patil.
 
-A comprehensive guide to R package development using automation to tick checklists for documentation, exception handling, portability, code quality, and dependency management. Learn how to make your R packages sustainable and release-ready.
+A comprehensive guide to R package development using automation to tick checklists for documentation, unit testing, exception handling, portability, code quality, and dependency management. Covers pkgdown articles versus package vignettes, spelling word-list maintenance, and strict zero-NOTE R CMD check workflows.
 
 ## Primary URL
 
@@ -18,6 +18,9 @@ A comprehensive guide to R package development using automation to tick checklis
 - r packages
 - best practices
 - CRAN
+- pkgdown
+- testthat
+- spelling
 - r programming
 - presentation
 - slides

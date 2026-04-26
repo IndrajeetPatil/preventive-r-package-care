@@ -10,9 +10,24 @@ Language: en
 
 ## Summary
 
-A comprehensive guide to R package development using automation to tick checklists for documentation, exception handling, portability, code quality, and dependency management. Learn how to make your R packages sustainable and release-ready.
+A comprehensive guide to R package development using automation to tick checklists for documentation, unit testing, exception handling, portability, code quality, and dependency management. Covers pkgdown articles versus package vignettes, spelling word-list maintenance, and strict zero-NOTE R CMD check workflows.
 
 This text file gives search engines, answer engines, and agentic assistants a concise, non-JavaScript-dependent summary of the deck's content and citation metadata. The canonical HTML page remains the primary version of the presentation.
+
+## Content Highlights
+
+- Frames preventive care as a way to keep R packages sustainable, release-ready, and pleasant for users by automating quality checks.
+- Provides checklists for documentation, unit testing, exception handling, portability, code quality, dependency management, and workflow hygiene.
+- Covers documentation checks for README examples, help-page examples, long-form documentation, links, spelling, and HTML validity.
+- Distinguishes package vignettes from pkgdown-only articles: vignettes ship with the package and are checked by `R CMD check`, while articles are built for the pkgdown site and need separate website-build validation.
+- Recommends `spelling::spell_check_package()` for finding spelling problems and `spelling::update_wordlist()` for maintaining accepted technical terms in `inst/WORDLIST`.
+- Covers unit-testing safeguards such as coverage thresholds, conditional skips for external resources, avoiding order-dependent tests, avoiding attached setup dependencies, parallel-test readiness, and `testthat::set_state_inspector()` for detecting global-state leaks.
+- Describes warning checks for README examples, help-page examples, vignettes or articles, and tests.
+- Describes portability checks across supported operating systems, R versions, and relevant package-specific environments.
+- Covers code-quality automation for formatting, linting, pre-commit checks, and performance regression checks.
+- Covers dependency-management checks for conditional use of soft dependencies, no-Suggests workflows, pkgdown no-Suggests builds, and scheduled checks against development versions of dependencies.
+- Explains strict `R CMD check` workflows that fail on any `NOTE`, including the rationale for treating a zero-NOTE policy as a default-branch hygiene rule while explicitly documenting inconsequential notes.
+- Discusses workflow frequency, skipped workflows, ready-for-review triggers, scheduled checks, and incremental adoption when a repository cannot become fully green in one step.
 
 ## Topics
 
@@ -20,6 +35,9 @@ This text file gives search engines, answer engines, and agentic assistants a co
 - r packages
 - best practices
 - CRAN
+- pkgdown
+- testthat
+- spelling
 - r programming
 - presentation
 - slides
