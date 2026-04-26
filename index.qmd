@@ -394,6 +394,43 @@ knitr::include_graphics("media/target.png")
 | Make sure examples in vignettes produce no warnings.     |
 | Make sure tests produce no extrinsic warnings.           |
 
+## Checklist for unit testing {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+knitr::include_graphics("media/target.png")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**For reliable releases, make sure that tests are isolated, portable, and meaningful on every supported platform.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                                                 |
+| :------------------------------------------------------------------- |
+| Make sure total and changed-file test coverage stay above thresholds. |
+| Make sure tests that need external resources are skipped explicitly.  |
+| Make sure tests do not depend on order or on another test file.       |
+| Make sure tests do not attach packages only needed for test setup.    |
+| Make sure parallel test runs are not blocked by shared state.         |
+| Make sure tests do not leak global state (`testthat::set_state_inspector()`). |
+
 ## Checklist for portability {.smaller}
 
 <!-- column layout -->
@@ -1070,9 +1107,11 @@ knitr::include_graphics("media/application.png")
 
 :::{.callout-note}
 
-## Types of vignettes
+## Vignettes and pkgdown articles
 
-Vignettes included in the package will fail if examples are broken. But you can choose to exclude some vignettes to reduce package size or to reduce check time. You can do so by placing them in a `vignettes/` subdirectory or by adding them to `.Rbuildignore`.
+Use **vignette** for long-form documentation that ships with the package and is checked as part of `R CMD check`. Use **article** for long-form documentation that is built for the pkgdown website but not shipped with the installed package.
+
+If an article has broken examples, `R CMD check` will not catch them. You can keep such docs out of the package to reduce size or check time by placing them in a `vignettes/` subdirectory or by adding them to `.Rbuildignore`.
 
 :::
 
@@ -1098,7 +1137,7 @@ knitr::include_graphics("media/headache.png")
 
 ::: {.column width='90%'}
 
-Thus, the `R CMD check` won't catch broken examples in excluded vignettes. Although users might not see them on CRAN, you shouldn't retain defunct examples anywhere in the documentation. This also makes excluded vignettes future-proof; if you decide to include them in the package, there won't be any issues.
+Thus, `R CMD check` won't catch broken examples in pkgdown-only articles. Although users might not see them on CRAN, you shouldn't retain defunct examples anywhere in the documentation. This also makes articles future-proof; if you later convert one into a shipped vignette, there won't be any issues.
 
 :::
 
@@ -1131,7 +1170,7 @@ knitr::include_graphics("media/problem-solved.png")
 
 ::::
 
-## Building all vignettes {.smaller}
+## Building all articles {.smaller}
 
 <!-- column layout -->
 
@@ -1147,7 +1186,7 @@ knitr::include_graphics("media/toolbox.png")
 
 ::: {.column width='90%'}
 
-Although excluded vignettes may not be checked by `R CMD check`, they are still built by [`{pkgdown}`](https://r-lib.github.io/pkgdown/) to generate a static website. Thus, building a website would detect any broken examples in excluded vignettes.
+Although pkgdown-only articles may not be checked by `R CMD check`, they are still built by [`{pkgdown}`](https://r-lib.github.io/pkgdown/) to generate a static website. Thus, building a website would detect broken examples in those articles.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -1176,7 +1215,7 @@ knitr::include_graphics("media/robot.png")
 
 ::: {.column width='90%'}
 
-Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pkgdown.yaml) to make sure examples in *all* vignettes are working on each commit.
+Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pkgdown.yaml) to make sure examples in *all* pkgdown articles are working on each commit.
 
 :::
 
@@ -1490,6 +1529,14 @@ YAML
 <br>
 
 Now you are all set for detecting spelling mistakes!
+
+:::{.callout-tip}
+
+## Updating the word list
+
+Run `spelling::update_wordlist()` after reviewing spelling results. It adds accepted technical terms to `inst/WORDLIST` and removes entries that are no longer needed.
+
+:::
 
 ## Detecting spelling mistakes {.smaller}
 
@@ -3211,6 +3258,8 @@ Use GHA workflows to install [*all* dependencies](https://github.com/r-lib/actio
 ```dcf
 Config/rcmdcheck/ignore-inconsequential-notes: true
 ```
+
+- A zero-`NOTE` policy is stricter than CRAN's acceptance threshold, but it keeps the default branch clean. Treat each new `NOTE` as something to investigate, fix, or explicitly document as inconsequential.
 
 :::
 
