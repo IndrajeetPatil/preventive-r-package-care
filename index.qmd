@@ -1526,10 +1526,6 @@ YAML
 
 . . . 
 
-<br>
-
-Now you are all set for detecting spelling mistakes!
-
 :::{.callout-tip}
 
 ## Updating the word list
