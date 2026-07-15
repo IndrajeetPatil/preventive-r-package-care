@@ -1,6 +1,6 @@
 # Preventive Care for R Packages
 
-<img src="media/preventive-care.png" align="right" width="250" alt="A plant being watered" />
+<img src="media/preventive-care.webp" align="right" width="250" alt="A plant being watered" />
 
 As an R package developer, if you ever lay awake in bed wondering:
 

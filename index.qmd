@@ -41,7 +41,7 @@ Indrajeet Patil
 :::
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/preventive-care.png")
+knitr::include_graphics("media/preventive-care.webp")
 ```
 
 ::: {style="text-align: center; font-size: 0.7em; margin-top: 2em; color: #666;"}
@@ -104,7 +104,7 @@ The practices outlined here are just as relevant to software development in any 
 ::: {.column width='15%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -119,7 +119,7 @@ Overarching goal
 ::: {.column width='15%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/problem-solved.png")
+knitr::include_graphics("media/problem-solved.webp")
 ```
 
 :::
@@ -140,7 +140,7 @@ Problem to solve
 ::: {.column width='15%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/confused.png")
+knitr::include_graphics("media/confused.webp")
 ```
 
 :::
@@ -155,7 +155,7 @@ Bad user experience
 ::: {.column width='15%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/headache.png")
+knitr::include_graphics("media/headache.webp")
 ```
 
 :::
@@ -176,7 +176,7 @@ Maintenance headaches
 ::: {.column width='15%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -191,7 +191,7 @@ Tools
 ::: {.column width='15%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -230,7 +230,7 @@ That is, if you were asked to make a new release soon, you can be confident that
 ```{r}
 #| echo: false
 #| out-width: "70%"
-knitr::include_graphics("media/accelerate.jpg")
+knitr::include_graphics("media/accelerate.webp")
 ```
 
 :::
@@ -260,7 +260,7 @@ The biggest reason why a software project becomes unsustainable is the unchecked
 
 ```{r}
 #| echo: false
-knitr::include_graphics("media/engineer.png")
+knitr::include_graphics("media/engineer.webp")
 ```
 
 :::
@@ -285,7 +285,7 @@ It provides the methodology to make sure that the software works as intended and
 
 ```{r}
 #| echo: false
-knitr::include_graphics("media/checklist.png")
+knitr::include_graphics("media/checklist.webp")
 ```
 
 :::
@@ -332,7 +332,7 @@ First, you will see the checklists to tick, and then the details on how to build
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -368,7 +368,7 @@ knitr::include_graphics("media/target.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -403,7 +403,7 @@ knitr::include_graphics("media/target.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -440,7 +440,7 @@ knitr::include_graphics("media/target.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -480,7 +480,7 @@ The items on this list will vary significantly from package to package (e.g., do
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -514,7 +514,7 @@ knitr::include_graphics("media/target.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -559,7 +559,7 @@ Preventive care to make sure the docs are up-to-date.
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -589,7 +589,7 @@ knitr::include_graphics("media/target.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/research.png")
+knitr::include_graphics("media/research.webp")
 ```
 
 :::
@@ -615,7 +615,7 @@ Good examples are difficult to write, but any examples are better than none.
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/confused.png")
+knitr::include_graphics("media/confused.webp")
 ```
 
 :::
@@ -639,7 +639,7 @@ Without enough expository examples, users are left to fumble their way into disc
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/problem-solved.png")
+knitr::include_graphics("media/problem-solved.webp")
 ```
 
 :::
@@ -673,7 +673,7 @@ There are three types of documents that constitute package documentation.
 :::
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/readme.png")
+knitr::include_graphics("media/readme.webp")
 ```
 
 :::
@@ -691,7 +691,7 @@ knitr::include_graphics("media/readme.png")
 :::
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/example.png")
+knitr::include_graphics("media/example.webp")
 ```
 
 :::
@@ -707,7 +707,7 @@ knitr::include_graphics("media/example.png")
 **Vignettes**
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/application.png")
+knitr::include_graphics("media/application.webp")
 ```
 
 :::
@@ -729,7 +729,7 @@ Therefore, we want to make sure that, when combined across these sources, there 
 ::: {.column width='9%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -756,7 +756,7 @@ package_coverage(type = c("examples", "vignettes"), commentDonttest = FALSE, com
 ::: {.column width='9%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -796,7 +796,7 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.gith
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/readme.png")
+knitr::include_graphics("media/readme.webp")
 ```
 
 :::
@@ -822,7 +822,7 @@ Although breaking changes might be infrequent, when they do occur, the code in R
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/confused.png")
+knitr::include_graphics("media/confused.webp")
 ```
 
 :::
@@ -846,7 +846,7 @@ knitr::include_graphics("media/confused.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/problem-solved.png")
+knitr::include_graphics("media/problem-solved.webp")
 ```
 
 :::
@@ -872,7 +872,7 @@ knitr::include_graphics("media/problem-solved.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -901,7 +901,7 @@ rmarkdown::render("README.Rmd", output_format = rmarkdown::github_document())
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -941,7 +941,7 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.gith
 <br>
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/example.png")
+knitr::include_graphics("media/example.webp")
 ```
 
 :::
@@ -975,7 +975,7 @@ Help pages for exported functions should contain examples illustrating their usa
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/confused.png")
+knitr::include_graphics("media/confused.webp")
 ```
 
 :::
@@ -1003,7 +1003,7 @@ CRAN's additional ["donttest" check](https://www.stats.ox.ac.uk/pub/bdr/donttest
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/problem-solved.png")
+knitr::include_graphics("media/problem-solved.webp")
 ```
 
 
@@ -1030,7 +1030,7 @@ knitr::include_graphics("media/problem-solved.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -1057,7 +1057,7 @@ devtools::run_examples(run_dontrun = TRUE, run_donttest = TRUE)
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -1098,7 +1098,7 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.gith
 <br>
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/application.png")
+knitr::include_graphics("media/application.webp")
 ```
 
 :::
@@ -1130,7 +1130,7 @@ If an article has broken examples, `R CMD check` will not catch them. You can ke
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/headache.png")
+knitr::include_graphics("media/headache.webp")
 ```
 
 :::
@@ -1152,7 +1152,7 @@ Thus, `R CMD check` won't catch broken examples in pkgdown-only articles. Althou
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/problem-solved.png")
+knitr::include_graphics("media/problem-solved.webp")
 ```
 
 
@@ -1179,7 +1179,7 @@ knitr::include_graphics("media/problem-solved.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -1208,7 +1208,7 @@ pkgdown::build_site()
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -1270,7 +1270,7 @@ Package documentation often includes plenty of hyperlinks to external resources.
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/confused.png")
+knitr::include_graphics("media/confused.webp")
 ```
 
 :::
@@ -1294,7 +1294,7 @@ Such dangling references can be frustrating for the users trying to access the r
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/problem-solved.png")
+knitr::include_graphics("media/problem-solved.webp")
 ```
 
 
@@ -1321,7 +1321,7 @@ knitr::include_graphics("media/problem-solved.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -1350,7 +1350,7 @@ urlchecker::url_check()
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -1388,7 +1388,7 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/spell-check.png")
+knitr::include_graphics("media/spell-check.webp")
 ```
 
 :::
@@ -1412,7 +1412,7 @@ Spelling mistakes are inevitable and, if left unchecked, they can accumulate rap
 <br>
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/confused.png")
+knitr::include_graphics("media/confused.webp")
 ```
 
 :::
@@ -1438,7 +1438,7 @@ Additionally, misspelling technical words (e.g. *innode* vs. [*inode*](https://e
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/problem-solved.png")
+knitr::include_graphics("media/problem-solved.webp")
 ```
 
 :::
@@ -1543,7 +1543,7 @@ Run `spelling::update_wordlist()` after reviewing spelling results. It adds acce
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -1570,7 +1570,7 @@ spelling::spell_check_package()
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -1606,7 +1606,7 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/html-5.png")
+knitr::include_graphics("media/html-5.webp")
 ```
 
 :::
@@ -1630,7 +1630,7 @@ HTML has few syntactic rules, and browsers may not even enforce the rules it doe
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/headache.png")
+knitr::include_graphics("media/headache.webp")
 ```
 
 :::
@@ -1654,7 +1654,7 @@ You will thus need to make sure that your package documentation neither generate
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/problem-solved.png")
+knitr::include_graphics("media/problem-solved.webp")
 ```
 
 :::
@@ -1680,7 +1680,7 @@ knitr::include_graphics("media/problem-solved.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -1709,7 +1709,7 @@ roxygen2::roxygenise()
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -1743,7 +1743,7 @@ Use [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/html
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -1788,7 +1788,7 @@ Preventive care to make sure that you don't miss out on important warnings.
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -1818,7 +1818,7 @@ knitr::include_graphics("media/target.png")
 <br>
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/warning.png")
+knitr::include_graphics("media/warning.webp")
 ```
 
 :::
@@ -1906,7 +1906,7 @@ ggplot(mpg, aes(hwy, class)) + geom_xsidedensity()
 <br>
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/cleaning.png")
+knitr::include_graphics("media/cleaning.webp")
 ```
 
 :::
@@ -1964,7 +1964,7 @@ Warnings from dependencies can be critical and should be dealt with ASAP.
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -1991,7 +1991,7 @@ options(warn = 2L)
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -2054,7 +2054,7 @@ function_showing_warning()
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -2098,7 +2098,7 @@ Preventive care to make sure that your package works across a variety of setting
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -2126,7 +2126,7 @@ knitr::include_graphics("media/target.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/difference.png")
+knitr::include_graphics("media/difference.webp")
 ```
 
 :::
@@ -2148,7 +2148,7 @@ You (the developer) may be developing the package in a certain setting: with a c
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/confused.png")
+knitr::include_graphics("media/confused.webp")
 ```
 
 :::
@@ -2178,7 +2178,7 @@ The key assumption here is that your package claims to support these settings. I
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/problem-solved.png")
+knitr::include_graphics("media/problem-solved.webp")
 ```
 
 :::
@@ -2204,7 +2204,7 @@ knitr::include_graphics("media/problem-solved.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -2237,7 +2237,7 @@ All the options you can set to further customize this check is beyond the scope 
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -2273,7 +2273,7 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -2322,7 +2322,7 @@ Preventive care to detect code quality issues and performance regressions.
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -2354,7 +2354,7 @@ knitr::include_graphics("media/target.png")
 <br>
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/web-programming.png")
+knitr::include_graphics("media/web-programming.webp")
 ```
 
 :::
@@ -2382,7 +2382,7 @@ Style guides can be highly opinionated and arbitrary. So, more important than *w
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/headache.png")
+knitr::include_graphics("media/headache.webp")
 ```
 
 :::
@@ -2406,7 +2406,7 @@ In larger projects or teams, multiple contributors may have different formatting
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/problem-solved.png")
+knitr::include_graphics("media/problem-solved.webp")
 ```
 
 :::
@@ -2432,7 +2432,7 @@ knitr::include_graphics("media/problem-solved.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -2459,7 +2459,7 @@ air format .
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -2495,7 +2495,7 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/tumble-dryer.png")
+knitr::include_graphics("media/tumble-dryer.webp")
 ```
 
 :::
@@ -2554,7 +2554,7 @@ lint(text = "x <- 1")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/headache.png")
+knitr::include_graphics("media/headache.webp")
 ```
 
 :::
@@ -2576,7 +2576,7 @@ In larger projects or teams, where multiple contributors may be working on the s
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/problem-solved.png")
+knitr::include_graphics("media/problem-solved.webp")
 ```
 
 :::
@@ -2602,7 +2602,7 @@ knitr::include_graphics("media/problem-solved.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -2629,7 +2629,7 @@ lintr::lint_package()
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -2697,7 +2697,7 @@ env:
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/headache.png")
+knitr::include_graphics("media/headache.webp")
 ```
 
 :::
@@ -2721,7 +2721,7 @@ An R package contains a number of configuration files written in languages other
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -2751,7 +2751,7 @@ The framework offers [hundreds of hooks](https://pre-commit.com/hooks.html) to c
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -2775,7 +2775,7 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/snail.png")
+knitr::include_graphics("media/snail.webp")
 ```
 
 :::
@@ -2797,7 +2797,7 @@ If your package is mature and stable enough that you have started to invest in i
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/headache.png")
+knitr::include_graphics("media/headache.webp")
 ```
 
 :::
@@ -2821,7 +2821,7 @@ Checking for performance regressions just before or even after the release is no
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/problem-solved.png")
+knitr::include_graphics("media/problem-solved.webp")
 ```
 
 :::
@@ -2847,7 +2847,7 @@ knitr::include_graphics("media/problem-solved.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -2859,7 +2859,7 @@ knitr::include_graphics("media/toolbox.png")
 ```{r}
 #| echo: false
 #| eval: true
-knitr::include_graphics("media/touchstone.png")
+knitr::include_graphics("media/touchstone.webp")
 ```
 
 
@@ -2876,7 +2876,7 @@ knitr::include_graphics("media/touchstone.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -2898,7 +2898,7 @@ Use [GHA workflow](https://github.com/r-lib/styler/blob/main/.github/workflows/t
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -2941,7 +2941,7 @@ Preventive care to make sure that all suggested (aka weak or soft) dependencies 
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -2969,7 +2969,7 @@ knitr::include_graphics("media/target.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/trust.png")
+knitr::include_graphics("media/trust.webp")
 ```
 
 :::
@@ -3016,7 +3016,7 @@ If a critical dependency becomes unavailable (e.g. because its author decides to
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/damaged-package.png")
+knitr::include_graphics("media/damaged-package.webp")
 ```
 
 :::
@@ -3038,7 +3038,7 @@ In a high-level, user-facing package, there can be a substantial number of soft 
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/headache.png")
+knitr::include_graphics("media/headache.webp")
 ```
 
 :::
@@ -3068,7 +3068,7 @@ CRAN runs the additional ["noSuggests" check](https://www.stats.ox.ac.uk/pub/bdr
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/problem-solved.png")
+knitr::include_graphics("media/problem-solved.webp")
 ```
 
 :::
@@ -3206,7 +3206,7 @@ test_that("bla", {
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -3228,7 +3228,7 @@ The trick here is to run `R CMD check` twice: once when *all* soft dependencies 
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -3317,7 +3317,7 @@ Expected usage:
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/damaged-package.png")
+knitr::include_graphics("media/damaged-package.webp")
 ```
 
 :::
@@ -3345,7 +3345,7 @@ If your package is not on CRAN, there is no way for the maintainers to detect br
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/confused.png")
+knitr::include_graphics("media/confused.webp")
 ```
 
 :::
@@ -3369,7 +3369,7 @@ You may figure out that something is broken *after* a dependency is updated, the
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/problem-solved.png")
+knitr::include_graphics("media/problem-solved.webp")
 ```
 
 :::
@@ -3395,7 +3395,7 @@ knitr::include_graphics("media/problem-solved.png")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/toolbox.png")
+knitr::include_graphics("media/toolbox.webp")
 ```
 
 :::
@@ -3417,7 +3417,7 @@ In order to detect breakages earlier, you can run `R CMD check` by installing de
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/robot.png")
+knitr::include_graphics("media/robot.webp")
 ```
 
 :::
@@ -3459,7 +3459,7 @@ How frequently you should run this check (e.g., once a month, once every six mon
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
-knitr::include_graphics("media/target.png")
+knitr::include_graphics("media/target.webp")
 ```
 
 :::
@@ -3568,7 +3568,7 @@ It is necessary that builds fail for any existing or newly found issues.
 ```{r}
 #| echo: false
 #| fig-cap-location: bottom
-knitr::include_graphics("media/technical_debt.png")
+knitr::include_graphics("media/technical_debt.webp")
 ```
 
 :::
@@ -3608,7 +3608,7 @@ The initial work you will put into achieving green checks will pay dividends in 
 ```{r}
 #| echo: false
 #| out-width: "100%"
-knitr::include_graphics("media/bike-fall.jpeg")
+knitr::include_graphics("media/bike-fall.webp")
 ```
 
 :::
