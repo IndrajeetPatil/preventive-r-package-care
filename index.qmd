@@ -24,7 +24,7 @@ author-meta: "Indrajeet Patil"
 date-meta: "`r Sys.time()`"
 lang: "en"
 dir: "ltr"
-image: "media/social-media-card.png"
+image: "media/social-media-card.webp"
 image-alt: "Preview image for presentation about preventive care for R packages"
 canonical-url: "https://www.indrapatil.com/preventive-r-package-care/"
 ---
