@@ -36,3 +36,19 @@
 .deck-icon-solid-link-slash {
   --deck-icon-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNTEyIj48cGF0aCBkPSJNMzguOCA1LjFDMjguNC0zLjEgMTMuMy0xLjIgNS4xIDkuMlMtMS4yIDM0LjcgOS4yIDQyLjlsNTkyIDQ2NGMxMC40IDguMiAyNS41IDYuMyAzMy43LTQuMXM2LjMtMjUuNS00LjEtMzMuN0w0ODkuMyAzNTguMmw5MC41LTkwLjVjNTYuNS01Ni41IDU2LjUtMTQ4IDAtMjA0LjVjLTUwLTUwLTEyOC44LTU2LjUtMTg2LjMtMTUuNGwtMS42IDEuMWMtMTQuNCAxMC4zLTE3LjcgMzAuMy03LjQgNDQuNnMzMC4zIDE3LjcgNDQuNiA3LjRsMS42LTEuMWMzMi4xLTIyLjkgNzYtMTkuMyAxMDMuOCA4LjZjMzEuNSAzMS41IDMxLjUgODIuNSAwIDExNGwtOTYgOTYtMzEuOS0yNUM0MzAuOSAyMzkuNiA0MjAuMSAxNzUuMSAzNzcgMTMyYy01Mi4yLTUyLjMtMTM0LjUtNTYuMi0xOTEuMy0xMS43TDM4LjggNS4xek0yMzkgMTYyYzMwLjEtMTQuOSA2Ny43LTkuOSA5Mi44IDE1LjNjMjAgMjAgMjcuNSA0OC4zIDIxLjcgNzQuNUwyMzkgMTYyek00MDYuNiA0MTYuNEwyMjAuOSAyNzBjLTIuMSAzOS44IDEyLjIgODAuMSA0Mi4yIDExMGMzOC45IDM4LjkgOTQuNCA1MSAxNDMuNiAzNi4zem0tMjkwLTIyOC41TDYwLjIgMjQ0LjNjLTU2LjUgNTYuNS01Ni41IDE0OCAwIDIwNC41YzUwIDUwIDEyOC44IDU2LjUgMTg2LjMgMTUuNGwxLjYtMS4xYzE0LjQtMTAuMyAxNy43LTMwLjMgNy40LTQ0LjZzLTMwLjMtMTcuNy00NC42LTcuNGwtMS42IDEuMWMtMzIuMSAyMi45LTc2IDE5LjMtMTAzLjgtOC42Qzc0IDM3MiA3NCAzMjEgMTA1LjUgMjg5LjVsNjEuOC02MS44LTUwLjYtMzkuOXoiLz48L3N2Zz4=");
 }
+
+/* Text links remain recognizable without relying on colour. */
+.reveal .slides a {
+  text-decoration: underline;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

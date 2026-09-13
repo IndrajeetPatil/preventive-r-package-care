@@ -10,6 +10,7 @@ format:
     touch: true
     help: true
     include-in-header: meta-tags.html
+    include-after-body: accessibility.html
     link-external-newwindow: true
     google-analytics: "G-3BQ49J7KYH"
 execute:
@@ -27,7 +28,7 @@ image-alt: "Preview image for presentation about preventive care for R packages"
 canonical-url: "https://www.indrapatil.com/preventive-r-package-care/"
 ---
 
-## Preventive Care for R Packages {style="text-align: center;"}
+## Preventive Care for R Packages {.nostretch style="text-align: center;"}
 
 ::: {style="text-align: center;"}
 
@@ -36,11 +37,13 @@ Indrajeet Patil
 :::
 
 ```{r, echo=FALSE}
+#| out-height: 390px
+#| fig-alt: "A watering can waters a cardboard box in a plant pot, illustrating preventive package care."
 knitr::include_graphics("media/preventive-care.webp")
 ```
 
 ::: {style="text-align: center; font-size: 0.7em; margin-top: 2em; color: #666;"}
-Source code for these slides can be found [on GitHub](https://github.com/IndrajeetPatil/preventive-r-package-care/).
+Source code for these slides can be found [on GitHub](https://github.com/IndrajeetPatil/preventive-r-package-care/){style="text-decoration: underline;"}.
 :::
 
 # "Software engineering ought to produce sustainability." 
@@ -60,7 +63,7 @@ then this presentation is for you! 😊
 
 Don't miss the forest for the trees.
 
-## {.smaller}
+## <span class="visually-hidden">Scope of this presentation</span> {#section .smaller}
 
 :::{.callout-important}
 
@@ -99,6 +102,8 @@ The practices outlined here are just as relevant to software development in any 
 ::: {.column width='15%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/target.webp")
 ```
 
@@ -114,6 +119,8 @@ Overarching goal
 ::: {.column width='15%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/problem-solved.webp")
 ```
 
@@ -135,6 +142,8 @@ Problem to solve
 ::: {.column width='15%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/confused.webp")
 ```
 
@@ -150,6 +159,8 @@ Bad user experience
 ::: {.column width='15%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/headache.webp")
 ```
 
@@ -171,6 +182,8 @@ Maintenance headaches
 ::: {.column width='15%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/toolbox.webp")
 ```
 
@@ -186,6 +199,8 @@ Tools
 ::: {.column width='15%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/robot.webp")
 ```
 
@@ -225,6 +240,7 @@ That is, if you were asked to make a new release soon, you can be confident that
 ```{r}
 #| echo: false
 #| out-width: "70%"
+#| fig-alt: "Cover of Accelerate: The Science of Lean Software and DevOps, by Nicole Forsgren, Jez Humble, and Gene Kim."
 knitr::include_graphics("media/accelerate.webp")
 ```
 
@@ -255,6 +271,8 @@ The biggest reason why a software project becomes unsustainable is the unchecked
 
 ```{r}
 #| echo: false
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/engineer.webp")
 ```
 
@@ -280,6 +298,8 @@ It provides the methodology to make sure that the software works as intended and
 
 ```{r}
 #| echo: false
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/checklist.webp")
 ```
 
@@ -327,6 +347,8 @@ First, you will see the checklists to tick, and then the details on how to build
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/target.webp")
 ```
 
@@ -363,6 +385,8 @@ knitr::include_graphics("media/target.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/target.webp")
 ```
 
@@ -398,6 +422,8 @@ knitr::include_graphics("media/target.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/target.webp")
 ```
 
@@ -423,7 +449,7 @@ knitr::include_graphics("media/target.webp")
 | Make sure package passes checks on all supported R versions. |
 | ...                                                          |
 
-::: aside
+::: {.small-note style="font-size: 0.6em;"}
 
 The items on this list will vary significantly from package to package (e.g., does it work in different locales, with different compilers, etc.). Extend the list for your workflow!
 
@@ -438,6 +464,8 @@ The items on this list will vary significantly from package to package (e.g., do
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/target.webp")
 ```
 
@@ -472,6 +500,8 @@ knitr::include_graphics("media/target.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/target.webp")
 ```
 
@@ -503,8 +533,7 @@ Preventive care to make sure the docs are up-to-date.
 # "Incorrect documentation is often worse than no documentation."
 \- Bertrand Meyer
 
-#
-
+# <span class="visually-hidden">Documentation quality</span> {#section-1}
 <!-- column layout -->
 
 :::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
@@ -514,6 +543,8 @@ Preventive care to make sure the docs are up-to-date.
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/target.webp")
 ```
 
@@ -544,6 +575,8 @@ knitr::include_graphics("media/target.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/research.webp")
 ```
 
@@ -570,6 +603,8 @@ Good examples are difficult to write, but any examples are better than none.
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/confused.webp")
 ```
 
@@ -594,6 +629,8 @@ Without enough expository examples, users are left to fumble their way into disc
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/problem-solved.webp")
 ```
 
@@ -628,6 +665,8 @@ There are three types of documents that constitute package documentation.
 :::
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/readme.webp")
 ```
 
@@ -646,6 +685,8 @@ knitr::include_graphics("media/readme.webp")
 :::
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/example.webp")
 ```
 
@@ -662,6 +703,8 @@ knitr::include_graphics("media/example.webp")
 **Vignettes**
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/application.webp")
 ```
 
@@ -684,6 +727,8 @@ Therefore, we want to make sure that, when combined across these sources, there 
 ::: {.column width='9%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/toolbox.webp")
 ```
 
@@ -711,6 +756,8 @@ package_coverage(type = c("examples", "vignettes"), commentDonttest = FALSE, com
 ::: {.column width='9%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/robot.webp")
 ```
 
@@ -751,6 +798,8 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.gith
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/readme.webp")
 ```
 
@@ -777,6 +826,8 @@ Although breaking changes might be infrequent, when they do occur, the code in R
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/confused.webp")
 ```
 
@@ -801,6 +852,8 @@ knitr::include_graphics("media/confused.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/problem-solved.webp")
 ```
 
@@ -827,6 +880,8 @@ knitr::include_graphics("media/problem-solved.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/toolbox.webp")
 ```
 
@@ -856,6 +911,8 @@ devtools::build_readme()
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/robot.webp")
 ```
 
@@ -892,6 +949,8 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.gith
 <br>
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/example.webp")
 ```
 
@@ -926,6 +985,8 @@ Help pages for exported functions should contain examples illustrating their usa
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/confused.webp")
 ```
 
@@ -954,6 +1015,8 @@ Since [R 4.0.0](https://stat.ethz.ch/pipermail/r-announce/2020/000653.html), `R 
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/problem-solved.webp")
 ```
 
@@ -981,6 +1044,8 @@ knitr::include_graphics("media/problem-solved.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/toolbox.webp")
 ```
 
@@ -1008,6 +1073,8 @@ devtools::run_examples(run_dontrun = TRUE, run_donttest = TRUE)
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/robot.webp")
 ```
 
@@ -1047,6 +1114,8 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.gith
 <br>
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/application.webp")
 ```
 
@@ -1079,6 +1148,8 @@ Use a **vignette** for long-form documentation that ships with the package and i
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/headache.webp")
 ```
 
@@ -1101,6 +1172,8 @@ Broken examples in pkgdown-only articles still harm users. Keeping them executab
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/problem-solved.webp")
 ```
 
@@ -1128,6 +1201,8 @@ knitr::include_graphics("media/problem-solved.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/toolbox.webp")
 ```
 
@@ -1157,6 +1232,8 @@ pkgdown::build_site()
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/robot.webp")
 ```
 
@@ -1217,6 +1294,8 @@ Package documentation often includes plenty of hyperlinks to external resources.
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/confused.webp")
 ```
 
@@ -1241,6 +1320,8 @@ Such dangling references can be frustrating for the users trying to access the r
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/problem-solved.webp")
 ```
 
@@ -1268,6 +1349,8 @@ knitr::include_graphics("media/problem-solved.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/toolbox.webp")
 ```
 
@@ -1297,6 +1380,8 @@ urlchecker::url_check()
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/robot.webp")
 ```
 
@@ -1333,6 +1418,8 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/spell-check.webp")
 ```
 
@@ -1357,6 +1444,8 @@ Spelling mistakes are inevitable and, if left unchecked, they can accumulate rap
 <br>
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/confused.webp")
 ```
 
@@ -1383,6 +1472,8 @@ Additionally, misspelling technical words (e.g. *innode* vs. [*inode*](https://e
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/problem-solved.webp")
 ```
 
@@ -1488,6 +1579,8 @@ Run `spelling::update_wordlist()` after reviewing spelling results. It adds acce
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/toolbox.webp")
 ```
 
@@ -1515,6 +1608,8 @@ spelling::spell_check_package()
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/robot.webp")
 ```
 
@@ -1547,8 +1642,7 @@ Preventive care to make sure that you don't miss out on important warnings.
 # "There is a problem with warnings. No one reads them." 
 \- Patrick Burns
 
-#
-
+# <span class="visually-hidden">Detecting warnings</span> {#section-2}
 <!-- column layout -->
 
 :::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
@@ -1558,6 +1652,8 @@ Preventive care to make sure that you don't miss out on important warnings.
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/target.webp")
 ```
 
@@ -1588,6 +1684,8 @@ knitr::include_graphics("media/target.webp")
 <br>
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/warning.webp")
 ```
 
@@ -1676,6 +1774,8 @@ ggplot(mpg, aes(hwy, class)) + geom_xsidedensity()
 <br>
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/cleaning.webp")
 ```
 
@@ -1732,6 +1832,8 @@ Warnings from dependencies can be critical and should be dealt with ASAP.
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/toolbox.webp")
 ```
 
@@ -1760,6 +1862,8 @@ testthat::test_local(stop_on_warning = TRUE)
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/robot.webp")
 ```
 
@@ -1821,8 +1925,7 @@ Preventive care to make sure that your package works across a variety of setting
 # "Each new user of a new system uncovers a new class of bugs."
 \- Brian Kernighan
 
-#
-
+# <span class="visually-hidden">Portability</span> {#section-3}
 <!-- column layout -->
 
 :::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
@@ -1832,6 +1935,8 @@ Preventive care to make sure that your package works across a variety of setting
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/target.webp")
 ```
 
@@ -1860,6 +1965,8 @@ knitr::include_graphics("media/target.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/difference.webp")
 ```
 
@@ -1882,6 +1989,8 @@ You (the developer) may be developing the package in a certain setting: with a c
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/confused.webp")
 ```
 
@@ -1912,6 +2021,8 @@ The key assumption here is that your package claims to support these settings. I
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/problem-solved.webp")
 ```
 
@@ -1938,6 +2049,8 @@ knitr::include_graphics("media/problem-solved.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/toolbox.webp")
 ```
 
@@ -1971,6 +2084,8 @@ All the options you can set to further customize this check is beyond the scope 
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/robot.webp")
 ```
 
@@ -2005,8 +2120,7 @@ Preventive care to detect code quality issues and performance regressions.
 # "Don’t comment bad code—rewrite it."
 \- Brian W. Kernighan
 
-#
-
+# <span class="visually-hidden">Code maintainability</span> {#section-4}
 <!-- column layout -->
 
 :::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
@@ -2016,6 +2130,8 @@ Preventive care to detect code quality issues and performance regressions.
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/target.webp")
 ```
 
@@ -2048,6 +2164,8 @@ knitr::include_graphics("media/target.webp")
 <br>
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/web-programming.webp")
 ```
 
@@ -2076,6 +2194,8 @@ Style guides can be highly opinionated and arbitrary. So, more important than *w
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/headache.webp")
 ```
 
@@ -2100,6 +2220,8 @@ In larger projects or teams, multiple contributors may have different formatting
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/problem-solved.webp")
 ```
 
@@ -2126,6 +2248,8 @@ knitr::include_graphics("media/problem-solved.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/toolbox.webp")
 ```
 
@@ -2153,6 +2277,8 @@ air format .
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/robot.webp")
 ```
 
@@ -2189,6 +2315,8 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/tumble-dryer.webp")
 ```
 
@@ -2248,6 +2376,8 @@ lint(text = "x <- 1")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/headache.webp")
 ```
 
@@ -2270,6 +2400,8 @@ In larger projects or teams, where multiple contributors may be working on the s
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/problem-solved.webp")
 ```
 
@@ -2296,6 +2428,8 @@ knitr::include_graphics("media/problem-solved.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/toolbox.webp")
 ```
 
@@ -2323,6 +2457,8 @@ lintr::lint_package()
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/robot.webp")
 ```
 
@@ -2391,6 +2527,8 @@ env:
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/headache.webp")
 ```
 
@@ -2415,6 +2553,8 @@ An R package contains a number of configuration files written in languages other
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/toolbox.webp")
 ```
 
@@ -2445,6 +2585,8 @@ The framework offers [hundreds of hooks](https://pre-commit.com/hooks.html) to c
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/robot.webp")
 ```
 
@@ -2469,6 +2611,8 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/snail.webp")
 ```
 
@@ -2491,6 +2635,8 @@ If your package is mature and stable enough that you have started to invest in i
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/headache.webp")
 ```
 
@@ -2515,6 +2661,8 @@ Checking for performance regressions just before or even after the release is no
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/problem-solved.webp")
 ```
 
@@ -2541,6 +2689,8 @@ knitr::include_graphics("media/problem-solved.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/toolbox.webp")
 ```
 
@@ -2553,6 +2703,7 @@ knitr::include_graphics("media/toolbox.webp")
 ```{r}
 #| echo: false
 #| eval: true
+#| fig-alt: "Touchstone benchmark report: cache applying slows from 33.8 to 38 milliseconds, while cache recording improves from 1.92 to 1.19 seconds and running without cache improves from 4.31 to 2.58 seconds."
 knitr::include_graphics("media/touchstone.webp")
 ```
 
@@ -2570,6 +2721,8 @@ knitr::include_graphics("media/touchstone.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/robot.webp")
 ```
 
@@ -2590,8 +2743,7 @@ Preventive care for optional features and upstream changes.
 # "Dependencies are invitations for other people to break your package."
 \- Joshua Ulrich
 
-#
-
+# <span class="visually-hidden">Dependency management</span> {#section-5}
 <!-- column layout -->
 
 :::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
@@ -2601,6 +2753,8 @@ Preventive care for optional features and upstream changes.
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/target.webp")
 ```
 
@@ -2629,6 +2783,8 @@ knitr::include_graphics("media/target.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/trust.webp")
 ```
 
@@ -2676,6 +2832,8 @@ If a critical dependency becomes unavailable (e.g. because its author decides to
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/damaged-package.webp")
 ```
 
@@ -2698,6 +2856,8 @@ Users do not necessarily install packages in `Suggests`. Any runtime feature tha
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/headache.webp")
 ```
 
@@ -2728,6 +2888,8 @@ Use conditional execution there only for genuine environmental constraints, such
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/problem-solved.webp")
 ```
 
@@ -2791,6 +2953,8 @@ Sources: [R Packages (2e): suggested dependencies](https://r-pkgs.org/dependenci
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/damaged-package.webp")
 ```
 
@@ -2819,6 +2983,8 @@ Packages outside CRAN, and tests skipped on CRAN, may never appear in upstream r
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/confused.webp")
 ```
 
@@ -2843,6 +3009,8 @@ You may figure out that something is broken *after* a dependency is updated, the
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/problem-solved.webp")
 ```
 
@@ -2869,6 +3037,8 @@ knitr::include_graphics("media/problem-solved.webp")
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/toolbox.webp")
 ```
 
@@ -2891,6 +3061,8 @@ In order to detect breakages earlier, you can run `R CMD check` by installing de
 ::: {.column width='10%'}
 
 ```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
 knitr::include_graphics("media/robot.webp")
 ```
 
@@ -3000,6 +3172,7 @@ It is necessary that builds fail for any existing or newly found issues.
 ```{r}
 #| echo: false
 #| fig-cap-location: bottom
+#| fig-alt: "Technical debt cartoon: a collapsing house is propped up while a manager asks why adding a window takes so long."
 knitr::include_graphics("media/technical_debt.webp")
 ```
 
@@ -3040,6 +3213,7 @@ The initial work you will put into achieving green checks will pay dividends in 
 ```{r}
 #| echo: false
 #| out-width: "100%"
+#| fig-alt: "A cyclist puts a stick into the front wheel and falls off the bicycle."
 knitr::include_graphics("media/bike-fall.webp")
 ```
 
