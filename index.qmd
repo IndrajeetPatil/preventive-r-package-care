@@ -40,7 +40,7 @@ knitr::include_graphics("media/preventive-care.webp")
 ```
 
 ::: {style="text-align: center; font-size: 0.7em; margin-top: 2em; color: #666;"}
-Source code for these slides can be found [on GitHub](https://github.com/IndrajeetPatil/preventive-r-package-care/).
+Source code for these slides can be found [on GitHub](https://github.com/IndrajeetPatil/preventive-r-package-care/){style="text-decoration: underline;"}.
 :::
 
 # "Software engineering ought to produce sustainability." 
