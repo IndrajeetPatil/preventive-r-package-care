@@ -27,7 +27,7 @@ image-alt: "Preview image for presentation about preventive care for R packages"
 canonical-url: "https://www.indrapatil.com/preventive-r-package-care/"
 ---
 
-## Preventive Care for R Packages {style="text-align: center;"}
+## Preventive Care for R Packages {.nostretch style="text-align: center;"}
 
 ::: {style="text-align: center;"}
 
@@ -36,6 +36,7 @@ Indrajeet Patil
 :::
 
 ```{r, echo=FALSE}
+#| out-height: 390px
 knitr::include_graphics("media/preventive-care.webp")
 ```
 
