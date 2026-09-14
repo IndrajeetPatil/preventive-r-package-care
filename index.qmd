@@ -1654,7 +1654,7 @@ Preventive care to make sure that you don't miss out on important warnings.
 # "There is a problem with warnings. No one reads them." 
 \- Patrick Burns
 
-# <span class="visually-hidden">Detecting warnings</span> {#section-2}
+# <span class="visually-hidden">Detecting warnings</span> {#section-2 aria-label="Detecting warnings: overview"}
 <!-- column layout -->
 
 :::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
@@ -1937,7 +1937,7 @@ Preventive care to make sure that your package works across a variety of setting
 # "Each new user of a new system uncovers a new class of bugs."
 \- Brian Kernighan
 
-# <span class="visually-hidden">Portability</span> {#section-3}
+# <span class="visually-hidden">Portability</span> {#section-3 aria-label="Portability: overview"}
 <!-- column layout -->
 
 :::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
@@ -2755,7 +2755,7 @@ Preventive care for optional features and upstream changes.
 # "Dependencies are invitations for other people to break your package."
 \- Joshua Ulrich
 
-# <span class="visually-hidden">Dependency management</span> {#section-5}
+# <span class="visually-hidden">Dependency management</span> {#section-5 aria-label="Dependency management: overview"}
 <!-- column layout -->
 
 :::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
