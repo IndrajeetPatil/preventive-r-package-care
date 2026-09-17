@@ -3504,11 +3504,6 @@ Each skill has its own directory containing a `SKILL.md` file.
 
 :::
 
-# Conclusion
-
-It is possible to build robust automation infrastructure for R package development that can improve user experience and make long-term development more reliable and sustainable.
-
-
 # References {.smaller}
 
 :::: {.columns}
@@ -3546,6 +3541,10 @@ It is possible to build robust automation infrastructure for R package developme
 :::
 
 ::::
+
+# Conclusion
+
+It is possible to build robust automation infrastructure for R package development that can improve user experience and make long-term development more reliable and sustainable.
 
 # Acknowledgements {.smaller}
 
