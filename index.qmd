@@ -3425,7 +3425,7 @@ Keep recurring requests in plain Markdown files in the repository:
 └── update-deps.md
 ```
 
-Start the coding agent from the repository root and ask it to read the file. Describe the requested change, its scope, and the expected result in the prompt.
+Describe the requested change, its scope, and the expected result in the file.
 
 :::
 
@@ -3451,7 +3451,7 @@ the changes and validation.
 
 ::: {style="background-color: #fff3e0; padding: 15px; border-radius: 25px;"}
 
-For example, tell the agent: "Read `.github/prompts/update-deps.md` and follow its instructions." This directory is a repository convention; the request is read when you ask for it.
+Tag or attach `@.github/prompts/update-deps.md` and send it. The file already contains the request.
 
 :::
 
@@ -3470,7 +3470,7 @@ Each skill has its own directory containing a `SKILL.md` file.
 
 ::: {style="background-color: #e8f5e9; padding: 15px; border-radius: 25px;"}
 
-Tip: Symlink the Claude Code paths to the shared files and folders to avoid maintaining duplicate instructions.
+<span role="img" aria-label="Tip">💡</span> Symlink the Claude Code paths to the shared files and folders to avoid maintaining duplicate instructions.
 
 :::
 
@@ -3508,6 +3508,8 @@ It is possible to build robust automation infrastructure for R package developme
 - [Repository instructions with `AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/)
 
 - [Agent Skills: structure and discovery](https://developers.openai.com/codex/skills/)
+
+- [File mentions in terminal prompts](https://learn.chatgpt.com/docs/developer-commands#interactive-shortcuts)
 
 - [Claude Code instruction files](https://code.claude.com/docs/en/memory#agentsmd)
 
