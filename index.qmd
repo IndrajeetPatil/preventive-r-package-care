@@ -3504,6 +3504,46 @@ Each skill has its own directory containing a `SKILL.md` file.
 
 :::
 
+## Machine-readable docs: `llms.txt` {.smaller}
+
+:::: {.columns}
+
+::: {.column width='52%'}
+
+Repository instructions tell an agent how to work on your package. Your website tells it how the package behaves.
+
+pkgdown publishes this for you: an [`llms.txt`](https://llmstxt.org/) index at the site root, plus a Markdown twin of every rendered page.
+
+:::
+
+::: {.column width='48%'}
+
+**What lands on your website:**
+
+```text
+llms.txt              # README + indexes
+index.md
+reference/index.md
+reference/my_function.md
+articles/get-started.md
+```
+
+:::
+
+::::
+
+. . .
+
+An agent fetches compact Markdown instead of scraping rendered HTML, and follows links from `llms.txt` to read only the pages a task needs.
+
+. . .
+
+::: {style="background-color: #e8f5e9; padding: 15px; border-radius: 25px;"}
+
+<span role="img" aria-label="Tip">💡</span> Submit your repository at [context7.com/add-library](https://context7.com/add-library) so agents querying Context7, through its MCP server or CLI, look up your current documentation instead of recalling an older release from training data.
+
+:::
+
 # References {.smaller}
 
 :::: {.columns}
@@ -3523,6 +3563,8 @@ Each skill has its own directory containing a `SKILL.md` file.
 - [Claude Code skill discovery and symlinks](https://code.claude.com/docs/en/skills#where-skills-live)
 
 - [R package build exclusions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Building-package-tarballs)
+
+- [pkgdown docs for LLMs](https://pkgdown.r-lib.org/reference/build_llm_docs.html)
 
 :::
 
