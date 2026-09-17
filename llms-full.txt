@@ -31,7 +31,6 @@ This text file gives search engines, answer engines, and agentic assistants a co
 - Explains AGENTS.md for shared repository conventions, .agents/skills/ for reusable procedures, and .github/prompts/ for explicit requests, using generic R-package examples. Closing references link to agent documentation and illustrative files in statsExpressions.
 - Keeps reusable requests as plain .md files under .github/prompts/ and shows how to reuse a complete request by tagging or attaching the file in a terminal-based coding agent.
 - Compares the shared AGENTS.md and .agents/skills/ locations with Claude Code's CLAUDE.md and .claude/skills/ locations in a table, with a brief tip to use symlinks to avoid duplicate instructions.
-- Covers verifying instruction and skill discovery, attaching saved prompt files, and keeping shared conventions and file references current.
 
 ## Topics
 

@@ -3474,24 +3474,6 @@ Each skill has its own directory containing a `SKILL.md` file.
 
 :::
 
-## Maintaining the agent setup {.smaller}
-
-- Start a new agent session from the package's root directory and ask which repository instructions it loaded.
-
-- Check that skills are discoverable and that the agent can read the prompt files you point it to.
-
-- Try a small task to check whether the instructions give the agent enough context.
-
-- Keep file references, task boundaries, and instructions current as the package changes.
-
-. . .
-
-::: {style="background-color: #e8f5e9; padding: 20px; border-radius: 25px;"}
-
-Keep shared conventions in `AGENTS.md` and refer to them from skills and prompts. This reduces the number of places you need to update when a convention changes.
-
-:::
-
 # Conclusion
 
 It is possible to build robust automation infrastructure for R package development that can improve user experience and make long-term development more reliable and sustainable.
