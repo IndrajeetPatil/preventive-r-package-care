@@ -29,6 +29,7 @@ This text file gives search engines, answer engines, and agentic assistants a co
 - Covers scheduled checks against R-devel or development versions of dependencies to detect upstream breakage early.
 - Discusses workflow frequency, ready-for-review triggers, scheduled checks, concurrency cancellation, and incremental adoption when a repository cannot become fully green in one step.
 - Explains AGENTS.md for shared repository conventions, .agents/skills/ for reusable procedures, and .github/prompts/ for explicit requests, using generic R-package examples. Closing references link to agent documentation and illustrative files in statsExpressions.
+- Explains the context cost of loading AGENTS.md in every session. A Mermaid diagram shows shared essentials and skill descriptions loaded at startup, full skill instructions loaded for relevant tasks, and supporting references read only as needed.
 - Keeps reusable requests as plain .md files under .github/prompts/ and shows how to reuse a complete request by tagging or attaching the file in a terminal-based coding agent.
 - Compares the shared AGENTS.md and .agents/skills/ locations with Claude Code's CLAUDE.md and .claude/skills/ locations in a table, with a brief tip to use symlinks to avoid duplicate instructions.
 

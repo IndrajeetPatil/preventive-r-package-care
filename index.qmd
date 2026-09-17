@@ -3317,8 +3317,8 @@ Write down which instructions apply to every task, which procedures are reusable
 
 | Add or maintain | What should it tell the agent? |
 | :--- | :--- |
-| `AGENTS.md` | How the package works, what to preserve, and how to validate changes. |
-| `.agents/skills/` | How to carry out a recurring task, including when to stop. |
+| `AGENTS.md` | Essential conventions that apply across tasks. |
+| `.agents/skills/` | Detailed procedures to load only for relevant tasks. |
 | `.github/prompts/` | What you want done when you request a particular maintenance task. |
 
 . . .
@@ -3329,15 +3329,53 @@ Start with the instructions and commands you already give a new contributor. Add
 
 :::
 
+## Keeping context focused {.smaller}
+
+:::: {.columns}
+
+::: {.column width='48%'}
+
+For agents that support it, the root `AGENTS.md` is loaded in **every session**. Everything in it takes up space in the context window, leaving less room for code, tool output, and the task itself.
+
+Keep shared essentials there. Move detailed release, documentation, and other occasional workflows into skills.
+
+A session fixing a bug need not load the entire CRAN release procedure.
+
+:::
+
+::: {.column width='52%'}
+
+```{mermaid}
+%%| echo: false
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "Lato, sans-serif", "fontSize": "22px", "lineColor": "#555555"}, "flowchart": {"rankSpacing": 40}}}%%
+flowchart TB
+    accTitle: Load instructions as they become relevant
+    accDescr: Every session loads AGENTS.md and skill names and descriptions. When a task matches a skill or the user invokes it, the agent loads that skill's SKILL.md. Supporting references are read only as needed.
+    A["Every session<br/>AGENTS.md + skill<br/>names and descriptions"]
+    B["Task matches<br/>or you invoke the skill<br/>Load selected SKILL.md"]
+    C["Only as needed<br/>Supporting references"]
+    A --> B --> C
+    classDef shared fill:#e3f2fd,stroke:#555555,color:#111111
+    classDef selected fill:#e8f5e9,stroke:#555555,color:#111111
+    classDef supporting fill:#fff3e0,stroke:#555555,color:#111111
+    class A shared
+    class B selected
+    class C supporting
+```
+
+:::
+
+::::
+
 ## Repository instructions: `AGENTS.md` {.smaller}
 
 :::: {.columns}
 
 ::: {.column width='50%'}
 
-Put an `AGENTS.md` file at the repository root. For agents that support it, these are the shared instructions for work in the package.
+Put an `AGENTS.md` file at the repository root. Keep it short: these instructions accompany every task.
 
-Include the package structure, setup commands, code conventions, and files that must be updated together.
+Include a brief package overview, essential commands, code conventions, and files that must be updated together.
 
 Explain the package-specific behavior that an agent must preserve, especially where a plausible change could break users' code.
 
@@ -3365,7 +3403,7 @@ Explain the package-specific behavior that an agent must preserve, especially wh
 
 . . .
 
-Keep instructions specific to the repository. Link to detailed procedures so that the main file stays easy to maintain.
+Keep shared rules here and detailed procedures in skills. Linking to a procedure lets the agent read it when relevant; copying it here spends context in every session.
 
 ## Reusable procedures: `.agents/skills/` {.smaller}
 
@@ -3373,7 +3411,7 @@ Keep instructions specific to the repository. Link to detailed procedures so tha
 
 ::: {.column width='50%'}
 
-A skill packages the instructions for a particular task. Give each skill its own directory and a `SKILL.md` with a name, a description of when to use it, and the procedure.
+A skill holds a task's detailed procedure in its own directory. Its `SKILL.md` contains a name, a description of when to use it, and the instructions.
 
 ```text
 .agents/skills/
@@ -3381,7 +3419,7 @@ A skill packages the instructions for a particular task. Give each skill its own
     └── SKILL.md
 ```
 
-You can add `scripts/`, `references/`, or templates when the procedure needs them.
+Add `scripts/`, `references/`, or templates to use only when needed.
 
 :::
 
@@ -3410,7 +3448,7 @@ description: Prepare or resume a CRAN
 
 . . .
 
-A coding agent discovers a skill's name and description first, then loads the instructions when the skill is selected. A clear description helps it choose the right procedure.
+Describe relevant tasks or files so the coding agent can select the skill. It reads the full instructions only when the task calls for them or you invoke the skill.
 
 ## Reusable requests: `.github/prompts/` {.smaller}
 
@@ -3489,7 +3527,7 @@ It is possible to build robust automation infrastructure for R package developme
 
 - [Repository instructions with `AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/)
 
-- [Agent Skills: structure and discovery](https://developers.openai.com/codex/skills/)
+- [Agent Skills: discovery and loading](https://agentskills.io/what-are-skills)
 
 - [File mentions in terminal prompts](https://learn.chatgpt.com/docs/developer-commands#interactive-shortcuts)
 
