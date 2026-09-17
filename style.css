@@ -2,6 +2,12 @@
   color: #9753B8;
 }
 
+/* Tables size to their content by default, which leaves a narrow table
+   stranded in a wide column. Opt into filling the available width. */
+.fill-width table {
+  width: 100%;
+}
+
 .context-loading-diagram {
   margin: 1.2em 0;
 }

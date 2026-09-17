@@ -3483,13 +3483,15 @@ Keep shared essentials in `AGENTS.md` and detailed workflows in skills. A bug-fi
 
 ## Repository instructions: `AGENTS.md` {.smaller}
 
+Put an [`AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/) file at the repository root. It accompanies **every task**, so keep it short.
+
 <!-- column layout -->
 
 :::: {.columns}
 
-::: {.column width='45%'}
+::: {.column width='68%'}
 
-Put an [`AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/) file at the repository root. It accompanies **every task**, so keep it short.
+::: {.fill-width}
 
 | Include | What it tells the agent |
 | :--- | :--- |
@@ -3501,29 +3503,26 @@ Put an [`AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/) file
 
 :::
 
-::: {.column width='55%'}
+:::
 
-**For [an R package](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/AGENTS.md), this might include:**
+::: {.column width='32%'}
+
+**For [an R package](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/AGENTS.md):**
 
 ```markdown
 # Package conventions
 
-- Preserve public arguments and the
-  structure of returned objects.
-- Edit roxygen comments in R/.
-  Regenerate man/ instead of editing it.
-- Use the documented validation commands.
-- Keep generated files in sync with
-  their sources.
+- Keep public arguments and
+  return structures stable.
+- Edit roxygen in R/, then
+  regenerate man/.
+- Run the documented checks.
+- Keep generated files in sync.
 ```
 
 :::
 
 ::::
-
-. . .
-
-Link to a detailed procedure instead of copying it here: a link is read only when relevant, a copy is loaded every session.
 
 # Make sure recurring procedures and requests are reusable.
 
