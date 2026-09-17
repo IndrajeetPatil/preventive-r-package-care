@@ -350,7 +350,7 @@ First, you will see the checklists to tick, and then the details on how to build
 
 - [Dependency management](#dependency)
 
-- [LLM-readiness](#llm-readiness)
+- [Coding-agent readiness](#llm-readiness)
 
 ## Checklist for documentation {.smaller}
 
@@ -540,7 +540,7 @@ knitr::include_graphics("media/target.webp")
 | Guard runtime features that require a suggested dependency.                  |
 | Anticipate possible breaking changes coming from dependencies and act on it. |
 
-## Checklist for LLM-readiness {.smaller}
+## Checklist for coding-agent readiness {.smaller}
 
 <!-- column layout -->
 
@@ -3293,14 +3293,14 @@ This PR can be merged when the new workflow runs successfully.
 
 ::::
 
-# LLM-readiness {#llm-readiness}
+# Coding-agent readiness {#llm-readiness}
 
 Preventive care to make sure that coding agents can find your conventions.
 
 # "The hottest new programming language is English."
 \- Andrej Karpathy
 
-# <span class="visually-hidden">LLM-readiness</span> {#section-6 aria-label="LLM-readiness: overview"}
+# <span class="visually-hidden">Coding-agent readiness</span> {#section-6 aria-label="Coding-agent readiness: overview"}
 <!-- column layout -->
 
 :::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
@@ -3437,7 +3437,7 @@ Keep instructions and reusable tasks in the repository, alongside the code they 
 | `.agents/skills/` | Detailed procedures to load only for relevant tasks. |
 | `.github/prompts/` | What you want done when you request a particular maintenance task. |
 
-Exclude agent instruction files, skill directories, and saved prompts from package tarballs via [`.Rbuildignore`](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Building-package-tarballs).
+Exclude all three from package tarballs via [`.Rbuildignore`](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Building-package-tarballs).
 
 . . .
 
