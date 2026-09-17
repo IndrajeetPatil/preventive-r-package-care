@@ -3410,7 +3410,7 @@ description: Prepare or resume a CRAN
 
 . . .
 
-Codex discovers a skill's name and description first, then loads the instructions when the skill is selected. A clear description helps it choose the right procedure.
+A coding agent discovers a skill's name and description first, then loads the instructions when the skill is selected. A clear description helps it choose the right procedure.
 
 ## Reusable requests: `.github/prompts/` {.smaller}
 
