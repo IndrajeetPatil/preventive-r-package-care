@@ -6,4 +6,4 @@ Canonical slides: https://www.indrapatil.com/preventive-r-package-care/
 Full agent summary: https://www.indrapatil.com/preventive-r-package-care/llms-full.txt
 Source: https://github.com/IndrajeetPatil/preventive-r-package-care/
 
-Topics include LLM-readiness for terminal-based coding agents: repository instructions, skills, reusable prompts, and Claude Code compatibility links. Closing references include agent documentation and an example R package.
+Topics include LLM-readiness for terminal-based coding agents: repository instructions, skills, reusable prompts, and Claude Code's expected file locations. Closing references include agent documentation and an example R package.

@@ -3457,22 +3457,20 @@ For example, tell the agent: "Read `.github/prompts/update-deps.md` and follow i
 
 ## Claude Code compatibility {.smaller}
 
-Claude Code does not automatically discover `AGENTS.md` or `.agents/skills/`. It uses `CLAUDE.md` and `.claude/skills/`. You can symlink these to the shared instructions and skills.
+For terminal agents that support the shared conventions described above:
 
-**For the release skill above, run from the repository root:**
+| Resource | Other coding agents | Claude Code |
+| :--- | :--- | :--- |
+| Repository instructions | `AGENTS.md` | `CLAUDE.md` |
+| Skill directories | `.agents/skills/` | `.claude/skills/` |
 
-```bash
-ln -s AGENTS.md CLAUDE.md
-mkdir -p .claude/skills
-ln -s ../../.agents/skills/create-release \
-  .claude/skills/create-release
-```
+Each skill has its own directory containing a `SKILL.md` file.
 
-::: {style="font-size: 20px;"}
+. . .
 
-Commit the links and repeat the skill link for each shared skill. Check existing destinations first.
+::: {style="background-color: #e8f5e9; padding: 15px; border-radius: 25px;"}
 
-On Windows, symlink creation requires Developer Mode or administrator privileges.
+Tip: Symlink the Claude Code paths to the shared files and folders to avoid maintaining duplicate instructions.
 
 :::
 

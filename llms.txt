@@ -2,7 +2,7 @@
 
 > A Quarto RevealJS presentation by Indrajeet Patil.
 
-A practical guide to R package development using automation for documentation, exception handling, portability, code quality, and dependency management. Covers executable documentation, current `R CMD check --as-cran` safeguards, deliberate use of suggested dependencies, sustainable CI workflows, and LLM-readiness for terminal-based coding agents. Explains repository instructions, agent skills, reusable prompts, and Claude Code compatibility links, with generic R-package examples and links to documentation and an example repository in the closing references.
+A practical guide to R package development using automation for documentation, exception handling, portability, code quality, and dependency management. Covers executable documentation, current `R CMD check --as-cran` safeguards, deliberate use of suggested dependencies, sustainable CI workflows, and LLM-readiness for terminal-based coding agents. Explains repository instructions, agent skills, reusable prompts, and Claude Code's expected file locations, with generic R-package examples and links to documentation and an example repository in the closing references.
 
 ## Primary URL
 
