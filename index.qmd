@@ -28,7 +28,7 @@ format:
 execute:
   echo: true
 keywords: ["software-engineering", "r-packages", "best-practices", "CRAN"]
-description-meta: "A comprehensive guide to R package development using automation to tick checklists for documentation, exception handling, portability, code quality, and dependency management. Learn how to make your R packages sustainable and release-ready."
+description-meta: "A guide to sustainable R package development through automated checks for documentation, exception handling, portability, code quality, and dependencies, plus repository instructions, skills, and prompts for coding agents."
 license: "CC0 1.0 Universal"
 pagetitle: "Preventive Care for R Packages"
 author-meta: "Indrajeet Patil"
@@ -349,6 +349,8 @@ First, you will see the checklists to tick, and then the details on how to build
 - [Code quality](#codequality)
 
 - [Dependency management](#dependency)
+
+- [LLM-readiness](#llm-readiness)
 
 ## Checklist for documentation {.smaller}
 
@@ -3254,6 +3256,341 @@ This PR can be merged when the new workflow runs successfully.
 :::
 
 ::::
+
+# LLM-readiness {#llm-readiness}
+
+Make sure coding agents can find the conventions they need to follow.
+
+## Making conventions explicit {.smaller}
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
+knitr::include_graphics("media/confused.webp")
+```
+
+:::
+
+::: {.column width='90%'}
+
+You know which files are generated, which checks to run, and which changes could break downstream packages. A coding agent needs to find this information too.
+
+:::
+
+::::
+
+. . .
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
+knitr::include_graphics("media/toolbox.webp")
+```
+
+:::
+
+::: {.column width='90%'}
+
+You can keep instructions and reusable tasks in the repository, alongside the code they describe. We will use [`statsExpressions`](https://github.com/IndrajeetPatil/statsExpressions) as an example.
+
+:::
+
+::::
+
+. . .
+
+::: {style="background-color: #e8f5e9; padding: 20px; border-radius: 25px;"}
+
+The documentation, tests, and automated checks discussed so far also give agents a way to verify their work.
+
+:::
+
+::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
+Sources: [Codex repository instructions](https://developers.openai.com/codex/guides/agents-md/) and [`statsExpressions` instructions](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/AGENTS.md).
+:::
+
+## Checklist for LLM-readiness {.smaller}
+
+| Add or maintain | What should it tell the agent? |
+| :--- | :--- |
+| `AGENTS.md` | How the package works, what to preserve, and how to validate changes. |
+| `.agents/skills/` | How to carry out a recurring task, including when to stop. |
+| `.github/prompts/` | What you want done when you request a particular maintenance task. |
+| `Makefile` and CI | Which commands install, build, document, and check the package. |
+| `.Rbuildignore` | Which development-only files to leave out of the package tarball. |
+
+. . .
+
+::: {style="background-color: #e3f2fd; padding: 20px; border-radius: 25px;"}
+
+Start with the instructions and commands you already give a new contributor. Add a skill or prompt when you find yourself repeating a task.
+
+:::
+
+::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
+Sources: [`statsExpressions` repository](https://github.com/IndrajeetPatil/statsExpressions/tree/50b387691bff7a04188fd9a8ec7beb4c4e68fda6) and [Agent Skills](https://developers.openai.com/codex/skills/).
+:::
+
+## Repository instructions: `AGENTS.md` {.smaller}
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+Put an `AGENTS.md` file at the repository root. For agents that support it, these are the shared instructions for work in the package.
+
+Include the package structure, setup commands, code conventions, and files that must be updated together.
+
+For `statsExpressions`, returned columns and plotmath expressions matter because `ggstatsplot` consumes them.
+
+:::
+
+::: {.column width='50%'}
+
+**Shortened example:**
+
+```markdown
+# Package conventions
+
+- Preserve returned columns, attributes,
+  and plotmath expressions.
+- Preserve tidy evaluation for unquoted
+  column arguments.
+- Edit roxygen comments in R/.
+  Regenerate man/*.Rd with make document.
+- Run make check for full local validation.
+- Set seeds for stochastic tests.
+```
+
+:::
+
+::::
+
+. . .
+
+Keep instructions specific to the repository. Link to detailed procedures so that the main file stays easy to maintain.
+
+::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
+Sources: [`statsExpressions` AGENTS.md](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/AGENTS.md) and [Codex instruction discovery](https://developers.openai.com/codex/guides/agents-md/).
+:::
+
+## Reusable procedures: `.agents/skills/` {.smaller}
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+A skill packages the instructions for a particular task. Give each skill its own directory and a `SKILL.md` with a name, a description of when to use it, and the procedure.
+
+```text
+.agents/skills/
+└── create-release/
+    └── SKILL.md
+```
+
+You can add `scripts/`, `references/`, or templates when the procedure needs them.
+
+:::
+
+::: {.column width='50%'}
+
+**Shortened release example:**
+
+```markdown
+---
+name: create-release
+description: Prepare or resume a CRAN
+  release. Use only for release work.
+---
+
+1. Check CRAN and any open release PR.
+2. Update version metadata and NEWS.
+3. Run the release checks.
+4. Submit from the release branch.
+5. Wait for explicit CRAN acceptance
+   before merging and publishing.
+```
+
+:::
+
+::::
+
+. . .
+
+Codex discovers a skill's name and description first, then loads the instructions when the skill is selected. A clear description helps it choose the right procedure.
+
+::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
+Sources: [`statsExpressions` release skill](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.agents/skills/create-release/SKILL.md) and [skill structure and discovery](https://developers.openai.com/codex/skills/).
+:::
+
+## Reusable requests: `.github/prompts/` {.smaller}
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+Keep recurring requests in Markdown files. `statsExpressions` includes:
+
+```text
+.github/prompts/
+├── update-deps.md
+├── simplify-codebase.md
+└── address-review.md
+```
+
+To use one, explicitly ask the agent to read and follow the file.
+
+:::
+
+::: {.column width='50%'}
+
+**What does `update-deps.md` ask for?**
+
+- Run `make update_deps` and review upstream API changes.
+- Preserve statistical results and downstream behavior.
+- Run focused tests, then the full local checks.
+- Open a PR describing the changes and validation.
+
+:::
+
+::::
+
+. . .
+
+::: {style="background-color: #fff3e0; padding: 15px; border-radius: 25px;"}
+
+These are plain `.md` files. For VS Code's reusable prompt menu, use `.github/prompts/<name>.prompt.md`. Putting text in a directory does not make every agent load it automatically.
+
+:::
+
+::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
+Sources: [`statsExpressions` prompts](https://github.com/IndrajeetPatil/statsExpressions/tree/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.github/prompts) and [VS Code prompt files](https://code.visualstudio.com/docs/agent-customization/prompt-files).
+:::
+
+## Checking agent changes {.smaller}
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+Document commands that work from the repository root. In `statsExpressions`:
+
+```bash
+# Install declared dependencies
+make install_deps
+
+# Regenerate documentation
+make document
+
+# Check code and package behavior
+make lint
+make hooks
+make check
+```
+
+:::
+
+::: {.column width='50%'}
+
+**For `statsExpressions`, verify that:**
+
+- Returned columns and attributes remain compatible.
+- Statistical results and expression snapshots still match.
+- Generated documentation reflects the source.
+
+Report checks run, skipped, or failed. Keep required CI checks before merging.
+
+:::
+
+::::
+
+. . .
+
+::: {style="background-color: #fff3e0; padding: 15px; border-radius: 25px;"}
+
+`make update_deps` changes dependency constraints and metadata. Use `make install_deps` when you only want to install the declared dependencies.
+
+:::
+
+::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
+Sources: [`statsExpressions` Makefile](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/Makefile) and [developer workflow and testing](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/AGENTS.md).
+:::
+
+## Claude Code compatibility {.smaller}
+
+Claude Code does not automatically discover `AGENTS.md` or `.agents/skills/`. It uses `CLAUDE.md` and `.claude/skills/`. You can symlink these to the shared instructions and skills.
+
+**For the release skill above, run from the repository root:**
+
+```bash
+ln -s AGENTS.md CLAUDE.md
+mkdir -p .claude/skills
+ln -s ../../.agents/skills/create-release \
+  .claude/skills/create-release
+```
+
+::: {style="font-size: 20px;"}
+
+These links extend the inspected `statsExpressions` setup. Commit them and repeat the skill link for each shared skill. Check existing destinations first.
+
+On Windows, symlink creation requires Developer Mode or administrator privileges.
+
+:::
+
+::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
+Sources: [Claude Code instruction files](https://code.claude.com/docs/en/memory#agentsmd), [skill discovery and symlinks](https://code.claude.com/docs/en/skills#where-skills-live), and [`statsExpressions` tree](https://github.com/IndrajeetPatil/statsExpressions/tree/50b387691bff7a04188fd9a8ec7beb4c4e68fda6).
+:::
+
+## Maintaining the agent setup {.smaller}
+
+:::: {.columns}
+
+::: {.column width='55%'}
+
+- Start a new agent session and ask which repository instructions it loaded.
+- Check that the release skill is discoverable and that prompt files can be read.
+- Try a small maintenance task and inspect the diff and validation results.
+- Update instructions when commands or conventions change.
+
+:::
+
+::: {.column width='45%'}
+
+Keep development-only agent files out of the R package tarball. For the setup shown here, add these patterns to `.Rbuildignore`:
+
+```text
+^AGENTS\.md$
+^CLAUDE\.md$
+^\.agents$
+^\.claude$
+^\.github$
+```
+
+`statsExpressions` already excludes its shared agent files. Add the `CLAUDE.md` exclusion when adopting the links.
+
+:::
+
+::::
+
+. . .
+
+::: {style="background-color: #e8f5e9; padding: 15px; border-radius: 25px;"}
+
+Keep reviewing agent changes with the same care as any contribution. Written instructions complement executable checks and maintainer review.
+
+:::
+
+::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
+Sources: [instruction verification](https://developers.openai.com/codex/guides/agents-md/), [`statsExpressions` build exclusions](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.Rbuildignore), and [release checks](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.agents/skills/create-release/SKILL.md).
+:::
 
 # Conclusion
 

@@ -7,4 +7,4 @@ Root llms.txt: https://www.indrapatil.com/preventive-r-package-care/llms.txt
 Root llms-full.txt: https://www.indrapatil.com/preventive-r-package-care/llms-full.txt
 Source: https://github.com/IndrajeetPatil/preventive-r-package-care/
 
-Summary: A practical guide to R package development using current automation for executable documentation, warnings, portability, code quality, dependency management, and sustainable CI workflows.
+Summary: A practical guide to R package development using current automation for executable documentation, warnings, portability, code quality, dependency management, sustainable CI workflows, and LLM-readiness. Uses statsExpressions to illustrate AGENTS.md, agent skills, reusable prompts, validation commands, build exclusions, and Claude Code compatibility links.
