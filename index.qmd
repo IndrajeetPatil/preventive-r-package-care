@@ -3321,6 +3321,8 @@ Write down which instructions apply to every task, which procedures are reusable
 | `.agents/skills/` | Detailed procedures to load only for relevant tasks. |
 | `.github/prompts/` | What you want done when you request a particular maintenance task. |
 
+Exclude agent instruction files, skill directories, and saved prompts from package tarballs via `.Rbuildignore`.
+
 . . .
 
 ::: {style="background-color: #e3f2fd; padding: 20px; border-radius: 25px;"}
@@ -3523,7 +3525,7 @@ It is possible to build robust automation infrastructure for R package developme
 
 ::: {.column width='55%'}
 
-**Agent documentation**
+**Documentation**
 
 - [Repository instructions with `AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/)
 
@@ -3534,6 +3536,8 @@ It is possible to build robust automation infrastructure for R package developme
 - [Claude Code instruction files](https://code.claude.com/docs/en/memory#agentsmd)
 
 - [Claude Code skill discovery and symlinks](https://code.claude.com/docs/en/skills#where-skills-live)
+
+- [R package build exclusions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Building-package-tarballs)
 
 :::
 
