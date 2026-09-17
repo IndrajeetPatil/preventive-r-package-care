@@ -3333,7 +3333,7 @@ Start with the instructions and commands you already give a new contributor. Add
 
 ## Keeping context focused {.smaller}
 
-For agents that support it, the root `AGENTS.md` is loaded in **every session**. Keep it short to leave room in the context window for code, tool output, and the task itself.
+The root `AGENTS.md` is loaded in **every session**. Keep it short to leave room in the context window for code, tool output, and the task itself.
 
 ::: {.context-loading-diagram}
 
@@ -3487,7 +3487,7 @@ Tag or attach `@.github/prompts/update-deps.md` and send it. The file already co
 
 ## Claude Code compatibility {.smaller}
 
-For terminal agents that support the shared conventions described above:
+Claude Code uses different locations for repository instructions and skills:
 
 | Resource | Other coding agents | Claude Code |
 | :--- | :--- | :--- |
