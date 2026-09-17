@@ -28,7 +28,7 @@ format:
 execute:
   echo: true
 keywords: ["software-engineering", "r-packages", "best-practices", "CRAN"]
-description-meta: "A guide to sustainable R package development through automated checks for documentation, exception handling, portability, code quality, and dependencies, plus repository instructions, skills, and prompts for coding agents."
+description-meta: "A guide to sustainable R package development through automated checks for documentation, exception handling, portability, code quality, and dependencies, plus repository instructions, skills, and prompts for terminal-based coding agents."
 license: "CC0 1.0 Universal"
 pagetitle: "Preventive Care for R Packages"
 author-meta: "Indrajeet Patil"
@@ -3259,7 +3259,7 @@ This PR can be merged when the new workflow runs successfully.
 
 # LLM-readiness {#llm-readiness}
 
-Make sure coding agents can find the conventions they need to follow.
+Make sure terminal-based coding agents can find the conventions they need to follow.
 
 ## Making conventions explicit {.smaller}
 
@@ -3418,14 +3418,14 @@ A coding agent discovers a skill's name and description first, then loads the in
 
 ::: {.column width='50%'}
 
-Keep recurring requests in Markdown files. For VS Code's reusable prompt menu, use the `.prompt.md` extension:
+Keep recurring requests in plain Markdown files in the repository:
 
 ```text
 .github/prompts/
-└── update-deps.prompt.md
+└── update-deps.md
 ```
 
-You choose when to run the prompt. Describe the requested change, its scope, and the expected result.
+Start the coding agent from the repository root and ask it to read the file. Describe the requested change, its scope, and the expected result in the prompt.
 
 :::
 
@@ -3434,9 +3434,7 @@ You choose when to run the prompt. Describe the requested change, its scope, and
 **A dependency-update request:**
 
 ```markdown
----
-description: Update package dependencies
----
+# Update package dependencies
 
 Follow AGENTS.md. Update dependencies
 and fix any resulting incompatibilities.
@@ -3453,7 +3451,7 @@ the changes and validation.
 
 ::: {style="background-color: #fff3e0; padding: 15px; border-radius: 25px;"}
 
-For other agents, you can keep a plain `.md` request and explicitly ask the agent to read it. Check which file names and invocation methods your tool supports.
+For example, tell the agent: "Read `.github/prompts/update-deps.md` and follow its instructions." This directory is a repository convention; the request is read when you ask for it.
 
 :::
 
@@ -3480,9 +3478,9 @@ On Windows, symlink creation requires Developer Mode or administrator privileges
 
 ## Maintaining the agent setup {.smaller}
 
-- Start a new agent session and ask which repository instructions it loaded.
+- Start a new agent session from the package's root directory and ask which repository instructions it loaded.
 
-- Check that skills are discoverable and that prompt files can be invoked or read explicitly.
+- Check that skills are discoverable and that the agent can read the prompt files you point it to.
 
 - Try a small task to check whether the instructions give the agent enough context.
 
@@ -3512,8 +3510,6 @@ It is possible to build robust automation infrastructure for R package developme
 - [Repository instructions with `AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/)
 
 - [Agent Skills: structure and discovery](https://developers.openai.com/codex/skills/)
-
-- [VS Code reusable prompt files](https://code.visualstudio.com/docs/agent-customization/prompt-files)
 
 - [Claude Code instruction files](https://code.claude.com/docs/en/memory#agentsmd)
 

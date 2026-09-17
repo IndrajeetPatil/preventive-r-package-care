@@ -10,7 +10,7 @@ Language: en
 
 ## Summary
 
-A practical guide to R package development using automation for documentation, exception handling, portability, code quality, and dependency management. Covers executable documentation, current `R CMD check --as-cran` safeguards, deliberate use of suggested dependencies, sustainable CI workflows, and LLM-readiness. Explains repository instructions, agent skills, reusable prompts, and Claude Code compatibility links, with generic R-package examples and links to documentation and an example repository in the closing references.
+A practical guide to R package development using automation for documentation, exception handling, portability, code quality, and dependency management. Covers executable documentation, current `R CMD check --as-cran` safeguards, deliberate use of suggested dependencies, sustainable CI workflows, and LLM-readiness for terminal-based coding agents. Explains repository instructions, agent skills, reusable prompts, and Claude Code compatibility links, with generic R-package examples and links to documentation and an example repository in the closing references.
 
 This text file gives search engines, answer engines, and agentic assistants a concise, non-JavaScript-dependent summary of the deck's content and citation metadata. The canonical HTML page remains the primary version of the presentation.
 
@@ -29,9 +29,9 @@ This text file gives search engines, answer engines, and agentic assistants a co
 - Covers scheduled checks against R-devel or development versions of dependencies to detect upstream breakage early.
 - Discusses workflow frequency, ready-for-review triggers, scheduled checks, concurrency cancellation, and incremental adoption when a repository cannot become fully green in one step.
 - Explains AGENTS.md for shared repository conventions, .agents/skills/ for reusable procedures, and .github/prompts/ for explicit requests, using generic R-package examples. Closing references link to agent documentation and illustrative files in statsExpressions.
-- Distinguishes plain .md requests, which are read explicitly, from VS Code's .prompt.md discovery format.
+- Keeps reusable requests as plain .md files under .github/prompts/ and shows how to ask a terminal-based coding agent to read and follow one from the repository root.
 - Shows how to reuse instructions and skills in Claude Code with CLAUDE.md and per-skill .claude/skills/ symlinks.
-- Covers verifying instruction and skill discovery, invoking prompts, and keeping shared conventions and file references current.
+- Covers verifying instruction and skill discovery, explicitly requesting prompt files, and keeping shared conventions and file references current.
 
 ## Topics
 
@@ -44,7 +44,7 @@ This text file gives search engines, answer engines, and agentic assistants a co
 - spelling
 - r programming
 - LLM-readiness
-- coding agents
+- terminal-based coding agents
 - AGENTS.md
 - Agent Skills
 - presentation
