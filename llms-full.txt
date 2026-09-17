@@ -17,7 +17,7 @@ This text file gives search engines, answer engines, and agentic assistants a co
 ## Content Highlights
 
 - Frames preventive care as a way to keep R packages sustainable, release-ready, and pleasant for users by automating quality checks.
-- Provides checklists for documentation, exception handling, portability, code quality, and dependency management.
+- Provides checklists for documentation, exception handling, portability, code quality, dependency management, and LLM-readiness.
 - Covers documentation checks for README examples, help-page examples, long-form documentation, links, spelling, and generated HTML.
 - Explains that `R CMD check --as-cran` runs `\donttest{}` examples and can validate the generated HTML5 help manual when a recent HTML Tidy is available, avoiding a separate multi-slide tutorial for core check behavior.
 - Distinguishes package vignettes from pkgdown-only articles: vignettes ship with the package and are checked by `R CMD check`, while articles are built for the pkgdown site and need separate website-build validation.
@@ -28,7 +28,7 @@ This text file gives search engines, answer engines, and agentic assistants a co
 - Distinguishes runtime use of suggested dependencies, which needs a clear guard or fallback, from examples, vignettes, and tests, where declared `Suggests` are normally installed and conditional execution should be exceptional.
 - Covers scheduled checks against R-devel or development versions of dependencies to detect upstream breakage early.
 - Discusses workflow frequency, ready-for-review triggers, scheduled checks, concurrency cancellation, and incremental adoption when a repository cannot become fully green in one step.
-- Explains AGENTS.md for shared repository conventions, .agents/skills/ for reusable procedures, and .github/prompts/ for explicit requests, using generic R-package examples. Agent documentation and illustrative files from statsExpressions are linked inline on the slide that introduces each file, rather than collected on a closing references slide.
+- Explains AGENTS.md for shared repository conventions, .agents/skills/ for reusable procedures, and .github/prompts/ for explicit requests, using generic R-package examples. Agent documentation and illustrative files from statsExpressions are hyperlinked from the words that describe them on the slide introducing each file, rather than announced as standalone pointers or collected on a closing references slide.
 - Explains the context cost of loading AGENTS.md in every session. A Mermaid diagram shows shared essentials and skill descriptions loaded at startup, full skill instructions loaded for relevant tasks, and supporting references read only as needed.
 - Keeps reusable requests as plain .md files under .github/prompts/ and shows how to reuse a complete request by tagging or attaching the file in a terminal-based coding agent.
 - Compares the shared AGENTS.md and .agents/skills/ locations with Claude Code's CLAUDE.md and .claude/skills/ locations in a table, with a brief tip to use symlinks to avoid duplicate instructions.

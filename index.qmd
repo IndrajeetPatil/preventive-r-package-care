@@ -540,6 +540,42 @@ knitr::include_graphics("media/target.webp")
 | Guard runtime features that require a suggested dependency.                  |
 | Anticipate possible breaking changes coming from dependencies and act on it. |
 
+## Checklist for LLM-readiness {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
+knitr::include_graphics("media/target.webp")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To get dependable help from coding agents, make sure your conventions are written down where they can be found.**
+
+:::
+
+:::
+
+::::
+
+<br>
+
+| Item                                                      |
+| :-------------------------------------------------------- |
+| Make sure shared conventions are written down for agents. |
+| Make sure recurring procedures and requests are reusable. |
+| Make sure your documentation is machine-readable.         |
+
 # Documentation {#documentation}
 
 Preventive care to make sure the docs are up-to-date.
@@ -3259,9 +3295,45 @@ This PR can be merged when the new workflow runs successfully.
 
 # LLM-readiness {#llm-readiness}
 
-Make sure terminal-based coding agents can find the conventions they need to follow.
+Preventive care to make sure that coding agents can find your conventions.
+
+# "The hottest new programming language is English."
+\- Andrej Karpathy
+
+# <span class="visually-hidden">LLM-readiness</span> {#section-6 aria-label="LLM-readiness: overview"}
+<!-- column layout -->
+
+:::::{style="background-color: #A9F5A9; padding: 20px; border-radius: 25px;"}
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
+knitr::include_graphics("media/target.webp")
+```
+
+:::
+
+::: {.column width='90%'}
+
+:::{style="color: blue; text-align: center;"}
+
+**To get dependable help from coding agents, make sure your conventions are written down where they can be found.**
+
+:::
+
+:::
+
+::::
+
+:::::
 
 ## Making conventions explicit {.smaller}
+
+<!-- column layout -->
 
 :::: {.columns}
 
@@ -3285,6 +3357,60 @@ You know which files are generated, which checks to run, and which changes could
 
 . . .
 
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
+knitr::include_graphics("media/headache.webp")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Left to guess, an agent edits generated files, skips the checks you rely on, or changes behavior that users depend on. And then it reports the task as done.
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
+knitr::include_graphics("media/problem-solved.webp")
+```
+
+:::
+
+::: {.column width='90%'}
+
+::: {style="color: red;"}
+
+**How to make sure that a coding agent follows the conventions of your package?**
+
+:::
+
+:::
+
+::::
+
+## Where instructions live {.smaller}
+
+<!-- column layout -->
+
 :::: {.columns}
 
 ::: {.column width='10%'}
@@ -3299,21 +3425,11 @@ knitr::include_graphics("media/toolbox.webp")
 
 ::: {.column width='90%'}
 
-You can keep instructions and reusable tasks in the repository, alongside the code they describe. This gives agents a place to find your conventions each time they start a task.
+Keep instructions and reusable tasks in the repository, alongside the code they describe. This gives agents a place to find your conventions each time they start a task.
 
 :::
 
 ::::
-
-. . .
-
-::: {style="background-color: #e8f5e9; padding: 20px; border-radius: 25px;"}
-
-Write down which instructions apply to every task, which procedures are reusable, and which requests you want to run explicitly.
-
-:::
-
-## Checklist for LLM-readiness {.smaller}
 
 | Add or maintain | What should it tell the agent? |
 | :--- | :--- |
@@ -3325,9 +3441,11 @@ Exclude agent instruction files, skill directories, and saved prompts from packa
 
 . . .
 
-::: {style="background-color: #e3f2fd; padding: 20px; border-radius: 25px;"}
+:::{.callout-tip}
 
-Start with the instructions and commands you already give a new contributor. Add a skill or prompt when you find yourself repeating a task.
+## Where to start
+
+Write down the instructions and commands you already give a new contributor. Add a skill or prompt when you find yourself repeating a task.
 
 :::
 
@@ -3353,13 +3471,19 @@ flowchart LR
 
 :::
 
-::: {style="background-color: #e8f5e9; padding: 20px; border-radius: 25px;"}
+:::{.callout-note}
+
+## Not everything belongs in every session
 
 Keep shared essentials in `AGENTS.md` and detailed workflows in skills. A bug-fix session need not load the full CRAN release procedure.
 
 :::
 
+# Make sure shared conventions are written down for agents.
+
 ## Repository instructions: `AGENTS.md` {.smaller}
+
+<!-- column layout -->
 
 :::: {.columns}
 
@@ -3375,7 +3499,7 @@ Explain the package-specific behavior that an agent must preserve, especially wh
 
 ::: {.column width='50%'}
 
-**For an R package, this might include:**
+**For [an R package](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/AGENTS.md), this might include:**
 
 ```markdown
 # Package conventions
@@ -3397,9 +3521,11 @@ Explain the package-specific behavior that an agent must preserve, especially wh
 
 Keep shared rules here and detailed procedures in skills. Linking to a procedure lets the agent read it when relevant; copying it here spends context in every session.
 
-Here is a [complete example](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/AGENTS.md) from an R package.
+# Make sure recurring procedures and requests are reusable.
 
 ## Reusable procedures: `.agents/skills/` {.smaller}
+
+<!-- column layout -->
 
 :::: {.columns}
 
@@ -3419,7 +3545,7 @@ Add `scripts/`, `references/`, or templates to use only when needed.
 
 ::: {.column width='50%'}
 
-**A skill for preparing a CRAN release:**
+**A skill for [preparing a CRAN release](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.agents/skills/create-release/SKILL.md):**
 
 ```markdown
 ---
@@ -3444,15 +3570,15 @@ description: Prepare or resume a CRAN
 
 Describe relevant tasks or files so the coding agent can select the skill. It reads the full instructions only when the task calls for them or you invoke the skill.
 
-Here is a [complete release skill](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.agents/skills/create-release/SKILL.md) from an R package.
-
 ## Reusable requests: `.github/prompts/` {.smaller}
+
+<!-- column layout -->
 
 :::: {.columns}
 
 ::: {.column width='50%'}
 
-Keep recurring requests in plain Markdown files in the repository:
+Keep [recurring requests](https://github.com/IndrajeetPatil/statsExpressions/tree/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.github/prompts) in plain Markdown files in the repository:
 
 ```text
 .github/prompts/
@@ -3460,8 +3586,6 @@ Keep recurring requests in plain Markdown files in the repository:
 ```
 
 Describe the requested change, its scope, and the expected result in the file.
-
-Here are [more maintenance prompts](https://github.com/IndrajeetPatil/statsExpressions/tree/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.github/prompts) from an R package.
 
 :::
 
@@ -3485,7 +3609,9 @@ the changes and validation.
 
 . . .
 
-::: {style="background-color: #fff3e0; padding: 15px; border-radius: 25px;"}
+:::{.callout-tip}
+
+## Running a saved request
 
 [Tag or attach](https://learn.chatgpt.com/docs/developer-commands#interactive-shortcuts) `@.github/prompts/update-deps.md` and send it. The file already contains the request.
 
@@ -3504,13 +3630,19 @@ Each skill has its own directory containing a `SKILL.md` file.
 
 . . .
 
-::: {style="background-color: #e8f5e9; padding: 15px; border-radius: 25px;"}
+:::{.callout-tip}
 
-<span role="img" aria-label="Tip">💡</span> Symlink the Claude Code paths to the shared files and folders to avoid maintaining duplicate instructions.
+## Avoiding duplicate instructions
+
+Symlink the Claude Code paths to the shared files and folders, so there is only one copy to maintain.
 
 :::
 
+# Make sure your documentation is machine-readable.
+
 ## Machine-readable docs: `llms.txt` {.smaller}
+
+<!-- column layout -->
 
 :::: {.columns}
 
@@ -3544,9 +3676,11 @@ An agent fetches compact Markdown instead of scraping rendered HTML, and follows
 
 . . .
 
-::: {style="background-color: #e8f5e9; padding: 15px; border-radius: 25px;"}
+:::{.callout-tip}
 
-<span role="img" aria-label="Tip">💡</span> Submit your repository at [context7.com/add-library](https://context7.com/add-library) so agents querying Context7, through its MCP server or CLI, look up your current documentation instead of recalling an older release from training data.
+## Beyond your own website
+
+Submit your repository at [context7.com/add-library](https://context7.com/add-library) so agents querying Context7, through its MCP server or CLI, look up your current documentation instead of recalling an older release from training data.
 
 :::
 
