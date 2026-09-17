@@ -3333,41 +3333,31 @@ Start with the instructions and commands you already give a new contributor. Add
 
 ## Keeping context focused {.smaller}
 
-:::: {.columns}
+For agents that support it, the root `AGENTS.md` is loaded in **every session**. Keep it short to leave room in the context window for code, tool output, and the task itself.
 
-::: {.column width='48%'}
-
-For agents that support it, the root `AGENTS.md` is loaded in **every session**. Everything in it takes up space in the context window, leaving less room for code, tool output, and the task itself.
-
-Keep shared essentials there. Move detailed release, documentation, and other occasional workflows into skills.
-
-A session fixing a bug need not load the entire CRAN release procedure.
-
-:::
-
-::: {.column width='52%'}
+::: {.context-loading-diagram}
 
 ```{mermaid}
 %%| echo: false
-%%{init: {"theme": "base", "themeVariables": {"fontFamily": "Lato, sans-serif", "fontSize": "22px", "lineColor": "#555555"}, "flowchart": {"rankSpacing": 40}}}%%
-flowchart TB
+%%{init: {"theme": "base", "htmlLabels": true, "themeVariables": {"fontFamily": "Lato, sans-serif", "fontSize": "24px", "lineColor": "#9753B8"}, "flowchart": {"rankSpacing": 65, "padding": 16, "curve": "linear"}}}%%
+flowchart LR
     accTitle: Load instructions as they become relevant
     accDescr: Every session loads AGENTS.md and skill names and descriptions. When a task matches a skill or the user invokes it, the agent loads that skill's SKILL.md. Supporting references are read only as needed.
-    A["Every session<br/>AGENTS.md + skill<br/>names and descriptions"]
-    B["Task matches<br/>or you invoke the skill<br/>Load selected SKILL.md"]
-    C["Only as needed<br/>Supporting references"]
-    A --> B --> C
-    classDef shared fill:#e3f2fd,stroke:#555555,color:#111111
-    classDef selected fill:#e8f5e9,stroke:#555555,color:#111111
-    classDef supporting fill:#fff3e0,stroke:#555555,color:#111111
-    class A shared
-    class B selected
-    class C supporting
+    A["<span class='context-stage'>Every session</span><br/><span class='context-file'>AGENTS.md</span><br/><span class='context-detail'>+ skill names<br/>and descriptions</span>"]
+    B["<span class='context-stage'>When relevant</span><br/><span class='context-file'>SKILL.md</span><br/><span class='context-detail'>Task matches<br/>or you invoke the skill</span>"]
+    C["<span class='context-stage'>As needed</span><br/><span class='context-file'>References</span><br/><span class='context-detail'>Only what the<br/>procedure needs</span>"]
+    A -.-> B -.-> C
+    classDef stage fill:transparent,stroke:none,color:#111111
+    class A,B,C stage
 ```
 
 :::
 
-::::
+::: {style="background-color: #e8f5e9; padding: 20px; border-radius: 25px;"}
+
+Keep shared essentials in `AGENTS.md` and detailed workflows in skills. A bug-fix session need not load the full CRAN release procedure.
+
+:::
 
 ## Repository instructions: `AGENTS.md` {.smaller}
 

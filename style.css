@@ -2,6 +2,42 @@
   color: #9753B8;
 }
 
+.context-loading-diagram {
+  margin: 1.2em 0;
+}
+
+.context-loading-diagram .cell-output-display {
+  text-align: center;
+}
+
+.context-loading-diagram .context-stage {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.context-loading-diagram .context-file {
+  font-size: 29px;
+  font-weight: 700;
+  line-height: 1.8;
+}
+
+.context-loading-diagram .context-detail {
+  font-size: 21px;
+  line-height: 1.4;
+}
+
+/* Override Mermaid's grey connectors with the deck's link accent. */
+.context-loading-diagram .flowchart-link {
+  stroke: #9753B8 !important;
+  stroke-width: 1.5px !important;
+}
+
+.context-loading-diagram .arrowMarkerPath {
+  fill: #9753B8 !important;
+}
+
 /* Lightweight SVG masks using Font Awesome Free 6.7.2 paths. Icons: CC BY 4.0; https://fontawesome.com/license/free */
 
 .deck-icon {
