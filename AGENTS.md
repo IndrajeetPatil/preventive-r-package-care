@@ -57,7 +57,9 @@ Check which set is present to know which language context applies.
 - **Inline styling.** Visual design uses inline `style` attributes on fenced divs with a small palette of background colours (e.g. `#e3f2fd`, `#e8f5e9`, `#fff3e0`, `#ffebee`, `#FFFBC1`, `#f8f9fa`). The CSS maps these to the custom theme. Do not change these colour values without updating `style.css`.
 - **Image classes.** Images may use semantic classes (e.g. `.hero`, `.artifact`, `.illustration`) that control border, shadow, and rounding in `style.css`. Check the existing CSS before adding new image classes.
   Keep `.nostretch` and the explicit output height on the title image: auto-stretch collapses it in native scroll view, while an unconstrained natural size overflows the title slide.
-- **Sources.** Every factual claim has a source citation at the bottom of its slide in a small-font centered div. Keep this pattern.
+- **Sources.** Cite by hyperlinking the words that make the claim — the tool name, the file name, the concept — so the reader sees where a statement comes from while reading it. This is the default and covers nearly every slide.
+  A small-font centered div listing sources at the bottom of a slide is the rare exception, used only where a slide rests on several external sources at once. One slide uses it; do not spread the pattern.
+  There is **no references slide, and the deck must not gain one.** Links belong on the slide whose claim they support, including example files from other repositories, which go on the slide introducing the file they illustrate. A previous references slide was deliberately removed and its links distributed inline (PR #47); do not reintroduce it, and do not treat its absence as an omission to fix.
 - **Accessibility.** Images must have `fig-alt` text. Raw HTML widgets use `role="img"` and `aria-label`. Keep these.
   Run `just axe --no-browser --port 8860` to preview an accessibility report. Fix actionable findings and test all slides, fragments, native scroll view, tabs, and keyboard controls; a clean opening slide is insufficient. Keep `axe` in `_quarto-a11y.yml` so normal builds omit the audit payload and report; CLI metadata cannot reliably override the deck's `format:` block. Links in muted text need a non-colour cue such as an underline.
   For decorative R images, pair `fig-alt: ""` with `out-extra: 'role="presentation"'`; the current knitr output omits empty alt attributes.
@@ -123,6 +125,7 @@ When modifying `index.qmd`:
 
 - Do not add new top-level files without a clear reason; the project intentionally has a flat structure.
 - Do not split `index.qmd` into multiple files.
+- Do not add a references or bibliography slide, and do not move inline links onto one. Cite by hyperlinking the words that make the claim.
 - Do not change the Quarto theme from `simple` or the output format from `revealjs`.
 - Do not enable code execution (`eval: true`) unless the presentation genuinely needs computed output.
 - Do not commit `_site/`, `_extensions/`, or `.quarto/` (all gitignored). For Python decks, `.venv/` is also gitignored; for R decks, `renv/library/` and `renv/staging/` are gitignored.
