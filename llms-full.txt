@@ -10,7 +10,7 @@ Language: en
 
 ## Summary
 
-A practical guide to R package development using automation for documentation, exception handling, portability, code quality, and dependency management. Covers executable documentation, current `R CMD check --as-cran` safeguards, deliberate use of suggested dependencies, sustainable CI workflows, and LLM-readiness. Explains repository instructions, agent skills, reusable prompts, and Claude Code compatibility links, followed by a statsExpressions example.
+A practical guide to R package development using automation for documentation, exception handling, portability, code quality, and dependency management. Covers executable documentation, current `R CMD check --as-cran` safeguards, deliberate use of suggested dependencies, sustainable CI workflows, and LLM-readiness. Explains repository instructions, agent skills, reusable prompts, and Claude Code compatibility links, with generic R-package examples and links to documentation and an example repository in the closing references.
 
 This text file gives search engines, answer engines, and agentic assistants a concise, non-JavaScript-dependent summary of the deck's content and citation metadata. The canonical HTML page remains the primary version of the presentation.
 
@@ -28,9 +28,9 @@ This text file gives search engines, answer engines, and agentic assistants a co
 - Distinguishes runtime use of suggested dependencies, which needs a clear guard or fallback, from examples, vignettes, and tests, where declared `Suggests` are normally installed and conditional execution should be exceptional.
 - Covers scheduled checks against R-devel or development versions of dependencies to detect upstream breakage early.
 - Discusses workflow frequency, ready-for-review triggers, scheduled checks, concurrency cancellation, and incremental adoption when a repository cannot become fully green in one step.
-- Explains AGENTS.md for shared repository conventions, .agents/skills/ for reusable procedures, and .github/prompts/ for explicit requests, then concludes the section with a statsExpressions repository example.
-- Distinguishes the example repository's plain .md prompt files from VS Code's .prompt.md discovery format.
-- Shows how to reuse instructions and skills in Claude Code with CLAUDE.md and per-skill .claude/skills/ symlinks. The final statsExpressions example notes that the inspected repository does not have these links.
+- Explains AGENTS.md for shared repository conventions, .agents/skills/ for reusable procedures, and .github/prompts/ for explicit requests, using generic R-package examples. Closing references link to agent documentation and illustrative files in statsExpressions.
+- Distinguishes plain .md requests, which are read explicitly, from VS Code's .prompt.md discovery format.
+- Shows how to reuse instructions and skills in Claude Code with CLAUDE.md and per-skill .claude/skills/ symlinks.
 - Covers verifying instruction and skill discovery, invoking prompts, and keeping shared conventions and file references current.
 
 ## Topics

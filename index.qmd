@@ -3313,10 +3313,6 @@ Write down which instructions apply to every task, which procedures are reusable
 
 :::
 
-::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
-Sources: [Codex repository instructions](https://developers.openai.com/codex/guides/agents-md/), [Agent Skills](https://developers.openai.com/codex/skills/), and [VS Code prompt files](https://code.visualstudio.com/docs/agent-customization/prompt-files).
-:::
-
 ## Checklist for LLM-readiness {.smaller}
 
 | Add or maintain | What should it tell the agent? |
@@ -3331,10 +3327,6 @@ Sources: [Codex repository instructions](https://developers.openai.com/codex/gui
 
 Start with the instructions and commands you already give a new contributor. Add a skill or prompt when you find yourself repeating a task.
 
-:::
-
-::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
-Sources: [repository instructions](https://developers.openai.com/codex/guides/agents-md/), [Agent Skills](https://developers.openai.com/codex/skills/), and [prompt files](https://code.visualstudio.com/docs/agent-customization/prompt-files).
 :::
 
 ## Repository instructions: `AGENTS.md` {.smaller}
@@ -3375,10 +3367,6 @@ Explain the package-specific behavior that an agent must preserve, especially wh
 
 Keep instructions specific to the repository. Link to detailed procedures so that the main file stays easy to maintain.
 
-::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
-Source: [Codex instruction discovery and authoring guidance](https://developers.openai.com/codex/guides/agents-md/).
-:::
-
 ## Reusable procedures: `.agents/skills/` {.smaller}
 
 :::: {.columns}
@@ -3389,7 +3377,7 @@ A skill packages the instructions for a particular task. Give each skill its own
 
 ```text
 .agents/skills/
-└── review-change/
+└── create-release/
     └── SKILL.md
 ```
 
@@ -3399,20 +3387,21 @@ You can add `scripts/`, `references/`, or templates when the procedure needs the
 
 ::: {.column width='50%'}
 
-**A skill for reviewing changes:**
+**A skill for preparing a CRAN release:**
 
 ```markdown
 ---
-name: review-change
-description: Review an R package change.
-  Use when asked for a code review.
+name: create-release
+description: Prepare or resume a CRAN
+  release. Use only for release work.
 ---
 
-1. Read AGENTS.md and the diff.
-2. Trace changes to public behavior.
-3. Check relevant tests and documentation.
-4. Report findings with file references.
-5. Do not edit files during the review.
+1. Check CRAN and any open release PR.
+2. Update version metadata and NEWS.
+3. Run the release checks.
+4. Submit from the release branch.
+5. Wait for explicit CRAN acceptance
+   before merging and publishing.
 ```
 
 :::
@@ -3422,10 +3411,6 @@ description: Review an R package change.
 . . .
 
 Codex discovers a skill's name and description first, then loads the instructions when the skill is selected. A clear description helps it choose the right procedure.
-
-::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
-Source: [skill structure, descriptions, and discovery](https://developers.openai.com/codex/skills/).
-:::
 
 ## Reusable requests: `.github/prompts/` {.smaller}
 
@@ -3472,21 +3457,17 @@ For other agents, you can keep a plain `.md` request and explicitly ask the agen
 
 :::
 
-::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
-Source: [VS Code prompt files and invocation](https://code.visualstudio.com/docs/agent-customization/prompt-files).
-:::
-
 ## Claude Code compatibility {.smaller}
 
 Claude Code does not automatically discover `AGENTS.md` or `.agents/skills/`. It uses `CLAUDE.md` and `.claude/skills/`. You can symlink these to the shared instructions and skills.
 
-**For the review skill above, run from the repository root:**
+**For the release skill above, run from the repository root:**
 
 ```bash
 ln -s AGENTS.md CLAUDE.md
 mkdir -p .claude/skills
-ln -s ../../.agents/skills/review-change \
-  .claude/skills/review-change
+ln -s ../../.agents/skills/create-release \
+  .claude/skills/create-release
 ```
 
 ::: {style="font-size: 20px;"}
@@ -3495,10 +3476,6 @@ Commit the links and repeat the skill link for each shared skill. Check existing
 
 On Windows, symlink creation requires Developer Mode or administrator privileges.
 
-:::
-
-::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
-Sources: [Claude Code instruction files](https://code.claude.com/docs/en/memory#agentsmd) and [skill discovery and symlinks](https://code.claude.com/docs/en/skills#where-skills-live).
 :::
 
 ## Maintaining the agent setup {.smaller}
@@ -3519,59 +3496,46 @@ Keep shared conventions in `AGENTS.md` and refer to them from skills and prompts
 
 :::
 
-::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
-Sources: [instruction verification](https://developers.openai.com/codex/guides/agents-md/), [skill discovery](https://developers.openai.com/codex/skills/), and [prompt invocation](https://code.visualstudio.com/docs/agent-customization/prompt-files).
-:::
-
-## An example: `statsExpressions` {.smaller}
-
-:::: {.columns}
-
-::: {.column width='50%'}
-
-[`statsExpressions`](https://github.com/IndrajeetPatil/statsExpressions) keeps shared instructions, a release procedure, and maintenance requests in the repository:
-
-```text
-AGENTS.md
-.agents/skills/
-└── create-release/
-    └── SKILL.md
-.github/prompts/
-├── update-deps.md
-├── simplify-codebase.md
-└── address-review.md
-```
-
-:::
-
-::: {.column width='50%'}
-
-- **Instructions** explain how to preserve the returned columns and plotmath expressions that `ggstatsplot` consumes.
-
-- **The release skill** describes the steps for a CRAN release, including waiting for acceptance before merging and publishing.
-
-- **The prompts** describe dependency updates, code simplification, and review follow-up.
-
-:::
-
-::::
-
-. . .
-
-::: {style="font-size: 20px;"}
-
-The prompts here are plain `.md` files to request explicitly. The inspected repository has no Claude Code compatibility links; add those if your team uses Claude Code.
-
-:::
-
-::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
-Sources: [`statsExpressions` instructions](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/AGENTS.md), [release skill](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.agents/skills/create-release/SKILL.md), and [repository files](https://github.com/IndrajeetPatil/statsExpressions/tree/50b387691bff7a04188fd9a8ec7beb4c4e68fda6).
-:::
-
 # Conclusion
 
 It is possible to build robust automation infrastructure for R package development that can improve user experience and make long-term development more reliable and sustainable.
 
+
+# References {.smaller}
+
+:::: {.columns}
+
+::: {.column width='55%'}
+
+**Agent documentation**
+
+- [Repository instructions with `AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/)
+
+- [Agent Skills: structure and discovery](https://developers.openai.com/codex/skills/)
+
+- [VS Code reusable prompt files](https://code.visualstudio.com/docs/agent-customization/prompt-files)
+
+- [Claude Code instruction files](https://code.claude.com/docs/en/memory#agentsmd)
+
+- [Claude Code skill discovery and symlinks](https://code.claude.com/docs/en/skills#where-skills-live)
+
+:::
+
+::: {.column width='45%'}
+
+**Example repository**
+
+[`statsExpressions`](https://github.com/IndrajeetPatil/statsExpressions) has illustrative files you can adapt for another R package:
+
+- [Repository instructions](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/AGENTS.md)
+
+- [CRAN release skill](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.agents/skills/create-release/SKILL.md)
+
+- [Maintenance prompts](https://github.com/IndrajeetPatil/statsExpressions/tree/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.github/prompts)
+
+:::
+
+::::
 
 # Acknowledgements {.smaller}
 
