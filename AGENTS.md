@@ -58,6 +58,7 @@ Check which set is present to know which language context applies.
 - **Image classes.** Images may use semantic classes (e.g. `.hero`, `.artifact`, `.illustration`) that control border, shadow, and rounding in `style.css`. Check the existing CSS before adding new image classes.
   Keep `.nostretch` and the explicit output height on the title image: auto-stretch collapses it in native scroll view, while an unconstrained natural size overflows the title slide.
 - **Sources.** Every factual claim has a source citation at the bottom of its slide in a small-font centered div. Keep this pattern.
+  Link documentation and examples inline, on the words they describe, rather than collecting them on a separate references slide. The deck has none; do not add one.
 - **Accessibility.** Images must have `fig-alt` text. Raw HTML widgets use `role="img"` and `aria-label`. Keep these.
   Run `just axe --no-browser --port 8860` to preview an accessibility report. Fix actionable findings and test all slides, fragments, native scroll view, tabs, and keyboard controls; a clean opening slide is insufficient. Keep `axe` in `_quarto-a11y.yml` so normal builds omit the audit payload and report; CLI metadata cannot reliably override the deck's `format:` block. Links in muted text need a non-colour cue such as an underline.
   For decorative R images, pair `fig-alt: ""` with `out-extra: 'role="presentation"'`; the current knitr output omits empty alt attributes.

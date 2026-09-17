@@ -3321,7 +3321,7 @@ Write down which instructions apply to every task, which procedures are reusable
 | `.agents/skills/` | Detailed procedures to load only for relevant tasks. |
 | `.github/prompts/` | What you want done when you request a particular maintenance task. |
 
-Exclude agent instruction files, skill directories, and saved prompts from package tarballs via `.Rbuildignore`.
+Exclude agent instruction files, skill directories, and saved prompts from package tarballs via [`.Rbuildignore`](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Building-package-tarballs).
 
 . . .
 
@@ -3365,7 +3365,7 @@ Keep shared essentials in `AGENTS.md` and detailed workflows in skills. A bug-fi
 
 ::: {.column width='50%'}
 
-Put an `AGENTS.md` file at the repository root. Keep it short: these instructions accompany every task.
+Put an [`AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/) file at the repository root. Keep it short: these instructions accompany every task.
 
 Include a brief package overview, essential commands, code conventions, and files that must be updated together.
 
@@ -3397,13 +3397,15 @@ Explain the package-specific behavior that an agent must preserve, especially wh
 
 Keep shared rules here and detailed procedures in skills. Linking to a procedure lets the agent read it when relevant; copying it here spends context in every session.
 
+Here is a [complete example](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/AGENTS.md) from an R package.
+
 ## Reusable procedures: `.agents/skills/` {.smaller}
 
 :::: {.columns}
 
 ::: {.column width='50%'}
 
-A skill holds a task's detailed procedure in its own directory. Its `SKILL.md` contains a name, a description of when to use it, and the instructions.
+A [skill](https://agentskills.io/what-are-skills) holds a task's detailed procedure in its own directory. Its `SKILL.md` contains a name, a description of when to use it, and the instructions.
 
 ```text
 .agents/skills/
@@ -3442,6 +3444,8 @@ description: Prepare or resume a CRAN
 
 Describe relevant tasks or files so the coding agent can select the skill. It reads the full instructions only when the task calls for them or you invoke the skill.
 
+Here is a [complete release skill](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.agents/skills/create-release/SKILL.md) from an R package.
+
 ## Reusable requests: `.github/prompts/` {.smaller}
 
 :::: {.columns}
@@ -3456,6 +3460,8 @@ Keep recurring requests in plain Markdown files in the repository:
 ```
 
 Describe the requested change, its scope, and the expected result in the file.
+
+Here are [more maintenance prompts](https://github.com/IndrajeetPatil/statsExpressions/tree/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.github/prompts) from an R package.
 
 :::
 
@@ -3481,7 +3487,7 @@ the changes and validation.
 
 ::: {style="background-color: #fff3e0; padding: 15px; border-radius: 25px;"}
 
-Tag or attach `@.github/prompts/update-deps.md` and send it. The file already contains the request.
+[Tag or attach](https://learn.chatgpt.com/docs/developer-commands#interactive-shortcuts) `@.github/prompts/update-deps.md` and send it. The file already contains the request.
 
 :::
 
@@ -3491,8 +3497,8 @@ Claude Code uses different locations for repository instructions and skills:
 
 | Resource | Other coding agents | Claude Code |
 | :--- | :--- | :--- |
-| Repository instructions | `AGENTS.md` | `CLAUDE.md` |
-| Skill directories | `.agents/skills/` | `.claude/skills/` |
+| Repository instructions | `AGENTS.md` | [`CLAUDE.md`](https://code.claude.com/docs/en/memory#agentsmd) |
+| Skill directories | `.agents/skills/` | [`.claude/skills/`](https://code.claude.com/docs/en/skills#where-skills-live) |
 
 Each skill has its own directory containing a `SKILL.md` file.
 
@@ -3512,7 +3518,7 @@ Each skill has its own directory containing a `SKILL.md` file.
 
 Repository instructions tell an agent how to work on your package. Your website tells it how the package behaves.
 
-pkgdown publishes this for you: an [`llms.txt`](https://llmstxt.org/) index at the site root, plus a Markdown twin of every rendered page.
+[pkgdown publishes this for you](https://pkgdown.r-lib.org/reference/build_llm_docs.html): an [`llms.txt`](https://llmstxt.org/) index at the site root, plus a Markdown twin of every rendered page.
 
 :::
 
@@ -3543,46 +3549,6 @@ An agent fetches compact Markdown instead of scraping rendered HTML, and follows
 <span role="img" aria-label="Tip">💡</span> Submit your repository at [context7.com/add-library](https://context7.com/add-library) so agents querying Context7, through its MCP server or CLI, look up your current documentation instead of recalling an older release from training data.
 
 :::
-
-# References {.smaller}
-
-:::: {.columns}
-
-::: {.column width='55%'}
-
-**Documentation**
-
-- [Repository instructions with `AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/)
-
-- [Agent Skills: discovery and loading](https://agentskills.io/what-are-skills)
-
-- [File mentions in terminal prompts](https://learn.chatgpt.com/docs/developer-commands#interactive-shortcuts)
-
-- [Claude Code instruction files](https://code.claude.com/docs/en/memory#agentsmd)
-
-- [Claude Code skill discovery and symlinks](https://code.claude.com/docs/en/skills#where-skills-live)
-
-- [R package build exclusions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Building-package-tarballs)
-
-- [pkgdown docs for LLMs](https://pkgdown.r-lib.org/reference/build_llm_docs.html)
-
-:::
-
-::: {.column width='45%'}
-
-**Example repository**
-
-[`statsExpressions`](https://github.com/IndrajeetPatil/statsExpressions) has illustrative files you can adapt for another R package:
-
-- [Repository instructions](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/AGENTS.md)
-
-- [CRAN release skill](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.agents/skills/create-release/SKILL.md)
-
-- [Maintenance prompts](https://github.com/IndrajeetPatil/statsExpressions/tree/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.github/prompts)
-
-:::
-
-::::
 
 # Conclusion
 
