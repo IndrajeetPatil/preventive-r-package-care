@@ -28,7 +28,7 @@ format:
 execute:
   echo: true
 keywords: ["software-engineering", "r-packages", "best-practices", "CRAN"]
-description-meta: "A comprehensive guide to R package development using automation to tick checklists for documentation, exception handling, portability, code quality, and dependency management. Learn how to make your R packages sustainable and release-ready."
+description-meta: "A guide to sustainable R package development through automated checks for documentation, exception handling, portability, code quality, and dependencies, plus repository instructions, skills, and prompts for terminal-based coding agents."
 license: "CC0 1.0 Universal"
 pagetitle: "Preventive Care for R Packages"
 author-meta: "Indrajeet Patil"
@@ -349,6 +349,8 @@ First, you will see the checklists to tick, and then the details on how to build
 - [Code quality](#codequality)
 
 - [Dependency management](#dependency)
+
+- [LLM-readiness](#llm-readiness)
 
 ## Checklist for documentation {.smaller}
 
@@ -3255,10 +3257,294 @@ This PR can be merged when the new workflow runs successfully.
 
 ::::
 
+# LLM-readiness {#llm-readiness}
+
+Make sure terminal-based coding agents can find the conventions they need to follow.
+
+## Making conventions explicit {.smaller}
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
+knitr::include_graphics("media/confused.webp")
+```
+
+:::
+
+::: {.column width='90%'}
+
+You know which files are generated, which checks to run, and which changes could break downstream packages. A coding agent needs to find this information too.
+
+:::
+
+::::
+
+. . .
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
+knitr::include_graphics("media/toolbox.webp")
+```
+
+:::
+
+::: {.column width='90%'}
+
+You can keep instructions and reusable tasks in the repository, alongside the code they describe. This gives agents a place to find your conventions each time they start a task.
+
+:::
+
+::::
+
+. . .
+
+::: {style="background-color: #e8f5e9; padding: 20px; border-radius: 25px;"}
+
+Write down which instructions apply to every task, which procedures are reusable, and which requests you want to run explicitly.
+
+:::
+
+## Checklist for LLM-readiness {.smaller}
+
+| Add or maintain | What should it tell the agent? |
+| :--- | :--- |
+| `AGENTS.md` | Essential conventions that apply across tasks. |
+| `.agents/skills/` | Detailed procedures to load only for relevant tasks. |
+| `.github/prompts/` | What you want done when you request a particular maintenance task. |
+
+Exclude agent instruction files, skill directories, and saved prompts from package tarballs via `.Rbuildignore`.
+
+. . .
+
+::: {style="background-color: #e3f2fd; padding: 20px; border-radius: 25px;"}
+
+Start with the instructions and commands you already give a new contributor. Add a skill or prompt when you find yourself repeating a task.
+
+:::
+
+## Keeping context focused {.smaller}
+
+The root `AGENTS.md` is loaded in **every session**. Keep it short to leave room in the context window for code, tool output, and the task itself.
+
+::: {.context-loading-diagram}
+
+```{mermaid}
+%%| echo: false
+%%{init: {"theme": "base", "htmlLabels": true, "themeVariables": {"fontFamily": "Lato, sans-serif", "fontSize": "24px", "lineColor": "#9753B8"}, "flowchart": {"rankSpacing": 65, "padding": 16, "curve": "linear"}}}%%
+flowchart LR
+    accTitle: Load instructions as they become relevant
+    accDescr: Every session loads AGENTS.md and skill names and descriptions. When a task matches a skill or the user invokes it, the agent loads that skill's SKILL.md. Supporting references are read only as needed.
+    A["<span class='context-stage'>Every session</span><br/><span class='context-file'>AGENTS.md</span><br/><span class='context-detail'>+ skill names<br/>and descriptions</span>"]
+    B["<span class='context-stage'>When relevant</span><br/><span class='context-file'>SKILL.md</span><br/><span class='context-detail'>Task matches<br/>or you invoke the skill</span>"]
+    C["<span class='context-stage'>As needed</span><br/><span class='context-file'>References</span><br/><span class='context-detail'>Only what the<br/>procedure needs</span>"]
+    A -.-> B -.-> C
+    classDef stage fill:transparent,stroke:none,color:#111111
+    class A,B,C stage
+```
+
+:::
+
+::: {style="background-color: #e8f5e9; padding: 20px; border-radius: 25px;"}
+
+Keep shared essentials in `AGENTS.md` and detailed workflows in skills. A bug-fix session need not load the full CRAN release procedure.
+
+:::
+
+## Repository instructions: `AGENTS.md` {.smaller}
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+Put an `AGENTS.md` file at the repository root. Keep it short: these instructions accompany every task.
+
+Include a brief package overview, essential commands, code conventions, and files that must be updated together.
+
+Explain the package-specific behavior that an agent must preserve, especially where a plausible change could break users' code.
+
+:::
+
+::: {.column width='50%'}
+
+**For an R package, this might include:**
+
+```markdown
+# Package conventions
+
+- Preserve public arguments and the
+  structure of returned objects.
+- Edit roxygen comments in R/.
+  Regenerate man/ instead of editing it.
+- Use the documented validation commands.
+- Keep generated files in sync with
+  their sources.
+```
+
+:::
+
+::::
+
+. . .
+
+Keep shared rules here and detailed procedures in skills. Linking to a procedure lets the agent read it when relevant; copying it here spends context in every session.
+
+## Reusable procedures: `.agents/skills/` {.smaller}
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+A skill holds a task's detailed procedure in its own directory. Its `SKILL.md` contains a name, a description of when to use it, and the instructions.
+
+```text
+.agents/skills/
+└── create-release/
+    └── SKILL.md
+```
+
+Add `scripts/`, `references/`, or templates to use only when needed.
+
+:::
+
+::: {.column width='50%'}
+
+**A skill for preparing a CRAN release:**
+
+```markdown
+---
+name: create-release
+description: Prepare or resume a CRAN
+  release. Use only for release work.
+---
+
+1. Check CRAN and any open release PR.
+2. Update version metadata and NEWS.
+3. Run the release checks.
+4. Submit from the release branch.
+5. Wait for explicit CRAN acceptance
+   before merging and publishing.
+```
+
+:::
+
+::::
+
+. . .
+
+Describe relevant tasks or files so the coding agent can select the skill. It reads the full instructions only when the task calls for them or you invoke the skill.
+
+## Reusable requests: `.github/prompts/` {.smaller}
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+Keep recurring requests in plain Markdown files in the repository:
+
+```text
+.github/prompts/
+└── update-deps.md
+```
+
+Describe the requested change, its scope, and the expected result in the file.
+
+:::
+
+::: {.column width='50%'}
+
+**A dependency-update request:**
+
+```markdown
+# Update package dependencies
+
+Follow AGENTS.md. Update dependencies
+and fix any resulting incompatibilities.
+Preserve public behavior and run the
+required checks. Open a PR describing
+the changes and validation.
+```
+
+:::
+
+::::
+
+. . .
+
+::: {style="background-color: #fff3e0; padding: 15px; border-radius: 25px;"}
+
+Tag or attach `@.github/prompts/update-deps.md` and send it. The file already contains the request.
+
+:::
+
+## Claude Code compatibility {.smaller}
+
+Claude Code uses different locations for repository instructions and skills:
+
+| Resource | Other coding agents | Claude Code |
+| :--- | :--- | :--- |
+| Repository instructions | `AGENTS.md` | `CLAUDE.md` |
+| Skill directories | `.agents/skills/` | `.claude/skills/` |
+
+Each skill has its own directory containing a `SKILL.md` file.
+
+. . .
+
+::: {style="background-color: #e8f5e9; padding: 15px; border-radius: 25px;"}
+
+<span role="img" aria-label="Tip">💡</span> Symlink the Claude Code paths to the shared files and folders to avoid maintaining duplicate instructions.
+
+:::
+
+# References {.smaller}
+
+:::: {.columns}
+
+::: {.column width='55%'}
+
+**Documentation**
+
+- [Repository instructions with `AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/)
+
+- [Agent Skills: discovery and loading](https://agentskills.io/what-are-skills)
+
+- [File mentions in terminal prompts](https://learn.chatgpt.com/docs/developer-commands#interactive-shortcuts)
+
+- [Claude Code instruction files](https://code.claude.com/docs/en/memory#agentsmd)
+
+- [Claude Code skill discovery and symlinks](https://code.claude.com/docs/en/skills#where-skills-live)
+
+- [R package build exclusions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Building-package-tarballs)
+
+:::
+
+::: {.column width='45%'}
+
+**Example repository**
+
+[`statsExpressions`](https://github.com/IndrajeetPatil/statsExpressions) has illustrative files you can adapt for another R package:
+
+- [Repository instructions](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/AGENTS.md)
+
+- [CRAN release skill](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.agents/skills/create-release/SKILL.md)
+
+- [Maintenance prompts](https://github.com/IndrajeetPatil/statsExpressions/tree/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.github/prompts)
+
+:::
+
+::::
+
 # Conclusion
 
 It is possible to build robust automation infrastructure for R package development that can improve user experience and make long-term development more reliable and sustainable.
-
 
 # Acknowledgements {.smaller}
 
