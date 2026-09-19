@@ -3620,27 +3620,6 @@ the changes and validation.
 
 :::
 
-## Claude Code compatibility {.smaller}
-
-Claude Code uses different locations for repository instructions and skills:
-
-| Resource | Other coding agents | Claude Code |
-| :--- | :--- | :--- |
-| Repository instructions | `AGENTS.md` | [`CLAUDE.md`](https://code.claude.com/docs/en/memory#agentsmd) |
-| Skill directories | `.agents/skills/` | [`.claude/skills/`](https://code.claude.com/docs/en/skills#where-skills-live) |
-
-Each skill has its own directory containing a `SKILL.md` file.
-
-. . .
-
-:::{.callout-tip}
-
-## Avoiding duplicate instructions
-
-Symlink the Claude Code paths to the shared files and folders, so there is only one copy to maintain.
-
-:::
-
 # Make sure your documentation is machine-readable.
 
 ## Machine-readable docs: `llms.txt` {.smaller}
