@@ -10,7 +10,7 @@ Language: en
 
 ## Summary
 
-A practical guide to R package development using automation for documentation, exception handling, portability, code quality, and dependency management. Covers executable documentation, current `R CMD check --as-cran` safeguards, deliberate use of suggested dependencies, sustainable CI workflows, and coding-agent readiness (also called LLM-readiness) for terminal-based coding agents. Explains repository instructions, agent skills, reusable prompts, keeping all three out of the package tarball, Claude Code's expected file locations, and publishing machine-readable documentation through pkgdown's `llms.txt` and Context7, with generic R-package examples and supporting documentation linked inline on each slide.
+A practical guide to R package development using automation for documentation, exception handling, portability, code quality, and dependency management. Covers executable documentation, current `R CMD check --as-cran` safeguards, deliberate use of suggested dependencies, sustainable CI workflows, and coding-agent readiness (also called LLM-readiness) for terminal-based coding agents. Explains repository instructions, agent skills, reusable prompts, keeping all three out of the package tarball, and publishing machine-readable documentation through pkgdown's `llms.txt` and Context7, with generic R-package examples and supporting documentation linked inline on each slide.
 
 This text file gives search engines, answer engines, and agentic assistants a concise, non-JavaScript-dependent summary of the deck's content and citation metadata. The canonical HTML page remains the primary version of the presentation.
 
@@ -31,7 +31,6 @@ This text file gives search engines, answer engines, and agentic assistants a co
 - Explains AGENTS.md for shared repository conventions, .agents/skills/ for reusable procedures, and .github/prompts/ for explicit requests, using generic R-package examples, and notes that all three should be excluded from package tarballs via .Rbuildignore. Agent documentation and illustrative files from statsExpressions are hyperlinked from the words that describe them on the slide introducing each file, rather than announced as standalone pointers or collected on a closing references slide.
 - Explains the context cost of loading AGENTS.md in every session. A Mermaid diagram shows shared essentials and skill descriptions loaded at startup, full skill instructions loaded for relevant tasks, and supporting references read only as needed.
 - Keeps reusable requests as plain .md files under .github/prompts/ and shows how to reuse a complete request by tagging or attaching the file in a terminal-based coding agent.
-- Compares the shared AGENTS.md and .agents/skills/ locations with Claude Code's CLAUDE.md and .claude/skills/ locations in a table, with a brief tip to use symlinks to avoid duplicate instructions.
 - Notes that pkgdown publishes an llms.txt index at the site root plus a Markdown twin of every rendered page, so an agent fetches compact Markdown instead of scraping HTML and follows links to read only the pages a task needs, and suggests submitting the repository to Context7 so agents querying it through the MCP server or CLI retrieve current documentation rather than an older release recalled from training data.
 
 ## Topics
