@@ -5,7 +5,7 @@ Format: Quarto RevealJS presentation
 Canonical URL: https://www.indrapatil.com/preventive-r-package-care/
 Source: https://github.com/IndrajeetPatil/preventive-r-package-care/
 License: CC0 1.0 Universal
-Publication date: 2026-04-24
+Publication date: 2023-01-20
 Language: en
 
 ## Summary

@@ -31,7 +31,7 @@ description-meta: "A guide to sustainable R package development through automate
 license: "CC0 1.0 Universal"
 pagetitle: "Preventive Care for R Packages"
 author-meta: "Indrajeet Patil"
-date-meta: "2026-04-24"
+date-meta: "2023-01-20"
 lang: "en"
 dir: "ltr"
 image: "media/social-media-card.webp"
