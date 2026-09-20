@@ -79,7 +79,7 @@ Check which set is present to know which language context applies.
 - **Icons.** Icons use lightweight HTML spans backed by only the required SVG path data in the custom stylesheet; no icon-font or Quarto icon extension is needed.
   When adding an icon, add only its mask data, preserve the source licence attribution, keep an accessible label where the icon conveys meaning, and render the deck to verify it.
 - **Mermaid performance boundary.** Keep Mermaid diagrams as Mermaid source. Do not replace them with pre-rendered SVGs solely to reduce the website bundle.
-- **No code execution.** The YAML front matter sets `execute: eval: false`. Code blocks are for display only; they are not executed during render.
+- **Code execution.** The YAML front matter sets `execute: echo: true` without a global `eval: false`, because this deck renders ~97 figures through `knitr::include_graphics()`. Illustrative code blocks opt out individually with `eval=FALSE`.
 - **Compute engine.** Python decks declare `jupyter: python3` in the front matter; R decks declare `engine: knitr`. The virtualenv or renv exists to satisfy Quarto's engine, not to run slide code.
 
 ## Commands
@@ -88,6 +88,8 @@ All commands use [just](https://github.com/casey/just). The recipes are the same
 
 ```bash
 just install   # Install language dependencies and the latest a11y extension
+just sync      # Alias for install
+just update    # Upgrade declared dependencies to their latest versions
 just render    # Render index.qmd to _site/
 just preview   # Live-reload dev server
 just open      # Alias for preview (live-reload dev server over localhost)
@@ -96,7 +98,7 @@ just check     # Verify Quarto setup
 just axe       # Preview with an axe accessibility report
 ```
 
-This R deck calls Quarto directly and discovers R automatically. It uses `DESCRIPTION` for dependencies. See the `justfile` for exact commands.
+This deck renders with Quarto. R dependencies are declared in `DESCRIPTION` and installed with `pak`; CI installs them with `r-lib/actions/setup-r-dependencies`. Slides live in `index.qmd`.
 
 ## Editing slides
 

@@ -1,5 +1,7 @@
 # Preventive Care for R Packages
 
+[![Build and Deploy Presentation](https://github.com/IndrajeetPatil/preventive-r-package-care/actions/workflows/build-presentation.yaml/badge.svg)](https://github.com/IndrajeetPatil/preventive-r-package-care/actions/workflows/build-presentation.yaml)
+
 <img src="media/preventive-care.webp" align="right" width="250" alt="A plant being watered" />
 
 As an R package developer, if you ever lay awake in bed wondering:
@@ -39,6 +41,8 @@ just install
 ```bash
 just help     # Show all available commands
 just install  # Install R dependencies and the a11y extension
+just sync     # Alias for install
+just update   # Upgrade R dependencies to their latest versions
 just render   # Render slides to HTML
 just preview  # Start a live preview with auto-reload
 just open     # Alias for preview (live-reload dev server over localhost)
