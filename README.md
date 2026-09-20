@@ -1,5 +1,7 @@
 # Preventive Care for R Packages
 
+[![Build and Deploy Presentation](https://github.com/IndrajeetPatil/preventive-r-package-care/actions/workflows/build-presentation.yaml/badge.svg)](https://github.com/IndrajeetPatil/preventive-r-package-care/actions/workflows/build-presentation.yaml)
+
 <img src="media/preventive-care.webp" align="right" width="250" alt="A plant being watered" />
 
 As an R package developer, if you ever lay awake in bed wondering:
@@ -19,7 +21,7 @@ The slides discuss how to build such infrastructure:
 
 ## Development
 
-This project uses R 4.6.0 or later (declared in `DESCRIPTION`), [Quarto](https://quarto.org/) for rendering slides, and [just](https://github.com/casey/just) as a command runner.
+This project uses R 4.6.1 or later (declared in `DESCRIPTION`), [Quarto](https://quarto.org/) for rendering slides, and [just](https://github.com/casey/just) as a command runner.
 
 ### Prerequisites
 
@@ -39,6 +41,8 @@ just install
 ```bash
 just help     # Show all available commands
 just install  # Install R dependencies and the a11y extension
+just sync     # Alias for install
+just update   # Upgrade R dependencies to their latest versions
 just render   # Render slides to HTML
 just preview  # Start a live preview with auto-reload
 just open     # Alias for preview (live-reload dev server over localhost)
@@ -62,8 +66,11 @@ from upstream with `quarto add mcanouil/quarto-revealjs-a11y --no-prompt`.
 The extension handles browser zoom, slide isolation, focus indicators, link
 underlines, reduced motion, and screen-reader announcements.
 
-The `accessibility.html` helper still handles scrollable code, slide-menu focus,
-and vertical-slide semantics. Unused tabset handling has been removed.
+The `accessibility.html` helper handles scrollable code, slide-menu focus, and
+vertical-slide semantics. It is a shared fleet-wide helper and is kept
+identical across all eleven decks by convention, with the copies synced by
+hand. It therefore also carries tabset keyboard handling; this deck has no
+tabsets, so that branch is inert here and must not be deleted locally.
 The extension's slide-menu patch and accessibility settings panel are disabled
 as in the reference deck: version 0.2.3 introduces ARIA and contrast failures in
 those components.

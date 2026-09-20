@@ -24,7 +24,6 @@ format:
     include-in-header: meta-tags.html
     include-after-body: accessibility.html
     link-external-newwindow: true
-    google-analytics: "G-3BQ49J7KYH"
 execute:
   echo: true
 keywords: ["software-engineering", "r-packages", "best-practices", "CRAN"]
@@ -32,7 +31,7 @@ description-meta: "A guide to sustainable R package development through automate
 license: "CC0 1.0 Universal"
 pagetitle: "Preventive Care for R Packages"
 author-meta: "Indrajeet Patil"
-date-meta: "`r Sys.time()`"
+date-meta: "2023-01-20"
 lang: "en"
 dir: "ltr"
 image: "media/social-media-card.webp"
