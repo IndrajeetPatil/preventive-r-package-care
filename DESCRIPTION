@@ -17,8 +17,8 @@ URL: https://github.com/IndrajeetPatil/preventive-r-package-care/,
     https://www.indrapatil.com/preventive-r-package-care/
 BugReports: https://github.com/IndrajeetPatil/preventive-r-package-care/issues
 Depends:
-    R (>= 4.6.0),
-    fs,
-    knitr,
-    lintr,
-    quarto
+    R (>= 4.6.1),
+    fs (>= 2.1.0),
+    knitr (>= 1.52),
+    lintr (>= 3.4.0),
+    quarto (>= 1.5.1)
