@@ -71,9 +71,10 @@ Check which set is present to know which language context applies.
   The `a11y` extension supplies zoom, focus indicators, link underlines, reduced motion,
   slide isolation, and screen-reader announcements. Keep `accessibility.html` for
   code scrolling, menu focus, and vertical-slide semantics.
-  `accessibility.html` is a shared fleet-wide helper kept byte-identical across all
-  eleven decks and enforced by `check-template-drift.yaml`. Do not edit or trim it
-  in this repo; change the fleet template instead. Its tabset keyboard handling is
+  `accessibility.html` is a shared fleet-wide helper kept identical across all
+  eleven decks by convention, with the copies synced by hand. Avoid editing or
+  trimming it here; if it must change, apply the same change to every deck's copy
+  rather than letting this one diverge. Its tabset keyboard handling is
   inert for this deck, which has no tabsets — that is expected, not dead code to
   remove.
   Keep explicit `aria-label` attributes on repeated slide headings so scroll-view
