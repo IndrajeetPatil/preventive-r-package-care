@@ -19,7 +19,7 @@ This text file gives search engines, answer engines, and agentic assistants a co
 - Frames preventive care as a way to keep R packages sustainable, release-ready, and pleasant for users by automating quality checks.
 - Provides checklists for documentation, exception handling, portability, code quality, dependency management, and coding-agent readiness.
 - Covers documentation checks for README examples, help-page examples, long-form documentation, links, spelling, and generated HTML.
-- Explains that `R CMD check --as-cran` runs `\donttest{}` examples and can validate the generated HTML5 help manual when a recent HTML Tidy is available, avoiding a separate multi-slide tutorial for core check behavior.
+- Explains that `R CMD check --as-cran` runs `\donttest{}` examples and can validate the generated HTML5 help manual when a recent HTML Tidy is available, avoiding a separate multi-slide tutorial for core check behaviour.
 - Distinguishes package vignettes from pkgdown-only articles: vignettes ship with the package and are checked by `R CMD check`, while articles are built for the pkgdown site and need separate website-build validation.
 - Recommends `spelling::spell_check_package()` for finding spelling problems and `spelling::update_wordlist()` for maintaining accepted technical terms in `inst/WORDLIST`.
 - Describes warning checks for README examples, help-page examples, vignettes or articles, and tests.

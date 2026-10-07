@@ -62,7 +62,7 @@ Check which set is present to know which language context applies.
 - **Image classes.** Images may use semantic classes (e.g. `.hero`, `.artifact`, `.illustration`) that control border, shadow, and rounding in `style.css`. Check the existing CSS before adding new image classes.
   Keep `.nostretch` and the explicit output height on the title image: auto-stretch collapses it in native scroll view, while an unconstrained natural size overflows the title slide.
 - **Sources.** Cite by hyperlinking the words that make the claim — the tool name, the file name, the concept — so the reader sees where a statement comes from while reading it. This is the default and covers nearly every slide.
-  A small-font centered div listing sources at the bottom of a slide is the rare exception, used only where a slide rests on several external sources at once. One slide uses it; do not spread the pattern.
+  A small-font centred div listing sources at the bottom of a slide is the rare exception, used only where a slide rests on several external sources at once. One slide uses it; do not spread the pattern.
   There is **no references slide, and the deck must not gain one.** Links belong on the slide whose claim they support, including example files from other repositories, which go on the slide introducing the file they illustrate. A previous references slide was deliberately removed and its links distributed inline (PR #47); do not reintroduce it, and do not treat its absence as an omission to fix.
   Example files from other repositories (e.g. `statsExpressions`) are cited by hyperlinking words that already earn their place in the prose or a code-block caption — never with a standalone "Here is a complete example from an R package." sentence, which draws attention to the source instead of the point.
 - **Accessibility.** Images must have `fig-alt` text. Raw HTML widgets use `role="img"` and `aria-label`. Keep these.
@@ -98,7 +98,7 @@ just update    # Upgrade declared dependencies to their latest versions
 just render    # Render index.qmd to _site/
 just preview   # Live-reload dev server
 just open      # Alias for preview (live-reload dev server over localhost)
-just clean     # Remove build artifacts
+just clean     # Remove build artefacts
 just check     # Verify Quarto setup
 just axe       # Preview with an axe accessibility report
 ```
@@ -143,3 +143,4 @@ When modifying `index.qmd`:
 - Do not commit `_site/`, `_extensions/`, or `.quarto/` (all gitignored). For Python decks, `.venv/` is also gitignored; for R decks, `renv/library/` and `renv/staging/` are gitignored.
 - Do not modify the reusable CI workflow inline; it lives in a separate repository.
 - Do not pin the first-party reusable workflow to a commit SHA; use `@main`.
+- **Spelling and punctuation.** Use British spelling in prose (colour, licence, catalogue, artefact) and the Oxford comma in lists of three or more. Leave code, identifiers, file names, URLs, quotations, and proper names (`license` in YAML, `.well-known/api-catalog`) as they are.
