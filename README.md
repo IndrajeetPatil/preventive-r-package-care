@@ -89,9 +89,9 @@ All icons used in these slides have been taken from _Flaticon_
 them for making such fantastic resource freely available to the
 community!
 
-## License
+## Licence
 
 Although the current repository is published under [CC0 1.0 Universal
 (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/), this
-license **does not** cover images in the `/media` folder. If you use
+licence **does not** cover images in the `/media` folder. If you use
 them, you need to follow the attribution policy stated by _Flaticon_.

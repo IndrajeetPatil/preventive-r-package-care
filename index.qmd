@@ -1574,7 +1574,7 @@ Language: en-GB
 
 ::: {.column width='58%'}
 
-Additionally, some technical words will not be recognized by dictionaries, but you don't want these to be considered spelling mistakes either. You can create a list of allowed misspelt words in the `WORDLIST` file.
+Additionally, some technical words will not be recognised by dictionaries, but you don't want these to be considered spelling mistakes either. You can create a list of allowed misspelt words in the `WORDLIST` file.
 
 :::
 
@@ -3237,7 +3237,7 @@ It might seem excessive that workflows fail if *any* issue is found (*"Really?! 
 
 But this is the only way to sidestep procrastination (*"We can fix the broken link later!"*) that can lead to the accumulation of technical debt. With time, this debt can compound and every new feature requires longer to implement.
 
-Failed builds also act as organizational quality control mechanisms. You will no longer need to justify carving out time to address technical debt if a new release can't be made unless all checks are green.
+Failed builds also act as organisational quality control mechanisms. You will no longer need to justify carving out time to address technical debt if a new release can't be made unless all checks are green.
 
 :::
 
@@ -3272,11 +3272,11 @@ knitr::include_graphics("media/bike-fall.webp")
 
 It might not be feasible to implement all workflows in one go, especially when they will be marked as failed until *all* relevant issues have been dealt with.
 
-This is especially true for organizations that have a policy to always keep the default branch "green".
+This is especially true for organisations that have a policy to always keep the default branch "green".
 
 :::{style="font-size: 20px;"}
 
-I'd highly recommend that you adopt such a policy, both for your organization and private repositories.
+I'd highly recommend that you adopt such a policy, both for your organisation and private repositories.
 
 :::
 
@@ -3372,7 +3372,7 @@ knitr::include_graphics("media/headache.webp")
 
 ::: {.column width='90%'}
 
-Left to guess, an agent edits generated files, skips the checks you rely on, or changes behavior that users depend on. And then it reports the task as done.
+Left to guess, an agent edits generated files, skips the checks you rely on, or changes behaviour that users depend on. And then it reports the task as done.
 
 :::
 
@@ -3600,7 +3600,7 @@ Describe the requested change, its scope, and the expected result in the file.
 
 Follow AGENTS.md. Update dependencies
 and fix any resulting incompatibilities.
-Preserve public behavior and run the
+Preserve public behaviour and run the
 required checks. Open a PR describing
 the changes and validation.
 ```
@@ -3679,7 +3679,7 @@ Thanks to all creators, maintainers, and contributors for the tools mentioned th
 
 All images used in these slides have been taken from *Flaticon* (www.flaticon.com) by *freepik* (www.freepik.com). Huge thanks to them for making such fantastic resource freely available.
 
-Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/), this license **does not** cover images in the `/media` folder. If you use them, you need to follow the attribution policy stated by *Flaticon*.
+Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/), this licence **does not** cover images in the `/media` folder. If you use them, you need to follow the attribution policy stated by *Flaticon*.
 
 :::
 
