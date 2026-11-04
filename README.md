@@ -95,3 +95,7 @@ Although the current repository is published under [CC0 1.0 Universal
 (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/), this
 licence **does not** cover images in the `/media` folder. If you use
 them, you need to follow the attribution policy stated by _Flaticon_.
+
+### Read aloud
+
+Requires Quarto 1.11.9 or newer. `just install` installs the [Read Aloud extension](https://github.com/IndrajeetPatil/quarto-read-aloud). Select the speaker icon to hear the current slide’s notes, or the stop icon to cancel. Changing slides also stops speech. Voice availability depends on your browser and operating system.
