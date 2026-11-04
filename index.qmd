@@ -60,9 +60,7 @@ Source code for these slides can be found [on GitHub](https://github.com/Indraje
 
 
 ::: {.notes}
-- Welcome the audience to this presentation on preventive care for R packages.
-- Highlight the plant and watering can visual metaphor representing the proactive, ongoing cultivation required for package health.
-- Note that the complete presentation source code is available on GitHub via the link in the footer.
+Welcome to Preventive Care for R Packages. The plant and watering can represent ongoing care: a healthy package needs attention as its code, dependencies, and users change. We will look at ways to make that care a routine part of development.
 :::
 
 # "Software engineering ought to produce sustainability." 
@@ -70,8 +68,7 @@ Source code for these slides can be found [on GitHub](https://github.com/Indraje
 
 
 ::: {.notes}
-- Introduce Mark Seemann's quote from 'Code That Fits in Your Head'.
-- Emphasise that software engineering is fundamentally about creating sustainable software systems that can be maintained effortlessly over time.
+Mark Seemann writes that software engineering ought to produce sustainability. For a package, that means thinking about how it will continue to be understood, checked, and maintained after the current change is finished.
 :::
 
 # Target audience {.smaller}
@@ -86,8 +83,7 @@ then this presentation is for you! 😊
 
 
 ::: {.notes}
-- Define the target audience: R package developers who worry about user bugs, dread CRAN archival warning emails, or struggle to update packages in time.
-- Reassure attendees that adopting preventive care practices resolves these persistent anxieties.
+This talk is for package developers who want fewer surprises: user-reported bugs, archival warnings, or urgent dependency updates. Preventive checks cannot remove every problem, but they can reveal many issues earlier and make the response less disruptive.
 :::
 
 # Before we begin
@@ -96,8 +92,7 @@ Don't miss the forest for the trees.
 
 
 ::: {.notes}
-- Frame the mindset before diving into technical details: do not miss the forest for the trees.
-- Remind attendees to focus on the underlying engineering principles rather than getting lost in tooling minutiae.
+Keep the larger purpose in view as we discuss individual tools. The goal is sustainable maintenance and a better user experience. A tool is useful when it supports that goal.
 :::
 
 ## <span class="visually-hidden">Scope of this presentation</span> {#section .smaller}
@@ -132,7 +127,7 @@ The practices outlined here are just as relevant to software development in any 
 
 
 ::: {.notes}
-- Clarify the scope of this talk across three dimensions: it is not about the specific tools (principles apply beyond GitHub Actions), not just about CRAN (focuses on user experience and maintainability), and not solely about R (applies to software development in general).
+These principles extend beyond a particular automation service, beyond CRAN, and beyond R. The examples are concrete, but the broader questions concern feedback, portability, and maintainability in software.
 :::
 
 ## Iconography {.smaller}
@@ -259,7 +254,7 @@ Automation
 
 
 ::: {.notes}
-- Walk through the visual iconography used throughout the slides: target for overarching goals, tick mark for problems solved, confused face for poor user experiences, headache for maintenance friction, toolbox for developer tools, and robot for automated workflows.
+The recurring symbols distinguish goals, solved problems, user confusion, maintenance friction, tools, and automated workflows. They help organise the slides. The accompanying explanations carry the same ideas for anyone following by audio.
 :::
 
 # Digging the pit of success
@@ -268,8 +263,7 @@ How can software engineering improve sustainability
 
 
 ::: {.notes}
-- Open the section on 'Digging the pit of success'.
-- Introduce the goal of designing development environments where doing the right thing is the easiest, most natural path.
+A pit of success makes the right action the easy, natural one. In development, that means arranging commands and feedback so useful checks happen routinely instead of depending on someone remembering them at the last moment.
 :::
 
 ## Be always release-ready {.smaller}
@@ -314,7 +308,7 @@ How can software engineering help to achieve this goal?
 
 
 ::: {.notes}
-- Explain the principle of always being release-ready: keeping the default branch consistently tested, documented, and stable so a release can be published at any moment without stressful preparation sprints.
+Being release-ready means keeping the default branch tested, documented, and stable. A release should then be a controlled step rather than a rush to repair accumulated problems.
 :::
 
 ## Fighting software entropy {.smaller}
@@ -377,8 +371,7 @@ Following each item on a checklist is a small improvement, but constantly keepin
 
 
 ::: {.notes}
-- Discuss software entropy: how codebases naturally decay over time as dependencies shift, environments evolve, and unaddressed technical debt accumulates.
-- Highlight automated continuous testing as the primary defence against this decay.
+A codebase can become harder to maintain even when nobody changes its source. Dependencies and environments move around it. Regular automated checks make that drift visible while the cause is still easier to investigate.
 :::
 
 # "The only way to go fast, is to go well."
@@ -386,8 +379,7 @@ Following each item on a checklist is a small improvement, but constantly keepin
 
 
 ::: {.notes}
-- Present Uncle Bob Martin's adage: 'The only way to go fast, is to go well.'
-- Emphasise that investing in rigorous automated checks accelerates long-term development rather than slowing it down.
+Robert C. Martin's phrase is, “The only way to go fast is to go well.” Reliable checks require effort, but that effort can reduce the rework and surprises that otherwise slow later development.
 :::
 
 # R package development
@@ -396,7 +388,7 @@ Using automation to tick checklists for various aspects of package development.
 
 
 ::: {.notes}
-- Introduce the practical application of preventive care to R package development using automated checklists.
+Let’s apply these ideas to R packages through a set of practical maintenance areas and checks.
 :::
 
 ## Plan
@@ -417,7 +409,7 @@ First, you will see the checklists to tick, and then the details on how to build
 
 
 ::: {.notes}
-- Outline the six functional areas covered in the plan: documentation, exception handling, portability, code quality, dependency management, and coding-agent readiness.
+The six areas are documentation, exception handling, portability, code quality, dependency management, and coding-agent readiness. Together they cover both the package users receive and the environment in which contributors maintain it.
 :::
 
 ## Checklist for documentation {.smaller}
@@ -460,7 +452,7 @@ knitr::include_graphics("media/target.webp")
 
 
 ::: {.notes}
-- Review the documentation checklist: maintaining adequate example coverage, ensuring README examples work, verifying help page examples run, confirming vignette builds succeed, checking URL validity, and eliminating spelling errors.
+Documentation checks ask whether useful examples exist and whether they still work. That includes the README, help topics, and vignettes, as well as the links and spelling in the surrounding prose.
 :::
 
 ## Checklist for exception handling {.smaller}
@@ -502,7 +494,7 @@ knitr::include_graphics("media/target.webp")
 
 
 ::: {.notes}
-- Review the exception handling checklist: ensuring appropriate signalling via messages and warnings, avoiding swallowed warnings, suppressing intrinsic warnings, and catching upstream deprecations early.
+Exception-handling checks ask whether the package sends appropriate diagnostics. Useful warnings should not disappear, while repeated internal noise should not obscure an important message. Upstream deprecations also need to be noticed early.
 :::
 
 ## Checklist for portability {.smaller}
@@ -549,7 +541,7 @@ The items on this list will vary significantly from package to package (e.g., do
 
 
 ::: {.notes}
-- Review the portability checklist: testing across operating systems (Linux, macOS, Windows), diverse R versions (devel, release, oldrel), compiler toolchains, and varying locales or character encodings.
+Portability checks vary the environment: operating system, R version, compiler, locale, and character encoding. Passing in one development environment is useful evidence, but it does not cover all the environments users bring.
 :::
 
 ## Checklist for code quality {.smaller}
@@ -590,7 +582,7 @@ knitr::include_graphics("media/target.webp")
 
 
 ::: {.notes}
-- Review the code quality checklist: adhering to a consistent style guide, statically analysing code for quality issues via linters, linting non-R code, and detecting performance regressions.
+Code-quality checks cover consistent formatting, static analysis, non-R source files, and performance. Each answers a different question, so a clean style check alone does not establish that the whole implementation is sound.
 :::
 
 ## Checklist for dependency management {.smaller}
@@ -630,7 +622,7 @@ knitr::include_graphics("media/target.webp")
 
 
 ::: {.notes}
-- Review the dependency management checklist: practicing soft dependency hygiene with Suggested packages, conditionally executing optional code paths, anticipating upstream breakages, and catching downstream impacts early.
+Dependency checks distinguish required and optional packages, exercise the relevant code paths, and look for breakages in both directions: changes arriving from upstream and changes passed on to downstream users.
 :::
 
 ## Checklist for coding-agent readiness {.smaller}
@@ -671,7 +663,7 @@ knitr::include_graphics("media/target.webp")
 
 
 ::: {.notes}
-- Review the coding-agent readiness checklist: documenting shared conventions in `AGENTS.md`, modularising reusable procedures into skills, standardising recurring requests into prompt templates, and providing machine-readable documentation via `llms.txt`.
+Agent-readiness checks make the development procedure easier to discover. Shared instructions, reusable skills, prompt templates, and readable documentation help an assistant find the same conventions and commands that human contributors use.
 :::
 
 # Documentation {#documentation}
@@ -680,7 +672,7 @@ Preventive care to make sure the docs are up-to-date.
 
 
 ::: {.notes}
-- Introduce the Documentation section, focusing on preventive practices to ensure documentation stays accurate, complete, and functional.
+Documentation is part of the product. It needs to stay accurate and usable as the implementation changes.
 :::
 
 # "Incorrect documentation is often worse than no documentation."
@@ -688,8 +680,7 @@ Preventive care to make sure the docs are up-to-date.
 
 
 ::: {.notes}
-- Highlight Bertrand Meyer's quote: 'Incorrect documentation is often worse than no documentation.'
-- Note that out-of-date examples mislead users and generate unnecessary support burdens.
+Bertrand Meyer observed that incorrect documentation is often worse than none. A broken example can send a user down the wrong path while appearing authoritative. Running the examples is one way to check that authority.
 :::
 
 # <span class="visually-hidden">Documentation quality</span> {#section-1}
@@ -725,14 +716,14 @@ knitr::include_graphics("media/target.webp")
 
 
 ::: {.notes}
-- Summarise the documentation section goals: verifying that examples exist, that all examples execute without error, and that prose is free of dead links and typos.
+The documentation goal has three parts: provide useful examples, verify that they execute, and keep the surrounding information readable and reachable.
 :::
 
 # Make sure there are enough examples in the documentation.
 
 
 ::: {.notes}
-- Frame the first documentation objective: ensuring that documentation contains a sufficient number of working, realistic examples.
+An adequate set of examples should show realistic uses of the package. The aim is to help a user connect the interface with a problem they recognise.
 :::
 
 ## An example is worth a thousand words {.smaller}
@@ -819,7 +810,7 @@ knitr::include_graphics("media/problem-solved.webp")
 
 
 ::: {.notes}
-- Emphasise that examples bridge the gap between abstract API contracts and concrete user problems, accelerating package adoption.
+An example makes an abstract contract concrete. It shows the input, the operation, and the result together, often answering questions that a parameter description alone leaves open.
 :::
 
 ## Sources of documentation {.smaller}
@@ -894,7 +885,7 @@ Therefore, we want to make sure that, when combined across these sources, there 
 
 
 ::: {.notes}
-- Differentiate the three main sources of package documentation: the repository README (`README.Rmd`), function help topics (`man/*.Rd`), and long-form vignettes (`vignettes/`).
+Users encounter documentation through the README, function help, and longer vignettes. Each surface needs its own checks because each can drift or fail in a different way.
 :::
 
 ## Maintaining example code coverage {.smaller}
@@ -968,14 +959,14 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.gith
 
 
 ::: {.notes}
-- Explain how to measure and track example code coverage across exported functions using `covr::package_coverage(type = "examples")` to identify undocumented functions.
+Example coverage can help identify code that the documentation does not exercise. The covr command shown here provides a signal about those gaps. Review the examples themselves as well, because execution alone does not establish whether they teach the feature clearly.
 :::
 
 # Make sure all README examples are working.
 
 
 ::: {.notes}
-- Transition to the next documentation requirement: verifying that all code snippets in the repository README execute successfully.
+The README is often the first place a user tries the package. Its examples should be checked whenever the relevant code or dependencies change.
 :::
 
 ## README documentation {.smaller}
@@ -1062,7 +1053,7 @@ knitr::include_graphics("media/problem-solved.webp")
 
 
 ::: {.notes}
-- Discuss the README as the front door of your package; broken code snippets in the README create an immediate negative first impression for new users.
+A broken getting-started snippet creates friction before a user has learned enough to diagnose the problem. Treat that first experience as something worth testing directly.
 :::
 
 ## Detecting broken README examples {.smaller}
@@ -1132,14 +1123,14 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.gith
 
 
 ::: {.notes}
-- Detail how to automate README validation in CI: knitting `README.Rmd` into `README.md` via `devtools::build_readme()` on pull requests to catch syntax and API regressions.
+Rebuilding the README during continuous integration checks its executable source against the current implementation. This can reveal stale calls or changed interfaces before the documentation reaches users.
 :::
 
 # Make sure *all* examples in help pages are working.
 
 
 ::: {.notes}
-- Transition to the requirement of ensuring that all examples in function help pages run without error.
+Help-page examples need the same attention. A working example at the time of writing can stop working after a function or dependency changes.
 :::
 
 ## Broken examples in help pages {.smaller}
@@ -1241,7 +1232,7 @@ knitr::include_graphics("media/problem-solved.webp")
 
 
 ::: {.notes}
-- Explain how help page examples break over time due to changed function signatures, altered return values, or unmaintained `\dontrun{}` blocks.
+Changed arguments, different results, and examples excluded from execution can all hide documentation drift. Review exclusions deliberately so an example is not silently left untested without a good reason.
 :::
 
 ## Checking all examples {.smaller}
@@ -1312,14 +1303,14 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.gith
 
 
 ::: {.notes}
-- Show how to test all roxygen `@examples` blocks across the package using `devtools::run_examples()` in automated CI workflows.
+The run-examples helper can execute the package's examples in an automated workflow. That makes their continued operation a routine check rather than an occasional manual exercise.
 :::
 
 # Make sure examples in *all* vignettes are working.
 
 
 ::: {.notes}
-- Transition to the next documentation check: verifying that all vignette articles compile and evaluate cleanly.
+Vignettes also need to build and run. They describe longer workflows, so a small upstream change can affect several steps of an article.
 :::
 
 ## Vignette examples {.smaller}
@@ -1413,7 +1404,7 @@ knitr::include_graphics("media/problem-solved.webp")
 
 
 ::: {.notes}
-- Discuss vignettes as in-depth tutorials; because they execute extended workflows, they are particularly vulnerable to breaking changes in upstream dependencies.
+A vignette is often a tutorial a user follows from beginning to end. Checking that whole path matters, rather than checking only the individual functions in isolation.
 :::
 
 ## Building all articles {.smaller}
@@ -1483,14 +1474,14 @@ Use a [GHA workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/pk
 
 
 ::: {.notes}
-- Detail the automation for building all package vignettes and articles using `devtools::build_vignettes()` or `pkgdown::build_articles()` during continuous integration.
+Vignette and pkgdown article build commands can run in continuous integration. They exercise the longer examples and reveal whether the generated articles still match the package's current environment.
 :::
 
 # Make sure *all* URLs are valid.
 
 
 ::: {.notes}
-- Transition to link validation: making sure that all hyperlinks across package documentation remain active and reachable.
+Links are another part of documentation that can break without an edit to the package. Check that a reader can still reach the referenced material.
 :::
 
 ## What is link rot? {.smaller}
@@ -1576,7 +1567,7 @@ knitr::include_graphics("media/problem-solved.webp")
 
 
 ::: {.notes}
-- Define link rot: external documentation, repository URLs, CRAN links, and academic citations decaying into broken 404 or 500 errors over time.
+Link rot occurs when a referenced page disappears, moves, or starts returning an error. That can affect documentation, repository links, package pages, and citations. A useful reference needs a reachable destination.
 :::
 
 ## Detecting link rot {.smaller}
@@ -1648,14 +1639,14 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 
 
 ::: {.notes}
-- Demonstrate automated link rot detection using dedicated tools such as `lychee` or `urlchecker::url_check()` in scheduled weekly CI jobs.
+Tools such as lychee and urlchecker can check links on a schedule. Scheduled checks are useful because the destination can change independently of a pull request in your own repository.
 :::
 
 # Make sure there are no spelling mistakes.
 
 
 ::: {.notes}
-- Transition to spelling hygiene: eliminating spelling mistakes and typographic errors from user-facing documentation.
+Spelling checks help keep user-facing explanations and diagnostics clear. They are a small part of quality, but one that is easy to automate.
 :::
 
 ## Spelling mistakes {.smaller}
@@ -1742,7 +1733,7 @@ knitr::include_graphics("media/problem-solved.webp")
 
 
 ::: {.notes}
-- Discuss why typos in documentation and error messages degrade professionalism and impair searchability for functions and arguments.
+Typos can make a function or argument harder to search for and can distract from an explanation. Clear terminology matters more than cosmetic perfection, but avoidable errors should not create extra work for the reader.
 :::
 
 ## Creating a list of allowed misspellings {.smaller}
@@ -1826,7 +1817,7 @@ Run `spelling::update_wordlist()` after reviewing spelling results. It adds acce
 
 
 ::: {.notes}
-- Explain how to maintain a project-specific whitelist of allowed domain terms, acronyms, and package names in `inst/WORDLIST` using `spelling::update_wordlist()`.
+A project word list records legitimate package names and technical terms that a spelling tool would otherwise flag. Maintain it deliberately so it improves the signal instead of becoming a collection of unchecked exceptions.
 :::
 
 ## Detecting spelling mistakes {.smaller}
@@ -1896,7 +1887,7 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 
 
 ::: {.notes}
-- Show how to automate spell checking in CI by invoking `spelling::spell_check_package()` to gate pull requests on clean prose.
+A package-level spelling check can run on pull requests. The automated result then points a reviewer towards words that need either correction or a justified place in the project dictionary.
 :::
 
 # Exception handling {#warnings}
@@ -1905,7 +1896,7 @@ Preventive care to make sure that you don't miss out on important warnings.
 
 
 ::: {.notes}
-- Introduce the Exception Handling and Warnings section, focusing on clear communication and avoiding hidden diagnostic issues.
+Now let’s consider diagnostics: how the package communicates progress, potential problems, and failures.
 :::
 
 # "There is a problem with warnings. No one reads them." 
@@ -1913,8 +1904,7 @@ Preventive care to make sure that you don't miss out on important warnings.
 
 
 ::: {.notes}
-- Quote Patrick Burns: 'There is a problem with warnings. No one reads them.'
-- Note that unaddressed warnings easily accumulate into noise that obscures critical operational failures.
+Patrick Burns' observation that nobody reads warnings captures a familiar failure mode. When warnings become routine background noise, the message that actually needs attention is easy to miss.
 :::
 
 # <span class="visually-hidden">Detecting warnings</span> {#section-2 aria-label="Detecting warnings: overview"}
@@ -1950,7 +1940,7 @@ knitr::include_graphics("media/target.webp")
 
 
 ::: {.notes}
-- Summarise the section objectives: sending appropriate diagnostic signals, suppressing benign internal noise, and resolving external deprecation warnings promptly.
+The aim is to send the right signal, reduce avoidable noise, and respond to dependency deprecations before they become failures.
 :::
 
 ## Sending signals {.smaller}
@@ -1999,7 +1989,7 @@ Out of these, warnings are the most nebulous!
 
 
 ::: {.notes}
-- Contrast R's three signalling mechanisms: `message()` for purely informational updates, `warning()` for potential problems that do not halt execution, and `stop()` for unrecoverable errors.
+Messages provide information, warnings flag a potential problem without necessarily stopping execution, and errors stop an operation that cannot continue as intended. Choose the signal that matches what the caller needs to know.
 :::
 
 ## A needle in the haystack {.smaller}
@@ -2078,7 +2068,7 @@ To avoid missing out on important warnings, there should ideally be **zero of ei
 
 
 ::: {.notes}
-- Illustrate the 'needle in the haystack' dilemma: when build logs are flooded with repeated warnings, critical notices and deprecations are easily overlooked.
+A log full of repeated warnings makes diagnosis harder. Reducing that noise helps the important condition stand out, rather than asking the reader to find it in a large volume of familiar messages.
 :::
 
 ## Suppressing intrinsic warnings {.smaller}
@@ -2097,7 +2087,7 @@ There is almost never a need to explicitly highlight warnings intrinsic to your 
 
 
 ::: {.notes}
-- Explain how to address intrinsic warnings generated by your own code: refactor the implementation so that benign conditions are handled cleanly without issuing warnings.
+For warnings produced by our own code, investigate whether the implementation can handle the situation cleanly. The goal is to resolve an avoidable condition, not simply hide the warning text.
 :::
 
 ## Suppressing extrinsic warnings {.smaller}
@@ -2120,7 +2110,7 @@ Warnings from dependencies can be critical and should be dealt with ASAP.
 
 
 ::: {.notes}
-- Discuss extrinsic warnings arising from third-party dependencies: update usage promptly to conform to new APIs rather than simply suppressing the warning.
+For warnings from a dependency, check whether the package is using an outdated interface. Adapting to the supported API is generally more useful than suppressing a diagnostic that will later become an error.
 :::
 
 ## Detecting warnings {.smaller}
@@ -2220,7 +2210,7 @@ function_showing_warning()
 
 
 ::: {.notes}
-- Show how to detect warnings strictly in test suites and CI by elevating warnings to errors with `options(warn = 2)` and setting strict R check environment variables.
+Strict test and check settings can make unexpected warnings fail visibly. Turning warnings into errors in the appropriate workflow helps prevent them from being accepted as routine noise.
 :::
 
 # Portability {#portability}
@@ -2229,7 +2219,7 @@ Preventive care to make sure that your package works across a variety of setting
 
 
 ::: {.notes}
-- Introduce the Portability section, focusing on verifying package compatibility across varied computing environments.
+Portability means checking the package in environments other than the one in which it was developed.
 :::
 
 # "Each new user of a new system uncovers a new class of bugs."
@@ -2237,8 +2227,7 @@ Preventive care to make sure that your package works across a variety of setting
 
 
 ::: {.notes}
-- Quote Brian Kernighan: 'Each new user of a new system uncovers a new class of bugs.'
-- Emphasise that diversity of environments is an asset for unearthing edge-case bugs.
+Brian Kernighan's observation is that each new user of a new system uncovers a new class of bugs. Different environments expose assumptions that may be invisible on the maintainer's machine.
 :::
 
 # <span class="visually-hidden">Portability</span> {#section-3 aria-label="Portability: overview"}
@@ -2274,7 +2263,7 @@ knitr::include_graphics("media/target.webp")
 
 
 ::: {.notes}
-- Summarise portability goals: testing across operating systems, R versions, compilers, and locales to guarantee consistent behaviour.
+The portability goal is to discover environment-dependent behaviour early. Vary the platforms and settings that are relevant to the package and its users.
 :::
 
 ## The unbearable diversity of contexts {.smaller}
@@ -2363,7 +2352,7 @@ knitr::include_graphics("media/problem-solved.webp")
 
 
 ::: {.notes}
-- Detail the diversity of contexts: operating systems (Linux, macOS, Windows), R release cycles (devel, release, oldrel), compiler flags, and non-UTF-8 locale encodings.
+Linux, macOS, and Windows differ, as do R releases, compiler settings, and locales. A test matrix makes some of that variation explicit instead of relying on one successful local run.
 :::
 
 ## Checking across multiple settings {.smaller}
@@ -2441,7 +2430,7 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 
 
 ::: {.notes}
-- Explain how to test across multiple platforms using GitHub Actions matrix builds and R-hub services (`rhub` or `r-hub/actions`) before submitting to CRAN.
+GitHub Actions matrices and R-hub services can provide checks across environments. Use them to investigate portability before release, while retaining enough information to reproduce any failures they reveal.
 :::
 
 # Code quality {#codequality}
@@ -2450,7 +2439,7 @@ Preventive care to detect code quality issues and performance regressions.
 
 
 ::: {.notes}
-- Introduce the Code Quality section, covering automated styling, static code analysis, and performance benchmarking.
+Code quality includes readable structure, static checks, and awareness of performance. These practices help a codebase remain understandable as it grows.
 :::
 
 # "Don’t comment bad code—rewrite it."
@@ -2458,8 +2447,7 @@ Preventive care to detect code quality issues and performance regressions.
 
 
 ::: {.notes}
-- Quote Kernighan and Plauger: 'Don’t comment bad code—rewrite it.'
-- Stress that clean, expressive code is superior to code burdened with explanatory comments.
+Kernighan and Plauger advise rewriting bad code rather than commenting around it. Clear implementation is the foundation; an explanatory comment should preserve reasoning that the code cannot express.
 :::
 
 # <span class="visually-hidden">Code maintainability</span> {#section-4}
@@ -2495,14 +2483,14 @@ knitr::include_graphics("media/target.webp")
 
 
 ::: {.notes}
-- Summarise code quality goals: enforcing style guidelines, catching static lints, and preventing unnoticed performance regressions.
+The code-quality goals are consistent style, useful static feedback, and protection against unnoticed performance regressions. They support maintenance from different directions.
 :::
 
 # Make sure the code follows a style guide.
 
 
 ::: {.notes}
-- Transition to automated code style enforcement and formatting consistency.
+A shared formatting convention removes a repeated decision from everyday development. Automating it keeps that convention consistent.
 :::
 
 ## Code formatting {.smaller}
@@ -2593,7 +2581,7 @@ knitr::include_graphics("media/problem-solved.webp")
 
 
 ::: {.notes}
-- Discuss the value of consistent code formatting: eliminating subjective style debates and keeping version control diffs clean and readable.
+Consistent formatting makes diffs easier to inspect and lets review concentrate on behaviour. The value is a predictable style, rather than repeated debate over each formatting choice.
 :::
 
 ## Following style guide {.smaller}
@@ -2663,14 +2651,14 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 
 
 ::: {.notes}
-- Show how to automate code formatting using `styler::style_pkg()` and pre-commit hooks to strictly follow the tidyverse style guide.
+A formatter such as styler can apply the chosen rules, and a pre-commit hook can make the process routine. The formatting command should be the same one contributors can run locally.
 :::
 
 # Make sure there are no known code quality issues.
 
 
 ::: {.notes}
-- Transition to static code analysis and identifying known code smells.
+Static analysis can reveal known patterns associated with mistakes or difficult maintenance. It adds feedback before the code is executed.
 :::
 
 ## Code quality assessment {.smaller}
@@ -2788,7 +2776,7 @@ knitr::include_graphics("media/problem-solved.webp")
 
 
 ::: {.notes}
-- Discuss code quality assessment: using static analysers to catch undefined globals, unused variables, overly complex logic, and obsolete functions.
+A static analyser may identify an unused variable, an undefined symbol, or another suspicious pattern. Its findings need interpretation, but they can direct attention to problems that are easy to overlook in a large diff.
 :::
 
 ## Detecting lints {.smaller}
@@ -2892,7 +2880,7 @@ env:
 
 
 ::: {.notes}
-- Explain how to configure `lintr::lint_package()` and project `.lintr` configuration files to run static lint checks on every pull request.
+A project lintr configuration records the checks the team has chosen. Running the package lint command on pull requests makes those conventions visible and repeatable.
 :::
 
 ## Detecting issues with non-R code {.smaller}
@@ -2979,14 +2967,14 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 
 
 ::: {.notes}
-- Address linting compiled and non-R code: checking C++, C, JavaScript, or Markdown files using tools like `cpplint` or markdown linters when packages include foreign code.
+An R package can also contain C, C++, JavaScript, or documentation source. Those files need checks suited to their languages. Package quality does not stop at the boundary of the R directory.
 :::
 
 # Make sure there are no performance regressions.
 
 
 ::: {.notes}
-- Transition to tracking computational performance and memory consumption.
+Performance can regress even when functional tests remain green. Check the costs that matter to the package, including time and memory.
 :::
 
 ## Don't slow it down {.smaller}
@@ -3069,7 +3057,7 @@ knitr::include_graphics("media/problem-solved.webp")
 
 
 ::: {.notes}
-- Discuss performance regressions: how well-intentioned refactoring can inadvertently introduce algorithmic bottlenecks or excessive allocations.
+A well-intentioned refactoring can introduce extra allocations or repeated work. Measurement helps distinguish an apparent simplification from a change that is more expensive in practice.
 :::
 
 ## Detecting performance regressions {.smaller}
@@ -3130,7 +3118,7 @@ Use [GHA workflow](https://github.com/r-lib/styler/blob/main/.github/workflows/t
 
 
 ::: {.notes}
-- Demonstrate how to detect performance regressions across commits using microbenchmarking tools like `{bench}` or continuous benchmarking frameworks like `{touchstone}`.
+Benchmarking tools can compare relevant operations across changes. Keep the inputs and conditions comparable, and focus on measurements that reflect real use of the package.
 :::
 
 # Dependency management {#dependency}
@@ -3139,7 +3127,7 @@ Preventive care for optional features and upstream changes.
 
 
 ::: {.notes}
-- Introduce the Dependency Management section, focusing on minimising external risk, loose coupling, and graceful degradation.
+Dependencies bring capabilities and maintenance obligations. Managing them deliberately helps limit unnecessary coupling and surprises.
 :::
 
 # "Dependencies are invitations for other people to break your package."
@@ -3147,8 +3135,7 @@ Preventive care for optional features and upstream changes.
 
 
 ::: {.notes}
-- Quote the reality of software dependencies: 'Dependencies are invitations for other people to break your package.'
-- Remind attendees to weigh the cost and reliability of every added dependency.
+The quotation describes dependencies as invitations for other people to break a package. It is a pointed reminder that our code runs in a changing ecosystem. Consider the maintenance cost alongside the feature a dependency provides.
 :::
 
 # <span class="visually-hidden">Dependency management</span> {#section-5 aria-label="Dependency management: overview"}
@@ -3184,7 +3171,7 @@ knitr::include_graphics("media/target.webp")
 
 
 ::: {.notes}
-- Summarise dependency management goals: maintaining strict hygiene for Suggested packages, conditional feature execution, and early detection of upstream breakages.
+The goal is clear handling of optional packages and early discovery of changes that affect compatibility. That includes both upstream and downstream relationships.
 :::
 
 ## Types of Dependencies {.smaller}
@@ -3236,14 +3223,14 @@ If a critical dependency becomes unavailable (e.g. because its author decides to
 
 
 ::: {.notes}
-- Clarify the distinctions between hard dependencies (`Depends`, `Imports`), soft dependencies (`Suggests`, `Enhances`), and their respective runtime implications.
+Required and optional dependencies have different roles. A package listed as optional should not become an unconditional requirement through the way a function uses it.
 :::
 
 # Use suggested dependencies deliberately.
 
 
 ::: {.notes}
-- Transition to the disciplined handling of optional packages declared under `Suggests`.
+Optional dependencies need deliberate checks at the point where their functionality is required. This lets the rest of the package remain usable without them.
 :::
 
 ## Soft dependency hygiene {.smaller}
@@ -3332,7 +3319,7 @@ knitr::include_graphics("media/problem-solved.webp")
 
 
 ::: {.notes}
-- Emphasise soft dependency hygiene: never calling `library()` or unconditional namespace operators on Suggested packages within shipped package functions.
+Calling an optional package unconditionally defeats its optional status. Check availability first and keep that condition close to the feature that needs it.
 :::
 
 ## Conditional dependency usage {.smaller}
@@ -3374,7 +3361,7 @@ Sources: [R Packages (2e): suggested dependencies](https://r-pkgs.org/dependenci
 
 
 ::: {.notes}
-- Demonstrate safe conditional usage using `rlang::is_installed()` or `requireNamespace(..., quietly = TRUE)` with informative fallback errors via `cli::cli_abort()`.
+Availability helpers can test for an optional package without attaching it. If a requested feature needs a missing dependency, return an informative error that explains what the user must install or choose instead.
 :::
 
 ## Anticipating breakages {.smaller}
@@ -3463,7 +3450,7 @@ knitr::include_graphics("media/problem-solved.webp")
 
 
 ::: {.notes}
-- Explain reverse dependency checking using `revdepcheck::revdep_check()` to anticipate whether proposed changes will break downstream packages on CRAN.
+Reverse-dependency checks examine how a proposed change affects packages that use yours. They provide evidence about downstream impact before the change reaches a release.
 :::
 
 ## Detecting breakages early {.smaller}
@@ -3536,7 +3523,7 @@ How frequently you should run this check (e.g., once a month, once every six mon
 
 
 ::: {.notes}
-- Detail how to detect breakages early by running scheduled CI builds against the development versions of upstream dependencies.
+Scheduled checks against development versions of upstream packages can reveal incoming breakages early. That creates time to investigate and coordinate a fix before the changed dependency is released.
 :::
 
 # Eco-friendly workflows
@@ -3545,7 +3532,7 @@ Do you *really* need to run all workflows on each commit?!
 
 
 ::: {.notes}
-- Introduce the Eco-Friendly Workflows section, discussing continuous integration efficiency and resource conservation.
+Automation has a resource cost too. Efficient workflows avoid repeated work that does not add useful feedback.
 :::
 
 ## Skipping workflows {.smaller}
@@ -3594,7 +3581,7 @@ You can use a few or all of the following options to reduce the frequency with w
 
 
 ::: {.notes}
-- Show how to skip unnecessary CI workflow runs for markdown or documentation edits using path filtering (`paths-ignore`) or commit message tags (`[skip ci]`).
+Path filters can keep a workflow focused on changes that affect its result. Use them carefully: documentation with executable examples still needs to be checked. The aim is to remove unnecessary runs without leaving relevant changes untested.
 :::
 
 # Caveats
@@ -3603,7 +3590,7 @@ No good practice is dogma. There always exist exceptions.
 
 
 ::: {.notes}
-- Open the Caveats section: balancing automated discipline with practical development flexibility.
+Preventive care needs judgement as well as automation. The set of checks should fit the package's scope and stage of development.
 :::
 
 ## Using workflows flexibly {.smaller}
@@ -3614,7 +3601,7 @@ No good practice is dogma. There always exist exceptions.
 
 
 ::: {.notes}
-- Explain how to adapt automated workflows to package maturity and scope, acknowledging that not every small utility requires the full suite of checks.
+A small utility and a mature package may need different workflows. Start with checks that address real risks, then extend them as the maintenance needs grow. Flexibility should remain deliberate and visible.
 :::
 
 # Failure is the only option
@@ -3623,7 +3610,7 @@ It is necessary that builds fail for any existing or newly found issues.
 
 
 ::: {.notes}
-- Introduce the principle that failure is the only option: CI must fail loudly and decisively whenever checks detect issues.
+A check is useful only if failure is visible. When a gate detects a problem, the workflow should report that outcome clearly rather than quietly continuing as if everything passed.
 :::
 
 # "Later equals never."
@@ -3631,8 +3618,7 @@ It is necessary that builds fail for any existing or newly found issues.
 
 
 ::: {.notes}
-- Quote LeBlanc's Law: 'Later equals never.'
-- Emphasise that deferring fixes for broken checks or failing tests inevitably leads to unmanageable technical debt.
+“Later equals never” is the reminder behind LeBlanc's Law. A broken check that stays broken gradually loses its value as feedback. Address the cause while the context is still available.
 :::
 
 ## Managing technical debt {.smaller}
@@ -3680,7 +3666,7 @@ The initial work you will put into achieving green checks will pay dividends in 
 
 
 ::: {.notes}
-- Discuss strategies for managing technical debt: treating accumulated warnings and lints with urgency before they compound.
+Keeping a workflow green means treating new warnings and failures as work to investigate. It does not mean changing the gate merely to obtain a green result.
 :::
 
 ## Easing into it {.smaller}
@@ -3724,7 +3710,7 @@ This PR can be merged when the new workflow runs successfully.
 
 
 ::: {.notes}
-- Provide practical advice for easing into preventive care: adopt checks iteratively rather than attempting to fix all historical lint and coverage debt in a single stroke.
+Introduce preventive checks in manageable steps. Separate existing debt from new regressions so the team can improve the baseline without turning every small change into a full historical cleanup.
 :::
 
 # Coding-agent readiness {#llm-readiness}
@@ -3733,7 +3719,7 @@ Preventive care to make sure that coding agents can find your conventions.
 
 
 ::: {.notes}
-- Introduce the Coding-Agent Readiness section, covering best practices for making repositories understandable and maintainable by AI coding assistants.
+Coding-agent readiness concerns the same development environment from another reader's perspective. An assistant needs to discover the rules, commands, and evidence required for an acceptable change.
 :::
 
 # "The hottest new programming language is English."
@@ -3741,8 +3727,7 @@ Preventive care to make sure that coding agents can find your conventions.
 
 
 ::: {.notes}
-- Quote Andrej Karpathy: 'The hottest new programming language is English.'
-- Frame prompt instructions and structured documentation as the new programming layer.
+Andrej Karpathy's remark about English as a programming language highlights the role of instructions. Clear language can guide an agent, while deterministic tools still provide the checks and boundaries around its work.
 :::
 
 # <span class="visually-hidden">Coding-agent readiness</span> {#section-6 aria-label="Coding-agent readiness: overview"}
@@ -3778,7 +3763,7 @@ knitr::include_graphics("media/target.webp")
 
 
 ::: {.notes}
-- Summarise coding-agent readiness goals: establishing explicit conventions, modularising tasks, and structuring machine-readable documentation.
+The goals are explicit conventions, reusable procedures, and documentation that a tool can retrieve. Those also help human contributors enter an unfamiliar repository.
 :::
 
 ## Making conventions explicit {.smaller}
@@ -3859,7 +3844,7 @@ knitr::include_graphics("media/problem-solved.webp")
 
 
 ::: {.notes}
-- Discuss the necessity of making conventions explicit: AI coding agents perform best when architectural patterns and quality rules are written down rather than assumed.
+An undocumented convention is easy to miss. Write down the rules that matter, especially the ones that cannot be inferred reliably from the source.
 :::
 
 ## Where instructions live {.smaller}
@@ -3906,7 +3891,7 @@ Write down the instructions and commands you already give a new contributor. Add
 
 
 ::: {.notes}
-- Detail where instructions belong across the repository: root `AGENTS.md` for core rules, `.agents/skills/` for procedural tasks, and `.github/prompts/` for reusable prompts.
+The repository's root instruction file can hold shared rules. Skills can hold specialised procedures, while prompt templates can capture recurring requests. Each has a different role in keeping guidance findable.
 :::
 
 ## Keeping context focused {.smaller}
@@ -3941,14 +3926,14 @@ Keep shared essentials in `AGENTS.md` and detailed workflows in skills. A bug-fi
 
 
 ::: {.notes}
-- Emphasise keeping root context focused: keep `AGENTS.md` concise to conserve token context, delegating specialised workflows to on-demand skills.
+Not every procedure belongs in the initial context of every task. Keep the shared instructions focused and load specialised guidance when it is relevant.
 :::
 
 # Make sure shared conventions are written down for agents.
 
 
 ::: {.notes}
-- Transition to standardising repository instructions for autonomous agents.
+Shared conventions should be discoverable before an agent starts editing. That gives it a better chance of choosing the expected tools and checks.
 :::
 
 ## Repository instructions: `AGENTS.md` {.smaller}
@@ -3996,14 +3981,14 @@ Put an [`AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/) file
 
 
 ::: {.notes}
-- Explain how to structure an `AGENTS.md` file: document build commands, toolchains, code style rules, test execution commands, and PR conventions.
+Useful package instructions include the toolchain, build and test commands, style conventions, and pull-request expectations. Keep them accurate enough that a contributor can follow them without reconstructing the workflow.
 :::
 
 # Make sure recurring procedures and requests are reusable.
 
 
 ::: {.notes}
-- Transition to packaging recurring development procedures into modular, reusable skills.
+A recurring procedure is easier to maintain when it has a reusable definition. That avoids re-explaining a complicated sequence differently each time.
 :::
 
 ## Reusable procedures: `.agents/skills/` {.smaller}
@@ -4055,7 +4040,7 @@ Describe relevant tasks or files so the coding agent can select the skill. It re
 
 
 ::: {.notes}
-- Detail how to create reusable skills in `.agents/skills/`: provide clear trigger conditions and executable step-by-step procedures for complex maintenance workflows.
+A skill can describe when a maintenance procedure applies and how to carry it out. Clear triggers and verification steps make it more useful than a loose collection of commands.
 :::
 
 ## Reusable requests: `.github/prompts/` {.smaller}
@@ -4107,14 +4092,14 @@ the changes and validation.
 
 
 ::: {.notes}
-- Explain reusable prompt templates in `.github/prompts/` for consistent task execution across team members and coding agents.
+A saved prompt captures a recurring request, including its scope and expected result. Sharing that template helps team members and agents start from the same assumptions.
 :::
 
 # Make sure your documentation is machine-readable.
 
 
 ::: {.notes}
-- Transition to machine-readable documentation standards for language models.
+Documentation needs a form that tools can retrieve and read. This is useful beyond any one website interface or search box.
 :::
 
 ## Machine-readable docs: `llms.txt` {.smaller}
@@ -4163,7 +4148,7 @@ Submit your repository at [context7.com/add-library](https://context7.com/add-li
 
 
 ::: {.notes}
-- Introduce `llms.txt` and `llms-full.txt` standards: serving concise, markdown-formatted package overviews and API references optimised for agent consumption.
+The llms text files provide a concise index and a fuller text representation of documentation. They can give an agent a direct route to relevant package information without requiring it to navigate the entire website.
 :::
 
 # Conclusion
@@ -4172,7 +4157,7 @@ It is possible to build robust automation infrastructure for R package developme
 
 
 ::: {.notes}
-- Summarise the conclusion: building automated preventive care transforms package maintenance into a calm, sustainable, and release-ready workflow.
+Preventive care makes maintenance more predictable by turning recurring concerns into repeatable feedback. The goal is a package that is easier to release, support, and keep useful over time.
 :::
 
 # Acknowledgements {.smaller}
@@ -4191,7 +4176,7 @@ Although the current repository is published under [CC0 1.0 Universal (CC0 1.0)]
 
 
 ::: {.notes}
-- Acknowledge tool authors, open-source maintainers, and the broader R community whose tooling makes modern automated package maintenance possible.
+These practices rely on the work of tool authors, maintainers, and the wider R community. Their shared infrastructure makes many of these checks practical for individual package developers.
 :::
 
 # Thank You 
@@ -4219,7 +4204,5 @@ Check out my other [slide decks](https://www.indrapatil.com/presentations/) on s
 
 
 ::: {.notes}
-- Thank the attendees for their time and interest.
-- Encourage exploring additional presentation decks on software development best practices via the portfolio link.
-- Point to the contact links for staying connected via LinkedIn, GitHub, or email.
+Thank you for listening. The links on this slide provide related presentations and ways to get in touch. Questions and experiences from your own package maintenance are welcome.
 :::
