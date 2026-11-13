@@ -41,11 +41,9 @@ the build.
 - **Sources are inline links.** Cite by hyperlinking the words that make the
   claim (the tool, the file, the concept), including example files from other
   repositories such as `statsExpressions`, which go on the slide introducing
-  them. Never add a standalone "Here is a complete example" sentence. A
-  small-font centred source list is a rare exception for slides resting on
-  several sources; do not spread it. There is **no references slide**, and the
-  deck must not gain one: a previous one was deliberately removed and its links
-  distributed inline (PR #47).
+  them. A small-font centred source list is a rare exception for slides
+  resting on several sources; do not spread it. The deck has **no references
+  slide** and must not gain one; every source stays inline.
 - **Spelling and punctuation.** Use British spelling in prose (colour, licence,
   catalogue, artefact) and the Oxford comma in lists of three or more. Leave
   code, identifiers, file names, URLs, quotations, and proper names (`license`
@@ -78,7 +76,7 @@ the build.
   Pages, pull requests build without deploying. Do not inline or modify that
   workflow here.
 - Reference reusable workflows as `@main`, never a commit SHA: they are
-  first-party, and a pinned SHA once went five months stale.
+  first-party, and a pinned SHA goes stale unnoticed.
 - `check-link-rot.yaml` checks external links; list false positives in
   `.lycheeignore`.
 
