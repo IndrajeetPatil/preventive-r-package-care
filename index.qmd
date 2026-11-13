@@ -947,7 +947,7 @@ Use a [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.gith
 
 ## Additional tips 
 
-- The choice of threshold is subjective and context-sensitive. Chasing after 100% example code coverage is futile (since this would require exposing every exception in the examples).
+- The choice of threshold is subjective and context-sensitive. Once examples and vignettes together reach 100%, as in [`statsExpressions`](https://github.com/IndrajeetPatil/statsExpressions), enforcing 100% keeps new code documented. Before that, don't contort examples to expose every exception just to reach it.
 
 - The examples not run or tested on CRAN can still be counted for computing code coverage.
 
@@ -1633,7 +1633,7 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 
 - If `{urlchecker}` finds dead URLs in `.html`/`.md` files, you will need to update `.Rmd`/`.qmd` files and then regenerate the docs. Otherwise, you will keep wondering why `urlchecker::url_update()` isn't fixing the links.
 
-- There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help. If false positives persist, you may decide to not mark builds as failed if any broken links are found.
+- There can be false positives sometimes because a server is temporarily down. Re-triggering the workflow can help. If a site persistently refuses automated requests, exclude that URL in a [`lychee.toml`](https://github.com/IndrajeetPatil/statsExpressions/blob/e604de9de204ee91fceb1c898618a8d63469280e/lychee.toml) file instead of letting the whole check fail or switching it off.
 
 :::
 
@@ -1744,7 +1744,7 @@ Typos can make a function or argument harder to search for and can distract from
 
 ::: {.column width='68%'}
 
-There exist multiple English spelling standards (e.g. in British English: *anaemia*, but in American English: *anemia*). You can specify your preferred standard in `DESCRIPTION`.
+There exist multiple English spelling standards (e.g. in British English: *anaemia*, but in American English: *anemia*). You can specify your preferred standard in `DESCRIPTION`, and give the spell checker the same locale.
 
 :::
 
@@ -1762,43 +1762,38 @@ Language: en-GB
 
 . . . 
 
-<br>
-
 <!-- column layout -->
 
 :::: {.columns}
 
-::: {.column width='58%'}
+::: {.column width='48%'}
 
-Additionally, some technical words will not be recognised by dictionaries, but you don't want these to be considered spelling mistakes either. You can create a list of allowed misspelt words in the `WORDLIST` file.
+Technical words that aren't English shouldn't be flagged either. [`typos`](https://github.com/crate-ci/typos) flags only *known* misspellings, so most pass untouched. Record the locale and remaining exceptions in `_typos.toml`.
 
 :::
 
-::: {.column width='20%'}
+::: {.column width='18%'}
 
 File location
 
 ```
 ├── DESCRIPTION
-├── inst
-│   └── WORDLIST
+├── _typos.toml
 ```
 
 :::
 
-::: {.column width='20%'}
+::: {.column width='32%'}
 
 Example file
 
-```
-addin
-api
-AppVeyor
-biocthis
-bootswatch
-...
-winbuilder
-YAML
+```toml
+[default]
+locale = "en-gb"
+
+[default.extend-words]
+ttest = "ttest"
+
 ```
 
 :::
@@ -1809,15 +1804,15 @@ YAML
 
 :::{.callout-tip}
 
-## Updating the word list
+## Keeping exceptions deliberate
 
-Run `spelling::update_wordlist()` after reviewing spelling results. It adds accepted technical terms to `inst/WORDLIST` and removes entries that are no longer needed.
+Allow a word only once you've confirmed it is intended. Exclude generated files, such as rendered HTML, under `[files]` instead of allowing their words.
 
 :::
 
 
 ::: {.notes}
-A project word list records legitimate package names and technical terms that a spelling tool would otherwise flag. Maintain it deliberately so it improves the signal instead of becoming a collection of unchecked exceptions.
+A project configuration records the spelling standard, along with legitimate identifiers and technical terms that a spelling tool would otherwise flag. Maintain the exceptions deliberately so they improve the signal instead of becoming a collection of unchecked words.
 :::
 
 ## Detecting spelling mistakes {.smaller}
@@ -1838,11 +1833,11 @@ knitr::include_graphics("media/toolbox.webp")
 
 ::: {.column width='90%'}
 
-Use [`{spelling}`](https://docs.ropensci.org/spelling/) to detect misspelt words and their location in the docs.
+Use [`typos`](https://github.com/crate-ci/typos) to detect misspelt words and their location across the repository, including code, comments, and non-R files.
 
-```{r, eval=FALSE}
+```{bash, eval=FALSE}
 #| code-line-numbers: false
-spelling::spell_check_package()
+typos
 ```
 
 :::
@@ -1867,7 +1862,7 @@ knitr::include_graphics("media/robot.webp")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/check-extra.yaml) to ensure that spelling mistakes are caught on each commit.
+Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/check-docs.yaml) to ensure that spelling mistakes are caught on each commit. It checks for link rot in the same run.
 
 :::
 
@@ -1879,7 +1874,7 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 
 ## Additional tips 
 
-- Instead of a GHA workflow, you can also include spell check tests in the package itself. For more, see `usethis::use_spell_check()`.
+- Prefer a dictionary-based check of the documentation alone? [`{spelling}`](https://docs.ropensci.org/spelling/) runs `spelling::spell_check_package()` against `Language` in `DESCRIPTION` and an `inst/WORDLIST` of allowed words. See also `usethis::use_spell_check()`.
 
 - [`R CMD check --as-cran`](https://stat.ethz.ch/CRAN/doc/manuals/r-devel/R-exts.html#Checking-packages) validates generated HTML5 help pages when a recent HTML Tidy is available. The [r-lib workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/html-5-check.yaml) installs that prerequisite explicitly.
 
@@ -1887,7 +1882,7 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 
 
 ::: {.notes}
-A package-level spelling check can run on pull requests. The automated result then points a reviewer towards words that need either correction or a justified place in the project dictionary.
+A repository-wide spelling check can run on pull requests. The automated result then points a reviewer towards words that need either correction or a justified place in the project configuration.
 :::
 
 # Exception handling {#warnings}
@@ -2161,7 +2156,7 @@ knitr::include_graphics("media/robot.webp")
 
 ::: {.column width='90%'}
 
-Use GHA workflows to automate warning checks in [help pages](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/test-coverage.yaml), [README, vignettes, and tests](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/check-extra.yaml) on each commit.
+Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/check-extra.yaml) to automate warning checks in help pages, README, vignettes, and tests on each commit.
 
 :::
 
@@ -2651,7 +2646,7 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 
 
 ::: {.notes}
-A formatter such as styler can apply the chosen rules, and a pre-commit hook can make the process routine. The formatting command should be the same one contributors can run locally.
+A formatter such as air can apply the chosen rules, and a pre-commit hook can make the process routine. The formatting command should be the same one contributors can run locally.
 :::
 
 # Make sure there are no known code quality issues.
@@ -3121,6 +3116,77 @@ Use [GHA workflow](https://github.com/r-lib/styler/blob/main/.github/workflows/t
 Benchmarking tools can compare relevant operations across changes. Keep the inputs and conditions comparable, and focus on measurements that reflect real use of the package.
 :::
 
+## Benchmarking in CPU simulation {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
+knitr::include_graphics("media/toolbox.webp")
+```
+
+:::
+
+::: {.column width='90%'}
+
+[CodSpeed](https://codspeed.io/) counts simulated CPU work instead of wall-clock time, so results stay comparable on noisy CI runners. List commands that exercise the main API in [`codspeed.yml`](https://github.com/IndrajeetPatil/statsExpressions/blob/e604de9de204ee91fceb1c898618a8d63469280e/codspeed.yml):
+
+```yaml
+benchmarks:
+  - name: two-sample-parametric
+    exec: Rscript --vanilla benchmarks/run.R two-sample-parametric
+```
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
+knitr::include_graphics("media/robot.webp")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/r-benchmarks.yaml) to run these commands and compare each PR with `main`. Grant the caller `id-token: write`, so results upload without a stored token.
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+
+## Choosing what to benchmark
+
+- Cover the main entry points with small, fixed datasets rather than every export.
+- Make each command check its result, so a broken workload fails instead of being timed.
+- Timings include R startup and package loading: compare runs, but don't read them as user latency.
+
+:::
+
+
+::: {.notes}
+CPU simulation measures the work a command performs rather than the time a shared runner happens to take, which keeps comparisons between a pull request and the main branch stable. Benchmark a small set of representative calls to the main functions, and keep their names and inputs stable so that the history stays comparable.
+:::
+
 # Dependency management {#dependency}
 
 Preventive care for optional features and upstream changes.
@@ -3362,6 +3428,76 @@ Sources: [R Packages (2e): suggested dependencies](https://r-pkgs.org/dependenci
 
 ::: {.notes}
 Availability helpers can test for an optional package without attaching it. If a requested feature needs a missing dependency, return an informative error that explains what the user must install or choose instead.
+:::
+
+## Checking without `Suggests` {.smaller}
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
+knitr::include_graphics("media/toolbox.webp")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Your machine and the usual CI jobs have every suggested package installed, so a missing guard goes unnoticed. Run `R CMD check` with only hard dependencies to see the package as a user without `Suggests` does.
+
+:::
+
+::::
+
+. . .
+
+<!-- column layout -->
+
+:::: {.columns}
+
+::: {.column width='10%'}
+
+```{r, echo=FALSE}
+#| fig-alt: ""
+#| out-extra: 'role="presentation"'
+knitr::include_graphics("media/robot.webp")
+```
+
+:::
+
+::: {.column width='90%'}
+
+Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/R-CMD-check.yaml) with `hard: true` to run this check on each PR. Its dependency cache is kept separate, so suggested packages cannot leak in.
+
+```yaml
+uses: IndrajeetPatil/workflows/.github/workflows/R-CMD-check.yaml@main
+with:
+  hard: true
+```
+
+:::
+
+::::
+
+. . .
+
+:::{.callout-important}
+
+## A stricter contract
+
+- Tests and examples that use a suggested package must then skip without it, e.g. with `testthat::skip_if_not_installed()`. CRAN's [`noSuggests`](https://cran.r-project.org/web/checks/check_issue_kinds.html) check holds packages to the same standard.
+- Declare tools that only checks need, such as [`patrick`](https://github.com/google/patrick) for parameterised tests, in `Config/Needs/check` in `DESCRIPTION`, so the check installs them.
+
+:::
+
+
+::: {.notes}
+A check that installs only the hard dependencies shows the package as a user without the suggested packages sees it. Any unguarded use of an optional package then fails in continuous integration instead of on a user's machine. Adopting the check means that tests and examples which need a suggested package must skip without it, which is stricter than assuming the suggested packages are installed during development.
 :::
 
 ## Anticipating breakages {.smaller}
@@ -3938,7 +4074,7 @@ Shared conventions should be discoverable before an agent starts editing. That g
 
 ## Repository instructions: `AGENTS.md` {.smaller}
 
-Put an [`AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/) file at the repository root. It accompanies **every task**, so keep it short.
+Put an [`AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/) file at the repository root. It accompanies **every task**, so keep it short: record only what the code, `DESCRIPTION`, and configuration files don't already make clear.
 
 <!-- column layout -->
 
@@ -3962,17 +4098,17 @@ Put an [`AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/) file
 
 ::: {.column width='32%'}
 
-**For [an R package](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/AGENTS.md):**
+**For [an R package](https://github.com/IndrajeetPatil/statsExpressions/blob/e604de9de204ee91fceb1c898618a8d63469280e/AGENTS.md):**
 
 ```markdown
-# Package conventions
+# AGENTS.md
 
-- Keep public arguments and
-  return structures stable.
+- Keep returned columns stable:
+  ggstatsplot consumes them.
 - Edit roxygen in R/, then
   regenerate man/.
-- Run the documented checks.
-- Keep generated files in sync.
+- Run the narrowest check first,
+  then the full validation gate.
 ```
 
 :::
@@ -4003,8 +4139,10 @@ A [skill](https://agentskills.io/what-are-skills) holds a task's detailed proced
 
 ```text
 .agents/skills/
-└── create-release/
-    └── SKILL.md
+├── create-release/
+│   └── SKILL.md
+├── maintain-ci/
+└── update-dependencies/
 ```
 
 Add `scripts/`, `references/`, or templates to use only when needed.
@@ -4013,7 +4151,7 @@ Add `scripts/`, `references/`, or templates to use only when needed.
 
 ::: {.column width='50%'}
 
-**A skill for [preparing a CRAN release](https://github.com/IndrajeetPatil/statsExpressions/blob/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.agents/skills/create-release/SKILL.md):**
+**A skill for [preparing a CRAN release](https://github.com/IndrajeetPatil/statsExpressions/blob/e604de9de204ee91fceb1c898618a8d63469280e/.agents/skills/create-release/SKILL.md):**
 
 ```markdown
 ---
@@ -4051,29 +4189,30 @@ A skill can describe when a maintenance procedure applies and how to carry it ou
 
 ::: {.column width='50%'}
 
-Keep [recurring requests](https://github.com/IndrajeetPatil/statsExpressions/tree/50b387691bff7a04188fd9a8ec7beb4c4e68fda6/.github/prompts) in plain Markdown files in the repository:
+Keep [recurring requests](https://github.com/IndrajeetPatil/statsExpressions/tree/e604de9de204ee91fceb1c898618a8d63469280e/.github/prompts) in plain Markdown files in the repository:
 
 ```text
 .github/prompts/
-└── update-deps.md
+├── address-review.md
+└── simplify-codebase.md
 ```
 
-Describe the requested change, its scope, and the expected result in the file.
+Describe the requested change, its scope, and the expected result in the file. Point to a skill for any procedure instead of repeating it.
 
 :::
 
 ::: {.column width='50%'}
 
-**A dependency-update request:**
+**A review-response request:**
 
 ```markdown
-# Update package dependencies
+# Address code review comments
 
-Follow AGENTS.md. Update dependencies
-and fix any resulting incompatibilities.
-Preserve public behaviour and run the
-required checks. Open a PR describing
-the changes and validation.
+Fix valid unresolved comments; reply
+with evidence to the rest. Follow
+AGENTS.md and, for dependencies, the
+update-dependencies skill. Push the
+validated fixes and report CI state.
 ```
 
 :::
@@ -4086,7 +4225,7 @@ the changes and validation.
 
 ## Running a saved request
 
-[Tag or attach](https://learn.chatgpt.com/docs/developer-commands#interactive-shortcuts) `@.github/prompts/update-deps.md` and send it. The file already contains the request.
+[Tag or attach](https://learn.chatgpt.com/docs/developer-commands#interactive-shortcuts) `@.github/prompts/address-review.md` and send it. The file already contains the request.
 
 :::
 
