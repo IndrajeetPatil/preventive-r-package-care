@@ -66,14 +66,9 @@ from upstream with `quarto add mcanouil/quarto-revealjs-a11y --no-prompt`.
 The extension handles browser zoom, slide isolation, focus indicators, link
 underlines, reduced motion, and screen-reader announcements.
 
-The `accessibility.html` helper handles scrollable code, slide-menu focus, and
-vertical-slide semantics. It is a shared fleet-wide helper and is kept
-identical across all eleven decks by convention, with the copies synced by
-hand. It therefore also carries tabset keyboard handling; this deck has no
-tabsets, so that branch is inert here and must not be deleted locally.
-The extension's slide-menu patch and accessibility settings panel are disabled
-as in the reference deck: version 0.2.3 introduces ARIA and contrast failures in
-those components.
+The `accessibility.html` helper handles scrollable code, slide-menu focus,
+and vertical-slide semantics. The extension's slide-menu patch and accessibility
+settings panel are disabled because they introduce ARIA and contrast failures.
 
 Use `just axe` to inspect slides, fragments, and menu panels in presentation and
 scroll views. Normal builds omit the axe checker.
