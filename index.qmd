@@ -1253,7 +1253,7 @@ knitr::include_graphics("media/toolbox.webp")
 
 ::: {.column width='90%'}
 
-Use [`{devtools}`](https://r-lib.github.io/devtools/) to run all examples, and catch and fix the broken ones.
+Use [`{devtools}`](https://devtools.r-lib.org/) to run all examples, and catch and fix the broken ones.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -1425,7 +1425,7 @@ knitr::include_graphics("media/toolbox.webp")
 
 ::: {.column width='90%'}
 
-Although pkgdown-only articles may not be checked by `R CMD check`, they are still built by [`{pkgdown}`](https://r-lib.github.io/pkgdown/) to generate a static website. Thus, building a website would detect broken examples in those articles.
+Although pkgdown-only articles may not be checked by `R CMD check`, they are still built by [`{pkgdown}`](https://pkgdown.r-lib.org/) to generate a static website. Thus, building a website would detect broken examples in those articles.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -1588,7 +1588,7 @@ knitr::include_graphics("media/toolbox.webp")
 
 ::: {.column width='90%'}
 
-You can use [`{urlchecker}`](https://r-lib.github.io/urlchecker/) to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.
+You can use [`{urlchecker}`](https://urlchecker.r-lib.org/) to detect dead web references and their locations in the documentation. Fixing these links is then straightforward.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -1876,7 +1876,7 @@ Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github
 
 - Prefer a dictionary-based check of the documentation alone? [`{spelling}`](https://docs.ropensci.org/spelling/) runs `spelling::spell_check_package()` against `Language` in `DESCRIPTION` and an `inst/WORDLIST` of allowed words. See also `usethis::use_spell_check()`.
 
-- [`R CMD check --as-cran`](https://stat.ethz.ch/CRAN/doc/manuals/r-devel/R-exts.html#Checking-packages) validates generated HTML5 help pages when a recent HTML Tidy is available. The [r-lib workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/html-5-check.yaml) installs that prerequisite explicitly.
+- [`R CMD check --as-cran`](https://cran.r-project.org/doc/manuals/r-devel/R-exts.html#Checking-packages) validates generated HTML5 help pages when a recent HTML Tidy is available. The [r-lib workflow](https://github.com/r-lib/actions/blob/v2-branch/examples/html-5-check.yaml) installs that prerequisite explicitly.
 
 :::
 
@@ -2368,7 +2368,7 @@ knitr::include_graphics("media/toolbox.webp")
 
 ::: {.column width='90%'}
 
-Use [`{rcmdcheck}`](https://r-lib.github.io/rcmdcheck/) to run `R CMD check` from R.
+Use [`{rcmdcheck}`](https://rcmdcheck.r-lib.org/) to run `R CMD check` from R.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -2792,7 +2792,7 @@ knitr::include_graphics("media/toolbox.webp")
 
 ::: {.column width='90%'}
 
-Use [`{lintr}`](https://r-lib.github.io/lintr/dev/) to carry out static code analysis to detect code quality issues.
+Use [`{lintr}`](https://lintr.r-lib.org/dev/) to carry out static code analysis to detect code quality issues.
 
 ```{r, eval=FALSE}
 #| code-line-numbers: false
@@ -3708,9 +3708,13 @@ Example of an insignificant change.
 You can use a few or all of the following options to reduce the frequency with which the workflows are run.
 
 - Run workflows only when a PR is marked "Ready for Review".
+
 - Run slower checks such as spelling and link rot on weekly or monthly schedules once their baseline is green.
+
 - Run some workflows only when ready for a new release.
-- Cancel [workflows in progress](https://docs.github.com/en/actions/using-jobs/using-concurrency) if a new commit is made.
+
+- Cancel [workflows in progress](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency) if a new commit is made.
+
 - Keep required branch-protection checks running on every relevant PR update; skipped required checks can remain pending and block merging.
 
 :::
@@ -4074,7 +4078,7 @@ Shared conventions should be discoverable before an agent starts editing. That g
 
 ## Repository instructions: `AGENTS.md` {.smaller}
 
-Put an [`AGENTS.md`](https://developers.openai.com/codex/guides/agents-md/) file at the repository root. It accompanies **every task**, so keep it short: record only what the code, `DESCRIPTION`, and configuration files don't already make clear.
+Put an [`AGENTS.md`](https://learn.chatgpt.com/docs/agent-configuration/agents-md) file at the repository root. It accompanies **every task**, so keep it short: record only what the code, `DESCRIPTION`, and configuration files don't already make clear.
 
 <!-- column layout -->
 
@@ -4135,7 +4139,7 @@ A recurring procedure is easier to maintain when it has a reusable definition. T
 
 ::: {.column width='50%'}
 
-A [skill](https://agentskills.io/what-are-skills) holds a task's detailed procedure in its own directory. Its `SKILL.md` contains a name, a description of when to use it, and the instructions.
+A [skill](https://agentskills.io/home) holds a task's detailed procedure in its own directory. Its `SKILL.md` contains a name, a description of when to use it, and the instructions.
 
 ```text
 .agents/skills/
