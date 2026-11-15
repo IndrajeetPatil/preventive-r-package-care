@@ -3341,7 +3341,7 @@ knitr::include_graphics("media/headache.webp")
 
 ::: {.column width='90%'}
 
-Package-development contexts are different: [current R package guidance](https://r-pkgs.org/dependencies-in-practice.html#sec-dependencies-in-practice-suggests) assumes `Suggests` are installed before running examples, vignettes, and tests. Guarding every use adds noise and can silently reduce test coverage.
+Package-development contexts are different: [current R package guidance](https://r-pkgs.org/dependencies-in-practice.html#sec-dependencies-in-suggests) assumes `Suggests` are installed before running examples, vignettes, and tests. Guarding every use adds noise and can silently reduce test coverage.
 
 :::{style="font-size: 20px;"}
 
@@ -3422,7 +3422,7 @@ testthat::skip_if_offline()
 ::::
 
 ::: {style="text-align: center; font-size: 0.55em; margin-top: 1em;"}
-Sources: [R Packages (2e): suggested dependencies](https://r-pkgs.org/dependencies-in-practice.html#sec-dependencies-in-practice-suggests) and [`testthat` skipping guidance](https://testthat.r-lib.org/reference/skip.html).
+Sources: [R Packages (2e): suggested dependencies](https://r-pkgs.org/dependencies-in-practice.html#sec-dependencies-in-suggests) and [`testthat` skipping guidance](https://testthat.r-lib.org/reference/skip.html).
 :::
 
 
