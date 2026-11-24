@@ -1,5 +1,5 @@
 .reveal a {
-  color: #9753B8;
+  color: #9753b8;
 }
 
 /* Tables size to their content by default, which leaves a narrow table
@@ -36,12 +36,12 @@
 
 /* Override Mermaid's grey connectors with the deck's link accent. */
 .context-loading-diagram .flowchart-link {
-  stroke: #9753B8 !important;
+  stroke: #9753b8 !important;
   stroke-width: 1.5px !important;
 }
 
 .context-loading-diagram .arrowMarkerPath {
-  fill: #9753B8 !important;
+  fill: #9753b8 !important;
 }
 
 /* Lightweight SVG masks using Font Awesome Free 6.7.2 paths. Icons: CC BY 4.0; https://fontawesome.com/license/free */
