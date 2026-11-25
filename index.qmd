@@ -2954,7 +2954,7 @@ knitr::include_graphics("media/robot.webp")
 
 ::: {.column width='90%'}
 
-Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/pre-commit.yaml) to detect any problems with non-R code on each commit. You can specify the hooks relevant to you in a [prek config file](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.pre-commit-config.yaml).
+Use [GHA workflow](https://github.com/IndrajeetPatil/workflows/blob/main/.github/workflows/prek.yml) to detect any problems with non-R code on each commit. You can specify the hooks relevant to you in a [prek config file](https://github.com/IndrajeetPatil/statsExpressions/blob/main/.pre-commit-config.yaml).
 
 :::
 
